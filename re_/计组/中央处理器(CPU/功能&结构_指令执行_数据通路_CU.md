@@ -1,4 +1,11 @@
+---
+html:
+  	toc: true
+print_background: true
+---
+
  <span style="color: silver;">
+
 #  <span style="color: silver;">above
 
 ##  <span style="color: silver;">【考纲内容】  
@@ -230,7 +237,7 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 
 ###  <span style="color: silver;"> <span style="color: Gold;">C</span>U中的 <span style="color: LimeGreen;">R
 
->pro：PC和IR的位数与主存储器空间和指令字长的关系（2016、2021）  
+>pro：PC和<span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">R</span>的位数与主存储器空间和指令字长的关系（2016、2021）  
 <ul>
 
 ####  <span style="color: silver;">程序计数器（<span style="color: LightSkyBlue;">P</span><span style="color: LimeGreen;">C</span>）
@@ -276,130 +283,196 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 #  <span style="color: silver;"><span style="color: LightSkyBlue;">指令</span>执行过程  
 <ul>
 
-## 指令周期  
+## <span style="color: LightSkyBlue;">指令</span> <span style="color: silver;">周期  
 
-### 指令周期的基本概念
-- CPU每取出并执行一条指令所需的全部时间称为指令周期，不同指令的指令周期可能不同
-- 指令周期通常可用若干机器周期来表示，每个指令周期内的机器周期数可以不等
-- 图5.2反映了上述关系
-  - 图5.2（a）所示为定长的机器周期
-  - 图5.2（b）所示为不定长的机器周期
+###  <span style="color: silver;">concept
+- 指令周期
+  - 定义：
+    - CPU每 <span style="color: black;">取出</span>并<span style="color: green;">执行</span>一条指令所需的全部时间
+  - 特点：
+    - 不同指令的指令周期可能不同
+    - 可用<span style="color: gray;">若干</span> <span style="color: black;">机器</span>T 来表示
+      - every指令T内的机器T数可以不等
+
+
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/4cdf5401a046fb5fe39af366d76c0d8889d1154a1965f8d7673571ffd1641a97.jpg)  
-图5.2指令周期和机器周期的关系  
+图5.2指令T和机器T的关系  
+  - （a）定长的机器T
+  - （b）不定长的机器T
 
-### 不同指令的周期特点
-- 对于无条件转移指令JIMIPX
-  - 在执行时不需要访问主存
-  - 只包含取指阶段（包括取指和分析）和执行阶段
-  - 所以其指令周期仅包含取指周期和执行周期
+###  <span style="color: silver;">不同<span style="color: LightSkyBlue;">指令</span>的$T$ <span style="color: Gold;">特点</span>
+- 指令周期的类型和特点：
+  - 无条件转移指令JMP X：
+    - 执行特点：
+      - 不需要访问主存
+      - 只包含取指阶段和执行阶段
+    - 周期构成：
+      - 取指周期（包括取指和分析）
+      - 执行周期
 
-- 对于间接寻址的指令
-  - 为了取操作数，需要先访问一次主存，取出有效地址
-  - 然后访问主存，取出操作数
-  - 所以还需包括间址周期
-  - 间址周期介于取指周期和执行周期之间
+  - 间接寻址指令：
+    - 操作数获取过程：
+      - 第一次访存：获取有效地址
+      - 第二次访存：获取操作数
+    - 周期构成：
+      - 取指周期
+      - 间址周期
+      - 执行周期
+    - 特点：间址周期位于取指周期和执行周期之间
 
-- 当CPU采用中断方式实现主机和I/O设备的信息交换时
-  - CPU在每条指令执行结束前，都要发中断查询信号
-  - 若有中断请求，则CPU进入中断响应阶段，也称中断周期
-  - 一个完整的指令周期可包括取指、间址、执行和中断4个周期
-
+  - 带中断的指令执行：
+    - 中断检查：
+      - CPU在每条指令执行结束前发出中断查询信号
+      - 发现中断请求时进入中断响应阶段（中断周期）
+    - 完整周期构成：
+      - 取指周期
+      - 间址周期
+      - 执行周期
+      - 中断周期
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/f7ac4456b5579efe301d3c745f4bafd3791739991e765a528a6dd737b49f8fa6.jpg)  
 图5.3带有间址周期、中断周期的指令周期  
 
 >pro：指令执行的过程（2011）  
 
 ### 指令执行的具体过程
-- 当CPU执行指令时
-  - 首先进入取指周期
-    - 从PC指出的主存单元中取出指令，送至指令寄存器
-    - 同时PC加"1"以作为下一条指令的地址
-  - 当遇到转移指令等改变执行顺序的指令时
-    - 在PC加"1"后会重新计算并更新PC值
-  - 然后判断是否有间接寻址
-    - 如果有，进入间址周期以获取操作数的有效地址
-  - 之后进人执行周期
-    - 完成取操作数、执行运算和存操作数的任务
-  - 执行周期结束后
-    - 如果CPU检测到中断请求，则进入中断周期
-      - 需要关中断
+- CPU执行指令的过程：
+  -  <span style="color: LimeGreen;">取</span>指周期
+       - 取指令操作
+         - 从PC指向的主存单元取出指令
+         - 将指令送至指令寄存器
+       - PC更新操作
+         - PC加"1"准备下一条指令地址
+         - 对于转移指令：PC加"1"后会重新计算并更新PC值
+  
+  -  <span style="color: gray;">间</span>址周期(条件执行)
+      - 判断是否需要间接寻址
+      - 如需要则进入间址周期获取操作数的有效地址
+  
+  - <span style="color: green;">执</span>行周期
+    - 取操作数
+    - 执行运算
+    - 存储操作数
+  
+  - 中<span style="color: Gold;">断</span>周期(条件执行)
+    - 检测是否有中断请求
+    - 如有中断请求则：
+      - 关闭中断
       - 保存断点
-      - 修改PC值为中断服务程序的入口地址
-      - 转向中断服务程序
-
+      - 修改PC值为中断服务程序入口地址
+      - 转向中断服务程序执行
 >attention:  
 
-中断周期中的进栈操作是将SP减"1"，这和传统意义上的进栈操作相反，原因是计算机中的堆栈都是向低地址方向增长，所以进栈操作是减"1"而不是加""。  
+- 中断周期中的进栈操作:
+  - SP减"1"而不是加"1"
+  - 原因:
+    - 计算机中的堆栈都是向低地址方向增长
+    - 因此进栈时需要减"1"来指向新的栈顶位置
+##  <span style="color: silver;"><span style="color: LightSkyBlue;">指令</span>T'<span style="color: LightSkyBlue;">数据</span><span style="color: silver;">流  
+<ul>
 
-## 指令周期的数据流  
+### <span style="color: LightSkyBlue;">数据</span><span style="color: silver;">流  
+- 数据流
+  - 定义：
+    - 根据指令要求依次访问的<span style="color: LightSkyBlue;">数据</span> <span style="color: LimeGreen;">序列</span>
+  - 特点：
+    - 在指令执行的不同阶段，数据序列是不同的
+    - 不同指令的数据流往往也是不同的
+### <span style="color: green;">取</span><span style="color: LightSkyBlue;">指</span><span style="color: silver;">T 
+<ul>
 
-### 数据流的基本概念
-- 数据流是根据指令要求依次访问的数据序列
-- 在指令执行的不同阶段，要求依次访问的数据序列是不同的
-- 对于不同的指令，它们的数据流往往也是不同的
+####  <span style="color: silver;">任务
+- 根据PC中的内容从主存中 <span style="color: black;">取出</span><span style="color: LightSkyBlue;">指令</span>代码→存放在<span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">R</span>中
 
-### 取指周期  
-#### 取指周期的任务
-- 根据PC中的内容从主存中取出指令代码并存放在IR中
+####  <span style="color: silver;">~'<span style="color: LightSkyBlue;">数据</span><span style="color: silver;">流  
+- PC中存放的是指令的<span style="color: DarkRed;">地址
+- 取指令
+  - <span style="color: black;">取出</span><span style="color: LightSkyBlue;">指令</span>代码→存放在<span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">R</span>中
+- PC更新
+  - PC+1 
+    - 以指向下一条指令
+#### <span style="color: silver;">~'<span style="color: LightSkyBlue;">数据</span><span style="color: silver;">流向
+- PC到存储器的数据流向:
+  - <span style="color: LightSkyBlue;">P</span><span style="color: LimeGreen;">C</span> → MAR → <span style="color: DarkRed;">地址</span>bus → <span style="color: Gold;">M</span>
 
-#### 取指周期的数据流
-- PC中存放的是指令的地址
-- 根据此地址从内存单元中取出的是指令，并放在指令寄存器IR中
-- 取指令的同时，PC加1
+- CU发出读命令的流向:
+  - CU读命令 →  <span style="color: Gold;">控制</span>bus →  <span style="color: Gold;">M
 
-#### 取指周期的数据流向
-1. PC  $\circledast$  MAR②地址总线存储器
-2. CU发出读命令控制总线 $\circeq$ 存储器
-3. 主存 $\circeq$ 数据总线 $\nsupseteq$ MDR $\circledast$ IR（存放指令）
-4. CU发出控制信号PC内容加1
+- 获取指令的流向:
+  - 主存 → <span style="color: LightSkyBlue;">数据</span>bus → M<span style="color: LightSkyBlue;">D</span>R → IR（存放指令）
 
+- PC更新流向:
+  - CU发出控制信号 → <span style="color: LightSkyBlue;">P</span><span style="color: LimeGreen;">C</span>+1
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/f75084f25f382c3b663c9acfe77f401b2ea0ef4abcdf6fe2e458bbf2de1010ae.jpg)  
 图5.4取指周期的数据流  
+</ul>
 
-### 间址周期  
-#### 间址周期的任务
-- 取操作数有效地址
+###  <span style="color: silver;">间<span style="color: DarkRed;">址</span>T
+<ul>
+
+####  <span style="color: silver;">任务
+- 取操作数<span style="color: LightSkyBlue;">E</span><span style="color: DarkRed;">A</span>
 - 以一次间址为例
-  - 将指令中的地址码送到MAR并送至地址总线
-  - CU向存储器发出读命令，以获取有效地址并存至MDR
+  - step1:
+    - 将指令中的地址码送到MAR
+    - 将MAR中的地址码送至地址总线
+  - step2:
+    - CU向存储器发出读命令
+    - 获取有效地址
+    - 将有效地址存至MDR
+#### <span style="color: silver;">~'<span style="color: LightSkyBlue;">数据</span><span style="color: silver;">流向
+- Ad(IR)(或MDR)到存储器的数据流向:
+  - Ad(<span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">R</span>)(或MDR) → M<span style="color: DarkRed;">A</span>R → <span style="color: DarkRed;">地址</span>bus →  <span style="color: Gold;">M
+- CU发出读命令的流向:
+  - CU读命令 →  <span style="color: Gold;">控制</span>bus →  <span style="color: Gold;">M
+- 获取有效地址的流向:
+  -  <span style="color: Gold;">M</span> → <span style="color: LightSkyBlue;">数据</span>bus → MDR(存放有效地址)
+ <span style="font-size: 14px;">[Ad（IR）表示取出IR中存放的指令字的地址字段。
 
-#### 间址周期的数据流向
-1. Ad（IR）（或MDR） $\circledast$ MAR $\circeq$ 地址总线存储器
-2. CU发出读命令控制总线存储器
-3. 主存数据总线 $\nsupseteq$ MDR（存放有效地址）
-
-其中，Ad（IR）表示取出IR中存放的指令字的地址字段。
-
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a85b790d202f2b82ad10656f53199f418770f4c117771fe30b596a329d044671.jpg)  
+![image](https://bluejedis.github.io/picx-images-hosting/test/image.2yyeudx8js.webp)  
 图5.5一次间址周期的数据流  
+</ul>
 
-### 执行周期  
-- 执行周期的任务是取操作数，并根据IR中的指令字的操作码通过ALU操作产生执行结果
-- 不同指令的执行周期操作不同，因此没有统一的数据流向
+###  <span style="color: LimeGreen;">执行</span><span style="color: silver;">T
+- 任务
+  - 取操作数
+  - 根据IR中的指令字的操作码通过ALU操作产生执行结果
+- 特点
+  - 不同指令的执行周期操作不同
+  - 因此没有统一的数据流向
+###  <span style="color: Gold;">中断</span> <span style="color: silver;">T 
+<ul>
 
-### 中断周期  
-#### 中断周期的任务
+####   <span style="color: silver;">任务
 - 处理中断请求
 - 假设程序断点存入堆栈中
 - 用SP指示栈顶地址
 - 进栈操作是先修改栈顶指针，后存入数据
 
-#### 中断周期的数据流向
-1. CU控制将SP减1，SP $\circeq$ MAR②地址总线存储器
-2. CU发出写命令 $\underline{{\boldsymbol{\mathfrak{A}}}}$ 控制总线 $\circeq$ 存储器
-3. PCMDR $\nsupseteq$ 数据总线 $\circeq$ 主存（程序断点存入存储器）
-4. CU（中断服务程序的入口地址）PC
+#### <span style="color: LightSkyBlue;">数据</span><span style="color: deepskyblue;">流</span><span style="color: green;">向</span>
+-  <span style="color: Gold;">C</span>U控制将 SP-1
+     - SP ① M<span style="color: DarkRed;">A</span>R ② <span style="color: DarkRed;">地址</span>bus ③ 存储器
+- CU发出 <span style="color: LimeGreen;">写</span>命令
+  - 写命令 ④ 控制总线 ⑤ 存储器
+- 程序<span style="color: gray;">断点</span>存入存储器
+  - PC ⑥ MDR ⑦ 数据总线 ⑧ 主存
+-  <span style="color: Gold;">C</span>U<u>处理</u>中断服务
+     - CU(中断服务程序的入口地址) ⑨ PC
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/c5e774da7c287935949863c45b6d8ed1c27c81c7ecb099690202cb499289d6e4.jpg)  
 图5.6中断周期的数据流
+</ul>
+</ul>
 
 ## <span style="color: LightSkyBlue;">指令</span><span style="color: green;">执行</span> <span style="color: silver;">方案  
-- 一个指令周期包括多个执行步骤
+- 一个<span style="color: LightSkyBlue;">指令</span>T包括多个执行步骤
   - 每个步骤完成指令的一部分功能
   - 几个步骤依次执行完成指令的全部功能
-- 不同处理器采用不同方案来安排指令的执行步骤
-
+- 指令执行步骤的安排方案
+  - 不同处理器采用不同方案
+    - 单周期处理器
+    - 多周期处理器
+    - 流水线处理器
 >pro：单周期和多周期CPU的CPI（2020）  
 <ul>
 
@@ -409,11 +482,11 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 
 ####  <span style="color: Gold;">特点
 - 指令执行特点
-  - 所有指令使用相同执行时间完成
+  - 所有指令使用 <span style="color: black;">相同</span> <span style="color: LimeGreen;">执行</span>时间完成
     - 每条指令在一个时钟周期内完成
     -  <span style="color: LimeGreen;">C</span>P<span style="color: LightSkyBlue;">I</span> = 1
   - 指令执行方式
-    - 串行执行
+    -  <span style="color: Gold;">串</span>行执行
     - 下一条指令必须等待前一条指令执行完成才能开始
   - 时钟周期限制
     - 由执行时间最长的指令决定
@@ -422,6 +495,7 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
       - 导致系统整体运行速度降低
 
 ###  <span style="color: silver;"><span style="color: LightSkyBlue;">多</span>周期处理器  
+<ul>
 
 #### 特征
 对不同类型的指令选用不同的执行步骤
@@ -431,12 +505,14 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
     - 不同指令可使用不同数量的时钟周期执行 (CPI>1)
     - 不要求所有指令执行时间相同
 - 执行方式
-  - 指令之间采用串行执行
+  - 指令之间采用 <span style="color: Gold;">串</span>行执行
   - 一条指令执行完成后才开始下一条
+</ul>
+
 ### <span style="color: LightSkyBlue;">流水</span><span style="color: Gold;">线</span>处理器  
 
 #### 执行方式
-采用指令之间 <span style="color: black;">并行</span>执行的方案
+采用指令之间 <span style="color: green;">并行</span>执行的方案
 - 追求的目标
   - 力争在每个时钟周期完成一条指令的执行过程
   - 只在理想情况下才能达到CPI=1
@@ -450,171 +526,300 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 <ul>
 
 ##  <span style="color: Gold;">功能  
-- CPU的组成：
-  - 随着技术发展，更多功能逻辑集成到CPU芯片中。
-  - 不论CPU内部结构多复杂，它主要由数据通路和控制部件组成。
-
+- CPU的组成
+  - 主要组成部分
+    - <span style="color: silver;"><span style="color: LightSkyBlue;">数据</span><span style="color: gray;">通路</span>
+    -  <span style="color: Gold;">控制</span>部件
+  - 发展特点
+    - 随着技术发展
+      - 更多功能逻辑被集成到CPU芯片中
+    - 不论内部结构多复杂
+      - 仍主要由数据通路和控制部件构成
 >pro：数据通路的组成部件（2017、2021）
 
-- 数据通路的定义与作用：
-  - 数据在指令执行过程中的路径及其经过的部件。
-  - 包括ALU、通用寄存器、状态寄存器、异常和中断处理逻辑等。
-  - 数据通路描述信息流动的起点、中间经过的部件和终点。
-  - 数据通路由控制部件控制，根据指令功能生成控制信号。
-
+- <span style="color: silver;"><span style="color: LightSkyBlue;">数据</span><span style="color: gray;">通路</span>
+  - 定义
+    - 数据在指令执行过程中的路径及其经过的部件
+  - 组成<span style="color: gray;">部件</span>
+    - ALU
+    - 通用寄存器
+    - 状态寄存器
+    - 异常和中断处理逻辑
+  - 功能特点
+    - 描述信息流动的起点、中间经过的部件和终点
+  - 控制特性
+    - 由控制部件控制
+    - 根据指令功能生成控制信号
 
 ## <span style="color: Goldenrod;">组成  
 
-- 组成数据通路的元件主要分为组合逻辑元件和时序逻辑元件两类。
-
+- 组成数据通路的元件
+  - 主要分为两类
+    - 组合逻辑元件
+    - 时序逻辑元件
 >pro：数据通路中的组合逻辑元件和时序逻辑元件（2021、2023）  
 
-### 组合逻辑元件（操作元件）  
+###  <span style="color: silver;"> <span style="color: LimeGreen;">组合</span><span style="color: Gold;">逻辑</span>元件（操作元件）  
 
-- 任何时刻产生的输出仅取决于当前的输入。
-  - 组合电路不含存储信号的记忆单元，也不受时钟信号的控制，输出与输入之间无反馈通路，信号是单向传输的。
-- 数据通路中常用的组合逻辑元件有加法器、算术逻辑单元（ALU）、译码器、多路选择器、三态门等，如图。  
+- 组合逻辑元件的特点
+  - 输出仅取决于当前输入
+  - 无存储单元和时钟控制
+  - 无反馈通路
+  - 信号单向传输
+
+- 常用组合逻辑元件类型
+  - 加法器
+  - 算术逻辑单元(ALU)
+  - 译码器
+  - 多路选择器
+  - 三态门
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/96308c858ff5f7964125d669141286fa1586d651484b7c7042c3ce73a05e35c4.jpg)  
 图5.7数据通路中的几种常用组合逻辑元件  
 
-- 图中虚线表示控制信号，译码器可用于操作码或地址码译码， $n$ 位输入对应 $2^{n}$ 种不同组合，因此有 $2^{n}$ 个不同输出。
-- 多路选择器（MUX）需要控制信号Select来确定选择哪个输入被输出。
-- 三态门可视为一种控制开关，由控制信号EN决定信号线的通断
-  - 当 $\mathrm{EN}=1$ 时，三态门被打开，输出信号等于输入信号
-  - 当 $\mathrm{EN}\,=\,0$ 时，输出端呈高阻态（隔断态），所连寄存器与总线断开
+-  <span style="color: LimeGreen;">译</span><span style="color: LightSkyBlue;">码</span>器
+     - 特点
+       - 虚线表示控制信号
+       - 可用于操作码或地址码译码
+     - 输入输出关系
+       - n位输入对应2^n种不同组合
+       - 有2^n个不同输出
 
-### 时序逻辑元件（状态元件）  
+- 多路选择器(MUX)
+  - 控制特性
+    - 需要控制信号Select
+    - 用于确定选择哪个输入被输出
 
-- 时序电路的特点：
-  - 输出与当前输入和以前输入都有关。
-  - 包含存储信号的记忆单元。
+- 三态门
+  - 基本功能
+    - 可视为一种控制开关
+    - 由控制信号EN决定信号线的通断
+  - 工作状态
+    - EN=1时
+      - 三态门被打开
+      - 输出信号等于输入信号
+    - EN=0时
+      - 输出端呈高阻态(隔断态) 
+      - 所连寄存器与总线断开
 
-- 时序电路的工作条件：
-  - 必须在时钟节拍下工作。
+### <span style="color: LightSkyBlue;">时序</span> <span style="color: Gold;">逻辑</span> <span style="color: silver;">元件（状态元件）  
 
-- 时序逻辑元件的例子：
-  - 各类寄存器和存储器。
-  - 包括通用寄存器组、程序计数器、状态/移位/暂存/锁存寄存器等。
- 
+- 时序电路的特点
+  - 输出特性
+    - 输出与当前输入和以前输入都有关
+  - 结构特性
+    - 包含存储信号的记忆单元
 
-## 数据通路的基本结构  
+- 时序电路的工作条件
+  - 时钟要求
+    - 必须在<span style="color: gray;">时钟节拍</span>下工作
 
-### CPU内部单总线方式  
+- 时序逻辑元件的类型
+  - 寄存器类
+    - 通用寄存器组
+    - 程序计数器
+    - 状态寄存器
+    - 移位寄存器
+    - 暂存寄存器
+    - 锁存寄存器
+  - 存储器类 
+
+##  <span style="color: silver;">基本<span style="color: green;">结构  
+
+###  <span style="color: silver;">CPU内部 <span style="color: LimeGreen;">单</span><span style="color: Gold;">总线</span>方式  
 
 >pro：数据通路中的部件及连接方式（2013、2015、2022）  
 
-- 将ALU及所有寄存器都连接到一条内部公共总线上，称为单总线结构的数据通路。
-  - 这种结构比较简单，但数据传输存在较多的冲突现象，性能较低。
-  - 此总线在CPU内部，注意不要把它与连接CPU、存储器和外设的系统总线相混淆。
-- 图5.8所示为单总线的数据通路和控制信号。  
-
+- 单总线结构的数据通路
+  - 定义
+    - 将ALU及所有寄存器都连接到一条内部公共总线上
+  - 特点
+    - 结构简单
+    - 性能较低
+      - 原因：数据传输存在较多的冲突现象
+  - 注意事项
+    - 此总线在CPU内部
+    - 不要与系统总线混淆
+      - 系统总线用于连接CPU、存储器和外设
+- 图5.8所示为单总线的数据通路和控制信号
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/0161e7b16de00d520d62405d382e730a37430111a550273cdc1cb28934a907c8.jpg)  
 图5.8单总线的数据通路和控制信号  
 
 >pro：数据通路中的三态门及其作用（2015）  
 
 - 在图5.8中：
-  - GPRs为通用寄存器组，rs、rd分别为所读、写的通用寄存器的编号
-  - Y和Z为暂存器
-  - FR为标志寄存器，用于存放ALU产生的标志信息
-  - 带箭头的虚线表示控制信号
-    - 字母加"in"表示该部件充许写入
-    - 字母加"out"表示该部件充许输出
-  - MDRin表示内部总线上信息写入MDR，MDRout表示MDR的内容送入内部总线
-  - 能输出到总线的部件均通过一个三态门与内部总线相连，用于控制该部件与内部总线之间数据通路的连接与断开
+  - GPRs为通用寄存器组
+    - rs、rd分别为所读、写的通用寄存器的编号
 
+  - 暂存器
+    - Y为暂存器
+    - Z为暂存器
+
+  - FR为标志寄存器
+    - 用于存放ALU产生的标志信息
+
+  - 控制信号（带箭头的虚线）
+    - 写入控制
+      - 字母加"in"表示该部件充许写入
+      - 例如：MDRin表示内部总线上信息写入MDR
+    - 输出控制  
+      - 字母加"out"表示该部件充许输出
+      - 例如：MDRout表示MDR的内容送入内部总线
+
+  - 三态门连接
+    - 能输出到总线的部件均通过三态门与内部总线相连
+    - 用途：控制该部件与内部总线之间数据通路的连接与断开
 >attention:  
-单周期处理器（ $\mathrm{CPI}=1$ ）不能采用单总线方式，因为单总线将所有寄存器都连接到一条公共总线上，一个时钟内只允许一次操作，无法完成一条指令的所有操作。  
+- 单周期处理器（$\mathrm{CPI}=1$）不能采用单总线方式
+  - 原因：
+    - 单总线将所有寄存器都连接到一条公共总线上
+    - 一个时钟内只允许一次操作
+    - 因此无法完成一条指令的所有操作
+###  <span style="color: silver;">CPU内部<span style="color: SlateBlue;">多</span>总线方式  
 
-### CPU内部多总线方式  
-
-- CPU内部有两条或更多的总线时，构成双总线结构或多总线结构。
-  - 将所有寄存器的输入端和输出端都连接到多条公共通路上
-  - 相比之下单总线中一个时钟内只充许传送一个数据，因而指令执行效率很低
-  - 因此采用多总线方式，同时在多个总线上传送不同的数据，提高效率
-
+- CPU内部有两条或更多的总线时→双总线结构或多总线结构
+  - 结构特点
+    - 将所有寄存器的输入端和输出端都连接到多条公共通路上
+  - 与单总线对比
+    - 单总线特点
+      - 一个时钟内只充许传送一个数据
+      - 指令执行效率很低
+    - 多总线优势
+      - 可同时在多个总线上传送不同的数据
+      - 提高指令执行<span style="color: LightSkyBlue;">效率</span>
 >pro：单周期CPU的特点（2016）  
 
-### 专用数据通路方式  
+### <span style="color: gray;">专用</span><span style="color: silver;">数据通路方式  
 
 - 根据指令执行过程中的数据和地址的流动方向安排连接电路
-  - 避免使用共享的总线
-  - 性能较高，但硬件量大
-
->attention:  内部总线是指同一部件，如CPU内部连接各寄存器及运算部件之间的总线；系统总线是指同一台计算机系统的各部件，如CPU、内存和各类I/O接口间互相连接的总线。  
-
-## 数据通路的操作举例  
+  - 特点：
+    - 避免使用共享的总线
+    - 性能较高
+    - 硬件量大
+> attention
+- 总线分类：
+  - 内部总线
+    - 连接CPU内部各寄存器及运算部件之间的总线
+  - 系统总线
+    - 连接同一台计算机系统的各部件之间的总线
+    - 包括：CPU、内存和各类I/O接口
+## ~ <span style="color: silver;"><span style="color: green;">操作</span>举例  
 
 - 总线是一组共享的传输信号线
   - 它不能存储信息
   - 任一时刻也只能有一个部件把信息送到总线上
-- 下面以图5.8所示的单总线数据通路为例，介绍一些常见操作的流程及控制信号
+
+<span style="font-size: 14px;">以图5.8所示的单总线数据通路为例
+- 常见操作的流程及控制信号
 
 >pro：指令执行的节拍及有效控制信号（2009、2015）：指令在取数和执行阶段所用到的部件（2019）  
 
-### 通用寄存器之间传送数据  
+###  <span style="color: silver;">通用<span style="color: LimeGreen;">R</span>之间传送<span style="color: LightSkyBlue;">数据  
 
-- 在寄存器和总线之间有两个控制信号：Rin和Rout
-  - 当Rin有效时，控制将总线上的信息存到寄存器R中
-  - 当Rout有效时，控制将寄存器R的内容送至总线
-- 下面以程序计数器PC为例，将PC的内容送至MAR。实现该操作的流程及控制信号为
-  - (PC)→MARPC out MARin，PC内容→MAR  
+- 寄存器和总线之间的控制信号
+  - 两种控制信号
+    - Rin信号
+      - 功能：控制将总线上的信息存到寄存器R中
+    - Rout信号
+      - 功能：控制将寄存器R的内容送至总线
+  - 操作示例：将PC内容送至MAR
+    - 流程及控制信号
+      - (PC)→MAR
+      - PC out MARin
+      - PC内容→MAR
 
-### 从主存读取数据  
+###  <span style="color: silver;">从<span style="color: Gold;">主</span><span style="color: LimeGreen;">存</span>  <span style="color: GreenYellow;">读取</span>数据  
 
 >pro：取指令阶段所需时钟周期分析（2022）  
 
-- 从主存中读取的信息可能是数据或指令，现以CPU从主存中取指令为例，说明数据在单总线数据通路中的传送过程。实现该操作的流程及控制信号为：
-  - （PC）→MARPC out MARin，现行指令地址→MAR
-  - MEM（MAR)→MDR，（PC)+1→PCMDRin有效，CU发出读命令，取出指令后PC+1
-  - (MDR）→IR MDR out IR in，现行指令→IR  
-- 第一步，将PC的内容通过内部总线送至MAR，需要1个时钟周期
-- 第二步，CU向主存发出读命令，从MAR所指主存单元读取一个字，并送至MDR；同时PC加1为取下一条指令做准备，需要1个主存周期
-- 第三步，将MDR的内容通过内部总线送至IR，需要1个时钟周期
+- 从主存中读取的信息可能是数据或指令
+- 以CPU从主存中取指令为例，说明数据在单总线数据通路中的传送过程：
+  - 实现该操作的流程及控制信号：
+    - 第一步：
+      - （PC）→MAR
+      - PC out MARin
+      - 现行指令地址→MAR
+      - 需要1个时钟周期
+    - 第二步：
+      - MEM（MAR)→MDR
+      - （PC)+1→PC
+      - MDRin有效
+      - CU发出读命令
+      - 取出指令后PC+1
+      - 需要1个主存周期
+    - 第三步：
+      - (MDR）→IR 
+      - MDR out IR in
+      - 现行指令→IR
+      - 需要1个时钟周期
+###  <span style="color: silver;">将数据 <span style="color: black;">写入</span> <span style="color: Gold;">主<span style="color: LimeGreen;">存  
 
-### 将数据写入主存  
-
-- 将寄存器R1的内容写入寄存器R2所指的主存单元，完成该操作的流程及控制信号为：
-  - (R1)→MDR Rl out MDR in
-  - (R2)→MAR R 2 out MARin
-  - MDR→MEM(MAR)MDRout有效，CU发出写命令  
-
-### 执行算术或逻辑运算  
+- 将寄存器R1的内容写入寄存器R2所指的主存单元：
+  - 步骤1：将R1内容送入MDR
+    - 控制信号：R1 out MDR in
+    - 操作：(R1)→MDR
+  - 步骤2：将R2内容送入MAR
+    - 控制信号：R2 out MAR in
+    - 操作：(R2)→MAR
+  - 步骤3：将MDR内容写入主存
+    - 控制信号：MDR out有效，CU发出写命令
+    - 操作：MDR→MEM(MAR)
+###  <span style="color: silver;">执行 <span style="color: LimeGreen;">算术</span>或<span style="color: Gold;">逻辑</span>运算  
 
 > pro: ALU中设置暂存器的原因（2015、2022）  
+  - 在单总线数据通路中：
+    - 每一时刻总线上只有一个数据有效
+    - ALU运算的特殊要求：
+      - ALU是无存储功能的组合逻辑元件
+      - 执行运算时需要两个输入端同时有效
+      - 解决方案：
+        - 第一个操作数：经内部总线送入暂存器Y保存，Y的内容在ALU左输入端始终有效
+        - 第二个操作数：经内部总线直接送到ALU右输入端
+      - ALU输出的特殊处理：
+        - 不能直接与总线相连
+        - 原因：输出会通过总线反馈到输入端，影响运算结果
+        - 解决方案：将运算结果暂存在暂存器乙中
 
-- 在单总线数据通路中：
-  - 每一时刻总线上只有一个数据有效
-  - 由于ALU是一个没有存储功能的组合逻辑元件，在其执行运算时必须保持两个输入端同时有效
-    - 因此先将一个操作数经内部总线送人暂存器Y保存，Y的内容在ALU的左输入端始终有效
-    - 再将另一个操作数经内部总线直接送到ALU的右输入端
-  - ALU的输出端也不能直接与总线相连，否则其输出会通过总线反馈到输入端，影响运算结果
-    - 因此将运算结果暂存在暂存器乙中
-- 假设加法指令ADDACC，R1，实现将ACC的内容和R1的内容相加并写回ACC，完成该操作的流程及控制信号为：
-  - (R1)→Y Rl out Yin，操作数→Y
-  - (ACC)  $^+$  (Y）→Z ACC out ALU in，CU ALU，结果→Z
-  - (Z)→ACC Z out ACC in，结果→ACC  
+  - 加法指令ADDACC，R1的执行过程：
+    - 功能：将ACC的内容和R1的内容相加并写回ACC
+    - 执行步骤：
+      - 第一步：
+        - 操作：(R1)→Y
+        - 控制信号：Rl out Yin
+        - 作用：操作数→Y
+      - 第二步：
+        - 操作：(ACC) $^+$ (Y）→Z
+        - 控制信号：ACC out ALU in，CU ALU
+        - 作用：结果→Z
+      - 第三步：
+        - 操作：(Z)→ACC
+        - 控制信号：Z out ACC in
+        - 作用：结果→ACC
 
 >pro：分析减法和自增指令执行所需的时钟周期数（2015）  
 
 - 以上3步不能同时执行，否则会引起总线冲突，因此该操作需要3个时钟周期  
 
-### 修改程序计数器的值  
+###  <span style="color: silver;">修改<span style="color: LightSkyBlue;">P</span><span style="color: LimeGreen;">C</span>的值  
 
 - 转移指令的作用：
-  - 通过修改程序计数器PC的值实现程序的跳转。
+  - 通过修改程序计数器PC的值实现程序的跳转
 
-- 转移指令JIMPaddr的操作：
-  - 假设转移指令为JIMPaddr，其中addr是目标转移地址。
-  - 操作流程：将指令寄存器IR中的地址字段写入PC。
-  - 控制信号：Ad(IR)→PC, IR out, PC in。
+- 转移指令JMPaddr的操作：
+  - 假设转移指令为JIMPaddr：
+    - addr是目标转移地址
+  - 操作流程：
+    - 将指令寄存器IR中的地址字段写入PC
+  - 控制信号：
+    - Ad(IR)→PC
+    - IR out
+    - PC in
 
 - 数据通路结构的影响：
-  - 直接影响CPU内各种信息的传送路径。
-  - 数据通路不同，指令执行过程的微操作序列安排也不同。
-  - 影响微操作信号形成部件的设计。
-
+  - 直接影响CPU内各种信息的传送路径
+  - 数据通路不同：
+    - 指令执行过程的微操作序列安排也不同
+    - 影响微操作信号形成部件的设计
 </ul>
 
 #  <span style="color: Gold;">C</span><span style="color: silver;">U'功能和工作原理  
@@ -626,7 +831,7 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
   - 通过<span style="color: LightSkyBlue;">D</span>B <span style="color: DarkRed;">A</span>B  <span style="color: Gold;">C</span>B 连接在一起
   - <span style="font-size: 14px;">  点画线框内的是 <span style="color: Gold;">C</span>U
 
-#### 主要连接关系说明
+####  <span style="color: silver;">连接关系
 - 部件间的数据传送：
   - <span style="color: LightSkyBlue;">A</span> <span style="color: LimeGreen;">L</span>U：
     - 通过<span style="color: LightSkyBlue;">D</span>B与内Memory、I和O 传送数据
@@ -672,21 +877,27 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 ## <span style="color: green;">硬</span><span style="color: Gold;">布线</span>~ 
 <ul>
 
-### 基本概念
-- 由复杂的组合逻辑门电路和触发器构成
-- 也称组合逻辑控制器
-- 工作原理：根据指令要求、当前时序及内外部状态，按时间顺序发送微操作控制信号
+###  <span style="color: silver;">基本概念
+- 硬布线控制器基本特征：
+  - 由复杂的组合逻辑<u>门电路</u>和<u>触发器</u>构成
+  -  即<span style="color: LimeGreen;">组合</span><span style="color: Gold;">逻辑</span>控制器
 
-### 控制单元结构
-- 指令操作码的作用
+- 工作原理：
+  - 根据以下因素发送微操作控制信号：
+    - 指令要求
+    - 当前时序
+    - 内外部状态
+  - 控制信号发送遵循时间顺序
+###  <span style="color: silver;"> <span style="color: Gold;">控制</span><span style="color: LightSkyBlue;">单元</span>结构
+- <span style="color: LightSkyBlue;">指令</span> <span style="color: LimeGreen;">操作</span>码
   - 决定CU发出不同控制信号的关键
-  - 通过译码电路将n位操作码产生2^n个输出
-  - 每种操作码对应一个输出送至CU
+    - 通过译码电路将n位操作码产生2^n个输出
+      - 每种~<span style="color: gray;">对应</span>一个Output送至CU
 
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/d2f55e758d9c494275dac108e2cae6bca95b683e62055bdffc92ff9c328afb53.jpg)  
+![image](https://bluejedis.github.io/picx-images-hosting/test/image.26ljcg4y79.webp) 
 图5.10带指令译码器和节拍输入的控制单元框图  
 
-### 控制单元输入信号
+### <span style="color: silver;"> <span style="color: Gold;">控制</span><span style="color: LightSkyBlue;">单元</span><span style="color: gray;">输入</span>信号
 - 指令信息
   - 经指令译码器译码产生
   - 操作码决定执行周期的不同操作
@@ -698,10 +909,10 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
   - 包括各种标志
   - 用于根据CPU当前状态产生控制信号
 
-### 硬布线控制器特点
+###   <span style="color: Gold;">特点
 - 优点：
-  - 速度快，主要取决于电路延迟
-  - 适用于高速计算机CPU和RISC架构
+  - 速度 <span style="color: black;">快</span>，主要取决于电路延迟
+  - 适用于<span style="color: gray;">高速</span>计算机CPU和RISC架构
 - 缺点：
   - 控制信号实现复杂
   - 修改或增加指令需重新设计电路
@@ -710,11 +921,12 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 </ul>
 
 ## <span style="color: SlateBlue;">微</span><span style="color: LightSkyBlue;">程序</span> <span style="color: silver;">控制器  
+<ul>
 
 - 实现方式：
-  - 采用存储逻辑实现
+  - 采用 <span style="color: Gold;">存储</span>逻辑实现
 - 实现原理：
-  - 将微操作信号代码化
+  - 将微操作信号<span style="color: LightSkyBlue;">代码</span> <span style="color: LimeGreen;">化</span>
   - 每条机器指令转化为一段微程序
   - 将微程序存入控制存储器中
 - 控制信号生成：
@@ -722,16 +934,19 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 ###  <span style="color: silver;">基本概念  
 <ul>
 
-#### 基本思想与术语
-- 微程序的设计思想：
-  - 将每条机器指令编写成一个微程序
-  - 每个微程序包含若干微指令
-  - 每条微指令对应一个或几个微操作命令
-  - 执行指令即执行微程序的过程
-  - 这些微程序存储在控制存储器中
-  - 目前大多数计算机采用此技术
-
-##### 微命令与微操作
+- 设计思想：
+  - 机器指令与微程序的关系：
+    - 每条机器指令对应一个微程序
+  - 微程序的组成：
+    - 由若干条微指令构成
+    - 每条微指令可对应一个或多个微操作命令
+  - 指令执行过程：
+    - 本质是执行对应微程序的过程
+  - 存储位置：
+    - 所有微程序存放在控制存储器中
+  - 应用现状：
+    - 目前大多数计算机都采用此技术
+####  <span style="color: silver;"><span style="color: purple;">微</span><span style="color: LightSkyBlue;">命令</span>与微 <span style="color: LimeGreen;">操作
 - 微命令：
   - 控制部件向执行部件发出的各种控制命令
   - 是构成控制序列的最小单位
@@ -746,7 +961,7 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 >attention:  
 硬布线控制器中也有微命令与微操作的概念，并非微程序控制器的专有概念。  
 
-##### 微指令与微周期
+#### <span style="color: silver;"><span style="color: purple;">微</span><span style="color: RoyalBlue;">指令</span>与微$T$
 - 微指令组成：
   - 操作控制字段（微操作码字段）：产生操作控制信号
   - 顺序控制字段（微地址码字段）：控制下一条微指令地址
@@ -754,40 +969,49 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
   - 取出并执行一条微指令所需的全部时间
   - 通常为一个时钟周期
 
-##### 主存储器与控制存储器
+####  <span style="color: silver;"> <span style="color: Gold;">主</span><span style="color: orange;">M</span>与控制M
 >pro：主存储器和控制存储器的区别（2017）  
-- 主存储器：
+- 主M：
   - 用途：存放程序和数据
   - 位置：CPU外部
   - 实现：用RAM
-- 控制存储器：
+- 控制M：
   - 用途：存放微程序
   - 位置：CPU内部
   - 实现：用ROM
   - 单元地址称为微地址
 
-##### 程序与微程序
+####  <span style="color: silver;">程序与<span style="color: purple;">微</span>程序
 - 程序：
-  - 指令的有序集合
-  - 完成特定功能
-  - 由软件设计人员编制
-  - 存放在主存或辅存中
+  - 定义：指令的有序集合
+  - 目的：完成特定功能
+  - 编制者：软件设计人员
+  - 存储位置：
+    - 主存
+    - 辅存
 - 微程序：
-  - 微指令的有序集合
-  - 描述机器指令
-  - 是指令的实时解释器
-  - 由计算机设计者编制
-  - 存放在控制存储器中
-  - 对程序员透明
+  - 定义：<u>微指令</u>的有序集合
+  - 功能：
+    - 描述机器指令
+    - 是指令的实时解释器
+  - 编制者：计算机设计者
+  - 存储位置：控制存储器
+  - 特点：对程序员透明
+####   <span style="color: silver;"><span style="color: LimeGreen;">R</span>区分
+- 地址寄存器（MAR）
+  - 功能：存放主存读/写地址
 
-##### 相关寄存器区分
-- 地址寄存器（MAR）：存放主存读/写地址
-- 微指令地址寄存器（μPC或CMAR）：存放待执行微指令的微地址
-- 指令寄存器（IR）：存放从主存读出的指令
-- 微指令寄存器（μIR或CMIDR）：存放从控制存储器读出的微指令
-</ul>
+- 微指令地址寄存器（μPC或CMAR）
+  - 功能：存放待执行微指令的微地址
 
-### 组成和工作过程  
+- 指令寄存器（IR）
+  - 功能：存放从主存读出的指令
+
+- 微指令寄存器（μIR或CMIDR）
+  - 功能：存放从控制存储器读出的微指令</ul>
+
+### <span style="color: Goldenrod;">组成</span> <span style="color: silver;">和工作过程  
+<ul>
 
 #### 基本组成
 - 主要部件：
@@ -803,14 +1027,14 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
   - 微指令寄存器：
     - 位数等于微指令字长
 
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/99c89003cac2ee2ef59dde11e4b8aa32720bdbcf83de761ecb39fd778d602223.jpg)  
+![image](https://bluejedis.github.io/picx-images-hosting/test/image.86tph81sgb.webp) 
 图5.11微程序控制器的基本结构  
 
 #### 工作过程
 - 执行机器指令的过程：
   1. 执行取指令公共操作：
      - 将取指微程序入口地址送入μPC
-     - 从CM读出微指令送入μIR
+     - 从 <span style="color: Gold;">C</span><span style="color: gray;">M</span>读出微指令送入μIR
      - 完成后机器指令存入指令寄存器
   2. 产生微程序入口地址：
      - 由机器指令操作码通过微地址形成部件产生
@@ -822,6 +1046,7 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
      - 完成一条机器指令后返回取指入口
      - 重复以上步骤直到程序结束
 
+
 ####  <span style="color: silver;"><span style="color: purple;">微</span><span style="color: LightSkyBlue;">程序</span>和机器指令关系
 - 对应关系：
   - 一条机器指令对应一个微程序
@@ -832,6 +1057,7 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 - 控制存储器内容：
   - 机器指令对应的微程序
   - 公共操作的微程序
+</ul>
 
 ###  <span style="color: silver;"><span style="color: deepskyblue;">编码</span>方式  
 <ul>
@@ -842,7 +1068,7 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
   - 对微指令控制字段编码
   - 形成控制信号
 
-#### 直接~
+####  <span style="color: silver;"><span style="color: gray;">直接</span>~
 - 特点：
   - 无须译码
   - 每位代表一个微命令
@@ -855,53 +1081,61 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
   - 微指令字长过长
   - 控制存储器容量大
 
-#### 字段直接~
->pro：字段直接控制的编码方法（2012）  
-- 基本方法：
-  - 操作控制字段分成若干小字段
-  - 互斥性微命令在同一字段
-  - 相容性微命令在不同字段
-  - 每个字段独立编码
-  - 各字段编码含义单独定义
-
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/c6e197e941e2f1058a37b511cbaa37823f47acc90dd408d7e4f2e9e15c655007.jpg)  
 图5.12直接编码方式  
+####  <span style="color: LightSkyBlue;">字段</span><span style="color: gray;">直接~
+>pro：字段直接控制的编码方法（2012）  
+- 基本方法：
+  - 操作控制字段分成<span style="color: gray;">若干</span>小字段
+    - <span style="font-size: 12px;">将整个操作控制字段划分为多个独立的小字段
+  -  <span style="color: Gold;">互斥</span>性微命令在<span style="color: gray;">同一</span>字段
+      - <span style="font-size: 12px;">不能同时执行的微命令放在一个字段中
+  - <span style="color: gray;">相容</span>性微命令在<u>不同</u>字段
+    - <span style="font-size: 12px;">可以同时执行的微命令分配到不同字段中
+  - 每个字段 <span style="color: LimeGreen;">独立</span>编码
+    - <span style="font-size: 12px;">各个字段可以单独进行编码
+    - <span style="font-size: 12px;">编码方式可以不同
+  - 各字段编码含义 <span style="color: GreenYellow;">单独</span>定义
+    - 每个字段的编码都有其特定的含义
+    - 编码含义相互独立
+
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a8f2b917f211c35fb07f59a18310c4809c207a77d2f9e952f169ab68cecd9625.jpg)  
 图5.13字段直接编码方式  
 
 - 分段原则：
-  - 互斥性微命令分在同一段
-  - 相容性微命令分在不同段
-  - 每段信息位不能太多
-  - 每段留出不操作状态（通常000）
+  - 命令:
+    - 互斥性微命令分在同一段
+    - 相容性微命令分在不同段
+  - 每段信息位<u>不能太多</u>
+  - 每段留出<span style="color: gray;">不操作</span>状态（通常000）
 
-#### 字段间接~
+#### <span style="color: LightSkyBlue;">字段</span> <span style="color: silver;">间接~
 - 特点：
-  - 一个字段的微命令由另一字段解释
+  - 一个字段的微命令由<span style="color: gray;">另一字段</span>解释
   - 非直接译码发出微命令
-  - 也称隐式编码
+  - <span style="color: gray;">隐式</span>编码
 - 优缺点：
   - 优点：进一步缩短微指令字长
-  - 缺点：削弱并行控制能力
+  - 缺点：<span style="color: LightSkyBlue;">削弱</span>并行控制能力
   - 用途：作为字段直接编码的辅助手段
 </ul>
 
-###  <span style="color: silver;">地址形成方式  
+###  <span style="color: silver;"><span style="color: DarkRed;">地址</span>形成方式  
 
 后继微地址的形成主要有以下几个基本类型：  
 <ul>
 
 ####  <span style="color: silver;">后<span style="color: purple;">继</span>地址字段指出
 - 在微指令格式中设置一个后继地址字段
-  - 用于直接指示下一条微指令的地址
+  - 用于直接指示<span style="color: gray;">下一条</span>微指令的<span style="color: DarkRed;">地址</span>
 - 由微指令的后继地址字段直接指出后继微指令的地址
   - 直接从字段中获取地址信息
   - 无需额外计算或转换
 - 也称断定方式
   - 因为地址是确定的
   - 不依赖于其他条件
-####  <span style="color: silver;">机器<span style="color: LightSkyBlue;">指令</span>操作码形成
+####  <span style="color: silver;">由 机器<span style="color: LightSkyBlue;">指令</span>操作码形成
 
   - 机器指令从指令寄存器取出
   - 通过微地址形成部件处理：
@@ -912,17 +1146,17 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 - 适用于后继微指令地址是连续的情况
 
 ####  <span style="color: Gold;">标志</span> <span style="color: silver;">决定分支转移
-- 根据各种标志决定下一条微指令分支转移的地址
+- 根据各种 <span style="color: Gold;">标志</span>决定下一条微指令分支转移的地址
 
 #### <span style="color: green;">硬件</span> <span style="color: silver;">直接产生
-- 电源加电后，第一条微指令的地址可由专门的硬件电路产生
+- 电源加电后，第一条微指令的地址可由专门的<span style="color: green;">硬件</span><span style="color: gray;">电路</span>产生
 - 并送至 $\mu\mathrm{PC}$
 - 这个地址即为取指周期微程序的入口地址
 </ul>
 
 ### <span style="color: LightSkyBlue;">格式</span>  
 
-微指令格式与微指令的 <span style="color: black;">编码</span>方式有关， 分为:
+微指令格式与微指令的 <span style="color: deepskyblue;">编码</span>方式有关， 分为:
 - 水平型~ 和 垂直型~
 
 >pro： 微指令后继地址字段位数与微指令条数的关系（2014）  
@@ -930,25 +1164,39 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 
 #### <span style="color: LightSkyBlue;">水平</span> <span style="color: silver;">型~
 - 编码方式特点：
-  - 直接编码、字段直接编码和字段间接编码都属于水平型微指令
+  - 水平型微指令包含以下编码方式：
+    - <span style="color: gray;">直接</span>编码
+    - <span style="color: LightSkyBlue;">字段</span><span style="color: gray;">直接</span>编码 
+    - <span style="color: LightSkyBlue;">字段</span>间接编码
 - 基本指令格式：
-  - 如图5.14所示
-  - 指令字中的一位对应一个控制信号
-  - 有输出时为1，否则为0
-  - 一条水平型微指令定义并执行多个并行操作的微命令
+  - 格式结构：
+    - 如图
+  - 控制信号编码：
+    - 每<span style="color: gray;">一位</span> <span style="color: Gold;">对应</span><span style="color: gray;">一个</span>控制信号
+    - 信号状态：
+      - 1表示有输出
+      - 0表示无输出
+  - 执行特点：
+    - <span style="color: gray;">单条</span>微指令可同时：
+      - 定义<span style="color: gray;">多个</span>微命令
+      - 执行多个<span style="color: green;">并行</span>操作
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/b2aedaa58c557759dbd6b0fe7d9c754a7d34a84fc4317965518d9de55c2fb6a1.jpg)  
 
 - 优缺点：
   - 优点：微程序短，并行能力强，执行速度快
-  - 缺点：微指令长，编写微程序较麻烦
+  - 缺点：微指令长，编写微程序较<span style="color: gray;">麻烦
 
 #### <span style="color: green;">垂直</span> <span style="color: silver;">型~
 - 基本特点：
-  - 采用类似机器指令操作码的方式
-  - 在微指令字中设置微操作码字段
-  - 基本格式如图5.15所示
-  - 一条垂直型微指令通常只能定义并执行一种微命令
+  - 编码方式：
+    - 采用类似<span style="color: gray;">机器</span><span style="color: LightSkyBlue;">指令</span>操作码的方式
+  - 微指令结构：
+    - 在微指令字中设置微操作码字段
+    - 基本格式参照图5.15
+  - 执行特点：
+    - 一条垂直型微指令通常只能：
+      - 定义 执行 <span style="color: black;">一种</span>微命令
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/7065d0c6793931c03ff4fb46419e81a29e8a05e3dc173555b1f656c5aa397918.jpg)  
 
@@ -997,5 +1245,5 @@ SISD、SIMD、MIMD、向量处理器的基本概念：硬件多线程的基本�
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/5758d88c281f323689f1a57cbe9859540b34d296985c6fd404c91be129bd19f0.jpg)
 </ul>
-
+</ul>
 
