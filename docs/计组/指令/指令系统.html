@@ -1,0 +1,1676 @@
+<!DOCTYPE html><html><head>
+      <title>指令系统</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:///c:\Users\13550\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.15\crossnote\dependencies\katex\katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      pre{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;direction:ltr;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;padding:1em;margin:.5em 0;overflow:auto;line-height:1.5;tab-size:4;hyphens:none;color:#555;background-color:#f0f0f0!important;border:#d6d6d6;border-radius:3px}pre[class*=language-]{padding:1em}code[class*=language-] .token.cdata,code[class*=language-] .token.comment,code[class*=language-] .token.doctype,code[class*=language-] .token.prolog,pre[class*=language-] .token.cdata,pre[class*=language-] .token.comment,pre[class*=language-] .token.doctype,pre[class*=language-] .token.prolog{color:#998;font-style:italic}code[class*=language-] .token.punctuation,pre[class*=language-] .token.punctuation{color:#920b2d}code[class*=language-] .namespace,pre[class*=language-] .namespace{opacity:.7}code[class*=language-] .token.property,pre[class*=language-] .token.property{font-weight:700;color:#333}code[class*=language-] .token.boolean,code[class*=language-] .token.function-name,code[class*=language-] .token.number,pre[class*=language-] .token.boolean,pre[class*=language-] .token.function-name,pre[class*=language-] .token.number{color:#d14}code[class*=language-] .token.tag,pre[class*=language-] .token.tag{color:#d14}code[class*=language-] .token.symbol,pre[class*=language-] .token.symbol{color:#990073}code[class*=language-] .token.selector,pre[class*=language-] .token.selector{color:teal}code[class*=language-] .token.attr-name,pre[class*=language-] .token.attr-name{color:#458;font-weight:700}code[class*=language-] .token.string,pre[class*=language-] .token.string{color:#d14}code[class*=language-] .token.char,pre[class*=language-] .token.char{color:#606aa1}code[class*=language-] .token.url,pre[class*=language-] .token.url{color:#888}code[class*=language-] .token.atrule,code[class*=language-] .token.attr-value,code[class*=language-] .token.keyword,pre[class*=language-] .token.atrule,pre[class*=language-] .token.attr-value,pre[class*=language-] .token.keyword{color:#222;font-weight:700}code[class*=language-] .token.function,pre[class*=language-] .token.function{color:#900}code[class*=language-] .token.class-name,pre[class*=language-] .token.class-name{text-decoration:underline;color:#606aa1}code[class*=language-] .token.variable,pre[class*=language-] .token.variable{color:teal}code[class*=language-] .token.bold,code[class*=language-] .token.important,pre[class*=language-] .token.bold,pre[class*=language-] .token.important{font-weight:700}code[class*=language-] .token.italic,pre[class*=language-] .token.italic{font-style:italic}code[class*=language-] .token.entity,pre[class*=language-] .token.entity{cursor:help}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#555;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#030303}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#7e7e7e}html body strong{color:#030303}html body del{color:#7e7e7e}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#7e7e7e;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#030303}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#030303;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#030303;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#030303;page-break-after:avoid}html body blockquote{color:#7e7e7e}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+.markdown-preview.markdown-preview {
+  /*below is newsprint_mixed_solar.css */
+  /* don't work*/
+}
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="span-stylecolor-silverabove"><span style="color: silver;">above </span></h1>
+<h2 id="span-stylecolor-silver考纲内容"><span style="color: silver;">【考纲内容】 </span></h2>
+ <span style="color: silver;">
+（一）指令格式的基本概念（二）指令格式（三）寻址方式（四）数据的对齐和大/小端存放方式（五）CISC和RISC的基本概念（六）高级语言程序与机器级代码之间的对应编译器、汇编器与链接器的基本概念：选择结构语句的机器级表示循环结构语句的机器级表示：过程（函数）调用对应的机器级表示  
+<h2 id="span-stylecolor-silver复习提示"><span style="color: silver;">【复习提示】 </span></h2>
+<ul>
+<li>
+<p>指令系统的重要性：</p>
+<ul>
+<li>是表征计算机性能的重要因素。</li>
+</ul>
+</li>
+<li>
+<p>需要掌握的内容：</p>
+<ul>
+<li>各种寻址方式的特点及有效地址的计算。</li>
+<li>三种偏移寻址的计算：相对寻址、基址寻址和变址寻址。</li>
+<li>CISC与RISC的特点与区别。</li>
+</ul>
+</li>
+<li>
+<p>2022年大纲新增内容：</p>
+<ul>
+<li>机器级表示。</li>
+<li>能够读懂机器级代码。</li>
+</ul>
+</li>
+<li>
+<p>考试题型：</p>
+<ul>
+<li>可能出选择题。</li>
+<li>可能结合其他章节出有关指令的综合题。</li>
+</ul>
+</li>
+<li>
+<p>指令相关知识点的重要性：</p>
+<ul>
+<li>指令格式、机器指令和指令寻址方式与CPU指令执行过程紧密相关。</li>
+<li>需要引起重视。</li>
+</ul>
+</li>
+</ul>
+<p>在学习本章时，请读者思考以下问题</p>
+<p>1）什么是指令？什么是指令系统？为什么要引入指令系统？2）一般来说，指令分为哪些部分？每部分有什么用处？3）对于一个指令系统来说，寻址方式多和少有什么影响？请读者在本章的学习过程中寻找答案，本章末尾会给出参考答案。</p>
+<h1 id="span-stylecolor-lightskyblue指令spanspan-stylecolor-deepskyblue系统span"><span style="color: LightSkyBlue;">指令</span><span style="color: deepskyblue;">系统</span> </h1>
+<h2 id="span-stylecolor-lightskyblue指令spanspan-stylecolor-limegreen集span--span-stylecolor-silver体系span-stylecolor-green结构--span-stylecolor-lightskyblueispanspan-stylecolor-limegreensspan-stylecolor-goldaspan"><span style="color: LightSkyBlue;">指令</span><span style="color: LimeGreen;">集</span>  <span style="color: silver;">体系<span style="color: green;">结构  <span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S<span style="color: Gold;">A</span> </span></span></span></h2>
+<blockquote>
+<p>pro：指令集体系结构（ISA）规定的内容（2022）</p>
+</blockquote>
+<ul>
+<h3 id="span-stylecolor-silver基本概念"><span style="color: silver;">基本概念 </span></h3>
+<ul>
+<li><span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S</span><span style="color: Gold;">A</span>
+<ul>
+<li><span style="color: silver;">完整定义了</span><u>软件</u>和<u>硬件</u>之间的 <span style="color: LimeGreen;">接口</span>
+<ul>
+<li><span style="color: gray; font-size: 14px;">机器语言或汇编语言程序员应熟悉</span></li>
+</ul>
+</li>
+<li><span style="color: LightSkyBlue;">指令</span><span style="color: deepskyblue;">系统</span> is（ISA）最<u>核心</u></li>
+</ul>
+</li>
+<li><span style="color: LightSkyBlue;">指令</span><span style="color: deepskyblue;">系统</span> /<span style="color: LightSkyBlue;">指令</span><span style="color: LimeGreen;">集</span>
+<ul>
+<li>一台计算机的所有<span style="color: LightSkyBlue;">指令</span>的 <span style="color: LimeGreen;">集合</span></li>
+</ul>
+</li>
+<li><span style="color: silver;">机器指令（简称<span style="color: LightSkyBlue;">指令</span>
+<ul>
+<li>指示 <span style="color: silver;">计算机执行某种</span> <span style="color: LimeGreen;">操作</span>'<span style="color: LightSkyBlue;">命令</span></li>
+</ul>
+</span></li>
+</ul>
+<h3 id="span-stylecolor-lightskyblueispanspan-stylecolor-limegreensspanspan-stylecolor-goldaspan-span-stylecolor-silver规定内容span"><span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S</span><span style="color: Gold;">A</span> <span style="color: silver;">规定内容</span> </h3>
+<p>Instruction Set Architecture，<span style="color: LightSkyBlue;">指令<span style="color: GreenYellow;">集 <span style="color: LimeGreen;">体系 <span style="color: Gold;">结构</span></span></span></span></p>
+<ul>
+<h4 id="span-stylecolor-lightskyblue指令span"><span style="color: LightSkyBlue;">指令</span> </h4>
+<ul>
+<li>格式</li>
+<li>寻址方式</li>
+<li>操作类型</li>
+<li>每种操作对应的操作数的相应规定</li>
+</ul>
+<h4 id="span-stylecolor-limegreen操作spanspan-stylecolor-lightskyblue数span"><span style="color: LimeGreen;">操作</span><span style="color: LightSkyBlue;">数</span> </h4>
+<ul>
+<li>类型</li>
+<li>寻址方式</li>
+<li>存放方式（大端/小端）</li>
+</ul>
+<h4 id="硬件span-stylecolor-gold资源span">硬件<span style="color: Gold;">资源</span> </h4>
+<ul>
+<li>程序可访问的寄存器
+<ul>
+<li>编号</li>
+<li>个数</li>
+<li>位数</li>
+</ul>
+</li>
+<li>存储空间
+<ul>
+<li>大小</li>
+<li>编址方式</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-limegreen执行span-stylecolor-gold控制"><span style="color: LimeGreen;">执行<span style="color: Gold;">控制 </span></span></h4>
+<ul>
+<li>指令执行过程的控制方式
+<ul>
+<li>程序计数器</li>
+<li>条件码定义</li>
+</ul>
+</li>
+</ul>
+</ul>
+<h3 id="span-stylecolor-lightskyblueispanspan-stylecolor-limegreensspanspan-stylecolor-goldaspan-span-stylecolor-silver-程序-span-stylecolor-limegreen开发span"><span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S</span><span style="color: Gold;">A</span> <span style="color: silver;">&amp; 程序 <span style="color: LimeGreen;">开发</span> </span></h3>
+<ul>
+<h4 id="span-stylecolor-lightskyblueispanspan-stylecolor-limegreensspanspan-stylecolor-goldaspan-span-stylecolor-silver与机器级程序"><span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S</span><span style="color: Gold;">A</span> <span style="color: silver;">与机器级程序 </span></h4>
+<ul>
+<li><span style="color: green;">规定</span>了机器级程序的格式</li>
+<li>机器语言或汇编语言程序员必须对机器的ISA非常熟悉</li>
+</ul>
+<h4 id="span-stylecolor-limegreen高级span-span-stylecolor-silver语言编程"><span style="color: LimeGreen;">高级</span> <span style="color: silver;">语言编程 </span></h4>
+<ul>
+<li>大多数程序员使用高级语言（如C/C++/Java）编写程序
+<ul>
+<li>开发效率更高</li>
+<li>不易出错</li>
+</ul>
+</li>
+<li>局限性：
+<ul>
+<li>抽象层太高</li>
+<li>隐藏机器级程序细节</li>
+<li>难以利用机器结构相关优化</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-silver重要性"><span style="color: silver;">~重要性 </span></h4>
+<ul>
+<li><span style="font-size: 14px;">对ISA和底层硬件实现细节有充分了解
+<ul>
+<li><span style="font-size: 14px;">有助于编制高性能程序</span></li>
+</ul>
+</span></li>
+</ul>
+</ul>
+</ul>
+<h2 id="span-stylecolor-silver基本格式"><span style="color: silver;">基本格式 </span></h2>
+<ul>
+<h3 id="span-stylecolor-silver概念"><span style="color: silver;">概念 </span></h3>
+<ul>
+<li>指令
+<ul>
+<li>定义：一条指令 is 机器语言的一个语句
+<ul>
+<li>本质：一组有意义的 <span style="color: black;">二进制</span>代码</li>
+</ul>
+</li>
+<li>组成部分：
+<ul>
+<li><span style="color: LimeGreen;">OP</span>+<span style="color: DarkRed;">A</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-limegreen操作spanspan-stylecolor-green码span---span-stylecolor-silver-span-stylecolor-darkred地址span码"><span style="color: LimeGreen;">操作</span><span style="color: green;">码</span>   <span style="color: silver;">&amp; <span style="color: DarkRed;">地址</span>码 </span></h4>
+<ul>
+<li><span style="color: LimeGreen;">操作</span><span style="color: green;">码</span>
+<ul>
+<li>指出该指令应<span style="color: green;">执行</span>什么 <span style="color: GreenYellow;">操作</span>以及具有何种 <span style="color: Gold;">功能</span>
+<ul>
+<li>识别指令</li>
+<li>了解指令功能</li>
+<li>区分操作数地址内容</li>
+</ul>
+</li>
+<li>例如：
+<ul>
+<li>运算类型
+<ul>
+<li>算术加运算</li>
+<li>算术减运算</li>
+</ul>
+</li>
+<li>程序控制
+<ul>
+<li>程序转移</li>
+<li>返回操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span style="color: silver;"><span style="color: DarkRed;">地址</span>码</span>
+<ul>
+<li>给出被操作的信息（指令或数据）的<span style="color: DarkRed;">地址</span></li>
+<li>包括：
+<ul>
+<li>参加运算的一个或多个操作数的地址</li>
+<li>运算结果的保存地址</li>
+<li>程序的转移地址</li>
+<li>被调用子程序的入口地址等</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-silver-字长span"><span style="color: silver;">~ 字长</span> </h4>
+<ul>
+<li>定义：
+<ul>
+<li>一条指令所包含的 <span style="color: black;">二进制</span><span style="color: gray;">代码</span>的<span style="color: LightSkyBlue;">位数</span></li>
+</ul>
+</li>
+<li>决定因素：
+<ul>
+<li><span style="color: LimeGreen;">操作</span>码的长度</li>
+<li><span style="color: DarkRed;">地址</span>码的长度、个数</li>
+</ul>
+</li>
+<li>与机器字长的关系：
+<ul>
+<li>= 机器字长</li>
+<li>or &lt; &gt;机器字长</li>
+</ul>
+</li>
+<li>分类：
+<ul>
+<li>单字长指令：1 机器字长</li>
+<li>半字长指令： 1/2机器字长</li>
+<li>双字长指令：2*机器字长</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>attention:</p>
+</blockquote>
+<ul>
+<li>指令长度不同会影响取指令时间开销：
+<ul>
+<li>单字长指令：
+<ul>
+<li>只需访存1次</li>
+<li>能将指令完整取出</li>
+<li>耗费1个存取周期</li>
+</ul>
+</li>
+<li>双字长指令：
+<ul>
+<li>需要访存2次</li>
+<li>才能完整取出指令</li>
+<li>耗费2个存取周期</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-lightskyblue指令span-stylecolor-gray字spanspan-stylecolor-limegreen结构span"><span style="color: LightSkyBlue;">指令<span style="color: gray;">字</span><span style="color: LimeGreen;">结构</span> </span></h4>
+<ul>
+<li>定长指~：
+<ul>
+<li>所有指令的长度都相等</li>
+<li>特点：执行速度快，控制简单</li>
+</ul>
+</li>
+<li>变长~：
+<ul>
+<li>各种指令的长度随指令功能而异</li>
+</ul>
+</li>
+<li>注意：因为主存一般是按字节编址的，所以指令字长通常为字节的整数倍</li>
+</ul>
+<blockquote>
+<p>pro：根据指令格式及相关编码条件组合成机器代码（2015）</p>
+</blockquote>
+<h3 id="span-stylecolor-silver指令格式-span-stylecolor-limegreen分类"><span style="color: silver;">指令格式 <span style="color: LimeGreen;">分类 </span></span></h3>
+<ul>
+<h4 id="零span-stylecolor-darkred地址spanspan-stylecolor-lightskyblue指令span">零<span style="color: DarkRed;">地址</span><span style="color: LightSkyBlue;">指令</span> </h4>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/6e7552f06b4d8317fc022359d2dcccb811aec4c3314eb4cd1ac1ec714e795bd3.jpg" alt=""></p>
+<ul>
+<li>only <span style="color: LimeGreen;">操作</span>码OP，没有显式地址</li>
+<li>两种可能：
+<ul>
+<li>不需要操作数的指令
+<ul>
+<li>如空操作指令、停机指令、关中断指令等</li>
+</ul>
+</li>
+<li>零地址的运算类指令（用在堆栈计算机中）
+<ul>
+<li>参与运算的两个操作数从栈顶和次栈顶弹出</li>
+<li>送到运算器进行运算</li>
+<li>运算结果压入堆栈</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-silver一"><span style="color: silver;">一~ </span></h4>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/f73beb07fd477d00ecf244bb03d345248115ffa6dad3968d55fb69658646a4ca.jpg" alt=""></p>
+<ul>
+<li>
+<p>两种常见形态：</p>
+<ul>
+<li>只有目的操作数的<span style="color: SlateBlue;">单</span><span style="color: LimeGreen;">操作</span>数指令：
+<ul>
+<li>执行过程：
+<ul>
+<li>按A₁地址读取操作数</li>
+<li>进行OP操作后，结果存回原地址</li>
+</ul>
+</li>
+<li>指令含义：
+<ul>
+<li>OP(A₁)→A₁</li>
+</ul>
+</li>
+<li>典型指令：
+<ul>
+<li>加1</li>
+<li>减1</li>
+<li>求反</li>
+<li>求补</li>
+<li>移位</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><img src="https://bluejedis.github.io/picx-images-hosting/test/image.86tpfzoekp.webp" alt="image"></p>
+<ul>
+<li>隐含约定目的地址的 <span style="color: Gold;">双</span>~指令：
+<ul>
+<li>执行过程：
+<ul>
+<li>按指令地址A₁读取源操作数</li>
+<li>ACC（累加器）提供另一个操作数</li>
+<li>运算结果存放在ACC中</li>
+</ul>
+</li>
+<li>指令含义：
+<ul>
+<li>(ACC)OP(A₁)→ACC</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>pro：地址位数与寻址范围的关系（2010、2021）</p>
+</blockquote>
+<h5 id="span-stylecolor-silver寻址span-stylecolor-green范围"><span style="color: silver;">寻址<span style="color: green;">范围 </span></span></h5>
+<ul>
+<li>若指令字长为32位：
+<ul>
+<li>操作码占8位</li>
+<li>1个地址码字段占24位</li>
+<li>操作数的直接寻址范围为2²⁴=16M</li>
+</ul>
+</li>
+<li><span style="color: green;">访</span><span style="color: Gold;">存</span>次数：
+<ul>
+<li>若地址码字段均为主存地址</li>
+<li>需要3次访存：
+<ul>
+<li>取指令1次</li>
+<li>取操作数<span style="color: gray;">1</span>次</li>
+<li>存结果1次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-silver二"><span style="color: silver;">二~ </span></h4>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/808143d9dc4a64a19f32b18f99d45ecad816da4b5a2564cee34b907da02c8e67.jpg" alt=""></p>
+<ul>
+<li>指令含义：(A₁)OP(A₂)→A₁</li>
+<li>使用场景：
+<ul>
+<li>常用的算术和逻辑运算指令</li>
+<li>需要 2* <span style="color: LimeGreen;">操作</span>数</li>
+<li>目的操作数地址用于保存运算结果</li>
+</ul>
+</li>
+</ul>
+<h5 id="span-stylecolor-silver寻址span-stylecolor-green范围-1"><span style="color: silver;">寻址<span style="color: green;">范围 </span></span></h5>
+<ul>
+<li>若指令字长为32位：
+<ul>
+<li>操作码占8位</li>
+<li>两个地址码字段各占12位</li>
+<li>每个操作数的直接寻址范围为2¹²=4K</li>
+</ul>
+</li>
+<li><span style="color: green;">访</span><span style="color: Gold;">存</span>次数：
+<ul>
+<li>若地址码字段均为主存地址</li>
+<li>需要4次访存：
+<ul>
+<li>取指令1次</li>
+<li>取两个操作数 <span style="color: black;">2</span>次</li>
+<li>存结果1次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-silver三"><span style="color: silver;">三~ </span></h4>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/964f896e4265099daa90e4a7313c3f27dbada8cdcabb04ced0efe9b9d5d4944a.jpg" alt=""></p>
+<ul>
+<li>指令含义：(A₁)OP(A₂)→A₃</li>
+</ul>
+<h5 id="span-stylecolor-silver寻址span-stylecolor-green范围-2"><span style="color: silver;">寻址<span style="color: green;">范围 </span></span></h5>
+<ul>
+<li>若指令字长为32位：
+<ul>
+<li>操作码占8位</li>
+<li>3个地址码字段各占8位</li>
+<li>每个操作数的直接寻址范围为2⁸=256</li>
+</ul>
+</li>
+<li>访存次数：
+<ul>
+<li>若地址码字段均为主存地址</li>
+<li>需要4次访存：
+<ul>
+<li>取指令1次</li>
+<li>取两个操作数<span style="color: black;">2</span>次</li>
+<li>存结果1次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-silver四"><span style="color: silver;">四~ </span></h4>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/56bca1a6922d69a95d02641971447a3f6f573122ef2321a9000c316913151d9c.jpg" alt=""></p>
+<ul>
+<li>指令含义：
+<ul>
+<li>(A₁)OP(A₂)→A₃</li>
+<li>A₄=下一条将要执行指令的地址</li>
+</ul>
+</li>
+</ul>
+<h5 id="span-stylecolor-silver寻址spanspan-stylecolor-green范围"><span style="color: silver;">寻址</span><span style="color: green;">范围 </span></h5>
+<ul>
+<li>若指令字长为32位：
+<ul>
+<li>操作码占8位</li>
+<li>4个地址码字段各占6位</li>
+<li>每个操作数的直接寻址范围为2⁶=64</li>
+</ul>
+</li>
+<li>访存次数：
+<ul>
+<li>若地址码字段均为主存地址</li>
+<li>需要4次访存：
+<ul>
+<li>取指令1次</li>
+<li>取两个操作数<span style="color: black;">2</span>次</li>
+<li>存结果1次</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</ul>
+<h2 id="span-stylecolor-silverspan-stylecolor-gray定长span操作码指令格式"><span style="color: silver;"><span style="color: gray;">定长</span>操作码指令格式 </span></h2>
+<blockquote>
+<p>pro：定长操作码的指令条数（2015）</p>
+</blockquote>
+<ul>
+<ul>
+<li><span style="color: LimeGreen;">操作</span>码位置：
+<ul>
+<li>在指令字的<span style="color: gray;">最高位</span>部分</li>
+<li>分配固定的若干位表示</li>
+</ul>
+</li>
+<li>指令系统 <span style="color: GreenYellow;">容量</span>：
+<ul>
+<li>n位操作码字段</li>
+<li>最大能够表示<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mstyle mathcolor="black"><msup><mn>2</mn><mi>n</mi></msup></mstyle></mrow><annotation encoding="application/x-tex">\color{black}2^n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord" style="color:black;"><span class="mord" style="color:black;">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight" style="color:black;"><span class="mord mathnormal mtight" style="color:black;">n</span></span></span></span></span></span></span></span></span></span></span>条指令</li>
+</ul>
+</li>
+<li>优点：
+<ul>
+<li><span style="color: green;">简化</span>计算机硬件设计</li>
+<li><span style="color: black;">提高</span>指令译码和识别<span style="color: RoyalBlue;">速度</span></li>
+</ul>
+</li>
+<li>场景：
+<ul>
+<li>计算机字长较长时的常规用法
+<ul>
+<li><span style="color: gray;">32位</span>或<span style="color: gray;">更长</span>字长的系统</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+<h2 id="span-stylecolor-green扩展span-span-stylecolor-silver操作码指令格式"><span style="color: green;">扩展</span> <span style="color: silver;">操作码指令格式 </span></h2>
+<blockquote>
+<p>pro：扩展操作码的设计与分析（2017、2021、2022）</p>
+</blockquote>
+<ul>
+<h3 id="span-stylecolor-silver基本概念-1"><span style="color: silver;">基本概念 </span></h3>
+<ul>
+<li>设计目的：
+<ul>
+<li>在指令字长<span style="color: gray;">有限</span>的前提下保持<span style="color: Gold;">丰富</span>的 指令种类</li>
+</ul>
+</li>
+<li>特点：
+<ul>
+<li>操作码字段 <span style="color: LightSkyBlue;">位数</span> 不<strong>fix</strong></li>
+<li>分散放在 指令字的不同位置上</li>
+<li>操作码 长度 随地址码的减少而增加</li>
+</ul>
+</li>
+</ul>
+<h3 id="span-stylecolor-silver具体span-stylecolor-gold实现"><span style="color: silver;">具体<span style="color: Gold;">实现 </span></span></h3>
+<p><span style="color: LimeGreen;">操作</span>码的位数 随 <span style="color: DarkRed;">地址</span>数的减少而增加<br>
+<img src="https://bluejedis.github.io/picx-images-hosting/test/image.7i0fvxoo5i.webp" alt="image"></p>
+<ul>
+<li>示例分析（16位指令字长）：
+<ul>
+<li>基本结构：
+<ul>
+<li>4位基本操作码字段OP</li>
+<li>3个4位长的地址字段A₁、A₂、A₃</li>
+</ul>
+</li>
+<li>指令分配：
+<ul>
+<li>三地址指令：15条（1111留作<span style="color: green;">扩展</span>操作码）← 剩的那条</li>
+<li>二地址指令：15条（11111111留作~）</li>
+<li>一地址指令：15条（111111111111留作~）</li>
+<li>零地址指令：16条</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="span-stylecolor-greenyellow注意"><span style="color: GreenYellow;">注意 </span></h3>
+<ul>
+<li>关键原则：
+<ul>
+<li><span style="color: LimeGreen;">短</span>码 <span style="color: black;">不能</span>是<span style="color: LightSkyBlue;">长</span>码的前缀</li>
+<li>各指令的操作码不能重复</li>
+</ul>
+</li>
+<li>优化建议：
+<ul>
+<li>使用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span><span style="color: LightSkyBlue;">高</span>的指令分配较 <span style="color: Gold;">短</span>操作码</li>
+<li>使用<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span></span></span></span> <span style="color: LimeGreen;">低</span>的指令分配较<span style="color: gray;">长</span>操作码</li>
+</ul>
+</li>
+</ul>
+</ul>
+<h2 id="span-stylecolor-silver指令的span-stylecolor-gray操作span-stylecolor-limegreen类型"><span style="color: silver;">指令的<span style="color: gray;">操作<span style="color: LimeGreen;">类型 </span></span></span></h2>
+<ul>
+<h3 id="span-stylecolor-lightskyblue数据spanspan-stylecolor-green传送"><span style="color: LightSkyBlue;">数据</span><span style="color: green;">传送 </span></h3>
+<ul>
+<li>主要指令类型：
+<ul>
+<li><span style="color: LimeGreen;">R</span>之间的传送（MOV）</li>
+<li><span style="color: LimeGreen;">R</span>→ <span style="color: black;">Memory</span>（LOAD）</li>
+<li><span style="color: LimeGreen;">R</span>← <span style="color: black;">Memory</span>（STORE）</li>
+<li>进栈操作（PUSH）</li>
+<li>出栈操作（POP）</li>
+</ul>
+</li>
+</ul>
+<h3 id="span-stylecolor-limegreen算术span-span-stylecolor-silver和-span-stylecolor-gold逻辑span运算"><span style="color: LimeGreen;">算术</span> <span style="color: silver;">和 <span style="color: Gold;">逻辑</span>运算 </span></h3>
+<p><span style="font-size: 12px;">  详见 机器级代码表示</span></p>
+<ul>
+<li>主要指令类型：
+<ul>
+<li><span style="color: LimeGreen;">算术</span>运算：
+<ul>
+<li>加（ADD）</li>
+<li>减（SUB）</li>
+<li>乘（MUL）</li>
+<li>除（DIV）</li>
+<li>加1（INC）</li>
+<li>减1（DEC）</li>
+</ul>
+</li>
+<li><span style="color: Gold;">逻辑</span>运算：
+<ul>
+<li>与（AND）</li>
+<li>或（OR）</li>
+<li>取反（NOT）</li>
+<li>异或（XOR）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="span-stylecolor-limegreen移位"><span style="color: LimeGreen;">移位 </span></h3>
+<ul>
+<li>主要类型：
+<ul>
+<li>算术移位</li>
+<li>逻辑移位</li>
+<li>循环移位</li>
+</ul>
+</li>
+</ul>
+<h3 id="span-stylecolor-green转移"><span style="color: green;">转移 </span></h3>
+<blockquote>
+<p>pro：转跳指令、调用和返回指令、条件转移指令的区分（2019）</p>
+</blockquote>
+<ul>
+<li>
+<p>主要指令类型：</p>
+<ul>
+<li>无条件转移（JMP）</li>
+<li>条件转移（BRANCH）</li>
+<li>调用（CALL）</li>
+<li>返回（RET）</li>
+<li>陷阶（TRAP）</li>
+</ul>
+</li>
+<li>
+<p><span style="color: Gold;">对比</span>：</p>
+<ul>
+<li><span style="color: purple;">无</span><span style="color: LimeGreen;">条件</span>转移
+<ul>
+<li><span style="color: black;">任何情况</span>下都执行转移操作</li>
+</ul>
+</li>
+<li><span style="color: LimeGreen;">条件</span>转移
+<ul>
+<li>仅在特定条件满足时执行转移</li>
+<li>转移条件
+<ul>
+<li>某个标志位的值</li>
+<li>几个标志位的组合</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span style="color: RoyalBlue;">调用</span>指令vs<span style="color: green;">转移</span>指令
+<ul>
+<li>调用指令
+<ul>
+<li>需保存 <span style="color: black;">返回</span><span style="color: DarkRed;">地址</span></li>
+<li>子程序结束后返回主程序</li>
+</ul>
+</li>
+<li><span style="color: green;">转移</span>指令
+<ul>
+<li><span style="color: black;">不返回</span>执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="i-o">I O </h3>
+<ul>
+<li>主要功能：
+<ul>
+<li>完成CPU与外部设备的 <span style="color: black;">数据交换</span></li>
+<li>传送控制命令及状态信息</li>
+</ul>
+</li>
+</ul>
+</ul>
+<h1 id="span-stylecolor-green寻址spanspan-stylecolor-silver方式"><span style="color: green;">寻址</span><span style="color: silver;">方式 </span></h1>
+<ul>
+<li>寻址方式：
+<ul>
+<li>定义：寻找指令或操作数有效地址的方式</li>
+<li>作用：确定
+<ul>
+<li>本条指令的数据地址</li>
+<li>下一条待执行指令的地址</li>
+</ul>
+</li>
+<li>分类：
+<ul>
+<li><span style="color: LimeGreen;">指令</span>寻址</li>
+<li><span style="color: LightSkyBlue;">数据</span>寻址</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<h2 id="span-stylecolor-silver-span-stylecolor-limegreen指令span寻址和span-stylecolor-lightskyblue数据span寻址"><span style="color: silver;"> <span style="color: LimeGreen;">指令</span>寻址和<span style="color: LightSkyBlue;">数据</span>寻址 </span></h2>
+<ul>
+<li>指令寻址：寻找 <span style="color: black;">下一条</span>将要执行的指令<span style="color: DarkRed;">地址</span></li>
+<li>数据寻址：寻找 <span style="color: black;">本条</span>指令的数据~</li>
+</ul>
+<ul>
+<h3 id="span-stylecolor-limegreen指令spanspan-stylecolor-silver寻址"><span style="color: LimeGreen;">指令</span><span style="color: silver;">寻址 </span></h3>
+<ul>
+<h4 id="span-stylecolor-gray顺序-span-stylecolor-silver寻址"><span style="color: gray;">顺序 <span style="color: silver;">寻址 </span></span></h4>
+<ul>
+<li>通过 <span style="color: black;">PC</span> <span style="color: Gold;">自增</span>实现</li>
+<li>~过程
+<ul>
+<li>PC+1条指令的 <span style="color: black;">长度</span>
+<ul>
+<li>自动形成下一条指令的<span style="color: DarkRed;">地址</span></li>
+</ul>
+</li>
+<li>大小
+<ul>
+<li>与 <span style="color: LimeGreen;">编址</span>方式、<span style="color: LightSkyBlue;">指令</span>字长有关</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>pro：PC自增大小与编址方式、指令字长的关系（2013、2014、2019、2023）</p>
+</blockquote>
+<blockquote>
+<p>attention:</p>
+</blockquote>
+<ul>
+<li>现代计算机通常是按字节编址的</li>
+<li><span style="color: LightSkyBlue;">指令</span>字长：
+<ul>
+<li><span style="color: black;">16</span>位指令字长
+<ul>
+<li>PC自增为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">C</mi></mrow><mo stretchy="false">)</mo><mo>+</mo><mstyle mathcolor="black"><mn>2</mn></mstyle></mrow><annotation encoding="application/x-tex">(\mathrm{PC})+\color{black}2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">PC</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord" style="color:black;">2</span></span></span></span></li>
+</ul>
+</li>
+<li><span style="color: black;">32</span>位指令字长
+<ul>
+<li>PC自增为 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">C</mi></mrow><mo stretchy="false">)</mo><mo>+</mo><mstyle mathcolor="blue"><mn>4</mn></mstyle></mrow><annotation encoding="application/x-tex">(\mathrm{PC})+\color{blue}4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">PC</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord" style="color:blue;">4</span></span></span></span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-limegreen跳跃span-stylecolor-silver寻址"><span style="color: LimeGreen;">跳跃<span style="color: silver;">寻址 </span></span></h4>
+<p>通过<span style="color: green;">转移</span><span style="color: gray;">类</span>指令实现</p>
+<ul>
+<li>定义
+<ul>
+<li>由本条指令 <span style="color: black;">给出下条</span>指令<span style="color: DarkRed;">地址</span>的计算方式</li>
+<li>是否跳跃可能受到 <span style="color: Gold;">状态</span>R的控制</li>
+</ul>
+</li>
+<li>方式
+<ul>
+<li><span style="color: gray;">绝对</span>转移
+<ul>
+<li>地址码 <span style="color: black;">直接</span>指出转移目标地址</li>
+</ul>
+</li>
+<li><span style="color: GreenYellow;">相对</span>转移</li>
+<li>地址码指出转移目的地址 <span style="color: black;">相对于当前</span>PC值的偏移量</li>
+</ul>
+</li>
+<li>转移指令执行结果
+<ul>
+<li>修改PC值</li>
+<li>CPU根据PC的内容去主存取下一条指令</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>pro：指令格式中各字段的位数分析（2020）</p>
+</blockquote>
+<h3 id="span-stylecolor-silverspan-stylecolor-lightskyblue数据span寻址"><span style="color: silver;"><span style="color: LightSkyBlue;">数据</span>寻址 </span></h3>
+<ul>
+<li>定义
+<ul>
+<li>在指令中表示 <span style="color: LimeGreen;">操作</span>数<span style="color: DarkRed;">地址</span>的方式</li>
+<li>计算操作数地址的方法</li>
+</ul>
+</li>
+<li>寻址 <span style="color: Gold;">特征</span>字段
+<ul>
+<li>用于<span style="color: green;">标识</span>具体的寻址<u>方式</u></li>
+<li>字段 <span style="color: black;">位数</span>决定可支持的寻址方式<span style="color: gray;">数量</span></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>pro：指令格式中寻址特征字段的作用（2023）</p>
+</blockquote>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/cc57f57875406369a446ee41b6e46ac9b01777329de41e632ddfab7ec83264fd.jpg" alt=""></p>
+<ul>
+<li><span style="color: DarkRed;">地址</span>码字段与 <span style="color: LimeGreen;">操作</span>数<span style="color: gray;">真实地址</span>的关系
+<ul>
+<li>地址码字段<span style="color: gray;">不直接</span>代表操作数的真实地址</li>
+<li>分类
+<ul>
+<li><span style="color: gray;">形式</span>地址(<span style="color: DarkRed;">A</span>)
+<ul>
+<li>指令中的<span style="color: DarkRed;">地址</span>码字段</li>
+</ul>
+</li>
+<li><span style="color: LightSkyBlue;">有效</span>地址(<span style="color: LightSkyBlue;">E</span><span style="color: DarkRed;">A</span>)
+<ul>
+<li>操作数在存储器中的真实地址</li>
+<li>计算方式
+<ul>
+<li>通过形式地址和寻址方式计算得出</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>(<span style="color: DarkRed;">A</span>)位数的决定作用
+<ul>
+<li><span style="color: LightSkyBlue;">立即</span>寻址
+<ul>
+<li>操作数的范围</li>
+</ul>
+</li>
+<li><span style="color: black;">直接</span>寻址
+<ul>
+<li>可寻址的范围</li>
+</ul>
+</li>
+<li><span style="color: LimeGreen;">R</span>寻址
+<ul>
+<li>通用R的最大<span style="color: gray;">数量</span></li>
+</ul>
+</li>
+<li><span style="color: LimeGreen;">R</span><span style="color: gray;">间接</span>寻址
+<ul>
+<li>R的位数决定可寻址的范围</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>attention:</p>
+</blockquote>
+<p>（A）表示地址为A的数值</p>
+<ul>
+<li>A既可以是寄存器编号，又可以是内存地址。</li>
+</ul>
+</ul>
+</ul>
+<h2 id="span-stylecolor-silvercommonspan-stylecolor-lightskyblue数据span寻址方式"><span style="color: silver;">common<span style="color: LightSkyBlue;">数据</span>寻址方式 </span></h2>
+<ul>
+<h3 id="基本-span-stylecolor-silver寻址方式">基本 <span style="color: silver;">寻址方式 </span></h3>
+<ul>
+<h4 id="span-stylecolor-silver隐含"><span style="color: silver;">隐含~ </span></h4>
+<p>不明显地给出操作数的地址，而是隐含操作数的地址</p>
+<ul>
+<li>
+<p>单地址指令格式的隐含约定</p>
+<ul>
+<li>第二个操作数由累加器(ACC)提供</li>
+<li>指令中只明显指出第一个操作数的地址<br>
+<img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/eb95a905f61e44cad56b518a1aa375ef438a60ca7ed3fc676e2fa55c6f573d41.jpg" alt=""><br>
+图4.2隐含寻址</li>
+</ul>
+</li>
+<li>
+<p>优缺点</p>
+<ul>
+<li>优点：有利于缩短指令字长</li>
+<li>缺点：需增加存储操作数或隐含地址的硬件</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-lightskyblue立即span数"><span style="color: LightSkyBlue;">立即</span>（数）~ </h4>
+<blockquote>
+<p>pro：立即寻址的概念（2023）</p>
+</blockquote>
+<ul>
+<li>概念
+<ul>
+<li>指令字中的<span style="color: DarkRed;">地址</span>字段
+<ul>
+<li>不是操作数的地址</li>
+<li>而是 <span style="color: LimeGreen;">操作</span>数 <span style="color: black;">本身</span>
+<ul>
+<li>也称<span style="color: gray;">立即数</span></li>
+<li>采用补码表示</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>#: 立即寻址 <span style="color: Gold;">特征</span></li>
+<li>A:  <span style="color: LimeGreen;">操作</span>数</li>
+</ul>
+</li>
+<li>优缺点
+<ul>
+<li>优点
+<ul>
+<li>指令在执行阶段<span style="color: purple;">不</span> <span style="color: LimeGreen;">访 <span style="color: Gold;">存</span></span></li>
+<li>指令执行速度最 <span style="color: black;">快</span></li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>A的<span style="color: gray;">位数</span> <span style="color: black;">限制了</span>立即数的范围</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="直接">直接~ </h4>
+<ul>
+<li>指令字中的形式地址<span style="color: DarkRed;">A</span>就是操作数的 <span style="color: black;">真实</span><span style="color: DarkRed;">地址</span><span style="color: LightSkyBlue;">E</span><span style="color: DarkRed;">A</span>
+<ul>
+<li><span style="color: LightSkyBlue;">E</span><span style="color: DarkRed;">A</span> = <span style="color: DarkRed;">A</span></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/948183c5b772d6544c6bec9a19645480a2b25ccbad62d507552486df04009957.jpg" alt=""></p>
+<ul>
+<li>优缺点
+<ul>
+<li>优点
+<ul>
+<li>简单，不需要专门计算操作数的地址</li>
+<li>指令在执行阶段仅需<span style="color: LimeGreen;">访<span style="color: Gold;">存</span> <span style="color: black;">一次</span></span></li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>A的<span style="color: gray;">位数</span> <span style="color: black;">限制了</span>该指令操作数的寻址<span style="color: gray;">范围</span></li>
+<li>操作数的地址<span style="color: gray;">不易修改</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+<h3 id="span-stylecolor-gray间接span-span-stylecolor-silver寻址类"><span style="color: gray;">间接</span> <span style="color: silver;">寻址类 </span></h3>
+<ul>
+<h4 id="span-stylecolor-gray间接"><span style="color: gray;">间接~ </span></h4>
+<ul>
+<li>指令的地址字段给出的是操作数有效地址所在主存单元的地址
+<ul>
+<li>即操作数地址的地址</li>
+<li>EA = (A)</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/297661d0b53d517f5369db6eeea0399b48288d259fb0194ce89d2cff392ca596.jpg" alt=""><br>
+图4.5间接寻址</p>
+<ul>
+<li>优缺点
+<ul>
+<li>优点
+<ul>
+<li>可扩大寻址范围</li>
+<li>便于编制程序</li>
+</ul>
+</li>
+<li>缺点：指令在执行阶段要多次访存</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-limegreenrspan-span-stylecolor-silver寻址"><span style="color: LimeGreen;">R</span> <span style="color: silver;">寻址 </span></h4>
+<ul>
+<li>与直接寻址原理相同，但访问寄存器而非主存
+<ul>
+<li>指令的地址字段给出操作数所在寄存器的编号</li>
+<li>EA = Ri</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>pro：寄存器编号位数与寄存器数量的关系（2022）</p>
+</blockquote>
+<ul>
+<li>优缺点
+<ul>
+<li>优点
+<ul>
+<li>执行速度快，不用访存</li>
+<li>指令字长较短</li>
+</ul>
+</li>
+<li>缺点
+<ul>
+<li>寄存器价格昂贵</li>
+<li>CPU寄存器数量有限</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-limegreenrspan-span-stylecolor-silverspan-stylecolor-gray间接span寻址"><span style="color: LimeGreen;">R</span> <span style="color: silver;"><span style="color: gray;">间接</span>寻址 </span></h4>
+<blockquote>
+<p>pro：寄存器间接寻址的取数操作（2010）</p>
+</blockquote>
+<ul>
+<li>综合了间接寻址和寄存器寻址特点
+<ul>
+<li>Ri所指寄存器给出操作数所在主存单元的地址</li>
+<li>EA = (Ri)</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/92cc364b37cca2cace4edc484a7917ca840b456ec8c78df2714108a04df0e6ef.jpg" alt=""><br>
+图4.6寄存器寻址</p>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/71cf46d10de7a2353718ca3f208d5dd43920b00188d4ad2d26638c7036ec9415.jpg" alt=""><br>
+图4.7寄存器间接寻址</p>
+<ul>
+<li>特点比较
+<ul>
+<li>相比间接寻址
+<ul>
+<li>扩大了寻址范围</li>
+<li>减少了访存次数</li>
+</ul>
+</li>
+<li>相比寄存器寻址
+<ul>
+<li>执行阶段需要访存获得操作数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+<h3 id="span-stylecolor-green偏移span-span-stylecolor-silver寻址类"><span style="color: green;">偏移</span> <span style="color: silver;">寻址类 </span></h3>
+<ul>
+<h4 id="span-stylecolor-gold相对-span-stylecolor-silver寻址"><span style="color: Gold;">相对 <span style="color: silver;">寻址 </span></span></h4>
+<blockquote>
+<p>pro：相对寻址的偏移量或目标地址的计算（2009、2013、2014、2019、2023）</p>
+</blockquote>
+<h5 id="span-stylecolor-silver原理"><span style="color: silver;">原理 </span></h5>
+<ul>
+<li><span style="color: LightSkyBlue;">E</span><span style="color: DarkRed;">A</span>计算
+<ul>
+<li>EA = (<span style="color: LightSkyBlue;">P</span><span style="color: LimeGreen;">C</span>) + <span style="color: DarkRed;">A</span>
+<ul>
+<li>PC内容 + 指令格式中的形式地址A</li>
+<li>A: 相对于当前PC值的偏移量，可正可负，补码表示</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/54a79a897f2ebe46f3c3320ba9fc90c8d14eba5a2917c433c88919cf0d1c4e2d.jpg" alt=""><br>
+图4.8相对寻址</p>
+<h5 id="特点">特点 </h5>
+<ul>
+<li>寻址范围
+<ul>
+<li><span style="color: DarkRed;">A</span>的 <span style="color: black;">位数</span>决定操作数的寻址范围</li>
+</ul>
+</li>
+<li>优势
+<ul>
+<li>操作数<span style="color: DarkRed;">地址</span>不 <span style="color: GreenYellow;">fix</span>，随PC值变化</li>
+<li>与指令地址保持固定偏移量</li>
+<li>便于程序浮动</li>
+</ul>
+</li>
+<li>应用
+<ul>
+<li>广泛应用于转移指令</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>pro：相对寻址转跳范围的计算（2010、2013、2014）</p>
+</blockquote>
+<blockquote>
+<p>attention:</p>
+</blockquote>
+<ul>
+<li>对于转移指令JMPA
+<ul>
+<li>若指令的地址为X，且占2B</li>
+<li>取出该指令后
+<ul>
+<li>PC的值会增2</li>
+<li>即 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mrow><mi mathvariant="normal">P</mi><mi mathvariant="normal">C</mi></mrow><mo stretchy="false">)</mo><mtext> </mtext><mo lspace="0em" rspace="0em">=</mo><mtext> </mtext><mi mathvariant="normal">X</mi><mo>+</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">(\mathrm{PC})\,{=}\,\mathrm{X}+2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathrm">PC</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathrm">X</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span></li>
+</ul>
+</li>
+<li>执行完该指令后
+<ul>
+<li>会自动跳转到 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">X</mi><mo>+</mo><mn>2</mn><mo>+</mo><mi mathvariant="normal">A</mi></mrow><annotation encoding="application/x-tex">\mathrm{X}+2+\mathrm{A}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord mathrm">X</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathrm">A</span></span></span></span> 的地址继续执行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="span-stylecolor-lightskyblue基址span-span-stylecolor-silver寻址"><span style="color: LightSkyBlue;">基址</span> <span style="color: silver;">寻址 </span></h4>
+<blockquote>
+<p>pro：基址寻址的EA的计算（2019）</p>
+</blockquote>
+<ul>
+<li>EA = (<span style="color: LightSkyBlue;">B</span><span style="color: LimeGreen;">R</span>) + <span style="color: DarkRed;">A</span>
+<ul>
+<li>BR+指令字中的形式地址A</li>
+<li>基址寄存器
+<ul>
+<li>可以是专用寄存器或通用寄存器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a34564d3543b6f2ccacb8cfb471b140348d32097e27bbf6b321ab8f9a9a2be06.jpg" alt=""><br>
+图4.9基址寻址</p>
+<ul>
+<li>特点
+<ul>
+<li>面向 <span style="color: Gold;">OS</span></li>
+<li>内容由操作系统或管理程序确定</li>
+<li>BR内容不变</li>
+</ul>
+</li>
+<li>优点
+<ul>
+<li>可以 <span style="color: black;">扩大</span>寻址 <span style="color: LimeGreen;">范围</span></li>
+<li>有利于多道程序设计</li>
+<li>可用于编制浮动程序</li>
+</ul>
+</li>
+<li>缺点：偏移量 <span style="color: black;">位数</span>较 <span style="color: Gold;">短</span></li>
+</ul>
+<h4 id="span-stylecolor-green变span-stylecolor-lightskyblue址span-span-stylecolor-silver寻址"><span style="color: green;">变<span style="color: LightSkyBlue;">址</span> <span style="color: silver;">寻址 </span></span></h4>
+<blockquote>
+<p>pro：变址寻址的EA的计算（2013），先变址后间址方式的EA的计算（2016）</p>
+</blockquote>
+<ul>
+<li>EA = (IX) + A</li>
+<li>IX+指令字中的形式地址A</li>
+<li>IX: 变址寄存器
+<ul>
+<li>可用 专用变址寄存器或通用寄存器</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>pro：变址寻址的适用场景（2017）</p>
+</blockquote>
+<ul>
+<li>特点
+<ul>
+<li>面向 <span style="color: LimeGreen;">user</span></li>
+<li>执行过程中变址寄存器内容可变</li>
+<li>形式地址A不变</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/9f0e1bf068edf0a515fc2ed92442f6f857a8030bab1164982e17c514ba92116c.jpg" alt=""><br>
+图4.10变址寻址</p>
+<blockquote>
+<p>pro：变址寻址访问数组的过程（2018）</p>
+</blockquote>
+<ul>
+<li>与<span style="color: LightSkyBlue;">基址</span>寻址的区别
+<ul>
+<li>基址寻址
+<ul>
+<li>面向系统</li>
+<li>基址寄存器内容不可变</li>
+<li>指令字中A可变</li>
+</ul>
+</li>
+<li>变址寻址
+<ul>
+<li>面向用户</li>
+<li>变址寄存器 <span style="color: Gold;">内容</span> <span style="color: black;">可变</span></li>
+<li>指令字中<span style="color: DarkRed;">A</span>不可变</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>pro：偏移寻址的范畴（2011）</p>
+</blockquote>
+<ul>
+<li>偏移寻址包括
+<ul>
+<li>相对寻址</li>
+<li>基址寻址</li>
+<li>变址寻址</li>
+</ul>
+</li>
+</ul>
+</ul>
+<h3 id="span-stylecolor-slateblue特殊span"><span style="color: SlateBlue;">特殊</span>~ </h3>
+<ul>
+<h4 id="span-stylecolor-silver堆span-stylecolor-gold栈span"><span style="color: silver;">堆<span style="color: Gold;">栈</span>~ </span></h4>
+<ul>
+<li>堆栈 <span style="color: Gold;">特点</span>
+<ul>
+<li>特定存储区域</li>
+<li><span style="color: black;">后进先出</span>(LIFO)原则</li>
+<li>使用堆栈指针( <span style="color: Gold;">S</span> <span style="color: LimeGreen;">P</span>)管理</li>
+</ul>
+</li>
+<li>堆栈类型
+<ul>
+<li><span style="color: LimeGreen;">硬</span>堆栈(寄存器堆栈)
+<ul>
+<li>成本高</li>
+<li>不适合大容量</li>
+</ul>
+</li>
+<li><span style="color: LightSkyBlue;">软</span>堆栈(主存区域)
+<ul>
+<li>成本低</li>
+<li>最常用</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>操作特点
+<ul>
+<li>大部分指令表现为<span style="color: purple;">无</span> <span style="color: LimeGreen;">操作</span>数形式</li>
+<li><span style="color: Gold;">S</span> <span style="color: LimeGreen;">P</span>
+<ul>
+<li>隐含使用~</li>
+<li>自动完成~的 <span style="color: black;">加减</span>操作</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>表4.1寻址方式、有效地址及访存次数<br>
+<img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/c51f3e89ddc451b47a9e622c8b801b80139caf0bb46af25e8b2187d5cd2dfd58.jpg" alt=""><br>
+<img src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/e1c50194cc3786f302b53c78b63af2b45a119ca8380862b67f5dcabb0710cde4.jpg" alt=""></p>
+  </ul>
+</ul>
+</ul></span>
+      </div>
+      <div class="md-sidebar-toc">
+<div class="md-toc">
+<details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silverabove" class="md-toc-link"><p><span style="color: silver;">above</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver考纲内容" class="md-toc-link">
+            <p><span style="color: silver;">【考纲内容】</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver复习提示" class="md-toc-link">
+            <p><span style="color: silver;">【复习提示】</span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-lightskyblue指令spanspan-stylecolor-deepskyblue系统span" class="md-toc-link"><p><span style="color: LightSkyBlue;">指令</span><span style="color: deepskyblue;">系统</span></p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-lightskyblue指令spanspan-stylecolor-limegreen集span--span-stylecolor-silver体系span-stylecolor-green结构--span-stylecolor-lightskyblueispanspan-stylecolor-limegreensspan-stylecolor-goldaspan" class="md-toc-link"><p><span style="color: LightSkyBlue;">指令</span><span style="color: LimeGreen;">集</span>  <span style="color: silver;">体系<span style="color: green;">结构  <span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S<span style="color: Gold;">A</span></span></span></span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver基本概念" class="md-toc-link">
+            <p><span style="color: silver;">基本概念</span></p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-lightskyblueispanspan-stylecolor-limegreensspanspan-stylecolor-goldaspan-span-stylecolor-silver规定内容span" class="md-toc-link"><p><span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S</span><span style="color: Gold;">A</span> <span style="color: silver;">规定内容</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-lightskyblue指令span" class="md-toc-link">
+            <p><span style="color: LightSkyBlue;">指令</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreen操作spanspan-stylecolor-lightskyblue数span" class="md-toc-link">
+            <p><span style="color: LimeGreen;">操作</span><span style="color: LightSkyBlue;">数</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#硬件span-stylecolor-gold资源span" class="md-toc-link">
+            <p>硬件<span style="color: Gold;">资源</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreen执行span-stylecolor-gold控制" class="md-toc-link">
+            <p><span style="color: LimeGreen;">执行<span style="color: Gold;">控制</span></span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-lightskyblueispanspan-stylecolor-limegreensspanspan-stylecolor-goldaspan-span-stylecolor-silver-程序-span-stylecolor-limegreen开发span" class="md-toc-link"><p><span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S</span><span style="color: Gold;">A</span> <span style="color: silver;">&amp; 程序 <span style="color: LimeGreen;">开发</span></span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-lightskyblueispanspan-stylecolor-limegreensspanspan-stylecolor-goldaspan-span-stylecolor-silver与机器级程序" class="md-toc-link">
+            <p><span style="color: LightSkyBlue;">I</span><span style="color: LimeGreen;">S</span><span style="color: Gold;">A</span> <span style="color: silver;">与机器级程序</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreen高级span-span-stylecolor-silver语言编程" class="md-toc-link">
+            <p><span style="color: LimeGreen;">高级</span> <span style="color: silver;">语言编程</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver重要性" class="md-toc-link">
+            <p><span style="color: silver;">~重要性</span></p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver基本格式" class="md-toc-link"><p><span style="color: silver;">基本格式</span></p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver概念" class="md-toc-link"><p><span style="color: silver;">概念</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreen操作spanspan-stylecolor-green码span---span-stylecolor-silver-span-stylecolor-darkred地址span码" class="md-toc-link">
+            <p><span style="color: LimeGreen;">操作</span><span style="color: green;">码</span>   <span style="color: silver;">&amp; <span style="color: DarkRed;">地址</span>码</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver-字长span" class="md-toc-link">
+            <p><span style="color: silver;">~ 字长</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-lightskyblue指令span-stylecolor-gray字spanspan-stylecolor-limegreen结构span" class="md-toc-link">
+            <p><span style="color: LightSkyBlue;">指令<span style="color: gray;">字</span><span style="color: LimeGreen;">结构</span></span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver指令格式-span-stylecolor-limegreen分类" class="md-toc-link"><p><span style="color: silver;">指令格式 <span style="color: LimeGreen;">分类</span></span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#零span-stylecolor-darkred地址spanspan-stylecolor-lightskyblue指令span" class="md-toc-link">
+            <p>零<span style="color: DarkRed;">地址</span><span style="color: LightSkyBlue;">指令</span></p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver一" class="md-toc-link"><p><span style="color: silver;">一~</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver寻址span-stylecolor-green范围" class="md-toc-link">
+            <p><span style="color: silver;">寻址<span style="color: green;">范围</span></span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver二" class="md-toc-link"><p><span style="color: silver;">二~</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver寻址span-stylecolor-green范围-1" class="md-toc-link">
+            <p><span style="color: silver;">寻址<span style="color: green;">范围</span></span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver三" class="md-toc-link"><p><span style="color: silver;">三~</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver寻址span-stylecolor-green范围-2" class="md-toc-link">
+            <p><span style="color: silver;">寻址<span style="color: green;">范围</span></span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver四" class="md-toc-link"><p><span style="color: silver;">四~</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver寻址spanspan-stylecolor-green范围" class="md-toc-link">
+            <p><span style="color: silver;">寻址</span><span style="color: green;">范围</span></p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silverspan-stylecolor-gray定长span操作码指令格式" class="md-toc-link">
+            <p><span style="color: silver;"><span style="color: gray;">定长</span>操作码指令格式</span></p>
+
+          </a></div><details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-green扩展span-span-stylecolor-silver操作码指令格式" class="md-toc-link"><p><span style="color: green;">扩展</span> <span style="color: silver;">操作码指令格式</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver基本概念-1" class="md-toc-link">
+            <p><span style="color: silver;">基本概念</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver具体span-stylecolor-gold实现" class="md-toc-link">
+            <p><span style="color: silver;">具体<span style="color: Gold;">实现</span></span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-greenyellow注意" class="md-toc-link">
+            <p><span style="color: GreenYellow;">注意</span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver指令的span-stylecolor-gray操作span-stylecolor-limegreen类型" class="md-toc-link"><p><span style="color: silver;">指令的<span style="color: gray;">操作<span style="color: LimeGreen;">类型</span></span></span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-lightskyblue数据spanspan-stylecolor-green传送" class="md-toc-link">
+            <p><span style="color: LightSkyBlue;">数据</span><span style="color: green;">传送</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreen算术span-span-stylecolor-silver和-span-stylecolor-gold逻辑span运算" class="md-toc-link">
+            <p><span style="color: LimeGreen;">算术</span> <span style="color: silver;">和 <span style="color: Gold;">逻辑</span>运算</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreen移位" class="md-toc-link">
+            <p><span style="color: LimeGreen;">移位</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-green转移" class="md-toc-link">
+            <p><span style="color: green;">转移</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#i-o" class="md-toc-link">
+            <p>I O</p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-green寻址spanspan-stylecolor-silver方式" class="md-toc-link"><p><span style="color: green;">寻址</span><span style="color: silver;">方式</span></p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver-span-stylecolor-limegreen指令span寻址和span-stylecolor-lightskyblue数据span寻址" class="md-toc-link"><p><span style="color: silver;"> <span style="color: LimeGreen;">指令</span>寻址和<span style="color: LightSkyBlue;">数据</span>寻址</span></p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-limegreen指令spanspan-stylecolor-silver寻址" class="md-toc-link"><p><span style="color: LimeGreen;">指令</span><span style="color: silver;">寻址</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-gray顺序-span-stylecolor-silver寻址" class="md-toc-link">
+            <p><span style="color: gray;">顺序 <span style="color: silver;">寻址</span></span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreen跳跃span-stylecolor-silver寻址" class="md-toc-link">
+            <p><span style="color: LimeGreen;">跳跃<span style="color: silver;">寻址</span></span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue数据span寻址" class="md-toc-link">
+            <p><span style="color: silver;"><span style="color: LightSkyBlue;">数据</span>寻址</span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silvercommonspan-stylecolor-lightskyblue数据span寻址方式" class="md-toc-link"><p><span style="color: silver;">common<span style="color: LightSkyBlue;">数据</span>寻址方式</span></p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#基本-span-stylecolor-silver寻址方式" class="md-toc-link"><p>基本 <span style="color: silver;">寻址方式</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver隐含" class="md-toc-link">
+            <p><span style="color: silver;">隐含~</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-lightskyblue立即span数" class="md-toc-link">
+            <p><span style="color: LightSkyBlue;">立即</span>（数）~</p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#直接" class="md-toc-link">
+            <p>直接~</p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-gray间接span-span-stylecolor-silver寻址类" class="md-toc-link"><p><span style="color: gray;">间接</span> <span style="color: silver;">寻址类</span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-gray间接" class="md-toc-link">
+            <p><span style="color: gray;">间接~</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreenrspan-span-stylecolor-silver寻址" class="md-toc-link">
+            <p><span style="color: LimeGreen;">R</span> <span style="color: silver;">寻址</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-limegreenrspan-span-stylecolor-silverspan-stylecolor-gray间接span寻址" class="md-toc-link">
+            <p><span style="color: LimeGreen;">R</span> <span style="color: silver;"><span style="color: gray;">间接</span>寻址</span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-green偏移span-span-stylecolor-silver寻址类" class="md-toc-link"><p><span style="color: green;">偏移</span> <span style="color: silver;">寻址类</span></p>
+</a>
+          </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-gold相对-span-stylecolor-silver寻址" class="md-toc-link"><p><span style="color: Gold;">相对 <span style="color: silver;">寻址</span></span></p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver原理" class="md-toc-link">
+            <p><span style="color: silver;">原理</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#特点" class="md-toc-link">
+            <p>特点</p>
+
+          </a></div>
+        </div>
+      </details>
+    <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-lightskyblue基址span-span-stylecolor-silver寻址" class="md-toc-link">
+            <p><span style="color: LightSkyBlue;">基址</span> <span style="color: silver;">寻址</span></p>
+
+          </a></div><div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-green变span-stylecolor-lightskyblue址span-span-stylecolor-silver寻址" class="md-toc-link">
+            <p><span style="color: green;">变<span style="color: LightSkyBlue;">址</span> <span style="color: silver;">寻址</span></span></p>
+
+          </a></div>
+        </div>
+      </details>
+    <details style="padding:0;;padding-left:24px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-slateblue特殊span" class="md-toc-link"><p><span style="color: SlateBlue;">特殊</span>~</p>
+</a>
+          </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+          <a href="#span-stylecolor-silver堆span-stylecolor-gold栈span" class="md-toc-link">
+            <p><span style="color: silver;">堆<span style="color: Gold;">栈</span>~</span></p>
+
+          </a></div>
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+        </div>
+      </details>
+    
+</div>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    
+    
+    
+    
+    
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  
+    </body></html>

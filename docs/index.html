@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -13,8 +12,10 @@
             padding: 20px;
             line-height: 1.6;
         }
-        h1 {
+        h1, h2, h3 {
             color: #2c3e50;
+        }
+        h1 {
             text-align: center;
         }
         .content {
@@ -32,7 +33,7 @@
         }
         ul {
             list-style-type: none;
-            padding: 0;
+            padding-left: 20px;
         }
         li {
             margin: 10px 0;
@@ -40,19 +41,33 @@
             background: white;
             border-radius: 4px;
         }
+        .section {
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
     <h1>计算机组成原理笔记</h1>
     <div class="content">
-        <ul>
-            <li>
-                <a href="功能&结构_指令执行_数据通路_CU.html">功能&结构_指令执行_数据通路_CU</a>
-            </li>
-            <li>
-                <a href="5wd_note.html">5wd笔记</a>
-            </li>
-        </ul>
+        <div class="section">
+            <h2>中央处理器(CPU)</h2>
+            <ul>
+                <li>
+                    <a href="计组/中央处理器/功能&结构_指令执行_数据通路_CU.html">功能&结构_指令执行_数据通路_CU</a>
+                </li>
+            </ul>
+        </div>
+        <div class="section">
+            <h2>指令</h2>
+            <ul>
+                <li>
+                    <a href="计组/指令/指令系统.html">指令系统</a>
+                </li>
+                <li>
+                    <a href="计组/指令/机器级代码表示_CISC RISC.html">机器级代码表示_CISC RISC</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>

@@ -1,3 +1,9 @@
+---
+html:
+  	toc: true
+print_background: true
+---
+
 #  <span style="color: silver;">程序' 机器级<span style="color: LightSkyBlue;">代码</span>表示  
 
 >pro：涉及过汇编代码的真题的年份（2012、2014、2015、2017、2019、2023）  
