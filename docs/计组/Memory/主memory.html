@@ -1,0 +1,3842 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>主memory</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet"
+    href="file:///c:\Users\13550\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.15\crossnote\dependencies\katex\katex.min.css">
+
+
+
+
+
+  <style>
+    pre {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      direction: ltr;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      padding: 1em;
+      margin: .5em 0;
+      overflow: auto;
+      line-height: 1.5;
+      tab-size: 4;
+      hyphens: none;
+      color: #555;
+      background-color: #f0f0f0 !important;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    pre[class*=language-] {
+      padding: 1em
+    }
+
+    code[class*=language-] .token.cdata,
+    code[class*=language-] .token.comment,
+    code[class*=language-] .token.doctype,
+    code[class*=language-] .token.prolog,
+    pre[class*=language-] .token.cdata,
+    pre[class*=language-] .token.comment,
+    pre[class*=language-] .token.doctype,
+    pre[class*=language-] .token.prolog {
+      color: #998;
+      font-style: italic
+    }
+
+    code[class*=language-] .token.punctuation,
+    pre[class*=language-] .token.punctuation {
+      color: #920b2d
+    }
+
+    code[class*=language-] .namespace,
+    pre[class*=language-] .namespace {
+      opacity: .7
+    }
+
+    code[class*=language-] .token.property,
+    pre[class*=language-] .token.property {
+      font-weight: 700;
+      color: #333
+    }
+
+    code[class*=language-] .token.boolean,
+    code[class*=language-] .token.function-name,
+    code[class*=language-] .token.number,
+    pre[class*=language-] .token.boolean,
+    pre[class*=language-] .token.function-name,
+    pre[class*=language-] .token.number {
+      color: #d14
+    }
+
+    code[class*=language-] .token.tag,
+    pre[class*=language-] .token.tag {
+      color: #d14
+    }
+
+    code[class*=language-] .token.symbol,
+    pre[class*=language-] .token.symbol {
+      color: #990073
+    }
+
+    code[class*=language-] .token.selector,
+    pre[class*=language-] .token.selector {
+      color: teal
+    }
+
+    code[class*=language-] .token.attr-name,
+    pre[class*=language-] .token.attr-name {
+      color: #458;
+      font-weight: 700
+    }
+
+    code[class*=language-] .token.string,
+    pre[class*=language-] .token.string {
+      color: #d14
+    }
+
+    code[class*=language-] .token.char,
+    pre[class*=language-] .token.char {
+      color: #606aa1
+    }
+
+    code[class*=language-] .token.url,
+    pre[class*=language-] .token.url {
+      color: #888
+    }
+
+    code[class*=language-] .token.atrule,
+    code[class*=language-] .token.attr-value,
+    code[class*=language-] .token.keyword,
+    pre[class*=language-] .token.atrule,
+    pre[class*=language-] .token.attr-value,
+    pre[class*=language-] .token.keyword {
+      color: #222;
+      font-weight: 700
+    }
+
+    code[class*=language-] .token.function,
+    pre[class*=language-] .token.function {
+      color: #900
+    }
+
+    code[class*=language-] .token.class-name,
+    pre[class*=language-] .token.class-name {
+      text-decoration: underline;
+      color: #606aa1
+    }
+
+    code[class*=language-] .token.variable,
+    pre[class*=language-] .token.variable {
+      color: teal
+    }
+
+    code[class*=language-] .token.bold,
+    code[class*=language-] .token.important,
+    pre[class*=language-] .token.bold,
+    pre[class*=language-] .token.important {
+      font-weight: 700
+    }
+
+    code[class*=language-] .token.italic,
+    pre[class*=language-] .token.italic {
+      font-style: italic
+    }
+
+    code[class*=language-] .token.entity,
+    pre[class*=language-] .token.entity {
+      cursor: help
+    }
+
+    pre[data-line] {
+      position: relative;
+      padding: 1em 0 1em 3em
+    }
+
+    pre[data-line] .line-highlight-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      display: block;
+      width: 100%
+    }
+
+    pre[data-line] .line-highlight {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: inherit 0;
+      margin-top: 1em;
+      background: hsla(24, 20%, 50%, .08);
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+      pointer-events: none;
+      line-height: inherit;
+      white-space: pre
+    }
+
+    pre[data-line] .line-highlight:before,
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-start);
+      position: absolute;
+      top: .4em;
+      left: .6em;
+      min-width: 1em;
+      padding: 0 .5em;
+      background-color: hsla(24, 20%, 50%, .4);
+      color: #f4f1ef;
+      font: bold 65%/1.5 sans-serif;
+      text-align: center;
+      vertical-align: .3em;
+      border-radius: 999px;
+      text-shadow: none;
+      box-shadow: 0 1px #fff
+    }
+
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-end);
+      top: auto;
+      bottom: .4em
+    }
+
+    html body {
+      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+      background-color: #fff;
+      overflow: initial;
+      box-sizing: border-box;
+      word-wrap: break-word
+    }
+
+    html body>:first-child {
+      margin-top: 0
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5,
+    html body h6 {
+      line-height: 1.2;
+      margin-top: 1em;
+      margin-bottom: 16px;
+      color: #030303
+    }
+
+    html body h1 {
+      font-size: 2.25em;
+      font-weight: 300;
+      padding-bottom: .3em
+    }
+
+    html body h2 {
+      font-size: 1.75em;
+      font-weight: 400;
+      padding-bottom: .3em
+    }
+
+    html body h3 {
+      font-size: 1.5em;
+      font-weight: 500
+    }
+
+    html body h4 {
+      font-size: 1.25em;
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1.1em;
+      font-weight: 600
+    }
+
+    html body h6 {
+      font-size: 1em;
+      font-weight: 600
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5 {
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1em
+    }
+
+    html body h6 {
+      color: #7e7e7e
+    }
+
+    html body strong {
+      color: #030303
+    }
+
+    html body del {
+      color: #7e7e7e
+    }
+
+    html body a:not([href]) {
+      color: inherit;
+      text-decoration: none
+    }
+
+    html body a {
+      color: #08c;
+      text-decoration: none
+    }
+
+    html body a:hover {
+      color: #00a3f5;
+      text-decoration: none
+    }
+
+    html body img {
+      max-width: 100%
+    }
+
+    html body>p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      word-wrap: break-word
+    }
+
+    html body>ol,
+    html body>ul {
+      margin-bottom: 16px
+    }
+
+    html body ol,
+    html body ul {
+      padding-left: 2em
+    }
+
+    html body ol.no-list,
+    html body ul.no-list {
+      padding: 0;
+      list-style-type: none
+    }
+
+    html body ol ol,
+    html body ol ul,
+    html body ul ol,
+    html body ul ul {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body li {
+      margin-bottom: 0
+    }
+
+    html body li.task-list-item {
+      list-style: none
+    }
+
+    html body li>p {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body .task-list-item-checkbox {
+      margin: 0 .2em .25em -1.8em;
+      vertical-align: middle
+    }
+
+    html body .task-list-item-checkbox:hover {
+      cursor: pointer
+    }
+
+    html body blockquote {
+      margin: 16px 0;
+      font-size: inherit;
+      padding: 0 15px;
+      color: #7e7e7e;
+      background-color: #f0f0f0;
+      border-left: 4px solid #d6d6d6
+    }
+
+    html body blockquote>:first-child {
+      margin-top: 0
+    }
+
+    html body blockquote>:last-child {
+      margin-bottom: 0
+    }
+
+    html body hr {
+      height: 4px;
+      margin: 32px 0;
+      background-color: #d6d6d6;
+      border: 0 none
+    }
+
+    html body table {
+      margin: 10px 0 15px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all
+    }
+
+    html body table th {
+      font-weight: 700;
+      color: #030303
+    }
+
+    html body table td,
+    html body table th {
+      border: 1px solid #d6d6d6;
+      padding: 6px 13px
+    }
+
+    html body dl {
+      padding: 0
+    }
+
+    html body dl dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: 700
+    }
+
+    html body dl dd {
+      padding: 0 16px;
+      margin-bottom: 16px
+    }
+
+    html body code {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: .85em;
+      color: #030303;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      padding: .2em 0
+    }
+
+    html body code::after,
+    html body code::before {
+      letter-spacing: -.2em;
+      content: '\00a0'
+    }
+
+    html body pre>code {
+      padding: 0;
+      margin: 0;
+      word-break: normal;
+      white-space: pre;
+      background: 0 0;
+      border: 0
+    }
+
+    html body .highlight {
+      margin-bottom: 16px
+    }
+
+    html body .highlight pre,
+    html body pre {
+      padding: 1em;
+      overflow: auto;
+      line-height: 1.45;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    html body .highlight pre {
+      margin-bottom: 0;
+      word-break: normal
+    }
+
+    html body pre code,
+    html body pre tt {
+      display: inline;
+      max-width: initial;
+      padding: 0;
+      margin: 0;
+      overflow: initial;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0
+    }
+
+    html body pre code:after,
+    html body pre code:before,
+    html body pre tt:after,
+    html body pre tt:before {
+      content: normal
+    }
+
+    html body blockquote,
+    html body dl,
+    html body ol,
+    html body p,
+    html body pre,
+    html body ul {
+      margin-top: 0;
+      margin-bottom: 16px
+    }
+
+    html body kbd {
+      color: #030303;
+      border: 1px solid #d6d6d6;
+      border-bottom: 2px solid #c7c7c7;
+      padding: 2px 4px;
+      background-color: #f0f0f0;
+      border-radius: 3px
+    }
+
+    @media print {
+      html body {
+        background-color: #fff
+      }
+
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      html body h6 {
+        color: #030303;
+        page-break-after: avoid
+      }
+
+      html body blockquote {
+        color: #7e7e7e
+      }
+
+      html body pre {
+        page-break-inside: avoid
+      }
+
+      html body table {
+        display: table
+      }
+
+      html body img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%
+      }
+
+      html body code,
+      html body pre {
+        word-wrap: break-word;
+        white-space: pre
+      }
+    }
+
+    .markdown-preview {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box
+    }
+
+    .markdown-preview ul {
+      list-style: disc
+    }
+
+    .markdown-preview ul ul {
+      list-style: circle
+    }
+
+    .markdown-preview ul ul ul {
+      list-style: square
+    }
+
+    .markdown-preview ol {
+      list-style: decimal
+    }
+
+    .markdown-preview ol ol,
+    .markdown-preview ul ol {
+      list-style-type: lower-roman
+    }
+
+    .markdown-preview ol ol ol,
+    .markdown-preview ol ul ol,
+    .markdown-preview ul ol ol,
+    .markdown-preview ul ul ol {
+      list-style-type: lower-alpha
+    }
+
+    .markdown-preview .newpage,
+    .markdown-preview .pagebreak {
+      page-break-before: always
+    }
+
+    .markdown-preview pre.line-numbers {
+      position: relative;
+      padding-left: 3.8em;
+      counter-reset: linenumber
+    }
+
+    .markdown-preview pre.line-numbers>code {
+      position: relative
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows {
+      position: absolute;
+      pointer-events: none;
+      top: 1em;
+      font-size: 100%;
+      left: 0;
+      width: 3em;
+      letter-spacing: -1px;
+      border-right: 1px solid #999;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span {
+      pointer-events: none;
+      display: block;
+      counter-increment: linenumber
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+      content: counter(linenumber);
+      color: #999;
+      display: block;
+      padding-right: .8em;
+      text-align: right
+    }
+
+    .markdown-preview .mathjax-exps .MathJax_Display {
+      text-align: center !important
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .status {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+      margin-bottom: 16px
+    }
+
+    .markdown-preview .md-toc {
+      padding: 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    .scrollbar-style::-webkit-scrollbar {
+      width: 8px
+    }
+
+    .scrollbar-style::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    .scrollbar-style::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      overflow: auto
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+      position: relative;
+      top: 0;
+      min-height: 100vh
+    }
+
+    @media screen and (min-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em calc(50% - 457px + 2em)
+      }
+    }
+
+    @media screen and (max-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        font-size: 14px !important;
+        padding: 1em
+      }
+    }
+
+    @media print {
+      html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+        display: none
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+      position: fixed;
+      bottom: 8px;
+      left: 8px;
+      font-size: 28px;
+      cursor: pointer;
+      color: inherit;
+      z-index: 99;
+      width: 32px;
+      text-align: center;
+      opacity: .4
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+      opacity: 1
+    }
+
+    /*
+sidebar toc
+*/
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: auto;
+      width: 300px;
+      height: 100%;
+      padding: 32px 0 48px 0;
+      font-size: 14px;
+      box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: inherit
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+      width: 8px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+      text-decoration: none
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+      padding: 0 16px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+/*toc对应更改*/
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+      right: 300px;
+      left: 0;
+      width: calc(100% - 300px);
+      padding: 2em 2em 2em 0;
+     /* padding: 2em calc(50% - 457px - 300px / 2);*/
+      margin: 0;
+      box-sizing: border-box
+    }
+
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        width: 100%
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+      left: 50%;
+      transform: translateX(-50%)
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+      display: none
+    }
+
+    /* Please visit the URL below for more information: */
+    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+    .markdown-preview.markdown-preview {
+      /*below is newsprint_mixed_solar.css */
+      /* don't work*/
+    }
+  </style>
+  <!-- The content below will be included at the end of the <head> element. -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      // your code here
+    });
+  </script>
+</head>
+
+<body for="html-export">
+
+
+  <div class="crossnote markdown-preview  ">
+
+    <span style="color: silver;">
+      <h1 id="span-stylecolor-silverabove"><span style="color: silver;">above </span></h1>
+      <h2 id="span-stylecolor-silver考纲内容"><span style="color: silver;">【考纲内容】 </span></h2>
+      <p>（一）存储器的分类</p>
+      <p>（二）层次化存储器的基本结构</p>
+      <p>（三）半导体随机存储器（RAM）SRAM、DRAM、Flash存储器</p>
+      <p>（四）主存储器DRAM芯片和内存条、多模块存储器、主存储器和CPU之间的连接</p>
+      <p>（五）外部存储器磁盘存储器、固态硬盘（SSD）</p>
+      <p>（六）高速缓冲存储器（Cache）Cache的基本原理：Cache和主存之间的映射方式Cache中主存块的替换算法：Cache写策略</p>
+      <p>（七）虚拟存储器</p>
+      <p>虚拟存储器的基本概念页式虚拟存储器：基本原理、页表、地址转换、TLB（快表）段式虚拟存储器的基本原理：段页式虚拟存储器的基本原理</p>
+      <h2 id="span-stylecolor-silver复习提示"><span style="color: silver;">【复习提示】 </span></h2>
+      <ul>
+        <li>
+          <p>本章命题重点：</p>
+          <ul>
+            <li>特别关注Cache和虚拟存储器相关内容，这些考点容易出综合题。</li>
+            <li>存储器的特点、扩展（芯片选择、连接方式、地址范围等）、交叉存储器也常考。</li>
+            <li>Cache的相关计算与替换算法是重要考点。</li>
+            <li>虚拟存储器与TLB（Translation Lookaside Buffer）也是考试重点。</li>
+          </ul>
+        </li>
+        <li>
+          <p>地址翻译与Cache映射问题：</p>
+          <ul>
+            <li>掌握存在Cache和TLB的计算机中的地址翻译机制。</li>
+            <li>理解Cache映射问题。</li>
+          </ul>
+        </li>
+        <li>
+          <p>学习建议：</p>
+          <ul>
+            <li>掌握基本原理，并多结合习题进行反复训练。</li>
+            <li>深化理解并巩固知识。</li>
+          </ul>
+          <details>
+            <summary>学习本章时的思考问题：</summary>
+            <ol>
+              <li>
+                <p>存储器系统分层次的原因：</p>
+                <ul>
+                  <li>为什么存储器系统需要分层次？</li>
+                  <li>计算机如何管理这些层次？</li>
+                </ul>
+              </li>
+              <li>
+                <p>影响Cache性能的因素：</p>
+                <ul>
+                  <li>有哪些因素会影响Cache的性能？</li>
+                </ul>
+              </li>
+              <li>
+                <p>虚拟存储系统页面大小的选择：</p>
+                <ul>
+                  <li>虚拟存储系统的页面是设置得大一些好还是小一些好？</li>
+                </ul>
+              </li>
+            </ol>
+          </details>
+        </li>
+      </ul>
+
+      <h1 id="span-stylecolor-silverconcept"><span style="color: silver;">concept </span></h1>
+      <h2 id="span-stylecolor-silverm分类"><span style="color: silver;">M分类 </span></h2>
+      <ul>
+        <p>存储器种类繁多，可从不同角度对存储器进行分类。</p>
+        <h3 id="span-stylecolor-silver按在计算机中的span-stylecolor-gray作用span层次"><span style="color: silver;">按在计算机中的<span
+              style="color: gray;">作用</span>（层次） </span></h3>
+        <ul>
+          <li>
+            <p>主存储器</p>
+            <ul>
+              <li>简称主存，也称内存储器（内存）</li>
+              <li>用途：存放计算机运行期间所需的程序和数据</li>
+              <li>特点：
+                <ul>
+                  <li>CPU可以直接随机访问</li>
+                  <li>可与Cache及辅助存储器交换数据</li>
+                  <li>容量较小</li>
+                  <li>存取速度较快</li>
+                  <li>每位价格较高</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>辅助存储器</p>
+            <ul>
+              <li>简称辅存，也称外存储器或外存</li>
+              <li>用途：存放当前暂时不用的程序和数据，以及需要永久性保存的信息</li>
+              <li>特点：
+                <ul>
+                  <li>需要调入主存后才能被CPU访问</li>
+                  <li>容量大</li>
+                  <li>存取速度较慢</li>
+                  <li>单位成本低</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>高速缓冲存储器</p>
+            <ul>
+              <li>简称Cache</li>
+              <li>位置：位于主存和CPU之间</li>
+              <li>用途：存放当前CPU经常使用的指令和数据</li>
+              <li>特点：
+                <ul>
+                  <li>存取速度可与CPU速度匹配</li>
+                  <li>存储容量小</li>
+                  <li>价格高</li>
+                  <li>现代计算机通常将其制作在CPU中</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-silver按存储span-stylecolor-slateblue介质span"><span style="color: silver;">按存储<span
+              style="color: SlateBlue;">介质</span> </span></h3>
+        <ul>
+          <li>磁表面存储器
+            <ul>
+              <li>磁盘</li>
+              <li>磁带</li>
+            </ul>
+          </li>
+          <li>磁芯存储器</li>
+          <li>半导体存储器
+            <ul>
+              <li>MOS型存储器</li>
+              <li>双极型存储器</li>
+            </ul>
+          </li>
+          <li>光存储器
+            <ul>
+              <li>光盘</li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-silver按span-stylecolor-gold存spanspan-stylecolor-limegreen取span方式分类"><span
+            style="color: silver;">按<span style="color: Gold;">存</span><span style="color: LimeGreen;">取</span>方式分类
+          </span></h3>
+        <blockquote>
+          <p>pro：采用随机存取的存储器（2011）</p>
+        </blockquote>
+        <ul>
+          <li>
+            <p>随机存储器（RAM)</p>
+            <ul>
+              <li>特点：
+                <ul>
+                  <li>任何存储单元都可以随机存取</li>
+                  <li>存取时间与存储单元物理位置无关</li>
+                </ul>
+              </li>
+              <li>优点：读/写方便、使用灵活</li>
+              <li>用途：主要用作主存或高速缓冲存储器</li>
+              <li>分类：
+                <ul>
+                  <li>静态RAM</li>
+                  <li>动态RAM</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>只读存储器（ROM）</p>
+            <ul>
+              <li>特点：
+                <ul>
+                  <li>内容只能随机读出不能写入</li>
+                  <li>断电内容不会丢失</li>
+                  <li>写入速度比读取速度慢得多</li>
+                </ul>
+              </li>
+              <li>用途：存放固定不变的程序、常数和汉字字库等</li>
+              <li>功能：可与随机存储器共同作为主存的一部分</li>
+            </ul>
+          </li>
+          <li>
+            <p><span style="color: Gold;">串</span>行访问存储器</p>
+            <ul>
+              <li>特点：需按<span style="color: gray;">物理</span>位置先后顺序寻址</li>
+              <li>类型：
+                <ul>
+                  <li>顺序存取存储器（如磁带）
+                    <ul>
+                      <li>特点：存取速度慢，按顺序存取</li>
+                    </ul>
+                  </li>
+                  <li>直接存取存储器（如磁盘、光盘）
+                    <ul>
+                      <li>特点：介于RAM和顺序存取之间</li>
+                      <li>存取方式：先寻找小区域，再在区域内顺序查找</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-silver按信息的span-stylecolor-gray可spanspan-stylecolor-gold保存span性分类"><span
+            style="color: silver;">按信息的<span style="color: gray;">可</span><span style="color: Gold;">保存</span>性分类
+          </span></h3>
+        <ul>
+          <li>
+            <p><span style="color: GreenYellow;">易</span><span style="color: LimeGreen;">失</span>性存储器</p>
+            <ul>
+              <li>特点：<span style="color: gray;">断电</span>后信息消失</li>
+              <li>示例：RAM</li>
+            </ul>
+          </li>
+          <li>
+            <p><span style="color: SlateBlue;">非</span>~</p>
+            <ul>
+              <li>特点：~ <span style="color: Gold;">保持</span></li>
+              <li>类型：
+                <ul>
+                  <li>ROM</li>
+                  <li>磁表面存储器</li>
+                  <li>光存储器</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h4 id="span-stylecolor-silver按span-stylecolor-goldenrodreadspan方式"><span style="color: silver;">按<span
+              style="color: Goldenrod;">Read</span>方式 </span></h4>
+        <ul>
+          <li>
+            <p><span style="color: SlateBlue;">破坏</span>性读出</p>
+            <ul>
+              <li>特点：读出时<span style="color: gray;">原</span>存储信息<u>被破坏</u></li>
+              <li>要求：每次读出后需要进行 <span style="color: LimeGreen;">再生</span>操作</li>
+            </ul>
+          </li>
+          <li>
+            <p><span style="color: purple;">非</span>~</p>
+            <ul>
+              <li>特点：读出时原存储信息不被破坏</li>
+            </ul>
+          </li>
+        </ul>
+      </ul>
+      <h2 id="span-stylecolor-gold性能span-span-stylecolor-limegreen指标span"><span style="color: Gold;">性能</span> <span
+          style="color: LimeGreen;">指标</span> </h2>
+      <ul>
+        <h3 id="span-stylecolor-gold存储span-span-stylecolor-limegreen容量span"><span style="color: Gold;">存储</span> <span
+            style="color: LimeGreen;">容量</span> </h3>
+        <ul>
+          <li>formula：
+            <ul>
+              <li>= 存储<span style="color: gray;">字数</span> × 字<span style="color: LightSkyBlue;">长</span>（如1M×8位）</li>
+            </ul>
+          </li>
+          <li>单位换算：1B（Byte，字节）= 8b (bit，位)</li>
+          <li>说明：
+            <ul>
+              <li>存储字数表示存储器的地址空间大小</li>
+              <li>字长表示一次存取操作的数据量</li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-silver单位span-stylecolor-gray成本span"><span style="color: silver;">单位<span
+              style="color: gray;">成本</span> </span></h3>
+        <ul>
+          <li>计算公式：每位价格 = 总成本/总容量</li>
+        </ul>
+        <h3 id="span-stylecolor-gold存储-span-stylecolor-royalblue速度span"><span style="color: Gold;">存储 <span
+              style="color: RoyalBlue;">速度</span> </span></h3>
+        <ul>
+          <li>计算公式：数据传输速率 = 数据的宽度/存取周期</li>
+          <li>重要参数：
+            <ul>
+              <li>存取时间（T<span style="color: DarkRed;">a</span>）
+                <ul>
+                  <li>定义：从<span style="color: gray;">启动</span>一次存储器操作 → 完成该操作所经历的t</li>
+                  <li>分类：读出t 和 写入t</li>
+                </ul>
+              </li>
+              <li>存取周期（T<span style="color: LimeGreen;">m</span>）
+                <ul>
+                  <li>定义：一次完整的 读/写 操作所需的全部时间</li>
+                  <li>特点：
+                    <ul>
+                      <li>连续两次 独立访问存储器操作之间 所需的 min时间间隔</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>主存带宽（<span style="color: LightSkyBlue;">B</span>m）<br>
+                Main memory bandwidth
+                <ul>
+                  <li>别称：数据传输速率</li>
+                  <li>含义：每秒从主存进出信息的最大数量</li>
+                  <li>单位：字/秒、字节/秒（B/s）或位/秒（b/s)</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h4 id="span-stylecolor-silvertspan-stylecolor-darkredaspantspan-stylecolor-limegreenmspan"><span
+            style="color: silver;">T<span style="color: DarkRed;">a</span>&amp;T<span style="color: LimeGreen;">m</span>
+          </span></h4>
+        <ul>
+          <li>基本关系：T<span style="color: LimeGreen;">m</span> &gt; <span style="color: silver;">T<span
+                style="color: DarkRed;">a</span></span></li>
+          <li>原因：
+            <ul>
+              <li>读/写操作后需要恢复内部状态</li>
+              <li>对于破坏性读出的存储器，可达T<span style="color: LimeGreen;">m</span> &gt; = 2 <span style="color: silver;">T<span
+                    style="color: DarkRed;">a</span></span></li>
+            </ul>
+          </li>
+          <li>示意图：</li>
+        </ul>
+        <p><img
+            src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/21f64fafd194c1ba1c6165c7728968a6e8ae536402c6539569c4d4e7c1719c0f.jpg"
+            alt=""><br>
+          图3.1存取时间与存取周期的关系</p>
+      </ul>
+      <h2 id="span-stylecolor-silverspan-stylecolor-royalblue多spanspan-stylecolor-gold级span层次的存储系统"><span
+          style="color: silver;"><span style="color: RoyalBlue;">多</span><span style="color: Gold;">级</span>层次的存储系统
+        </span></h2>
+      <ul>
+        <p><img
+            src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/ecbfb7431920fae95ef8cac047bea026b1dcf473fe23120161d91a5948c10f1a.jpg"
+            alt=""><br>
+          图3.2多级存储器结构</p>
+        <h3 id="span-stylecolor-gold特点"><span style="color: Gold;">特点 </span></h3>
+        <ul>
+          <li>层次结构特征：
+            <ul>
+              <li>由上至下：
+                <ul>
+                  <li>位价越来越低</li>
+                  <li>速度越来越慢</li>
+                  <li>容量越来越大</li>
+                  <li>CPU访问频度越来越低</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>main：
+            <ul>
+              <li>Cache-主存层</li>
+              <li>主存-辅存层</li>
+            </ul>
+          </li>
+        </ul>
+        <p><img src="https://bluejedis.github.io/picx-images-hosting/test/image.1hs9v6mslx.webp" alt="image"><br>
+          图3.3三级存储系统的层次结构及其构成</p>
+        <h3 id="span-stylecolor-limegreen结构"><span style="color: LimeGreen;">结构 </span></h3>
+        <ul>
+          <li>信息交换方式：
+            <ul>
+              <li><span style="color: SlateBlue;">Cache</span>、 <span style="color: Gold;">主存</span>能与CPU<u>直接</u>交换信息
+                <ul>
+                  <li><span style="color: RoyalBlue;">辅</span>存through主存与CPU交换信息</li>
+                </ul>
+              </li>
+              <li>主存与CPU、Cache、辅存都能交换信息</li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-silver工作-span-stylecolor-gold原理"><span style="color: silver;">工作 <span
+              style="color: Gold;">原理 </span></span></h3>
+        <ul>
+          <li>CPU数据存取过程：
+            <ul>
+              <li>先访问Cache</li>
+              <li>若不在Cache中，则访问主存</li>
+              <li>若不在主存中，则访问磁盘</li>
+              <li>数据读取路径：磁盘→主存→Cache</li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-lightskyblue优势"><span style="color: LightSkyBlue;">优势 </span></h3>
+        <ul>
+          <li>Cache-主存层：
+            <ul>
+              <li>速度接近Cache</li>
+              <li>容量和位价接近主存</li>
+            </ul>
+          </li>
+          <li>主存-辅存层：
+            <ul>
+              <li>速度接近主存</li>
+              <li>容量和位价接近辅存</li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-silver层次功能"><span style="color: silver;">层次功能 </span></h3>
+        <ul>
+          <li>Cache-主存层：
+            <ul>
+              <li>主要功能：解决CPU和主存速度不匹配问题</li>
+              <li>数据调动：由硬件自动完成</li>
+              <li>特点：对所有程序员透明</li>
+            </ul>
+          </li>
+          <li>主存-辅存层：
+            <ul>
+              <li>主要功能：解决存储系统容量问题</li>
+              <li>数据调动：由硬件和操作系统共同完成</li>
+              <li>特点：对应用程序员透明</li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-silver趋势"><span style="color: silver;">趋势 </span></h3>
+        <ul>
+          <li>虚拟存储系统的形成：
+            <ul>
+              <li>特点：程序员编程地址范围与虚拟存储器地址空间对应</li>
+              <li>优势：可用地址空间远大于主存空间</li>
+            </ul>
+          </li>
+        </ul>
+        <blockquote>
+          <p>attention：</p>
+        </blockquote>
+        <p><span style="font-size: 12px;"> 上一层中的内容都只是下一层中的内容的副本</span></p>
+        <ul>
+          <li>Cache一主存层
+            <ul>
+              <li>Cache中的内容只是主存中的内容的一部分</li>
+            </ul>
+          </li>
+          <li>主存一辅存层
+            <ul>
+              <li>主存..辅存~</li>
+            </ul>
+          </li>
+        </ul>
+      </ul>
+      <h1 id="span-stylecolor-gold主m"><span style="color: Gold;">主M </span></h1>
+      <ul>
+        <h2
+          id="span-stylecolor-silver-span-stylecolor-goldsspan-span-stylecolor-greenyellowrspanspan-stylecolor-darkredaspanm-span-stylecolor-limegreendspan-">
+          <span style="color: silver;"> <span style="color: Gold;">S</span> <span
+              style="color: GreenYellow;">R</span><span style="color: DarkRed;">A</span>M <span
+              style="color: LimeGreen;">D</span> ~ </span></h2>
+        <p><span style="font-size: 12px;"> Static random access memory;Dynamic random access memory</span></p>
+        <ul>
+          <ul>
+            <li>半导体存储器
+              <ul>
+                <li>随机存储器（RAM）
+                  <ul>
+                    <li>静态随机存储器（SRAM）
+                      <ul>
+                        <li>用于实现靠近处理器的Cache</li>
+                        <li>易失性存储器</li>
+                      </ul>
+                    </li>
+                    <li>动态随机存储器（DRAM）
+                      <ul>
+                        <li>用于实现主存储器</li>
+                        <li>易失性存储器</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li>只读存储器（ROM）
+                  <ul>
+                    <li>非易失性存储器</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <h3 id="span-stylecolor-silver-span-stylecolor-goldsspanram"><span style="color: silver;"> <span
+                style="color: Gold;">S</span>RAM </span></h3>
+          <ul>
+            <li>
+              <p>基本概念</p>
+              <ul>
+                <li>存储<span style="color: LightSkyBlue;">元</span>：
+                  <ul>
+                    <li>存放 一个二进制位的物理器件</li>
+                    <li>(M'最基本 构件</li>
+                  </ul>
+                </li>
+                <li>存储<span style="color: gray;">单元</span>：地址码相同' 多个存储<span style="color: LightSkyBlue;">元</span></li>
+                <li>存储<span style="color: deepskyblue;">体</span>：集合 of 存储<span style="color: gray;">单元</span>s</li>
+              </ul>
+            </li>
+            <li>
+              <p>工作特点</p>
+              <ul>
+                <li>use双稳态触发器（六晶体管MOS）记忆信息</li>
+                <li>静态特性：信息读出后保持原状态，无需再生（<span style="color: gray;">非破坏</span>性读出）</li>
+                <li>性能特征：
+                  <ul>
+                    <li>存取速度快</li>
+                    <li>集成度低</li>
+                    <li>功耗较大</li>
+                    <li>价格昂贵</li>
+                  </ul>
+                </li>
+                <li>用途：高速缓冲存储器<span style="color: SlateBlue;">cache</span></li>
+              </ul>
+            </li>
+          </ul>
+          <h3 id="span-stylecolor-silver-span-stylecolor-limegreendspanram"><span style="color: silver;"> <span
+                style="color: LimeGreen;">D</span>RAM </span></h3>
+          <ul>
+            <ul>
+              <li>存储原理：
+                <ul>
+                  <li>利用存储元电路中栅极电容上的电荷存储信息</li>
+                </ul>
+              </li>
+              <li>基本结构：
+                <ul>
+                  <li>usually only一个 <span style="color: Gold;">晶体</span><span style="color: LightSkyBlue;">管</span>
+                  </li>
+                </ul>
+              </li>
+              <li>与SRAM对比优势：
+                <ul>
+                  <li>密度更高</li>
+                  <li>集成度高</li>
+                  <li>位价低</li>
+                  <li>功耗低</li>
+                </ul>
+              </li>
+              <li>缺点：
+                <ul>
+                  <li>存取速度较慢</li>
+                  <li>需要定时刷新和读后再生</li>
+                </ul>
+              </li>
+              <li>用途：
+                <ul>
+                  <li>大容量主存系统</li>
+                </ul>
+              </li>
+            </ul>
+            <blockquote>
+              <p>pro：需要刷新的存储芯片：SDRAM（2015）</p>
+            </blockquote>
+            <h4 id="span-stylecolor-gold特点-1"><span style="color: Gold;">特点 </span></h4>
+            <ul>
+              <li>电荷维持时间：
+                <ul>
+                  <li>持续<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <mn>1</mn>
+                              <mo>∼</mo>
+                              <mn>2</mn>
+                              <mrow>
+                                <mi mathvariant="normal">m</mi>
+                                <mi mathvariant="normal">s</mi>
+                              </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">1\sim2\mathrm{ms}</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.6444em;"></span><span class="mord">1</span><span class="mspace"
+                            style="margin-right:0.2778em;"></span><span class="mrel">∼</span><span class="mspace"
+                            style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut"
+                            style="height:0.6444em;"></span><span class="mord">2</span><span class="mord"><span
+                              class="mord mathrm">ms</span></span></span></span></span></li>
+                </ul>
+              </li>
+              <li>读操作特性：
+                <ul>
+                  <li>破坏性读出</li>
+                  <li>需要读后再生</li>
+                </ul>
+              </li>
+              <li>刷新周期：
+                <ul>
+                  <li>定义：相邻两次刷新的时间间隔</li>
+                  <li>典型值：<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <mn>2</mn>
+                              <mrow>
+                                <mi mathvariant="normal">m</mi>
+                                <mi mathvariant="normal">s</mi>
+                              </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2\mathrm{ms}</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.6444em;"></span><span class="mord">2</span><span class="mord"><span
+                              class="mord mathrm">ms</span></span></span></span></span></li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-silver-span-stylecolor-greenyellow刷新span方式"><span style="color: silver;"> <span
+                  style="color: GreenYellow;">刷新</span>方式 </span></h4>
+            <ul>
+              <h5 id="span-stylecolor-silver-span-stylecolor-limegreen集中span"><span style="color: silver;"> <span
+                    style="color: LimeGreen;">集中</span>~ </span></h5>
+              <ul>
+                <li>特点：
+                  <ul>
+                    <li>在固定时间内逐一对所有行再生</li>
+                    <li>刷新期间停止读/写操作（死时间/访存死区）</li>
+                  </ul>
+                </li>
+                <li>优点：读/写操作不受刷新影响</li>
+                <li>缺点：刷新期间不能访问存储器</li>
+              </ul>
+              <h5 id="span-stylecolor-silver-span-stylecolor-gold分散span"><span style="color: silver;"> <span
+                    style="color: Gold;">分散</span>~ </span></h5>
+              <ul>
+                <li>工作方式：后半部分用于刷新</li>
+                <li>影响：增加系统存取周期（如<span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mn>0.5</mn>
+                            <mi>μ</mi>
+                            <mi mathvariant="normal">s</mi>
+                          </mrow>
+                          <annotation encoding="application/x-tex">0.5\mu\mathrm{s}</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                          style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">0.5</span><span
+                          class="mord mathnormal">μ</span><span class="mord mathrm">s</span></span></span></span>到<span
+                    class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mn>1</mn>
+                            <mi>μ</mi>
+                            <mi mathvariant="normal">s</mi>
+                          </mrow>
+                          <annotation encoding="application/x-tex">1\mu\mathrm{s}</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                          style="height:0.8389em;vertical-align:-0.1944em;"></span><span class="mord">1</span><span
+                          class="mord mathnormal">μ</span><span class="mord mathrm">s</span></span></span></span>）</li>
+                <li>优点：没有死区</li>
+                <li>缺点：加长系统存取周期</li>
+              </ul>
+              <h5 id="span-stylecolor-slateblue异spanspan-stylecolor-silver步"><span
+                  style="color: SlateBlue;">异</span><span style="color: silver;">步~ </span></h5>
+              <ul>
+                <li>原理：结合集中和分散刷新方法</li>
+                <li>实现方式：
+                  <ul>
+                    <li>将刷新周期除以行数</li>
+                    <li>按间隔时间产生刷新请求</li>
+                  </ul>
+                </li>
+                <li>优势：死时间分布更分散，减少CPU等待时间</li>
+              </ul>
+              <h4 id="span-stylecolor-silverattention"><span style="color: silver;">attention </span></h4>
+              <ul>
+                <li>特性：
+                  <ul>
+                    <li>对CPU透明，不依赖外部访问</li>
+                  </ul>
+                </li>
+                <li>执行：
+                  <ul>
+                    <li>以行为单位进行</li>
+                    <li>由芯片内部自动生成行地址</li>
+                  </ul>
+                </li>
+                <li>操作：
+                  <ul>
+                    <li>类似读操作但存在区别</li>
+                    <li>刷新时<span style="color: gray;">无需</span>选片</li>
+                    <li>所有芯片可<u>同时</u>进行刷新</li>
+                  </ul>
+                </li>
+              </ul>
+              <blockquote>
+                <p>attention：</p>
+              </blockquote>
+              <ul>
+                <li>刷新&amp;再生' <span style="color: Gold;">区别</span>：
+                  <ul>
+                    <li>both恢复数据，but过程不完全相同</li>
+                    <li>刷新：
+                      <ul>
+                        <li>以行为单位进行</li>
+                        <li>需要<u>逐行</u>恢复数据</li>
+                      </ul>
+                    </li>
+                    <li>再生特点：
+                      <ul>
+                        <li>只针对被读出的单元</li>
+                        <li>仅恢复<u>被读出</u>单元的数据</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <blockquote>
+                <p>pro：DRAM芯片行缓冲器容量的计算（2022）</p>
+              </blockquote>
+            </ul>
+            <h4 id="span-stylecolor-silverspan-stylecolor-lightskybluesspanspan-stylecolor-limegreendspanram"><span
+                style="color: silver;"><span style="color: LightSkyBlue;">S</span><span
+                  style="color: LimeGreen;">D</span>RAM </span></h4>
+            <ul>
+              <li>工作方式：与CPU<span style="color: LightSkyBlue;">同步</span>交换数据</li>
+              <li>与传统DRAM区别：
+                <ul>
+                  <li>传统DRAM：
+                    <ul>
+                      <li>采用<span style="color: purple;">异</span>步方式</li>
+                      <li>CPU需 <span style="color: Gold;">等待</span>读/写完成</li>
+                    </ul>
+                  </li>
+                  <li>SDRAM：
+                    <ul>
+                      <li>采用<span style="color: LightSkyBlue;">同步</span>方式</li>
+                      <li>锁存地址和控制信号</li>
+                      <li>CPU可<u>同时</u>进行其他操作</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>操作特点：
+                <ul>
+                  <li>在系统时钟控制下进行</li>
+                  <li>支持 <span style="color: Gold;">突发</span>传输
+                    <ul>
+                      <li>首次给出 首地址</li>
+                      <li>整行数据送入行缓冲器</li>
+                      <li>每个时钟连续输出数据</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><span style="color: LimeGreen;">行</span><span style="color: gray;">缓冲器</span>：
+                <ul>
+                  <li>功能：
+                    <ul>
+                      <li>缓存 指定行中<span style="color: gray;">整行</span>数据</li>
+                    </ul>
+                  </li>
+                  <li>大小：
+                    <ul>
+                      <li>列数×位平面数</li>
+                    </ul>
+                  </li>
+                  <li>实现方式：
+                    <ul>
+                      <li><span style="color: Gold;">S</span>RAM</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-silver读写t-span-stylecolor-greenyellow时序span图"><span style="color: silver;">读/写<span
+                  class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mi>T</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">T</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.6833em;"></span><span class="mord mathnormal"
+                        style="margin-right:0.13889em;">T</span></span></span></span> <span
+                  style="color: GreenYellow;">时序</span>图 </span></h4>
+            <ul>
+              <li>
+                <p>芯片信号时间关系要求：</p>
+                <ul>
+                  <li>需符合特定要求以确保正确接收行列地址和读写操作</li>
+                </ul>
+              </li>
+              <li>
+                <p>读/写<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mi>T</mi>
+                          </mrow>
+                          <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                          style="height:0.6833em;"></span><span class="mord mathnormal"
+                          style="margin-right:0.13889em;">T</span></span></span></span> <span class="katex"><span
+                      class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mi>t</mi>
+                          </mrow>
+                          <annotation encoding="application/x-tex">t</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                          style="height:0.6151em;"></span><span class="mord mathnormal">t</span></span></span></span>：
+                </p>
+                <ul>
+                  <li>读周期时间(<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <msub>
+                                <mi>t</mi>
+                                <mrow>
+                                  <mi mathvariant="normal">R</mi>
+                                  <mi mathvariant="normal">C</mi>
+                                </mrow>
+                              </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t_{\mathrm{{RC}}}</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span
+                              class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+                                  class="vlist-r"><span class="vlist" style="height:0.3283em;"><span
+                                      style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+                                        style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+                                          class="mord mtight"><span class="mord mtight"><span
+                                              class="mord mathrm mtight">RC</span></span></span></span></span></span><span
+                                    class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                    style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：两次连续读操作的必要间隔时间
+                  </li>
+                  <li>写周期时间(<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <msub>
+                                <mi>t</mi>
+                                <mrow>
+                                  <mi mathvariant="normal">w</mi>
+                                  <mi mathvariant="normal">c</mi>
+                                </mrow>
+                              </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">t_{\mathrm{{wc}}}</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.7651em;vertical-align:-0.15em;"></span><span class="mord"><span
+                              class="mord mathnormal">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span
+                                  class="vlist-r"><span class="vlist" style="height:0.1514em;"><span
+                                      style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+                                        style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+                                          class="mord mtight"><span class="mord mtight"><span
+                                              class="mord mathrm mtight">wc</span></span></span></span></span></span><span
+                                    class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                    style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)：两次连续写操作的必要间隔时间
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p><img
+                src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/ac49c5139324c976bef95c5760eecc986130d9c6997bdc4b888ceda236371d26.jpg"
+                alt=""><br>
+              图3.4DRAM芯片读/写周期时序图<br>
+              <span style="font-size: 12px;"> “ <span style="color: LimeGreen;">R</span>ow Address Strobe”， <span
+                  style="color: LimeGreen;">行</span> 地址 选通脉冲<br>
+                “<span style="color: LightSkyBlue;">C</span>olumn Address Strobe”， <span
+                  style="color: LightSkyBlue;">列</span> 地址 选通脉冲<br>
+                “Write <span style="color: Gold;">E</span>nable”，写 使能</span>
+            </p>
+            <ul>
+              <li>
+                <p><span style="color: Gold;">R</span> <span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mi>T</mi>
+                          </mrow>
+                          <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                          style="height:0.6833em;"></span><span class="mord mathnormal"
+                          style="margin-right:0.13889em;">T</span></span></span></span>：</p>
+                <ul>
+                  <li><span style="color: LimeGreen;">行</span>：<br>
+                    - 在 <span style="color: LimeGreen;">R</span>AS有效前送到芯片地址引脚</li>
+                  <li>时序：
+                    <ul>
+                      <li><span style="color: LightSkyBlue;">C</span>AS必须滞后RAS一段时间</li>
+                    </ul>
+                  </li>
+                  <li><span style="color: LightSkyBlue;">列</span>：
+                    <ul>
+                      <li>在CAS有效前送到芯片地址引脚</li>
+                    </ul>
+                  </li>
+                  <li>持续时间要求：
+                    <ul>
+                      <li>RAS至少保持<span class="katex"><span class="katex-mathml"><math
+                              xmlns="http://www.w3.org/1998/Math/MathML">
+                              <semantics>
+                                <mrow>
+                                  <msub>
+                                    <mi>t</mi>
+                                    <mrow>
+                                      <mi mathvariant="normal">R</mi>
+                                      <mi mathvariant="normal">A</mi>
+                                      <mi mathvariant="normal">S</mi>
+                                    </mrow>
+                                  </msub>
+                                </mrow>
+                                <annotation encoding="application/x-tex">t_{\mathrm{RAS}}</annotation>
+                              </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span
+                                class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.3283em;"><span
+                                          style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+                                            style="height:2.7em;"></span><span
+                                            class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                                class="mord mtight"><span
+                                                  class="mord mathrm mtight">RAS</span></span></span></span></span></span><span
+                                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>时间
+                      </li>
+                      <li>CAS..<span class="katex"><span class="katex-mathml"><math
+                              xmlns="http://www.w3.org/1998/Math/MathML">
+                              <semantics>
+                                <mrow>
+                                  <msub>
+                                    <mi>t</mi>
+                                    <mrow>
+                                      <mi mathvariant="normal">C</mi>
+                                      <mi mathvariant="normal">A</mi>
+                                      <mi mathvariant="normal">S</mi>
+                                    </mrow>
+                                  </msub>
+                                </mrow>
+                                <annotation encoding="application/x-tex">t_{\mathrm{CAS}}</annotation>
+                              </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                class="strut" style="height:0.7651em;vertical-align:-0.15em;"></span><span
+                                class="mord"><span class="mord mathnormal">t</span><span class="msupsub"><span
+                                    class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                        style="height:0.3283em;"><span
+                                          style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut"
+                                            style="height:2.7em;"></span><span
+                                            class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                                class="mord mtight"><span
+                                                  class="mord mathrm mtight">CAS</span></span></span></span></span></span><span
+                                        class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                        style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>..
+                      </li>
+                    </ul>
+                  </li>
+                  <li>W<span style="color: Gold;">E</span>信号要求：
+                    <ul>
+                      <li>保持高电平</li>
+                      <li>在CAS有效前建立</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p><span style="color: LimeGreen;">W</span> <span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mi>T</mi>
+                          </mrow>
+                          <annotation encoding="application/x-tex">T</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                          style="height:0.6833em;"></span><span class="mord mathnormal"
+                          style="margin-right:0.13889em;">T</span></span></span></span>：</p>
+                <ul>
+                  <li>行列选通信号的时序关系
+                    <ul>
+                      <li>与读周期相同</li>
+                    </ul>
+                  </li>
+                  <li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <mover accent="true">
+                                <mrow>
+                                  <mi>W</mi>
+                                  <mstyle mathcolor="gold">
+                                    <mi>E</mi>
+                                  </mstyle>
+                                </mrow>
+                                <mo stretchy="true">‾</mo>
+                              </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\overline{W\color{gold}E}</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.8833em;"></span><span class="mord overline"><span class="vlist-t"><span
+                                class="vlist-r"><span class="vlist" style="height:0.8833em;"><span
+                                    style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span
+                                      class="mord"><span class="mord mathnormal"
+                                        style="margin-right:0.13889em;">W</span><span class="mord mathnormal"
+                                        style="margin-right:0.05764em;color:gold;">E</span></span></span><span
+                                    style="top:-3.8033em;"><span class="pstrut" style="height:3em;"></span><span
+                                      class="overline-line"
+                                      style="border-bottom-width:0.04em;"></span></span></span></span></span></span></span></span></span>
+                    <ul>
+                      <li>保持低电平</li>
+                      <li>在CAS有效前建立</li>
+                    </ul>
+                  </li>
+                  <li>写数据
+                    <ul>
+                      <li>必须在CAS有效前在数据总线上保持稳定</li>
+                      <li>目的：确保数据可靠写入</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h3 id="span-stylecolor-silvercompare"><span style="color: silver;">compare </span></h3>
+            <ul>
+              <li>表3.1详细列出了SRAM和DRAM各自的特点</li>
+            </ul>
+            <p>表3.1SRAM DRAM<br>
+              <img
+                src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/247e4075afae5a6921141e41eb4721eb9e64db737333bbae6ebd4d1ecd2c7aab.jpg"
+                alt="">
+            </p>
+            <h3
+              id="span-stylecolor-silverspan-stylecolor-gold存储span器-span-stylecolor-limegreen芯spanspan-stylecolor-lightskyblue片">
+              <span style="color: silver;"><span style="color: Gold;">存储</span>器 <span
+                  style="color: LimeGreen;">芯</span><span style="color: LightSkyBlue;">片 </span></span></h3>
+            <p><img
+                src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/2516f94b368ccd12877ec553c7401ec98c5b18224a062f7a42b548d1c7b596b4.jpg"
+                alt=""><br>
+              图3.5存储器芯片结构图</p>
+            <ul>
+              <h4 id="span-stylecolor-silver存储体存储span-stylecolor-lightskyblue矩阵span"><span
+                  style="color: silver;">存储体（存储<span style="color: LightSkyBlue;">矩阵</span>） </span></h4>
+              <ul>
+                <li>存储体是存储单元的集合</li>
+                <li>存储单元选择方式：
+                  <ul>
+                    <li>行选择线（X）选择</li>
+                    <li>列选择线（Y）选择</li>
+                  </ul>
+                </li>
+                <li>读写特点：
+                  <ul>
+                    <li><u>相同行列</u>上的多位同时操作</li>
+                    <li><span style="color: gray;">位平面</span>数 决定 同时操作 的<span style="color: gray;">位数</span></li>
+                    <li>支持的操作：
+                      <ul>
+                        <li>读出</li>
+                        <li>写入</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <h4 id="span-stylecolor-silver地址span-stylecolor-gray译码span器"><span style="color: silver;">地址<span
+                    style="color: gray;">译码</span>器 </span></h4>
+              <ul>
+                <li>地址转换：
+                  <ul>
+                    <li>地址信号--&gt; 译码输出线上的高电平</li>
+                  </ul>
+                </li>
+                <li>目的：
+                  <ul>
+                    <li>驱动相应的读/写电路</li>
+                  </ul>
+                </li>
+                <li>译码方式：</li>
+              </ul>
+              <ul>
+                <h5><span style="color: silver;"> <span style="color: LimeGreen;">单</span>译码法（一维译码）</span></h5>
+                <ul>
+                  <li>only一个行译码器
+                    <ul>
+                      <li>特点：
+                        <ul>
+                          <li>同一行中所有存储单元的<span style="color: gray;">字线</span>连在一起</li>
+                          <li>同一行中的各单元构成一个<span style="color: gray;">字</span>
+                            <ul>
+                              <li>被同时读出或写入</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>问题：
+                        <ul>
+                          <li>地址译码器的输出线数过多</li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+                <h5><span style="color: silver;"><span style="color: SlateBlue;">双</span>译码法（二维译码）</span></h5>
+                <ul>
+                  <li>2 direction：
+                    <ul>
+                      <li>X方向译码器</li>
+                      <li>Y方向~</li>
+                    </ul>
+                  </li>
+                  <li>存储单元选择：
+                    <ul>
+                      <li>行列<span style="color: gray;">交叉点</span>定位</li>
+                      <li>精确确定 单个存储单元位置</li>
+                    </ul>
+                  </li>
+                  <li>现状：
+                    <ul>
+                      <li>DRAM芯片的<span style="color: gray;">主流</span>译码结构</li>
+                    </ul>
+                  </li>
+                </ul>
+              </ul>
+              <h4 id="span-stylecolor-silverio-span-stylecolor-gold控制span电路"><span style="color: silver;">I/O <span
+                    style="color: Gold;">控制</span>电路 </span></h4>
+              <ul>
+                <li>控制操作：
+                  <ul>
+                    <li>控制被选中单元的 <span style="color: Gold;">R</span>/ <span style="color: LimeGreen;">W</span>操作</li>
+                  </ul>
+                </li>
+                <li>信号处理：
+                  <ul>
+                    <li>具有信号放大功能</li>
+                    <li>增强信息的可靠性</li>
+                  </ul>
+                </li>
+              </ul>
+              <h4 id="span-stylecolor-silverspan-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span控制信号"><span
+                  style="color: silver;"><span style="color: LightSkyBlue;">片</span><span
+                    style="color: LimeGreen;">选</span>控制信号 </span></h4>
+              <ul>
+                <li>必要性：
+                  <ul>
+                    <li><span style="color: LimeGreen;">单个</span>芯片容量限制：
+                      <ul>
+                        <li>容量太小</li>
+                        <li>无法满足计算机存储需求</li>
+                      </ul>
+                    </li>
+                    <li>存储器扩展需求：
+                      <ul>
+                        <li>需要<span style="color: SlateBlue;">多个</span>芯片组合</li>
+                      </ul>
+                    </li>
+                    <li>访问控制要求：
+                      <ul>
+                        <li>必须选中 <span style="color: Gold;">目标</span><span style="color: gray;">字</span>所在芯片</li>
+                        <li>其他芯片保持非选中状态</li>
+                      </ul>
+                    </li>
+                    <li>thus：
+                      <ul>
+                        <li>need ~</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+              <h4 id="span-stylecolor-silver-span-stylecolor-gold读span-span-stylecolor-limegreen写span控制信号"><span
+                  style="color: silver;"> <span style="color: Gold;">读</span>/ <span
+                    style="color: LimeGreen;">写</span>控制信号 </span></h4>
+              <ul>
+                <li>根据CPU给出的读命令或写命令，控制被选中单元进行读或写</li>
+              </ul>
+            </ul>
+          </ul>
+          <h2 id="span-stylecolor-goldrspanspan-stylecolor-silverospanspan-stylecolor-limegreenmspan"><span
+              style="color: Gold;">R</span><span style="color: silver;">O</span><span style="color: LimeGreen;">M</span>
+          </h2>
+          <h3 id="span-stylecolor-gold特点-2"><span style="color: Gold;">特点 </span></h3>
+          <blockquote>
+            <p>pro：RAM和ROM的区别（2010）</p>
+          </blockquote>
+          <ul>
+            <li><span style="font-size: 12px;">both支持随机访问</span></li>
+            <li><span style="color: GreenYellow;">R</span><span style="color: DarkRed;">A</span>M (SRAM和DRAM)：
+              <ul>
+                <li>属于 <span style="color: GreenYellow;">易失</span>性半导体存储器</li>
+              </ul>
+            </li>
+            <li><span style="color: Gold;">R</span><span style="color: silver;">O</span><span
+                style="color: LimeGreen;">M</span> ：
+              <ul>
+                <li>信息一旦写入<span style="color: gray;">不易</span>改变</li>
+                <li>掉电不会丢失信息</li>
+                <li>主要优点：
+                  <ul>
+                    <li>结构简单，位密度高于可读/写存储器</li>
+                    <li>非易失性，可靠性高</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <h3 id="span-stylecolor-limegreen类型span"><span style="color: LimeGreen;">类型</span> </h3>
+          <ul>
+            <h4 id="span-stylecolor-silverspan-stylecolor-greenmspanrom"><span style="color: silver;"><span
+                  style="color: green;">M</span>ROM </span></h4>
+            <ul>
+              <li>内容由半导体制造厂写入
+                <ul>
+                  <li>按用户提出的要求在芯片生产过程中直接写入</li>
+                  <li>写入后内容<u>无法改变</u></li>
+                </ul>
+              </li>
+              <li>优点：
+                <ul>
+                  <li>可靠性高</li>
+                  <li>集成度高</li>
+                  <li>价格便宜</li>
+                </ul>
+              </li>
+              <li>缺点：
+                <ul>
+                  <li>灵活性差</li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-silverspan-stylecolor-lightskybluepspanrom"><span style="color: silver;"><span
+                  style="color: LightSkyBlue;">P</span>ROM </span></h4>
+            <ul>
+              <li>定义：可以实现一次性编程的只读存储器</li>
+              <li>特点：
+                <ul>
+                  <li>允许用户利用专门的设备（编程器）写入自己的程序</li>
+                  <li>一旦写入，内容就无法改变</li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-silver-span-stylecolor-greenyellowespanspan-stylecolor-lightskybluepspanrom"><span
+                style="color: silver;"> <span style="color: GreenYellow;">E</span><span
+                  style="color: LightSkyBlue;">P</span>ROM </span></h4>
+            <ul>
+              <li>EPROM特点：
+                <ul>
+                  <li>可由用户利用编程器写入信息</li>
+                  <li>可对内容进行多次改写</li>
+                </ul>
+              </li>
+              <li>局限性：
+                <ul>
+                  <li>编程次数有限</li>
+                  <li>写入时间过长</li>
+                  <li><u>不能取代</u>RAM</li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-silverspan-stylecolor-lightskyblueflashspan-m"><span style="color: silver;"><span
+                  style="color: LightSkyBlue;">Flash</span> M </span></h4>
+            <blockquote>
+              <p>pro：Flash存储器的特点（2012）</p>
+            </blockquote>
+            <ul>
+              <li>在EPROM基础上发展</li>
+              <li>特点：
+                <ul>
+                  <li>兼有ROM和RAM的优点</li>
+                  <li>可在不加电情况下长期保存信息</li>
+                  <li>能在线进行快速擦除与重写</li>
+                  <li>价格便宜</li>
+                  <li>集成度高</li>
+                  <li>擦除重写速度快</li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-silver固态硬盘solid-state-drivespan-stylecolor-goldenrodsspansd"><span
+                style="color: silver;">固态硬盘（Solid State Drive，<span style="color: Goldenrod;">S</span>SD） </span></h4>
+            <ul>
+              <li>基本组成：
+                <ul>
+                  <li>控制单元</li>
+                  <li>存储单元（Flash芯片）</li>
+                </ul>
+              </li>
+              <li>特点：
+                <ul>
+                  <li>保留Flash存储器优点</li>
+                  <li>读/写速度快</li>
+                  <li>低功耗</li>
+                </ul>
+              </li>
+              <li>缺点：
+                <ul>
+                  <li>价格较高</li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+          <h2 id="span-stylecolor-silver-span-stylecolor-gold主spanspan-stylecolor-limegreenmspan的基本组成"><span
+              style="color: silver;"> <span style="color: Gold;">主</span><span style="color: LimeGreen;">M</span>的基本组成
+            </span></h2>
+          <p><img
+              src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/32d7adac4f2bd43918e63a15cb75067abfdb78b3072fd13466d39b41b1a285a2.jpg"
+              alt=""><br>
+            图3.6主存储器的基本组成框图</p>
+          <h3 id="span-stylecolor-silver存储span-stylecolor-lightskyblue矩阵"><span style="color: silver;">存储<span
+                style="color: LightSkyBlue;">矩阵 </span></span></h3>
+          <ul>
+            <li>由 存储<span style="color: gray;">元件</span>（ <span style="color: Gold;">记忆</span>单元）构成
+              <ul>
+                <li>具有两种稳态的 能表示二进制0和1的 物理器件</li>
+              </ul>
+            </li>
+            <li>编址方式：
+              <ul>
+                <li>可按<span style="color: gray;">字</span>/<span style="color: LightSkyBlue;">字节</span>编址</li>
+                <li>现代计算机通常采用<span style="color: LightSkyBlue;">字节</span>编址</li>
+              </ul>
+            </li>
+          </ul>
+          <h3 id="span-stylecolor-silver存储器-span-stylecolor-greenyellow访问span过程"><span style="color: silver;">存储器 <span
+                style="color: GreenYellow;">访问</span>过程 </span></h3>
+          <ul>
+            <li>CPU操作：
+              <ul>
+                <li>将被访问单元地址送到MAR</li>
+                <li>主存地址-<span style="color: DarkRed;">地址</span> <span style="color: Gold;">线</span>-&gt;主存<span
+                    style="color: DarkRed;">地址</span> <span style="color: LimeGreen;">R</span></li>
+                <li>发送 <span style="color: Gold;">R</span>/ <span style="color: LimeGreen;">W</span>信号 to 控制电路</li>
+              </ul>
+            </li>
+            <li><span style="color: LimeGreen;">W</span>：
+              <ul>
+                <li>CPU将数据送到MDR</li>
+                <li>--数据线-&gt; 选中单元</li>
+              </ul>
+            </li>
+            <li><span style="color: Gold;">R</span>：
+              <ul>
+                <li>主存读出选中单元内容</li>
+                <li>--数据线-&gt; MDR</li>
+              </ul>
+            </li>
+          </ul>
+          <h3 id="span-stylecolor-silverspan-stylecolor-green硬件spanspan-stylecolor-gold特性"><span
+              style="color: silver;"><span style="color: green;">硬件</span><span style="color: Gold;">特性 </span></span>
+          </h3>
+          <ul>
+            <li>M<span style="color: LightSkyBlue;">D</span>R<span style="color: gray;">位数</span>与<span
+                style="color: LightSkyBlue;">数据</span>线~相同</li>
+            <li>M<span style="color: DarkRed;">A</span>R..与<span style="color: DarkRed;">地址</span>线位..</li>
+            <li>地址空间范围：0~2^地址线位数-1</li>
+          </ul>
+          <blockquote>
+            <p>attention：</p>
+          </blockquote>
+          <ul>
+            <ul>
+              <li><span style="color: LightSkyBlue;">数据</span>线的<span style="color: gray;">位数</span>通常= <span
+                  style="color: Gold;">存储</span>字长
+                <ul>
+                  <li>M<span style="color: LightSkyBlue;">D</span>R的位数通常=存储字长</li>
+                </ul>
+              </li>
+              <li>若~的位数 ≠ <span style="color: Gold;">存储</span>字长
+                <ul>
+                  <li>~由数据线的<span style="color: gray;">位数</span>决定</li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+          <h4 id="span-stylecolor-silver-span-stylecolor-limegreendspanram芯片特性"><span style="color: silver;"> <span
+                style="color: LimeGreen;">D</span>RAM芯片特性 </span></h4>
+          <ul>
+            <h5 id="span-stylecolor-silverspan-stylecolor-darkred地址span引脚复用技术"><span style="color: silver;"><span
+                  style="color: DarkRed;">地址</span>引脚复用技术 </span></h5>
+            <ul>
+              <li>背景：
+                <ul>
+                  <li>DRAM芯片容量较大，地址位数较多</li>
+                </ul>
+              </li>
+              <li>目的：
+                <ul>
+                  <li>减少芯片的地址引脚数</li>
+                </ul>
+              </li>
+              <li>实现方式：
+                <ul>
+                  <li>行地址和列地址通过相同的引脚分先后两次输入</li>
+                </ul>
+              </li>
+              <li>效果：
+                <ul>
+                  <li>地址引脚数可减少一半</li>
+                </ul>
+              </li>
+            </ul>
+            <blockquote>
+              <p>pro：DRAM芯片行、列数的优化原则（2018）</p>
+            </blockquote>
+            <h5 id="span-stylecolor-silverspan-stylecolor-limegreen行spanspan-stylecolor-lightskyblue列span数优化原则"><span
+                style="color: silver;"><span style="color: LimeGreen;">行</span><span
+                  style="color: LightSkyBlue;">列</span>数优化原则 </span></h5>
+            <ul>
+              <li>基本参数：
+                <ul>
+                  <li>存储容量：<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <msup>
+                                <mn>2</mn>
+                                <mi>n</mi>
+                              </msup>
+                              <mo lspace="0em" rspace="0em">×</mo>
+                              <mi>b</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^{n}{\times}b</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.7778em;vertical-align:-0.0833em;"></span><span class="mord"><span
+                              class="mord">2</span><span class="msupsub"><span class="vlist-t"><span
+                                  class="vlist-r"><span class="vlist" style="height:0.6644em;"><span
+                                      style="top:-3.063em;margin-right:0.05em;"><span class="pstrut"
+                                        style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span
+                                          class="mord mtight"><span
+                                            class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span><span
+                            class="mord"><span class="mord">×</span></span><span
+                            class="mord mathnormal">b</span></span></span></span> 位</li>
+                  <li>行数：r</li>
+                  <li>列数：c</li>
+                  <li>关系：<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <msup>
+                                <mn>2</mn>
+                                <mi>n</mi>
+                              </msup>
+                              <mo>=</mo>
+                              <mi>r</mi>
+                              <mo>×</mo>
+                              <mtext> ⁣</mtext>
+                              <mi>c</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">2^{n}=r\times\!c</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.6644em;"></span><span class="mord"><span class="mord">2</span><span
+                              class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist"
+                                    style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span
+                                        class="pstrut" style="height:2.7em;"></span><span
+                                        class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                            class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span
+                            class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span
+                            class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span
+                            class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mspace"
+                            style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace"
+                            style="margin-right:-0.1667em;"></span><span class="mspace"
+                            style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut"
+                            style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
+                  </li>
+                </ul>
+              </li>
+              <li>地址位数：
+                <ul>
+                  <li>总地址位数：n</li>
+                  <li>行地址位数：<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <msub>
+                                <mrow>
+                                  <mi>log</mi>
+                                  <mo>⁡</mo>
+                                </mrow>
+                                <mn>2</mn>
+                              </msub>
+                              <mi>r</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\log_{2}r</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span
+                              class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                              class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                    style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span
+                                        class="pstrut" style="height:2.7em;"></span><span
+                                        class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                            class="mord mtight">2</span></span></span></span></span><span
+                                    class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                    style="height:0.2441em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span></span></span></span></li>
+                  <li>列地址位数：<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <msub>
+                                <mrow>
+                                  <mi>log</mi>
+                                  <mo>⁡</mo>
+                                </mrow>
+                                <mn>2</mn>
+                              </msub>
+                              <mi>c</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\log_{2}c</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span
+                              class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                              class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                    style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span
+                                        class="pstrut" style="height:2.7em;"></span><span
+                                        class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                            class="mord mtight">2</span></span></span></span></span><span
+                                    class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                    style="height:0.2441em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.1667em;"></span><span
+                            class="mord mathnormal">c</span></span></span></span></li>
+                  <li>关系：<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <mi>n</mi>
+                              <mo>=</mo>
+                              <msub>
+                                <mrow>
+                                  <mi>log</mi>
+                                  <mo>⁡</mo>
+                                </mrow>
+                                <mn>2</mn>
+                              </msub>
+                              <mi>r</mi>
+                              <mo>+</mo>
+                              <msub>
+                                <mrow>
+                                  <mi>log</mi>
+                                  <mo>⁡</mo>
+                                </mrow>
+                                <mn>2</mn>
+                              </msub>
+                              <mi>c</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">n=\log_{2}r+\log_{2}c</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.4306em;"></span><span class="mord mathnormal">n</span><span class="mspace"
+                            style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace"
+                            style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut"
+                            style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span
+                              class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                              class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                    style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span
+                                        class="pstrut" style="height:2.7em;"></span><span
+                                        class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                            class="mord mtight">2</span></span></span></span></span><span
+                                    class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                    style="height:0.2441em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span><span class="mspace"
+                            style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace"
+                            style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut"
+                            style="height:0.9386em;vertical-align:-0.2441em;"></span><span class="mop"><span
+                              class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span
+                              class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist"
+                                    style="height:0.207em;"><span style="top:-2.4559em;margin-right:0.05em;"><span
+                                        class="pstrut" style="height:2.7em;"></span><span
+                                        class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span
+                                            class="mord mtight">2</span></span></span></span></span><span
+                                    class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist"
+                                    style="height:0.2441em;"><span></span></span></span></span></span></span><span
+                            class="mspace" style="margin-right:0.1667em;"></span><span
+                            class="mord mathnormal">c</span></span></span></span></li>
+                </ul>
+              </li>
+              <li>优化要求：
+                <ul>
+                  <li>减少地址引脚数：<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <mi mathvariant="normal">∣</mi>
+                              <mi>r</mi>
+                              <mtext>–</mtext>
+                              <mi>c</mi>
+                              <mi mathvariant="normal">∣</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">|r–c|</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span
+                            class="mord mathnormal" style="margin-right:0.02778em;">r</span><span
+                            class="mord">–</span><span class="mord mathnormal">c</span><span
+                            class="mord">∣</span></span></span></span> 最小</li>
+                  <li>减少刷新开销：<span class="katex"><span class="katex-mathml"><math
+                          xmlns="http://www.w3.org/1998/Math/MathML">
+                          <semantics>
+                            <mrow>
+                              <mi>r</mi>
+                              <mo>⩽</mo>
+                              <mi>c</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">r\leqslant c</annotation>
+                          </semantics>
+                        </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                            style="height:0.7733em;vertical-align:-0.1367em;"></span><span class="mord mathnormal"
+                            style="margin-right:0.02778em;">r</span><span class="mspace"
+                            style="margin-right:0.2778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace"
+                            style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut"
+                            style="height:0.4306em;"></span><span class="mord mathnormal">c</span></span></span></span>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+          <h2 id="span-stylecolor-silverspan-stylecolor-slateblue多span模块m"><span style="color: silver;"><span
+                style="color: SlateBlue;">多</span>模块M </span></h2>
+          <ul>
+            <ul>
+              <li>定义：一种空间并行技术</li>
+              <li>目的：提高存储器的吞吐率</li>
+              <li>实现方式：利用多个结构完全相同的存储模块并行工作</li>
+              <li>常见类型：
+                <ul>
+                  <li>单体多字存储器</li>
+                  <li>多体低位交叉存储器</li>
+                </ul>
+              </li>
+            </ul>
+            <blockquote>
+              <p>attention：</p>
+            </blockquote>
+            <ul>
+              <li>CPU的速度比存储器快得多</li>
+              <li>若同时从存储器中取出 <span class="katex"><span class="katex-mathml"><math
+                      xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mi>n</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">n</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.4306em;"></span><span class="mord mathnormal">n</span></span></span></span> 条指令
+                <ul>
+                  <li>就可以充分利用CPU资源，提高运行速度</li>
+                </ul>
+              </li>
+            </ul>
+            <p>多体交叉存储器就是基于这种思想提出的。</p>
+            <h3 id="span-stylecolor-silver-span-stylecolor-limegreen单体spanspan-stylecolor-slateblue多span字m"><span
+                style="color: silver;"> <span style="color: LimeGreen;">单体</span><span
+                  style="color: SlateBlue;">多</span>字M </span></h3>
+            <ul>
+              <li>基本特点：
+                <ul>
+                  <li>每个存储单元存储m个字</li>
+                  <li>总线宽度为m个字</li>
+                  <li>一次并行读出m个字</li>
+                </ul>
+              </li>
+              <li>工作过程：
+                <ul>
+                  <li>一个存取周期内从同一地址取出m条指令</li>
+                  <li>将指令逐条送至CPU执行</li>
+                  <li>每隔1/m存取周期，CPU向主存取一条指令</li>
+                </ul>
+              </li>
+              <li>缺点：
+                <ul>
+                  <li>仅在指令和数据连续存放时有效</li>
+                  <li>遇到转移指令或操作数不连续时效果不明显</li>
+                </ul>
+              </li>
+            </ul>
+            <h3 id="span-stylecolor-silverspan-stylecolor-purple多span体-span-stylecolor-limegreen并行spanm"><span
+                style="color: silver;"><span style="color: purple;">多</span>体 <span style="color: LimeGreen;">并行</span>M
+              </span></h3>
+            <ul>
+              <li>基本组成：
+                <ul>
+                  <li>由多个相同容量和存取速度的模块组成</li>
+                  <li>每个模块具有独立的：
+                    <ul>
+                      <li>读/写控制电路</li>
+                      <li>地址寄存器</li>
+                      <li>数据寄存器</li>
+                    </ul>
+                  </li>
+                  <li>可并行工作也可交叉工作</li>
+                </ul>
+              </li>
+            </ul>
+            <ul>
+              <ul>
+                <h4
+                  id="span-stylecolor-silverspan-stylecolor-lightskyblue高位span交叉编址span-stylecolor-lightskyblue顺序span方式">
+                  <span style="color: silver;"><span style="color: LightSkyBlue;">高位</span>交叉编址~（<span
+                      style="color: LightSkyBlue;">顺序</span>方式） </span></h4>
+                <ul>
+                  <ul>
+                    <li>地址划分：
+                      <ul>
+                        <li><span style="color: LightSkyBlue;">高</span>位表示模块号（体<span style="color: gray;">号</span>）</li>
+                        <li><span style="color: green;">低</span>位表示模块内地址（体内<span style="color: DarkRed;">地址</span>）</li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <p><img
+                      src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/75d2ac2a627c5bcdace95fe592ef3010583976cec7fbd37807fc2eed52d25b78.jpg"
+                      alt=""><br>
+                    图3.7高位交叉编址的多体存储器</p>
+                  <ul>
+                    <li>工作特点：
+                      <ul>
+                        <li>低位体内地址送到高位体号确定的模块内译码</li>
+                        <li>连续访问特性：
+                          <ul>
+                            <li>在一个模块内完成</li>
+                            <li>各模块不能并行访问</li>
+                          </ul>
+                        </li>
+                        <li>性能影响：
+                          <ul>
+                            <li><span style="color: gray;">不能</span>提高存储器吞吐率</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <blockquote>
+                    <p>attention：</p>
+                  </blockquote>
+                  <ul>
+                    <li>模块内特点：
+                      <ul>
+                        <li>地址是连续的</li>
+                        <li>存取方式是串行的</li>
+                      </ul>
+                    </li>
+                    <li>结论：
+                      <ul>
+                        <li>这种存储器仍是顺序存储器</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </ul>
+                <h4 id="span-stylecolor-silverspan-stylecolor-green低位span交叉编址-span-stylecolor-gold交叉span方式"><span
+                    style="color: silver;"><span style="color: green;">低位</span>交叉编址（ <span
+                      style="color: Gold;">交叉</span>方式） </span></h4>
+                <blockquote>
+                  <p>pro：交叉存储器中数据的存放方式（2017）</p>
+                </blockquote>
+                <ul>
+                  <ul>
+                    <li>地址划分：
+                      <ul>
+                        <li><span style="color: green;">低</span>位为模块号（体<span style="color: gray;">号</span>）</li>
+                        <li>高位为模块内地址（体内<span style="color: DarkRed;">地址</span>）</li>
+                      </ul>
+                    </li>
+                    <li>编址规则：
+                      <ul>
+                        <li>每个模块按"模m"交叉编址</li>
+                        <li>模块号 = 单元地址 % m</li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <p><img
+                      src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/b4f48c1df4011710c3242e64f98016fdf9a431c95108f08cf1745946d0aec796.jpg"
+                      alt=""><br>
+                    图3.8低位交叉编址的多体存储器</p>
+                  <ul>
+                    <li>工作特点：
+                      <ul>
+                        <li>高位体内地址送到低位体号确定的模块内译码</li>
+                        <li>程序连续存放在相邻模块中</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </ul>
+                <ul>
+                  <h5
+                    id="span-stylecolor-silver1-span-stylecolor-lightskyblue轮流span-span-stylecolor-silverspan-stylecolor-limegreen启动span-span-stylecolor-silver方式">
+                    <span style="color: silver;">(1) <span style="color: LightSkyBlue;">轮流</span> <span
+                        style="color: silver;"><span style="color: LimeGreen;">启动</span> <span style="color: silver;">方式
+                        </span></span></span></h5>
+                  <ul>
+                    <li>条件要求：
+                      <ul>
+                        <li>每个模块读/写位数等于数据总线位数</li>
+                        <li>模块数m ≥ T/r（T为存取周期，r为总线周期）</li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <blockquote>
+                    <p>pro：交叉存储器存取时间和带宽的计算（2012、2013）</p>
+                  </blockquote>
+                  <ul>
+                    <li>工作特点：
+                      <ul>
+                        <li>每隔1/m个存取周期轮流启动各模块</li>
+                        <li>存取速度提高m倍</li>
+                        <li>连续存取m个字时间：t₁ = T + (m-1)r</li>
+                        <li>顺序方式时间：t₂ = mT</li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <p><img
+                      src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/357a8d6b3c8858f8e0445d4f33ec790e4dc9c97914e01f04c3acc061319ce47a.jpg"
+                      alt=""><br>
+                    图3.9低位交叉轮流启动的存取时间示意图</p>
+                  <blockquote>
+                    <p>pro：交叉存储器中访存冲突的分析（2015）</p>
+                  </blockquote>
+                  <ul>
+                    <li>访存冲突：
+                      <ul>
+                        <li>发生条件：相邻m次访问的地址在同一模块</li>
+                        <li>处理方法：延迟发生冲突的访问请求</li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <h5 id="span-stylecolor-silver2-span-stylecolor-gold同时-span-stylecolor-silver"><span
+                      style="color: silver;">(2) <span style="color: Gold;">同时 <span style="color: silver;">~
+                        </span></span></span></h5>
+                  <ul>
+                    <li>条件要求：
+                      <ul>
+                        <li>所有模块并行读/写的总位数等于数据总线位数</li>
+                      </ul>
+                    </li>
+                    <li>工作示例：
+                      <ul>
+                        <li>每模块读/写16位</li>
+                        <li>模块数m=4</li>
+                        <li>数据总线64位</li>
+                        <li>4个模块同时启动并行读/写</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </ul>
+              </ul>
+            </ul>
+          </ul>
+        </ul>
+      </ul>
+      <h1
+        id="span-stylecolor-silverspan-stylecolor-gold主mspan与-span-stylecolor-limegreencpuspan-span-stylecolor-greenyellow连接">
+        <span style="color: silver;"><span style="color: Gold;">主M</span>与 <span style="color: LimeGreen;">CPU</span>'
+          <span style="color: GreenYellow;">连接 </span></span></h1>
+      <h2 id="span-stylecolor-gold原理"><span style="color: Gold;">原理 </span></h2>
+      <ul>
+        <li>主存储器与CPU的连接方式：
+          <ul>
+            <li>通过三种总线连接：
+              <ul>
+                <li>数据总线</li>
+                <li>地址总线</li>
+                <li>控制总线</li>
+              </ul>
+            </li>
+            <li>总线特点：
+              <ul>
+                <li>数据总线：位数与工作频率的乘积决定数据传输速率</li>
+                <li>地址总线：位数决定最大可寻址内存空间</li>
+                <li>控制总线：指示总线周期类型和I/O操作完成时刻</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p><img
+          src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/1e1d92cf5473f7cdbefec0c268399f79d298a75bd67083e238876b319130a603.jpg"
+          alt=""><br>
+        图3.10主存储器与CPU的连接</p>
+      <ul>
+        <li>存储器扩展需求：
+          <ul>
+            <li>单个芯片容量有限</li>
+            <li>通过扩展技术集成多个芯片</li>
+            <li>多个内存条和ROM芯片组成主存空间</li>
+            <li>通过总线与CPU相连</li>
+          </ul>
+        </li>
+      </ul>
+      <h2 id="span-stylecolor-silver主m-span-stylecolor-limegreen容量span的-span-stylecolor-greenyellow扩展"><span
+          style="color: silver;">主M <span style="color: LimeGreen;">容量</span>的 <span style="color: GreenYellow;">扩展
+          </span></span></h2>
+      <ul>
+        <ul>
+          <li>扩展需求：
+            <ul>
+              <li>存储芯片容量限制：
+                <ul>
+                  <li>单个芯片容量有限</li>
+                </ul>
+              </li>
+              <li>扩展方向：
+                <ul>
+                  <li><span style="color: gray;">字</span>的扩充</li>
+                  <li><span style="color: LightSkyBlue;">位</span>~</li>
+                </ul>
+              </li>
+              <li>扩展目标：
+                <ul>
+                  <li>满足实际存储容量需求</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-silverspan-stylecolor-lightskyblue位span扩展法"><span style="color: silver;"><span
+              style="color: LightSkyBlue;">位</span>扩展法 </span></h3>
+        <ul>
+          <li>概念：对字长进行扩展</li>
+          <li>应用场景：
+            <ul>
+              <li>CPU<span style="color: LightSkyBlue;">数据</span> <span style="color: Gold;">线</span>数 &gt; 存储芯片~<span
+                  style="color: gray;">位</span>数</li>
+            </ul>
+          </li>
+          <li>连接方式：
+            <ul>
+              <li>各芯片的连接：
+                <ul>
+                  <li><span style="color: DarkRed;">地址</span>线 与系统总线并联</li>
+                  <li><span style="color: LightSkyBlue;">片</span><span style="color: LimeGreen;">选</span>线..</li>
+                  <li><span style="color: Gold;">R</span>/ <span style="color: LimeGreen;">W</span>控制线..</li>
+                </ul>
+              </li>
+              <li><span style="color: LightSkyBlue;">数据</span><span style="color: Gold;">线</span>连接：
+                <ul>
+                  <li>各芯片数据线 <span style="color: LimeGreen;">单独</span>引出</li>
+                  <li>连接到系统数据线</li>
+                </ul>
+              </li>
+              <li>工作方式：
+                <ul>
+                  <li>各芯片<u>同</u>时工作</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>实例：
+            <ul>
+              <li>目标：组成8K×8位存储器</li>
+              <li>使用：8片8K×1位RAM</li>
+            </ul>
+          </li>
+        </ul>
+        <p><img src="https://bluejedis.github.io/picx-images-hosting/test/image.eskko8o6z.webp" alt="image"><br>
+          图3.11位扩展连接示意图</p>
+        <h3 id="span-stylecolor-silverspan-stylecolor-gray字span"><span style="color: silver;"><span
+              style="color: gray;">字</span>~ </span></h3>
+        <ul>
+          <li>概念：对存储<span style="color: gray;">字</span>数量进行扩展</li>
+          <li>特点：
+            <ul>
+              <li>存储字位数满足系统要求</li>
+            </ul>
+          </li>
+          <li>连接方式：
+            <ul>
+              <li>芯片地址线：
+                <ul>
+                  <li>与系统地址<span style="color: green;">低</span>位相连</li>
+                </ul>
+              </li>
+              <li>数据线和读/写控制线：
+                <ul>
+                  <li>与系统总线并联</li>
+                </ul>
+              </li>
+              <li>片选信号：
+                <ul>
+                  <li>由系统地址高位译码得到</li>
+                </ul>
+              </li>
+              <li>工作方式：
+                <ul>
+                  <li>各芯片分时工作</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <blockquote>
+          <p>pro：字扩展（或字位扩展）后存储芯片的地址范围（2010、2016）</p>
+        </blockquote>
+        <ul>
+          <li>实例：用4片16K×8位RAM组成64K×8位存储器</li>
+          <li>地址分配：
+            <ul>
+              <li>第一片：0000000000000000-0011111111111111</li>
+              <li>第二片：0100000000000000-0111111111111111</li>
+              <li>第三片：1000000000000000-1011111111111111</li>
+              <li>第四片：1100000000000000-1111111111111111</li>
+            </ul>
+          </li>
+        </ul>
+        <p><img
+            src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/44f1fe99a9391d96d9aeb0fb8712474bf298dbedaaa36321308e7bb49a6874d2.jpg"
+            alt=""><br>
+          图3.12字扩展连接示意图</p>
+        <h3 id="span-stylecolor-silverspan-stylecolor-gray字spanspan-stylecolor-lightskyblue位span同时"><span
+            style="color: silver;"><span style="color: gray;">字</span><span style="color: LightSkyBlue;">位</span>同时~
+          </span></h3>
+        <ul>
+          <li>概念：位扩展和字扩展的组合</li>
+          <li>功能：
+            <ul>
+              <li>add 存储<span style="color: gray;">字</span>数量、存储<span style="color: LightSkyBlue;">字长</span></li>
+            </ul>
+          </li>
+          <li>连接方式：
+            <ul>
+              <li>位扩展芯片作为一组</li>
+              <li>各组连接方式同位扩展</li>
+              <li>系统地址高位译码产生片选信号</li>
+            </ul>
+          </li>
+          <li>实例：用8片16K×4位RAM组成64K×8位存储器
+            <ul>
+              <li>组织方式：
+                <ul>
+                  <li>每两片构成16K×8位存储器（位扩展）</li>
+                  <li>4组构成64K×8位存储器（字扩展）</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p><img
+            src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/1bd0ffee871eff245d8c4e998e914cbf1ee53c30a0465b58592027c9ed8d0501.jpg"
+            alt=""><br>
+          图3.13字位同时扩展及CPU的连接图</p>
+      </ul>
+      <h2
+        id="span-stylecolor-silver0-存储芯片的span-stylecolor-darkred地址span-span-stylecolor-gold分配span和span-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span">
+        <span style="color: silver;">0 存储芯片的<span style="color: DarkRed;">地址</span> <span
+            style="color: Gold;">分配</span>和<span style="color: LightSkyBlue;">片</span><span
+            style="color: LimeGreen;">选</span> </span></h2>
+      <ul>
+        <h3 id="span-stylecolor-silverconcept-1"><span style="color: silver;">concept </span></h3>
+        <ul>
+          <ul>
+            <li>CPU访问存储单元需要两个步骤：</li>
+          </ul>
+          <h4 id="span-stylecolor-silverspan-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span"><span
+              style="color: silver;"><span style="color: LightSkyBlue;">片</span><span
+                style="color: LimeGreen;">选</span>： </span></h4>
+          <ul>
+            <li><span style="color: Gold;">存储</span><span style="color: LimeGreen;">芯<span
+                  style="color: LightSkyBlue;">片</span></span></li>
+            <li>~ <span style="color: Gold;">信号</span>产生方法：
+              <ul>
+                <li>线选法</li>
+                <li>译码片选法</li>
+              </ul>
+            </li>
+          </ul>
+          <h4 id="span-stylecolor-silverspan-stylecolor-gray字span选"><span style="color: silver;"><span
+                style="color: gray;">字</span>选： </span></h4>
+          <ul>
+            <li>在选定芯片中选择具体 <span style="color: Gold;">存储</span> <span style="color: LimeGreen;">单元</span></li>
+            <li>process：
+              <ul>
+                <li>由CPU送出N条低位地址线完成</li>
+                <li>N由片内存储容量2^N决定</li>
+              </ul>
+            </li>
+          </ul>
+        </ul>
+        <h3 id="span-stylecolor-gold线spanspan-stylecolor-limegreen选spanspan-stylecolor-silver法"><span
+            style="color: Gold;">线</span><span style="color: LimeGreen;">选</span><span style="color: silver;">法 </span>
+        </h3>
+        <ul>
+          <ul>
+            <li><span style="color: LightSkyBlue;">高</span>位地址线直接连接至存储芯片<span style="color: LightSkyBlue;">片</span><span
+                style="color: LimeGreen;">选</span>端
+              <ul>
+                <li>地址线为"<span style="color: gray;">0</span>"时选中对应存储芯片</li>
+              </ul>
+            </li>
+            <li>每次only有一位有效</li>
+          </ul>
+          <h4 id="span-stylecolor-silvereg"><span style="color: silver;">eg </span></h4>
+          <ul>
+            <li>4片2K×8位存储芯片构成8K×8位存储器</li>
+            <li>低位地址线A10~A0作为字选线</li>
+            <li>片选信号分配如下：</li>
+          </ul>
+          <p><img
+              src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/d3e8ef9e2d826e33c5a04dddaf3613401040af874224f56e1f181b5f42aec2d2.jpg"
+              alt=""></p>
+          <ul>
+            <li>优点：
+              <ul>
+                <li><span style="color: gray;">不需要</span>地址<span style="color: gray;">译码</span>器</li>
+                <li>线路简单</li>
+              </ul>
+            </li>
+            <li>缺点：
+              <ul>
+                <li><span style="color: DarkRed;">地址</span><span style="color: gray;">空间</span>不连续</li>
+                <li>选片地址线必须<span style="color: gray;">分时</span>为<span style="color: green;">低</span>电平</li>
+                <li>存储器空间 <span style="color: LimeGreen;">利用</span><span style="color: RoyalBlue;">率</span>低</li>
+              </ul>
+            </li>
+          </ul>
+        </ul>
+        <h3
+          id="span-stylecolor-gray译码spanspan-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span-span-stylecolor-silver法">
+          <span style="color: gray;">译码</span><span style="color: LightSkyBlue;">片</span><span
+            style="color: LimeGreen;">选</span> <span style="color: silver;">法 </span></h3>
+        <ul>
+          <ul>
+            <li>高位地址线通过地址译码器产生片选信号</li>
+          </ul>
+          <h4 id="span-stylecolor-silvereg-1"><span style="color: silver;">eg </span></h4>
+          <ul>
+            <li>8片8K×8位存储芯片组成64K×8位存储器
+              <ul>
+                <li>地址线16位，数据线8位</li>
+                <li>需要8个片选信号</li>
+                <li>使用74LS138作为地址译码器</li>
+                <li>高3位用于片选：
+                  <ul>
+                    <li>A15A14A13=000选中第一片</li>
+                    <li>A15A14A13=001选中第二片</li>
+                    <li>以此类推</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </ul>
+        <h2 id="span-stylecolor-silver1-span-stylecolor-gold存储器span与-span-stylecolor-limegreencpuspan的连接"><span
+            style="color: silver;">1 <span style="color: Gold;">存储器</span>与 <span
+              style="color: LimeGreen;">CPU</span>的连接 </span></h2>
+        <ul>
+          <h3 id="span-stylecolor-silver合理选择存储-span-stylecolor-limegreen芯spanspan-stylecolor-lightskyblue片span"><span
+              style="color: silver;">合理选择存储 <span style="color: LimeGreen;">芯</span><span
+                style="color: LightSkyBlue;">片</span> </span></h3>
+          <blockquote>
+            <p>pro：根据要求合理选择存储芯片（2009、2021）</p>
+          </blockquote>
+          <ul>
+            <ul>
+              <li>存储芯片 <span style="color: LimeGreen;">类型</span>选择：
+                <ul>
+                  <li>ROM：存放系统程序、标准子程序和常数</li>
+                  <li>RAM：用于用户编程</li>
+                </ul>
+              </li>
+              <li>芯片<span style="color: gray;">数量</span>考虑：
+                <ul>
+                  <li>追求连线<span style="color: gray;">简单</span></li>
+                  <li>方便实用</li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+          <h3 id="span-stylecolor-silverspan-stylecolor-darkred地址spanspan-stylecolor-gold线span的连接"><span
+              style="color: silver;"><span style="color: DarkRed;">地址</span><span style="color: Gold;">线</span>的连接
+            </span></h3>
+          <blockquote>
+            <p>pro：地址范围与存储容量的对应关系（2016、2023）</p>
+          </blockquote>
+          <ul>
+            <h4 id="span-stylecolor-silverprinciple"><span style="color: silver;">principle </span></h4>
+            <ul>
+              <li>CPU地址线数usually &gt; 存储芯片</li>
+              <li>连接方式：
+                <ul>
+                  <li><span style="color: green;">低</span>位：CPU<span style="color: DarkRed;">地址</span><span
+                      style="color: Gold;">线</span>与存储芯片<span style="color: DarkRed;">地址</span><span
+                      style="color: Gold;">线</span>相连
+                    <ul>
+                      <li><span style="color: gray;">字</span><span style="color: LimeGreen;">选</span></li>
+                      <li>由片<span style="color: gray;">内</span><span style="color: Gold;">逻辑</span> 完成译码</li>
+                    </ul>
+                  </li>
+                  <li><span style="color: LightSkyBlue;">高</span>位：用于 <span style="color: LimeGreen;">扩充</span>存储芯片
+                    <ul>
+                      <li><span style="color: LightSkyBlue;">片</span><span style="color: LimeGreen;">选</span></li>
+                      <li>由 <span style="color: GreenYellow;">外接</span><span style="color: gray;">译码器</span>完成译码</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-silvereg-2"><span style="color: silver;">eg </span></h4>
+            <ul>
+              <li>CPU：16位地址线(A15~A0)</li>
+              <li>存储芯片：1K×4位，10根地址线</li>
+              <li>连接方式：CPU的A9~ A0与存储芯片的A9~ A0相连</li>
+            </ul>
+          </ul>
+          <h3 id="span-stylecolor-silverspan-stylecolor-deepskyblue数据spanspan-stylecolor-gold线span的连接"><span
+              style="color: silver;"><span style="color: deepskyblue;">数据</span><span style="color: Gold;">线</span>的连接
+            </span></h3>
+          <ul>
+            <li>CPU与存储芯片 <span style="color: deepskyblue;">数据</span><span style="color: Gold;">线</span>数相等：
+              <ul>
+                <li>直接相连</li>
+              </ul>
+            </li>
+            <li>..不等：
+              <ul>
+                <li>对存储芯片 <span style="color: black;">扩位</span></li>
+                <li>使数据位数 与CPU数据线数相等</li>
+              </ul>
+            </li>
+          </ul>
+          <h3
+            id="span-stylecolor-silverspan-stylecolor-gold读span-span-stylecolor-limegreen写spanspan-stylecolor-lightskyblue-命令span线的连接">
+            <span style="color: silver;"><span style="color: Gold;">读</span>/ <span
+                style="color: LimeGreen;">写</span><span style="color: LightSkyBlue;"> 命令</span>线的连接 </span></h3>
+          <ul>
+            <li><span style="color: GreenYellow;">单</span>一 ~：
+              <ul>
+                <li><span style="color: black;">直接</span>与存储芯片控制端相连</li>
+                <li><span style="color: LightSkyBlue;">高</span>电平为 <span style="color: Gold;">读</span>， <span
+                    style="color: LimeGreen;">低</span>电平为<span style="color: LimeGreen;">写</span></li>
+              </ul>
+            </li>
+            <li><span style="color: Gold;">分开</span>'~：
+              <ul>
+                <li>读命令线( <span style="color: Gold;">RD</span>)连接芯片 <span style="color: Gold;">读</span>控制端</li>
+                <li>写命令线( <span style="color: LimeGreen;">WE</span>)连接芯片 <span style="color: LimeGreen;">写</span>控制端
+                </li>
+                <li>均为<span style="color: green;">低</span>电平<u>有效</u></li>
+              </ul>
+            </li>
+          </ul>
+          <h3 id="span-stylecolor-silverspan-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span线的连接"><span
+              style="color: silver;"><span style="color: LightSkyBlue;">片</span><span
+                style="color: LimeGreen;">选</span>线的连接 </span></h3>
+          <ul>
+            <ul>
+              <li><span style="color: gray;">决定</span>存储芯片whether被选中</li>
+              <li>取决于片选 <span style="color: Gold;">控制</span><span style="color: LightSkyBlue;">端</span>CS接收到的信号</li>
+            </ul>
+            <h4 id="span-stylecolor-limegreenmspanspan-stylecolor-goldreqspan"><span
+                style="color: LimeGreen;">M</span><span style="color: Gold;">REQ</span> </h4>
+            <ul>
+              <li>CPU要求 <span style="color: LimeGreen;">访</span><span style="color: Gold;">存</span>： <span
+                  style="color: LimeGreen;">M</span><span style="color: Gold;">REQ</span>为<span
+                  style="color: green;">低</span>电平</li>
+              <li>CPU访问<span style="color: LightSkyBlue;">I</span>/ <span style="color: LimeGreen;">O</span>：~<span
+                  style="color: LightSkyBlue;">高</span>电平， <span style="color: Gold;">M</span>不工作</li>
+            </ul>
+          </ul>
+        </ul>
+
+      </ul>
+    </span>
+  </div>
+  <div class="md-sidebar-toc">
+    <div class="md-toc">
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silverabove" class="md-toc-link">
+            <p><span style="color: silver;">above</span></p>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-silver考纲内容" class="md-toc-link">
+              <p><span style="color: silver;">【考纲内容】</span></p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-silver复习提示" class="md-toc-link">
+              <p><span style="color: silver;">【复习提示】</span></p>
+
+            </a>
+          </div>
+        </div>
+      </details>
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silverconcept" class="md-toc-link">
+            <p><span style="color: silver;">concept</span></p>
+          </a>
+        </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silverm分类" class="md-toc-link">
+                <p><span style="color: silver;">M分类</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver按在计算机中的span-stylecolor-gray作用span层次" class="md-toc-link">
+                  <p><span style="color: silver;">按在计算机中的<span style="color: gray;">作用</span>（层次）</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver按存储span-stylecolor-slateblue介质span" class="md-toc-link">
+                  <p><span style="color: silver;">按存储<span style="color: SlateBlue;">介质</span></span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver按span-stylecolor-gold存spanspan-stylecolor-limegreen取span方式分类"
+                  class="md-toc-link">
+                  <p><span style="color: silver;">按<span style="color: Gold;">存</span><span
+                        style="color: LimeGreen;">取</span>方式分类</span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silver按信息的span-stylecolor-gray可spanspan-stylecolor-gold保存span性分类"
+                    class="md-toc-link">
+                    <p><span style="color: silver;">按信息的<span style="color: gray;">可</span><span
+                          style="color: Gold;">保存</span>性分类</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver按span-stylecolor-goldenrodreadspan方式" class="md-toc-link">
+                      <p><span style="color: silver;">按<span style="color: Goldenrod;">Read</span>方式</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-gold性能span-span-stylecolor-limegreen指标span" class="md-toc-link">
+                <p><span style="color: Gold;">性能</span> <span style="color: LimeGreen;">指标</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-gold存储span-span-stylecolor-limegreen容量span" class="md-toc-link">
+                  <p><span style="color: Gold;">存储</span> <span style="color: LimeGreen;">容量</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver单位span-stylecolor-gray成本span" class="md-toc-link">
+                  <p><span style="color: silver;">单位<span style="color: gray;">成本</span></span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-gold存储-span-stylecolor-royalblue速度span" class="md-toc-link">
+                    <p><span style="color: Gold;">存储 <span style="color: RoyalBlue;">速度</span></span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silvertspan-stylecolor-darkredaspantspan-stylecolor-limegreenmspan"
+                      class="md-toc-link">
+                      <p><span style="color: silver;">T<span style="color: DarkRed;">a</span>&amp;T<span
+                            style="color: LimeGreen;">m</span></span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silverspan-stylecolor-royalblue多spanspan-stylecolor-gold级span层次的存储系统"
+                class="md-toc-link">
+                <p><span style="color: silver;"><span style="color: RoyalBlue;">多</span><span
+                      style="color: Gold;">级</span>层次的存储系统</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-gold特点" class="md-toc-link">
+                  <p><span style="color: Gold;">特点</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-limegreen结构" class="md-toc-link">
+                  <p><span style="color: LimeGreen;">结构</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver工作-span-stylecolor-gold原理" class="md-toc-link">
+                  <p><span style="color: silver;">工作 <span style="color: Gold;">原理</span></span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-lightskyblue优势" class="md-toc-link">
+                  <p><span style="color: LightSkyBlue;">优势</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver层次功能" class="md-toc-link">
+                  <p><span style="color: silver;">层次功能</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver趋势" class="md-toc-link">
+                  <p><span style="color: silver;">趋势</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </details>
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-gold主m" class="md-toc-link">
+            <p><span style="color: Gold;">主M</span></p>
+          </a>
+        </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silver-span-stylecolor-goldsspan-span-stylecolor-greenyellowrspanspan-stylecolor-darkredaspanm-span-stylecolor-limegreendspan-"
+                class="md-toc-link">
+                <p><span style="color: silver;"> <span style="color: Gold;">S</span> <span
+                      style="color: GreenYellow;">R</span><span style="color: DarkRed;">A</span>M <span
+                      style="color: LimeGreen;">D</span> ~</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver-span-stylecolor-goldsspanram" class="md-toc-link">
+                  <p><span style="color: silver;"> <span style="color: Gold;">S</span>RAM</span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silver-span-stylecolor-limegreendspanram" class="md-toc-link">
+                    <p><span style="color: silver;"> <span style="color: LimeGreen;">D</span>RAM</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-gold特点-1" class="md-toc-link">
+                      <p><span style="color: Gold;">特点</span></p>
+
+                    </a>
+                  </div>
+                  <details style="padding:0;;padding-left:24px;" open="">
+                    <summary class="md-toc-link-wrapper">
+                      <a href="#span-stylecolor-silver-span-stylecolor-greenyellow刷新span方式" class="md-toc-link">
+                        <p><span style="color: silver;"> <span style="color: GreenYellow;">刷新</span>方式</span></p>
+                      </a>
+                    </summary>
+                    <div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-silver-span-stylecolor-limegreen集中span" class="md-toc-link">
+                          <p><span style="color: silver;"> <span style="color: LimeGreen;">集中</span>~</span></p>
+
+                        </a>
+                      </div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-silver-span-stylecolor-gold分散span" class="md-toc-link">
+                          <p><span style="color: silver;"> <span style="color: Gold;">分散</span>~</span></p>
+
+                        </a>
+                      </div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-slateblue异spanspan-stylecolor-silver步" class="md-toc-link">
+                          <p><span style="color: SlateBlue;">异</span><span style="color: silver;">步~</span></p>
+
+                        </a>
+                      </div>
+                    </div>
+                  </details>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverattention" class="md-toc-link">
+                      <p><span style="color: silver;">attention</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-lightskybluesspanspan-stylecolor-limegreendspanram"
+                      class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: LightSkyBlue;">S</span><span
+                            style="color: LimeGreen;">D</span>RAM</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver读写t-span-stylecolor-greenyellow时序span图" class="md-toc-link">
+                      <p><span style="color: silver;">读/写<span class="katex"><span class="katex-mathml"><math
+                                xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                  <mrow>
+                                    <mi>T</mi>
+                                  </mrow>
+                                  <annotation encoding="application/x-tex">T</annotation>
+                                </semantics>
+                              </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                  class="strut" style="height:0.6833em;"></span><span class="mord mathnormal"
+                                  style="margin-right:0.13889em;">T</span></span></span></span> <span
+                            style="color: GreenYellow;">时序</span>图</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silvercompare" class="md-toc-link">
+                  <p><span style="color: silver;">compare</span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverspan-stylecolor-gold存储span器-span-stylecolor-limegreen芯spanspan-stylecolor-lightskyblue片"
+                    class="md-toc-link">
+                    <p><span style="color: silver;"><span style="color: Gold;">存储</span>器 <span
+                          style="color: LimeGreen;">芯</span><span style="color: LightSkyBlue;">片</span></span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver存储体存储span-stylecolor-lightskyblue矩阵span" class="md-toc-link">
+                      <p><span style="color: silver;">存储体（存储<span style="color: LightSkyBlue;">矩阵</span>）</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver地址span-stylecolor-gray译码span器" class="md-toc-link">
+                      <p><span style="color: silver;">地址<span style="color: gray;">译码</span>器</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverio-span-stylecolor-gold控制span电路" class="md-toc-link">
+                      <p><span style="color: silver;">I/O <span style="color: Gold;">控制</span>电路</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span控制信号"
+                      class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: LightSkyBlue;">片</span><span
+                            style="color: LimeGreen;">选</span>控制信号</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver-span-stylecolor-gold读span-span-stylecolor-limegreen写span控制信号"
+                      class="md-toc-link">
+                      <p><span style="color: silver;"> <span style="color: Gold;">读</span>/ <span
+                            style="color: LimeGreen;">写</span>控制信号</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-goldrspanspan-stylecolor-silverospanspan-stylecolor-limegreenmspan"
+                class="md-toc-link">
+                <p><span style="color: Gold;">R</span><span style="color: silver;">O</span><span
+                    style="color: LimeGreen;">M</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-gold特点-2" class="md-toc-link">
+                  <p><span style="color: Gold;">特点</span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-limegreen类型span" class="md-toc-link">
+                    <p><span style="color: LimeGreen;">类型</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-greenmspanrom" class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: green;">M</span>ROM</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-lightskybluepspanrom" class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: LightSkyBlue;">P</span>ROM</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver-span-stylecolor-greenyellowespanspan-stylecolor-lightskybluepspanrom"
+                      class="md-toc-link">
+                      <p><span style="color: silver;"> <span style="color: GreenYellow;">E</span><span
+                            style="color: LightSkyBlue;">P</span>ROM</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-lightskyblueflashspan-m" class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: LightSkyBlue;">Flash</span> M</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver固态硬盘solid-state-drivespan-stylecolor-goldenrodsspansd"
+                      class="md-toc-link">
+                      <p><span style="color: silver;">固态硬盘（Solid State Drive，<span
+                            style="color: Goldenrod;">S</span>SD）</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silver-span-stylecolor-gold主spanspan-stylecolor-limegreenmspan的基本组成"
+                class="md-toc-link">
+                <p><span style="color: silver;"> <span style="color: Gold;">主</span><span
+                      style="color: LimeGreen;">M</span>的基本组成</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver存储span-stylecolor-lightskyblue矩阵" class="md-toc-link">
+                  <p><span style="color: silver;">存储<span style="color: LightSkyBlue;">矩阵</span></span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver存储器-span-stylecolor-greenyellow访问span过程" class="md-toc-link">
+                  <p><span style="color: silver;">存储器 <span style="color: GreenYellow;">访问</span>过程</span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverspan-stylecolor-green硬件spanspan-stylecolor-gold特性"
+                    class="md-toc-link">
+                    <p><span style="color: silver;"><span style="color: green;">硬件</span><span
+                          style="color: Gold;">特性</span></span></p>
+                  </a>
+                </summary>
+                <div>
+                  <details style="padding:0;;padding-left:24px;" open="">
+                    <summary class="md-toc-link-wrapper">
+                      <a href="#span-stylecolor-silver-span-stylecolor-limegreendspanram芯片特性" class="md-toc-link">
+                        <p><span style="color: silver;"> <span style="color: LimeGreen;">D</span>RAM芯片特性</span></p>
+                      </a>
+                    </summary>
+                    <div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-silverspan-stylecolor-darkred地址span引脚复用技术" class="md-toc-link">
+                          <p><span style="color: silver;"><span style="color: DarkRed;">地址</span>引脚复用技术</span></p>
+
+                        </a>
+                      </div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-silverspan-stylecolor-limegreen行spanspan-stylecolor-lightskyblue列span数优化原则"
+                          class="md-toc-link">
+                          <p><span style="color: silver;"><span style="color: LimeGreen;">行</span><span
+                                style="color: LightSkyBlue;">列</span>数优化原则</span></p>
+
+                        </a>
+                      </div>
+                    </div>
+                  </details>
+
+                </div>
+              </details>
+
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silverspan-stylecolor-slateblue多span模块m" class="md-toc-link">
+                <p><span style="color: silver;"><span style="color: SlateBlue;">多</span>模块M</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver-span-stylecolor-limegreen单体spanspan-stylecolor-slateblue多span字m"
+                  class="md-toc-link">
+                  <p><span style="color: silver;"> <span style="color: LimeGreen;">单体</span><span
+                        style="color: SlateBlue;">多</span>字M</span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverspan-stylecolor-purple多span体-span-stylecolor-limegreen并行spanm"
+                    class="md-toc-link">
+                    <p><span style="color: silver;"><span style="color: purple;">多</span>体 <span
+                          style="color: LimeGreen;">并行</span>M</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue高位span交叉编址span-stylecolor-lightskyblue顺序span方式"
+                      class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: LightSkyBlue;">高位</span>交叉编址~（<span
+                            style="color: LightSkyBlue;">顺序</span>方式）</span></p>
+
+                    </a>
+                  </div>
+                  <details style="padding:0;;padding-left:24px;" open="">
+                    <summary class="md-toc-link-wrapper">
+                      <a href="#span-stylecolor-silverspan-stylecolor-green低位span交叉编址-span-stylecolor-gold交叉span方式"
+                        class="md-toc-link">
+                        <p><span style="color: silver;"><span style="color: green;">低位</span>交叉编址（ <span
+                              style="color: Gold;">交叉</span>方式）</span></p>
+                      </a>
+                    </summary>
+                    <div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-silver1-span-stylecolor-lightskyblue轮流span-span-stylecolor-silverspan-stylecolor-limegreen启动span-span-stylecolor-silver方式"
+                          class="md-toc-link">
+                          <p><span style="color: silver;">(1) <span style="color: LightSkyBlue;">轮流</span> <span
+                                style="color: silver;"><span style="color: LimeGreen;">启动</span> <span
+                                  style="color: silver;">方式</span></span></span></p>
+
+                        </a>
+                      </div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-silver2-span-stylecolor-gold同时-span-stylecolor-silver"
+                          class="md-toc-link">
+                          <p><span style="color: silver;">(2) <span style="color: Gold;">同时 <span
+                                  style="color: silver;">~</span></span></span></p>
+
+                        </a>
+                      </div>
+                    </div>
+                  </details>
+
+                </div>
+              </details>
+
+            </div>
+          </details>
+
+        </div>
+      </details>
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silverspan-stylecolor-gold主mspan与-span-stylecolor-limegreencpuspan-span-stylecolor-greenyellow连接"
+            class="md-toc-link">
+            <p><span style="color: silver;"><span style="color: Gold;">主M</span>与 <span
+                  style="color: LimeGreen;">CPU</span>' <span style="color: GreenYellow;">连接</span></span></p>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-gold原理" class="md-toc-link">
+              <p><span style="color: Gold;">原理</span></p>
+
+            </a>
+          </div>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silver主m-span-stylecolor-limegreen容量span的-span-stylecolor-greenyellow扩展"
+                class="md-toc-link">
+                <p><span style="color: silver;">主M <span style="color: LimeGreen;">容量</span>的 <span
+                      style="color: GreenYellow;">扩展</span></span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue位span扩展法" class="md-toc-link">
+                  <p><span style="color: silver;"><span style="color: LightSkyBlue;">位</span>扩展法</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silverspan-stylecolor-gray字span" class="md-toc-link">
+                  <p><span style="color: silver;"><span style="color: gray;">字</span>~</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silverspan-stylecolor-gray字spanspan-stylecolor-lightskyblue位span同时"
+                  class="md-toc-link">
+                  <p><span style="color: silver;"><span style="color: gray;">字</span><span
+                        style="color: LightSkyBlue;">位</span>同时~</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silver0-存储芯片的span-stylecolor-darkred地址span-span-stylecolor-gold分配span和span-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span"
+                class="md-toc-link">
+                <p><span style="color: silver;">0 存储芯片的<span style="color: DarkRed;">地址</span> <span
+                      style="color: Gold;">分配</span>和<span style="color: LightSkyBlue;">片</span><span
+                      style="color: LimeGreen;">选</span></span></p>
+              </a>
+            </summary>
+            <div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverconcept-1" class="md-toc-link">
+                    <p><span style="color: silver;">concept</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span"
+                      class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: LightSkyBlue;">片</span><span
+                            style="color: LimeGreen;">选</span>：</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-gray字span选" class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: gray;">字</span>选：</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-gold线spanspan-stylecolor-limegreen选spanspan-stylecolor-silver法"
+                    class="md-toc-link">
+                    <p><span style="color: Gold;">线</span><span style="color: LimeGreen;">选</span><span
+                        style="color: silver;">法</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silvereg" class="md-toc-link">
+                      <p><span style="color: silver;">eg</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-gray译码spanspan-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span-span-stylecolor-silver法"
+                    class="md-toc-link">
+                    <p><span style="color: gray;">译码</span><span style="color: LightSkyBlue;">片</span><span
+                        style="color: LimeGreen;">选</span> <span style="color: silver;">法</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silvereg-1" class="md-toc-link">
+                      <p><span style="color: silver;">eg</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silver1-span-stylecolor-gold存储器span与-span-stylecolor-limegreencpuspan的连接"
+                class="md-toc-link">
+                <p><span style="color: silver;">1 <span style="color: Gold;">存储器</span>与 <span
+                      style="color: LimeGreen;">CPU</span>的连接</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silver合理选择存储-span-stylecolor-limegreen芯spanspan-stylecolor-lightskyblue片span"
+                  class="md-toc-link">
+                  <p><span style="color: silver;">合理选择存储 <span style="color: LimeGreen;">芯</span><span
+                        style="color: LightSkyBlue;">片</span></span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverspan-stylecolor-darkred地址spanspan-stylecolor-gold线span的连接"
+                    class="md-toc-link">
+                    <p><span style="color: silver;"><span style="color: DarkRed;">地址</span><span
+                          style="color: Gold;">线</span>的连接</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverprinciple" class="md-toc-link">
+                      <p><span style="color: silver;">principle</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silvereg-2" class="md-toc-link">
+                      <p><span style="color: silver;">eg</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silverspan-stylecolor-deepskyblue数据spanspan-stylecolor-gold线span的连接"
+                  class="md-toc-link">
+                  <p><span style="color: silver;"><span style="color: deepskyblue;">数据</span><span
+                        style="color: Gold;">线</span>的连接</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silverspan-stylecolor-gold读span-span-stylecolor-limegreen写spanspan-stylecolor-lightskyblue-命令span线的连接"
+                  class="md-toc-link">
+                  <p><span style="color: silver;"><span style="color: Gold;">读</span>/ <span
+                        style="color: LimeGreen;">写</span><span style="color: LightSkyBlue;"> 命令</span>线的连接</span></p>
+
+                </a>
+              </div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue片spanspan-stylecolor-limegreen选span线的连接"
+                    class="md-toc-link">
+                    <p><span style="color: silver;"><span style="color: LightSkyBlue;">片</span><span
+                          style="color: LimeGreen;">选</span>线的连接</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-limegreenmspanspan-stylecolor-goldreqspan" class="md-toc-link">
+                      <p><span style="color: LimeGreen;">M</span><span style="color: Gold;">REQ</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+          </details>
+
+        </div>
+      </details>
+
+    </div>
+  </div>
+  <a id="sidebar-toc-btn">≡</a>
+
+
+
+
+
+
+  <script>
+
+    var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+    sidebarTOCBtn.addEventListener('click', function (event) {
+      event.stopPropagation()
+      if (document.body.hasAttribute('html-show-sidebar-toc')) {
+        document.body.removeAttribute('html-show-sidebar-toc')
+      } else {
+        document.body.setAttribute('html-show-sidebar-toc', true)
+      }
+    })
+  </script>
+
+
+</body>
+
+</html>
