@@ -1,6 +1,7 @@
  <span style="color: silver;">
 
-# 外部M  
+# <span style="color: gray;">外</span><span style="color: silver;">部M  
+<ul>
 
 ## <span style="color: LightSkyBlue;">磁盘</span> <span style="color: silver;">M
 
@@ -26,22 +27,22 @@
 - 磁盘存储器由以下组成：
   - 磁盘 <span style="color: GreenYellow;">驱动</span>器
   - 磁盘 <span style="color: Gold;">控制</span>器 
-  - 盘片
+  - <span style="color: gray;">盘片
 
-#### 磁盘驱动器
+####  <span style="color: silver;">磁盘<span style="color: GreenYellow;">驱动</span>器
 - 驱动磁盘转动并在盘面上通过磁头进行读/写操作的装置，如图3.14所示
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/949e3320f633db83d48f7dfbb5d87ac3e37d71935bede8ce35981b7926da2bb7.jpg)  
-图3.14磁盘驱动器示意图
+图3.14磁盘 <span style="color: GreenYellow;">驱动</span> 器示意图
 
-#### 磁盘控制器
-- 磁盘驱动器与主机的接口
+####  <span style="color: silver;">磁盘<span style="color: Gold;">控制</span>器
+- 磁盘驱动器与主机的 <span style="color: GreenYellow;">接口</span>
 - 主要功能：
   - 接收并解释CPU发来的命令
   - 向磁盘驱动器发出各种控制信号
   - 负责检测磁盘驱动器的状态
 
-#### 存储区域
+####  <span style="color: Gold;">存储</span> <span style="color: silver;">区域
 - 组成结构：
   - 多个记录面
   - 每个记录面划分为若干圆形磁道
@@ -50,32 +51,32 @@
   - 扇区（也称块）是磁盘读/写的最小单位
   - 磁盘按块存取
 
-#### 主要参数
-- 磁头数（Heads）：
+####  <span style="color: LimeGreen;">参数
+- 磁<span style="color: gray;">头</span>数（Heads）：
   - 即记录面数
   - 表示磁盘共有多少个磁头
   - 用于读取/写入盘片上记录面的信息
   - 一个记录面对应一个磁头
-- 柱面数（Cylinders）：
+- 柱<span style="color: gray;">面</span>数（Cylinders）：
   - 表示磁盘每面盘片上有多少条磁道
   - 不同记录面的相同编号（位置）的诸磁道构成一个圆柱面
-- 扇区数（Sectors）：
+- <span style="color: LightSkyBlue;">扇</span>区数（Sectors）：
   - 表示每条磁道上有多少个扇区
 
-#### 物理特性
-- 磁道间隔：
+#### <span style="color: LightSkyBlue;">物理</span> <span style="color: Gold;">特性
+- 磁道<span style="color: gray;">间隔</span>：
   - 相邻磁道及相邻扇区间通过间隙分隔
   - 目的是避免精度错误
 - 位密度特点：
   - 从最外道向里道增加
   - 磁盘存储能力受限于最内道的最大记录密度
 
-#### 磁盘高速缓存
+####  <span style="color: silver;">磁盘 <span style="color: Gold;">高速</span>缓存
 - 实现方式：
-  - 在内存中开辟一部分区域
-  - 用于缓冲将被送到磁盘上的数据
+  - 在 <span style="color: Gold;">内存</span>中开辟一部分区域
+  - 缓冲 将要被送到磁盘上的<span style="color: LightSkyBlue;">数据</span>
 - 优点：
-  - 写磁盘时按"簇"进行，避免频繁小块数据写盘
+  - 写磁盘时按" <span style="color: GreenYellow;">簇</span>"进行，避免频繁小块数据写盘
   - 中间结果数据在写回磁盘前可快速再次使用
 </ul>
 
@@ -129,18 +130,18 @@
   - N：每条磁道容量（字节）
 </ul>
 
-### 磁盘地址
+###  <span style="color: silver;">磁盘<span style="color: DarkRed;">地址
 
 > pro：磁盘地址结构的计算（2022）
 <ul>
 
-#### 地址结构
+####  <span style="color: silver;">地址 <span style="color: LimeGreen;">结构
 - 主机向磁盘控制器发送寻址信息
 - 基本地址结构如图所示
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/63c7621ebd786e99322bc2b3b8f2b7a6108c715c1896f3fefe6388625f9c5d47.jpg)
 
-#### 地址示例
+####  <span style="color: silver;">eg
 - 条件：
   - 16个盘面
   - 每个盘面256个磁道
@@ -155,7 +156,7 @@
 ###   <span style="color: silver;">工作 <span style="color: Gold;">过程
 <ul>
 
-#### 基本操作
+
 - 主要操作类型：
   - 寻址
   - 读盘
@@ -166,12 +167,12 @@
     1. 取控制字
     2. 执行控制字
 
-#### 操作限制
-- 属于机械式部件
-- 读/写操作是串行的：
+####  <span style="color: silver;">limit
+- <span style="color: gray;">机械</span>式部件
+- 读/写操作是 <span style="color: Gold;">串</span>行的：
   - 不能同时读写
-  - 不能同时读两组数据
-  - 不能同时写两组数据
+  - ~两组数据
+
 </ul>
 
 ###  <span style="color: silver;">磁盘<span style="color: RoyalBlue;">阵列</span> <span style="color: silver;">(  <span style="color: GreenYellow;">R</span><span style="color: RoyalBlue;">A</span><span style="color: gray;">I</span>D
@@ -208,7 +209,7 @@
 - RAID4：块交叉奇偶校验的磁盘阵列
 - RAID5：无独立校验的奇偶校验磁盘阵列
 
-##### RAID0
+#####  <span style="color: silver;">RAID<span style="color: LightSkyBlue;">0
 - 特点：
   - 使用条带化技术
   - 连续数据块交替存放在不同物理磁盘扇区
@@ -219,7 +220,7 @@
 - 缺点：
   - 无容错能力
 
-##### RAID1
+#####  <span style="color: silver;">RAID<span style="color: GreenYellow;">1
 - 工作方式：
   - 两个磁盘同时进行读/写
   - 互为备份
@@ -240,13 +241,15 @@
     - 通过镜像功能提高安全可靠性
   - 容错能力
     - 通过数据校验提供容错能力
-## 固态硬盘  
+</ul>
+
+##  <span style="color: Gold;">固态</span> <span style="color: silver;">硬盘  
 <ul>
 
 ###  <span style="color: Gold;">特性
 <ul>
 
-#### 基本组成与工作原理
+####  <span style="color: silver;">组成
 - 固态硬盘（SSD）是基于闪存技术的存储器
   - 与U盘无本质差别，但容量更大，存取性能更好
 - 组成部分
@@ -258,7 +261,7 @@
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/f4c9b82aff9e75d81635a4e6f89fa583ec0838d5124b1cd07047a821d4691ebd.jpg)  
 图3.15固态硬盘（SSD）  
 
-#### 存储结构与特点
+####  <span style="color: silver;"> <span style="color: LimeGreen;">结构</span> & 特点
 - 闪存结构
   - 由B块组成，每块由P页组成
   - 页大小：512B~4KB
@@ -270,8 +273,8 @@
   - 块擦除后的页可直接写入一次
   - 重复写会导致块磨损
 
-##### 性能特点
-- 随机写入慢的原因
+#####  <span style="color: silver;">特点
+- 随机写入<span style="color: gray;">慢</span>的原因
   - 块擦除速度慢，比页访问慢一个数量级
   - 修改已有数据需要整块复制
 - 相对传统磁盘的优势
@@ -282,36 +285,37 @@
   - 安全性高
 </ul>
 
-### 磨损均衡（Wear Leveling）
+###  <span style="color: silver;"><span style="color: gray;">磨损</span> <span style="color: Gold;">均衡</span>（Wear Leveling）
 <ul>
 
-#### 固态硬盘的寿命问题
-- 主要缺点
+#### <span style="color: gray;">寿命
+- 缺点
   - 闪存擦写寿命有限（几百到几千次）
   - 读写集中可能导致部分闪存过度损耗
   - 局部损坏可能影响整个SSD
 
-#### 磨损均衡技术
+####  <span style="color: silver;">技术
 <ul>
 
-##### 动态磨损均衡
-- 写入数据时自动选择较新的闪存块
+#####  <span style="color: silver;"> <span style="color: LimeGreen;">动</span>态磨损均衡
+- 写入数据时自动选择较<span style="color: gray;">新</span>的闪存块
 - 让老的闪存块暂时休息
 
-##### 静态磨损均衡
+#####  <span style="color: silver;"><span style="color: LightSkyBlue;">静</span>~
 - 更高级的技术方案
   - 无数据写入时也进行监测
   - 自动进行数据分配
-  - 老闪存块用于存储静态数据
-  - 新闪存块负责日常读写操作
+    - <u>老</u>闪存块用于存储<span style="color: LightSkyBlue;">静</span>态数据
+    - <span style="color: gray;">新</span>闪存块负责<span style="color: gray;">日常</span>读写操作
 </ul>
 
-#### 寿命提升效果
+####  <span style="color: silver;">提升
 - 实际使用寿命显著提升
   - 以256GB SSD为例
     - 擦写寿命500次时需写入125TB才会损坏
     - 每天写入10GB数据需30多年才会磨损
 
+</ul>
 </ul>
 
 #  <span style="color: Gold;">缓冲</span> <span style="color: silver;">~  (<span style="color: SlateBlue;">cache
@@ -322,48 +326,61 @@
   - 数据分布离散性较大
   - 单纯依靠并行主存系统提升效率有限
 
-- Cache的优势：
-  - 比主存速度更快
+- <span style="color: SlateBlue;">Cache</span>的优势：
+  - 比主存速度更<span style="color: LightSkyBlue;">快
   - 在CPU和主存之间设置可显著提高存储系统效率
   
-- Cache的特点：
-  - 由SRAM组成
+- 特点：
+  - 由 <span style="color: Gold;">S</span>RAM组成
   - 通常直接集成在CPU中
-## 程序访问的局部性原理
+##  <span style="color: silver;">程序访问的 <span style="color: Gold;">局部</span>性原理
+<ul>
 
-### 局部性原理概述
+###  <span style="color: silver;">概述
 - 包括时间局部性和空间局部性
 > pro：分析给定代码的时空局部性（2017、2023）  
 
-#### 时间局部性
+####  <span style="color: LimeGreen;">时间</span> <span style="color: silver;">局部性
 - 最近的未来要用到的信息，很可能是现在正在使用的信息
   - 原因：
     - 程序中存在盾环
     - 需要多次重复执行的子程序段
     - 对数组的存储和访问操作
 
-#### 空间局部性
-- 最近的末来要用到的信息，很可能与现在正在使用的信息在存储空间上是邻近的
+#### <span style="color: gray;">空间</span> <span style="color: silver;">~
+- 最近的末来要用到的信息
+- might与现在正在使用的信息在存储空间上是<span style="color: gray;">邻近</span>的
   - 原因：
     - 指令通常是顺序存放、顺序执行的
     - 数据一般以向量、数组等形式簇聚地存储
 
-#### 高速缓冲技术应用
-- 利用局部性原理
-  - 将正在使用的部分数据存放在高速、容量较小的Cache中
-  - 使CPU的访存操作主要针对Cache进行
-  - 提高程序的执行速度
+####  <span style="color: silver;">在cache中的 <span style="color: Gold;">应用
+- 利用局部性原理:
+  - 数据存放策略:
+    - 将正在使用的部分数据存入Cache
+    - Cache特点:
+      - 高速
+      - 容量较小
+  - 访问策略:
+    - CPU主要访问Cache
+  - 最终目标:
+    - 提高程序执行速度
 
-### 局部性原理实例分析
+###  <span style="color: silver;">eg
+<ul>
+
 【例3.2】假设数组元素按行优先方式存储，对于下面的两个程序：
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/b41550f0178bf3620106cb205eed357ec765a9ec70eeda1a5cf5cda98d67dbf0.jpg)
 
-#### 问题分析
+####  <span style="color: silver;">q
+<ul>
+
 1）对于数组a的访问，哪个空间局部性更好？哪个时间局部性更好？
 2）对于指令访问来说，for循环体的空间局部性和时间局部性如何？
+</ul>
 
-#### 解答过程
+####  <span style="color: silver;">answer
 - 基本条件：
   - M、N为2048
   - 按字节编址
@@ -374,7 +391,7 @@
 
 > pro：数组按行或列访问命中率的分析（2010）；数组循环访问的命中率分析（2016、2020）
 
-##### 数组访问分析
+##### <span style="color: LightSkyBlue;">数组</span> <span style="color: silver;">:
 - 程序A的空间局部性：
   - 访问顺序：a[0][0],a[0][1],,a[0][2047];a[1][0],a[1][1],,a[1][2047]
   - 访问顺序与存放顺序一致，空间局部性好
@@ -391,27 +408,34 @@
 
 > pro：程序中指令Cache的命中率分析（2014）
 
-##### 循环体访问分析
+#####  <span style="color: GreenYellow;">循环</span> <span style="color: silver;">体:
 - 两个程序的循环体局部性相同：
   - 空间局部性好：指令按序连续存放
   - 时间局部性好：内循环体被连续重复执行2048×2048次
 
-##### 结论
+#####  <span style="color: silver;">sum
 - 虽然功能相同，但执行时间差异大
 - 原因：内外循环顺序不同导致数组访问空间局部性差异
+</ul>
+</ul>
 
 ## <span style="color: silver;">工作<span style="color: Gold;">原理
+<ul>
 
 ### <span style="color: green;">结构
 - Cache和主存划分特点：
-  - 都划分为大小相等的块
-  - Cache块也称Cache行
-  - 每块由若干字节组成
-  - 块长也称行长
+  - 块划分：
+    - 都划分为大小相等的块
+    - Cache块也称Cache行
+  - 块组成：
+    - 每块由若干字节组成
+    - 块长也称行长
 - Cache容量特点：
-  - 远小于主存容量
-  - 块数远少于主存块数
-  - 仅保存主存最活跃块的副本
+  - 容量对比：
+    - 远小于主存容量
+    - 块数远少于主存块数
+  - 存储内容：
+    - 仅保存主存最活跃块的副本
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/e95e7ed2b82fea1f024168bab35ac7aaf81ff99ed3bddc2a543be0029e74d2bd.jpg)
 图3.17高速缓冲存储器的工作原理
@@ -421,29 +445,38 @@
 ###  <span style="color: silver;">process
 <ul>
 
-#### 读操作流程
+####  <span style="color: Gold;">R
 - Cache命中时：
   - 将访存地址转换为Cache地址
   - 直接读取Cache，不访问主存
 - Cache不命中时：
   - 访问主存
   - 将整块数据调入Cache
-  - 若Cache已满，使用替换算法
+  - 若Cache已满，使用 <span style="color: LimeGreen;">替换</span>算法
 
-#### 写操作流程
+####  <span style="color: LimeGreen;">W
 - Cache命中时：
-  - 可能出现数据不一致问题
-  - 需按写策略处理
-  - 常见方法：全写法和回写法
+  - 数据一致性：
+    - 可能出现数据不一致问题
+  - 处理方式：
+    - 需按写策略处理
+  - 解决方案：
+    -  <span style="color: Gold;">全</span>写法
+    - <span style="color: gray;">回</span>写法
+> attention：
 
-> attention：某些计算机中也采用同时访问Cache和主存的方式，若Cache命中，则终止访存。
+- 某些计算机的访存方式：
+  - 同时访问Cache和主存
+  - 如果Cache命中：
+    - 则终止访存操作
+
 </ul>
 
 ###  <span style="color: Gold;">性能
 > pro：Cache命中率的计算（2009）
 <ul>
 
-#### 命中率计算
+####  <span style="color: LimeGreen;">命中</span><span style="color: RoyalBlue;">率</span> <span style="color: silver;">计算
 - 命中率计算公式：
   - H = Nc/(Nc+Nm)
   - Nc：Cache命中次数
@@ -483,8 +516,9 @@
 4. 写入策略
    - 如何保证数据一致性
    - 如何提升效率
+</ul>
 
-##  <span style="color: silver;"><span style="color: SlateBlue;">Cache</span>和 <span style="color: Gold;">主存</span> 的映射方式  
+##  <span style="color: silver;"><span style="color: SlateBlue;">Cache</span>和 <span style="color: Gold;">主存</span> 的 <span style="color: GreenYellow;">映射</span>方式  
 
 - Cache行需要标记位和有效位:
   - 标记位:
@@ -553,7 +587,7 @@
 ###  <span style="color: Gold;">全</span> <span style="color: GreenYellow;">相</span><span style="color: LightSkyBlue;">联</span> <span style="color: silver;">~ 
 <ul>
 
-#### 基本原理
+####  <span style="color: silver;">concept
 - 主存块可装入Cache任何位置
 
 - 每行标记指示来自主存的哪一块
@@ -569,10 +603,10 @@
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a8989ceb071e5ad8c8d6dca134a27f62a4c6286c510cc52ef891f745bf53aba0.jpg)  
 图3.19Cache和主存之间的全相联映射方式  
 
-#### 地址结构
+#### <span style="color: DarkRed;">地址</span> <span style="color: LimeGreen;">结构
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/d778483358bb5cfaa81acdb4053dea9aacce5ec9ea238257e705ba9e2fca92cd.jpg)  
 
-#### 访存过程
+####  <span style="color: LimeGreen;">访</span><span style="color: Gold;">存
 -   <span style="color: Gold;">compare</span>主存地址高位标记与Cache各行标记
 - 命中情况:
   - 有相等且有效位为1时:
@@ -585,8 +619,7 @@
     - 将内容送CPU
 > pro：根据地址结构和比较器数量判断映射方式（2018）  
 
-#### 硬件实现特点
-
+#### <span style="color: green;">硬件</span> <span style="color: Gold;">实现
   - 比较器配置:
     - 每个Cache行设置一个比较器
     - 比较器位数等于标记字段位数
@@ -626,43 +659,44 @@
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/705d35296eca71ed8eded974c3d677da76008d584c3b528fa5e8971962c6d880.jpg)  
 图3.20Cache和主存之间的二路组相联映射方式  
 
-#### 映射关系
+####  <span style="color: LimeGreen;">映射</span> <span style="color: silver;">关系
 - Cache组号 = mod Cache 组数（Q）
 - 地址结构：
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/16468247b7f68d80ea35bf713452faaeaab1af0cc4620f1f67e90b71bd4d66a4.jpg)  
 
 > pro：组相联映射的访存过程及Cache缺失处理过程（2020）  
 
-#### 访存过程
-- 根据访存地址中间组号找到对应Cache组
-- 比较组内每行标记与主存地址高位标记
-- 命中情况
-  - 有相等且有效位为1：命中
-    - 根据块内地址在Cache行中存取
-  - 都不相等或有效位为0：不命中
-    - 从主存读块到对应组空闲行
-    - 设置有效位和标记
-    - 将内容送CPU
-
+####  <span style="color: LimeGreen;">访</span><span style="color: Gold;">存
+- according to访存地址中间组号 find 对应Cache组
+- compare<span style="color: gray;">组内</span>每行标记 &  <span style="color: Gold;">主存</span>地址高位标记
+- 命中:
+  - = & 有效位为1
+    - 命中
+      - 根据块内地址在Cache行中存取
+  - ≠ || 有效位为0
+    - 不命中
+      - 从主存读块到对应组空闲行
+      - 设置有效位和标记
+      - 将内容送CPU
 > pro：组相联映射中比较器的个数和位数（2022）  
 
-#### 硬件实现
+#### <span style="color: green;">硬件</span> <span style="color: silver;">实现
 - 比较器需求
   - 直接映射：1个比较器
   - r路组相联：r个比较器
 
 > pro：直接映射、组相联映射相关标记位及总容量的分析（2010）  
 
-#### 实例分析
-##### 例3.4
+####  <span style="color: silver;">eg
+
 主存条件：
 - 地址空间：256MB
 - 按字节编址
 - 数据Cache：8个Cache行
 - 行长：64B
 
-###### 问题分析与解答
-1. Cache总容量计算
+#####  <span style="color: silver;">q&a:
+1. Cache总 <span style="color: LimeGreen;">容量</span>计算
    - 总容量 = 存储容量 + 标记阵列容量
    - 不考虑脏位和替换算法位
 
@@ -670,7 +704,7 @@
 
 > attention：  
 
-##### 标记阵列结构
+######  <span style="color: silver;"> <span style="color: GreenYellow;">标记</span>阵列结构
 - 每Cache行对应一个标记项
   - 包括：有效位、脏位、替换算法位、标记位
 - 组相联特点
@@ -680,7 +714,7 @@
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/57f1a99d258e755109902e23acf15b394fc66b1b280f1f9dca674653a358810b.jpg)  
 图3.21二路组相联的标记阵列示意图  
 
-##### 存储容量计算
+######  <span style="color: silver;">存储  <span style="color: LimeGreen;">容量</span>计算
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/683ed3f03365e410bb54f631a3aa7975ef5c257a5d5fb4a06bc06596f36764f8.jpg)  
 图3.22Cache行的存储容量示意图  
 
@@ -691,22 +725,22 @@
   - 标记字段：19位(28-6-3)
 - 总容量：8×(1+19+512)=4256位
 
-2. 主存地址3200映射分析
+2. 主存<span style="color: DarkRed;">地址</span>3200映射分析
    - 直接映射：Cache行号为2
    - 二路组相联：组号2(行号4或5)
 
-3. 访存过程(地址0123456H)
-   - 地址划分
-     - 主存标记位：19位
-     - 块号：3位
-     - 块内地址：6位
-   - 访问步骤
-     - 根据块号查Cache对应行
-     - 比较主存标记位
-     - 检查有效位
-     - 根据结果进行相应操作
+3.  <span style="color: LimeGreen;">访</span> <span style="color: Gold;">存</span>过程(地址0123456H)
+       - 地址划分
+         - 主存标记位：19位
+         - 块号：3位
+         - 块内地址：6位
+       - 访问步骤
+         - 根据块号查Cache对应行
+         - 比较主存标记位
+         - 检查有效位
+         - 根据结果进行相应操作
 
-#### 映射方式比较
+#####  <span style="color: silver;"> <span style="color: LimeGreen;">映射</span>方式 <span style="color: Gold;">比较
 - 映射范围
   - 直接映射：固定行
   - 全相联映射：所有行
@@ -717,7 +751,8 @@
   - 空间开销：直接映射<组相联<全相联
 </ul>
 
-## Cache中主存块的替换算法
+##  <span style="color: silver;">Cache中<span style="color: Gold;">主存</span>块的 <span style="color: LimeGreen;">替换</span>算法
+<ul>
 
 ###  <span style="color: silver;">concept
 - 替换算法使用场景：
@@ -728,17 +763,17 @@
     - 直接映射
       - 原因：主存块只能放到唯一固定Cache行
 
-### 常用替换算法类型
+###  <span style="color: GreenYellow;">type
 <ul>
 
-#### 随机(RAND)算法
+####  <span style="color: silver;">随机( <span style="color: Gold;">RAND</span>)
 - 随机确定替换的Cache行
 - 特点：
   - 实现简单
   - 未依据局部性原理
   - 命中率可能较低
 
-#### 先进先出(FIFO)算法  
+####  <span style="color: silver;">先进先出(<span style="color: gray;">F</span>I<span style="color: gray;">F</span>O)
 - 选择最早调入的Cache行进行替换
 - 特点：
   - 容易实现
@@ -747,7 +782,7 @@
 
 > pro：组相联映射中LRU算法的命中分析（2012、2021）  
 
-#### 近期最少使用(LRU)算法
+####  <span style="color: silver;">近期最少使用( <span style="color: Gold;">L</span><span style="color: gray;">R</span><span style="color: green;">U</span>)
 - 基本原理：
   - 依据程序访问的局部性原理
   - 选择近期未访问的Cache行替换
@@ -795,7 +830,7 @@
   - 结果：命中率为0
 </ul>
 
-#### 最不经常使用(LFU)算法
+####  <span style="color: silver;">最不<u>经常</u>使用(L <span style="color: Gold;">F</span>U)算法
 - 基本原理：
   - 换出一段时间内访问次数最少的Cache行
 - 实现方式：
@@ -805,19 +840,21 @@
   - 替换时选择计数值最小的行
 </ul>
 
-## Cache的一致性问题
+##  <span style="color: silver;">Cache的 <span style="color: Gold;">一致</span>性问题
+<ul>
 
-### 写操作策略概述
+###   <span style="color: silver;"><span style="color: LimeGreen;">W</span>操作策略
 - 目的：保持Cache和主存内容一致
 - 分类：
   - 写命中策略
   - 写不命中策略
 
-### 写命中策略
+###  <span style="color: LimeGreen;">W</span> <span style="color: silver;"><span style="color: LightSkyBlue;">命中</span>策略
 
 > pro：直写法的特点（2015）、直写法是否需设修改位（2020）  
+<ul>
 
-#### 全写法(直写法、Write-through)
+####  <span style="color: silver;"> <span style="color: Gold;">全</span> <span style="color: LimeGreen;">写</span>法(直写法、Write-through)
 - 基本原理：
   - CPU同时写入Cache和主存
   - 替换时直接覆盖，无需写回
@@ -834,7 +871,7 @@
 
 > pro：回写法的修改位（2018、2020）  
 
-#### 回写法(write-back)
+####  <span style="color: silver;"><span style="color: gray;">回</span><span style="color: LimeGreen;">写</span>法(write-back)
 - 基本原理：
   - 仅写入Cache
   - 替换时才写回主存
@@ -845,9 +882,10 @@
   - 1：块被修改，需写回
   - 0：块未修改，无需写回
 
-### 写不命中策略
+###  <span style="color: silver;">~ <span style="color: gray;">不</span>~
+<ul>
 
-#### 写分配法(write-allocate)
+####  <span style="color: silver;"> <span style="color: LimeGreen;">W</span> <span style="color: Gold;">分配</span>法
 - 处理步骤：
   - 更新主存单元
   - 调入主存块到Cache
@@ -855,19 +893,21 @@
   - 利用空间局部性
   - 缺点：每次需从主存读块
 
-#### 非写分配法(not-write-allocate)
+####  <span style="color: silver;"><span style="color: gray;">非</span>~
 - 处理方式：
   - 仅更新主存单元
   - 不调入主存块
 - 使用搭配：
   - 通常与全写法合用
   - 写分配法通常和回写法合用
+</ul>
 
-### Cache结构设计
+###  <span style="color: silver;">Cache <span style="color: LimeGreen;">结构</span>设计
 
 > pro：采用分离的指令Cache和数据Cache的主要目的（2014）  
+<ul>
 
-#### 分离Cache结构
+####  <span style="color: silver;"> <span style="color: GreenYellow;">分离</span>Cache结构
 - 背景：指令流水技术发展需求
 - 优势：
   - 避免指令预取与数据存取冲突
@@ -876,7 +916,7 @@
   - 设计实现简单
   - 存在访问冲突
 
-#### 多级Cache设计
+####  <span style="color: silver;"> <span style="color: Gold;">多级</span>Cache设计
 - 二级Cache示例：
   - L1Cache（靠近CPU）：
     - 速度快，容量小
@@ -891,50 +931,65 @@
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a36a40284b9aa454bc42de878bcab6fe9160cad5f6b92ce9054bac667f2a2cf5.jpg)  
   
 </ul>
+</ul>
+</ul>
+</ul>
+</ul>
+</ul>
+</ul>
 
-# 虚拟存储器  
+#  <span style="color: silver;"><span style="color: SlateBlue;">虚拟</span>M
+<ul>
 
-- 虚拟存储器
-  - 构成
-    - 由主存和辅存共同构成
-    - 在硬件和系统软件的共同管理下工作
-  - 透明性
-    - 对于应用程序员而言是透明的
-  - 特点
-    - 具有主存的速度
-    - 具有辅存的容量
+- 构成
+  - 由主存和辅存共同构成
+  - 在硬件和系统软件的共同管理下工作
+- 透明性
+  - 对于应用程序员而言是透明的
+- 特点
+  - 具有主存的速度
+  - 具有辅存的容量
  
 
 ##  <span style="color: silver;">concept  
 <ul>
 
-### 地址空间
-#### 虚拟地址空间
-- 将主存或辅存的地址空间统一编址，形成一个庞大的地址空间
-- 用户可以自由编程，而不必在乎：
-  - 实际的主存容量
-  - 程序在主存中实际的存放位置
+### <span style="color: DarkRed;">地址</span> <span style="color: silver;">空间
+<ul>
 
-#### 地址类型
-##### 虚地址(逻辑地址)
+#### <span style="color: SlateBlue;">虚拟</span> <span style="color: silver;">~
+- 地址空间统一编址
+  - 将主存和辅存地址空间合并
+  - 形成庞大的统一地址空间
+- 用户编程自由度
+  - 无需关注硬件限制
+    - 不受主存容量限制
+    - 不受程序存放位置限制
+  - 提供透明的编程环境
+####  <span style="color: GreenYellow;">type
+<ul>
+
+#####  <span style="color: silver;"><span style="color: SlateBlue;">虚</span>地址( <span style="color: Gold;">逻辑</span>地址)
 - 用户编程允许涉及的地址
 - 对应的存储空间称为：
   - 虚拟空间
   - 程序空间
 
-##### 实地址(物理地址) 
+#####  <span style="color: silver;"><span style="color: green;">实</span>地址(<span style="color: LightSkyBlue;">物理</span>地址) 
 - 实际的主存单元地址
 - 对应的是主存地址空间(实地址空间)
 - 虚地址比实地址要大很多
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/3f30148f78a751f6de56c12ee740b690d95cef0f05379cb11a3386b06baf0ec8.jpg)  
 图3.24虚拟存储器的三个地址空间  
+</ul>
+</ul>
 
-### CPU访问机制
-#### 地址判断与转换
-- CPU使用虚地址时的处理流程：
-  - 判断虚地址对应内容是否已装入主存
-  - 若在主存中：
+###  <span style="color: silver;">CPU <span style="color: LimeGreen;">访问</span>机制
+
+- CPU使用<span style="color: SlateBlue;">虚</span>地址时process：
+  - 判断虚地址对应内容whether已装入主存
+  - if 在主存中：
     - 通过地址变换直接访问主存指示的实际单元
   - ..不..：
     - 把包含这个字的一页或一段调入主存
@@ -944,17 +999,19 @@
       - 置换主存中的交换块
 > pro：虚拟存储器只能采用回写法的原因（2016）  
 
-### 技术特点
-- 采用类似Cache的技术：
-  - 将辅存中经常访问的数据副本存放到主存
-- 特殊机制：
-  - 采用全相联映射：
-    - 每个虚页面可存放到对应主存区域的任何空闲页位置
-  - 采用回写法处理一致性：
-    - 因缺页访问辅存代价大
-    - 不能每次写操作都同时写回磁盘## 页式虚拟存储器  
+###  <span style="color: silver;"> <span style="color: LimeGreen;">技术</span>特点
 
-页式虚拟存储器以页为基本单位。
+  - 类似Cache技术：
+    - 将辅存中经常访问的数据副本--> 主存
+  - 特殊机制：
+    - 全相联映射：
+      - 每个虚页面可存放到对应主存区域的任何空闲页位置
+    - 回写法处理一致性：
+      - 原因：缺页访问辅存代价大
+      - 结果：不能每次写操作都同时写回磁盘
+## <span style="color: LightSkyBlue;">页</span><span style="color: silver;">式虚拟存储器  
+
+> 以<span style="color: LightSkyBlue;">页</span>为基本单位
 - 页的划分
   - 主存空间和虚拟地址空间都被划分成相同大小的页
     - 主存空间中的页
@@ -967,41 +1024,54 @@
 - 页表特点
   - 记录了程序的虚页调入主存时被安排在主存中的位置
   - 一般长久地保存在内存中
-### 页表  
+### <span style="color: LightSkyBlue;">页</span><span style="color: gray;">表</span>  
+<ul>
 
-#### 页表组成
-- 有效位(装入位)
-  - 用来表示对应页面是否在主存
-  - 若为1，则表示该虚拟页已从外存调入主存，此时页表项存放该页的物理页号
-  - 若为0，则表示没有调入主存，此时页表项可以存放该页的磁盘地址
-- 脏位(修改位)
-  - 用来表示页面是否被修改过
-  - 虚存机制中采用回写策略，利用脏位可判断替换时是否需要写回磁盘
-- 引用位(使用位)
-  - 用来配合替换策略进行设置
-  - 例如是否实现最先调入（FIFO位）或最近最少用（LRU位）策略等
-
+####  <span style="color: silver;">组成
+- 页表项包含以下位：
+  - <span style="color: LightSkyBlue;">有效</span>位(装入位)
+    - 表示页面在 <span style="color: Gold;">主存</span>中的状态
+      - 1: 该虚拟页已从外存调入主存
+        - 页表项存放该页的物理页号
+      - 0: 未调入主存
+        - 页表项可存放该页的磁盘地址
+  - <span style="color: gray;">脏</span>位(<span style="color: GreenYellow;">修改</span>位)
+    - 表示页面 <span style="color: LimeGreen;">修改</span>状态
+      - 用于判断页面是否被修改
+      - 在回写策略中用于判断替换时是否需要写回磁盘
+  - <span style="color: LimeGreen;">引用</span>位(使用位)
+    - 用于页面 <span style="color: GreenYellow;">替换</span>策略
+      - 可实现FIFO(最先调入)策略
+      - 可实现LRU(最近最少使用)策略
+      - 其他替换策略
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/b8ab5292e69b51c36468563f144fde40a570b1a370f205fa85c05cc588cbae16.jpg)  
 图3.25主存中的页表示例  
 
 > pro：数组的分页存放、缺页异常分析及缺页处理过程（2014、2019、2023）  
 
-#### 缺页处理过程
-- CPU访问数据的两种情况：
-  - 数据在已存在页面时：
+####  <span style="color: Gold;">缺</span><span style="color: LightSkyBlue;">页</span> <span style="color: silver;">处理过程
+CPU访问数据的两种情况：
+  - <span style="color: LightSkyBlue;">数据</span> in <span style="color: gray;">已存在</span>页面时：
     - 如第1页，有效位为1，说明该页已存放在主存中
     - 通过地址转换部件将虚拟地址转换为物理地址
     - 到相应的主存实页中存取数据
-  - 数据在缺失页面时：
-    - 如第5页，有效位为0，则发生"缺页"异常
-    - 需调用操作系统的缺页异常处理程序
-    - 处理步骤：
-      - 根据对应表项中的存放位置字段，将所缺页面从磁盘调入一个空闲的物理页框
-      - 若主存中没有空闲页框：
-        - 需要选择一个页面替换
-        - 由于采用回写策略，换出页面时根据脏位确定是否要写回磁盘
-      - 缺页处理过程中需要对页表进行相应的更新
-#### 优缺点分析
+  - ~ in  <span style="color: GreenYellow;">缺失</span>页面时：
+    - <span style="font-size:12px">如第5页，有效位为0，则发生"缺页"异常
+    - 调用 OS'  <span style="color: Gold;">缺</span><span style="color: LightSkyBlue;">页</span>异常处理程序
+    - step：
+      - 从<span style="color: gray;">磁盘</span>调入页面：
+        - 根据对应表项中的存放位置字段
+        - 将所缺页面调入一个空闲的物理页框
+      - 处理<span style="color: Goldenrod;">空闲</span>页框不足：
+        - 若主存中没有空闲页框时
+        - 需要选择一个页面进行替换
+        - 采用回写策略时：
+          - 根据脏位判断
+          - 确定是否需要写回磁盘
+      -  <span style="color: GreenYellow;">更新</span>页表：
+        - 完成缺页处理后
+        - 对页表进行相应更新
+####  <span style="color: silver;">优缺点
 - 优点：
   - 页面的长度固定
   - 页表简单
@@ -1009,104 +1079,144 @@
 - 缺点：
   - 最后一页的零头将无法利用而造成浪费
   - 页不是逻辑上独立的实体，处理、保护和共享都不及段式虚拟存储器方便
+</ul>
 
-### 地址转换  
+### <span style="color: DarkRed;">地址</span> <span style="color: LimeGreen;">转换</span>  
 
 > pro：虚拟地址结构的分析（2011、2019、2021）  
+<ul>
 
-#### 地址结构
-- 虚拟地址分为两个字段：
-  - 高位为虚页号
-  - 低位为页内偏移地址
-- 物理地址分为两个字段：
-  - 高位为物理页号
-  - 低位为页内偏移地址
+####  <span style="color: silver;"><span style="color: SlateBlue;">虚拟</span>地址 & <span style="color: LightSkyBlue;">物理</span>~
+- <span style="color: SlateBlue;">虚拟</span>地址分为两个字段：
+  - <span style="color: LightSkyBlue;">高</span>位为 <span style="color: SlateBlue;">虚</span><span style="color: LightSkyBlue;">页</span><span style="color: gray;">号
+  -  <span style="color: LimeGreen;">低</span>位为 页内 <span style="color: GreenYellow;">偏移</span><span style="color: DarkRed;">地址
+- <span style="color: LightSkyBlue;">物理</span>地址分为两个字段：
+  - <span style="color: LightSkyBlue;">高</span>位为物理<span style="color: LightSkyBlue;">页</span><span style="color: gray;">号</span>
+  -  <span style="color: LimeGreen;">低</span>位为 页内 <span style="color: LimeGreen;">偏移</span>地址
 - 特点：
-  - 两者的页面大小相同，页内偏移地址相等
-  - 虚拟地址到物理地址的转换由页表实现
-  - 页表是存放在主存中的虚页号和实页号的对照表
-
+  - these two 页面 <span style="color: gray;">大小</span> <span style="color: Gold;">相同</span>，页内  <span style="color: LimeGreen;">偏移</span>地址 <span style="color: LightSkyBlue;">=</span>
+  - <span style="color: SlateBlue;">虚</span> -> <span style="color: LightSkyBlue;">物理</span>地址的 转换由 <span style="color: LightSkyBlue;">页</span><span style="color: gray;">表</span>  <span style="color: Gold;">实现</span>
+  - <span style="color: LightSkyBlue;">页</span><span style="color: gray;">表</span>
+    - concept:
+      - 存放在主存中的对照表
+        - 包含虚页号和实页号的对应关系
+        - 用于查找虚页号对应的实页号
+    -  作用
+      - 地址 <span style="color: GreenYellow;">映射</span>
+        - 建立<span style="color: SlateBlue;">虚</span>拟地址和<span style="color: LightSkyBlue;">物理</span>地址之间的映射关系
+      - 地址 <span style="color: LimeGreen;">转换</span>
+        - 实现地址空间的转换过程
 > pro：虚拟地址主存物理地址（2011、2013、2018、2022）  
 
-#### 地址转换过程
+#### <span style="color: DarkRed;">地址</span> <span style="color: LimeGreen;">转换</span>
 - 基本步骤：
-  - 通过页表基址寄存器找到进程的页表首地址（对应 $^\mathrm{\textregistered}$ )
-  - 根据虚拟地址高位的虚拟页号找到对应的页表项（对应 $\mathcal{Q}$ ）
-  - 若装入位为1：
-    - 取出物理页号（对应③ ）
-    - 和虚拟地址低位的页内地址拼接，形成实际物理地址（对应 $^{(4)}$ ）
-  - 若装入位为0：
-    - 说明缺页，需要操作系统进行缺页处理
+  - 找到页表<span style="color: gray;">首</span>地址
+    - 通过页表基址寄存器定位（①）
+  -  <span style="color: LimeGreen;">定位</span>页表项
+       - 使用虚拟地址高位的虚拟页号（②）
+  -  <span style="color: GreenYellow;">检查</span><span style="color: gray;">装入</span>位
+       - if 装入位 = 1：
+         - 获取物理页号（③）
+         - 与页内地址拼接（④）
+         - 生成物理地址
+       - if 装入位 = 0：
+         - 表示发生缺页
+         - 需要操作系统处理
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/8abbc24dc44951166da271761d02b9beff867be6de5e5dc08cc6e6325bcebf8e.jpg)  
 图3.26页式虚拟存储器的地址变换过程  
 
-### 快表（TLB）  
+###  <span style="color: GreenYellow;">快</span><span style="color: gray;">表 <span style="color: silver;">（TLB）  
+<ul>
 
-#### 引入原因
-- 访存过程中的问题：
-  - 需要先访问一次主存去查页表
-  - 再访问主存才能取得数据
-  - 若缺页，则还要进行页面替换、页面修改等
-  - 采用虚拟存储机制后，访问主存的次数更多了
+####  <span style="color: silver;">引入
+- 访存过程中：
+  - 访问主存次数增加：
+    - 第一次：访问主存查页表
+    - 第二次：访问主存取数据
+  - 若发生缺页：
+    - 需要额外进行：
+      - 页面替换
+      - 页面修改
+  - 结论：
+    - <span style="color: SlateBlue;">虚拟</span> 存储机制 cause 访问主存次数增加
 
 > pro：TLB的硬件实现（2018），TLB和Cache的比较（2020）  
 
-#### 工作原理
-- 基于程序访问的局部性原理：
-  - 在一段时间内总是经常访问某些页
-  - 把这些页对应的页表项存放在高速缓冲器组成的快表（TLB）中
-  - 把放在主存中的页表称为慢表（Page）
-- 地址转换时：
-  - 首先查找快表
-  - 若命中，则无须访问主存中的页表
+####  <span style="color: Gold;">原理
+- 基于程序访问的 <span style="color: Gold;">局部</span>性原理：
+  - 特点：
+    - 在一段时间内总是<span style="color: gray;">经常</span>访问某些页
+  - 解决：
+    -  <span style="color: GreenYellow;">快</span><span style="color: gray;">表</span>(TLB)：
+         - 由高速缓冲器组成
+         - 存放常用页的页表项
+       - 慢表(Page)：
+         - 放在主存中的页表
+- process：
+  - 第一步：
+    - 查找快表
+  - 第二步：
+    - if 命<span style="color: gray;">中</span>：
+      - 无须访问主存中的页表
 
 > pro：TLB映射方式、地址划分与标记字段：与Cache相同（2016、2021）  
 
-#### 实现特点
+####  <span style="color: Gold;">实现
 - 硬件实现：
-  - 用SRAM实现
+  - 用 <span style="color: Gold;">S</span>RAM实现
   - 工作原理类似于Cache
   - 通常采用全相联或组相联映射方式
-- TLB表项组成：
+- TLB表项 <span style="color: Gold;">组成</span>：
   - 页表表项内容
   - TLB标记
-- 映射方式：
-  - 全相联映射：TLB标记就是对应页表项的虚拟页号
-  - 组相联方式：
-    - TLB标记是对应虚拟页号的高位部分
-    - 虚拟页号的低位部分作为TLB组的组号
+-  <span style="color: GreenYellow;">映射</span>方式：
+     -  <span style="color: Gold;">全</span><span style="color: GreenYellow;">相</span><span style="color: LightSkyBlue;">联</span>映射：
+        -  TLB标记 = 对应页表项的虚拟<span style="color: LightSkyBlue;">页</span>号
+     - <span style="color: gray;">组</span>~ ：
+       - TLB标记=对应<span style="color: SlateBlue;">虚拟</span><span style="color: LightSkyBlue;">页</span>号的<span style="color: LightSkyBlue;">高</span>位部分
+       - 虚拟<span style="color: LightSkyBlue;">页</span>号的 <span style="color: LimeGreen;">低</span>位部分作为TLB组的<span style="color: gray;">组</span>号
+</ul>
 
-### 具有TLB和Cache的多级存储系统  
+###  <span style="color: silver;"> have  <span style="color: Gold;">T</span>L<span style="color: Gold;">B</span>和<span style="color: SlateBlue;">Cache</span>的 <span style="color: RoyalBlue;">多级</span>存储系统  
+<ul>
 
-#### 系统组成与工作原理
+####  <span style="color: Gold;">组成</span>  <span style="color: silver;"> & 工作原理
 - CPU给出32位虚拟地址
-- TLB采用全相联方式:
+- TLB采用 <span style="color: Gold;">全</span><span style="color: GreenYellow;">相</span><span style="color: LightSkyBlue;">联</span>方式
   - 每项都有比较器
-  - 查找时将虚页号与TLB标记字段同时比较
-  - 若某项相等且有效位为1:
-    - TLB命中，直接通过TLB进行地址转换
-  - 若未命中:
-    - TLB缺失，需访问主存查页表
-    - 使用两级页表方式:
-      - 虚页号分为页目录索引和页表索引
-      - 通过这两部分得到页表项进行地址转换
-      - 将表项调入TLB(若已满需替换)
-
+-  <span style="color: LimeGreen;">查找</span>process
+     - 将<span style="color: SlateBlue;">虚</span><span style="color: LightSkyBlue;">页</span>号 & TLB标记字段同时比较
+     - 命中情况:
+       - 若某项相等 & 有效位为1
+       - TLB命中
+       - 直接通过TLB进行地址转换
+     - 未~:
+       - TLB <span style="color: LimeGreen;">缺失</span>
+       - 访问 <span style="color: Gold;">主存</span>查 页表
+       - 使用<span style="color: LightSkyBlue;">两</span> <span style="color: Gold;">级</span>页表方式
+         - 虚页号:
+           - <span style="color: LightSkyBlue;">页</span> <span style="color: GreenYellow;">目录</span>索引 + <span style="color: LightSkyBlue;">页</span><span style="color: gray;">表</span>索引
+         - through these two -> <span style="color: LightSkyBlue;">页</span>表<span style="color: gray;">项</span> to 地址转换
+         - TLB <span style="color: GreenYellow;">更新</span>
+           - 将表项调入TLB
+           - 若已满需替换
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/631bb0e61b3bdacef3897c62f9b2563c6e1aa46c348e5f719e87b9db2f47ed57.jpg)  
 图3.27TLB和Cache的访问过程  
 
-#### 快表和慢表的查找机制
-- 可以同步进行查找
-- 若快表中有虚页号:
+####  <span style="color: GreenYellow;">快</span> <span style="color: silver;">表 &  <span style="color: Gold;">慢</span>表的查找
+- can同步进行查找
+- if 快表中有虚页号:
   - 快速找到实页号
   - 慢表查找作废
   - 访问主存速度几乎不下降
 
 > pro：TLB、Cache和Page缺失组合的分析（2010）  
 
-#### 多级存储系统的访问过程
-##### 缺失类型
+####  <span style="color: LimeGreen;">访问</span> <span style="color: silver;">过程
+<ul>
+
+#####  <span style="color: LimeGreen;">缺失</span> <span style="color: silver;">type
 - TLB缺失：页表项不在TLB中
 - Cache缺失：主存块不在Cache中
 - Page缺失：页面不在主存中
@@ -1116,11 +1226,12 @@
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/410f211a8065de602231efcdde6fb31482045afcb7cd24653c854c6b447608e7.jpg)  
 图3.28带TLB虚拟存储器的CPU访存过程  
 
-##### 缺失组合情况
+#####   <span style="color: silver;">.. <span style="color: Gold;">组合
+
 表3.3TLB、Page、Cache三种缺失的可能组合情况
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/5449e48e05a1210c3ad8e1dda8ec750f02c257f2e7997847b56ece5d409deea7.jpg)  
 
-##### 不同组合的处理
+#####  <span style="color: silver;">different组合' <span style="color: Gold;">处理
 - 第1种组合：最佳情况，无需访问主存
 - 第2、3种组合：需访问一次主存
 - 第4种组合：需访问两次主存
@@ -1135,7 +1246,8 @@
 
 > attention：  
 
-在《操作系统考研复习指导》的第3章中，介绍了在同时具有TLB和Cache的存储系统中虚实地址转换的实例，读者可以结合这些内容进行学习。
+<span style="font-size: 12px;">(OS 第3章: 同时具有TLB和Cache的存储系统, 虚实地址转换'eg)
+</ul>
 </ul>
 
 ##  <span style="color: silver;"><span style="color: gray;">段</span>式 ~
@@ -1181,7 +1293,7 @@
 - 分页对程序员透明
   - 编程时无需知道分页方式
 
-#### 优缺点
+####  <span style="color: silver;">优缺点
 - 优点:
   - 段的分界与程序自然分界对应
     - 更符合程序的逻辑结构
@@ -1257,7 +1369,7 @@
   - 采用"快速缓存"思想
   - 将活跃数据放在高速部件
 
-### 不同之处  
+###  <span style="color: silver;">不同
 - 解决 <span style="color: Gold;">目标</span>不同
   - Cache解决系统速度
   - 虚拟存储器解决主存容量
@@ -1281,28 +1393,68 @@
     - Cache不命中时可直接与CPU通信
   - CPU与辅存无直接通路
     - 虚存不命中需先调入主存 
+</ul>
+</ul>
+</ul>
+</ul>
+</ul>
 
-
-
-# 本章小结  
+#  <span style="color: silver;">本章小结  
  
 
 1）存储器系统为何要分这些层次？计算机如何管理这些层次？  
 
-Cache-主存层在存储系统中主要对CPU访存起加速作用，即从整体运行的效果看，CPU访存速度加快，接近于Cache的速度，而寻址空间和位价却接近于主存。主存-辅存层在存储系统中主要起扩容作用，即从程序员的角度看，他所使用的存储器的容量和位价接近于辅存，而速度接近于主存。因此从整个存储系统来看，就达到了速度快、容量大、位价低的效果。  
+- 存储系统层次的作用
+  - Cache-主存层
+    - 主要对CPU访存起加速作用
+    - CPU访存速度接近Cache速度
+    - 寻址空间和位价接近主存
+  - 主存-辅存层  
+    - 主要起扩容作用
+    - 程序员使用的存储器容量和位价接近辅存
+    - 速度接近主存
+  - 整体效果
+    - 速度快
+    - 容量大
+    - 位价低
 
-主存与Cache之间的信息调度全部由硬件自动完成。而主存与辅存的信息调度则采用虚拟存储技术实现，即将主存与辅存的一部分通过软/硬结合的技术组成虚拟存储器，程序员可用这个比主存实际空间（物理地址空间）大得多的虚拟地址空间（逻辑地址空间）编程，当程序运行时，再由软/硬件自动配合完成虚拟地址空间与主存实际物理空间的转换。  
+- 层次间信息调度方式
+  - 主存与Cache之间
+    - 全部由硬件自动完成
+  - 主存与辅存之间
+    - 采用虚拟存储技术实现
+    - 通过软/硬结合技术组成虚拟存储器
+    - 程序员可用较大的虚拟地址空间编程
+    - 运行时由软/硬件自动完成虚拟地址到物理地址的转换
 
 2.影响Cache性能的因素有哪些？  
 
-决定Cache系统访存效率重要因素是命中率，它与很多因素有关。1）命中率与映射方式有关，全相联映射方式的命中率最高，直接映射方式的命中率最低。2）命中率与Cache容量有关，显然Cache容量越大，命中率就越高。3）命中率还与主存块（或Cache行）的大小有关，主存块的大小要适中。  
-除上述因素外，系统是采用单级还是采用多级Cache，数据Cache和指令Cache是分离还是合在一起，主存-总线-Cache-CPU之间采用什么架构等，都会影响Cache的总体性能。  
+- 决定Cache系统访存效率重要因素是命中率，它与很多因素有关：
+  - 命中率与映射方式有关
+    - 全相联映射方式的命中率最高
+    - 直接映射方式的命中率最低
+  - 命中率与Cache容量有关
+    - Cache容量越大，命中率就越高
+  - 命中率与主存块（或Cache行）的大小有关
+    - 主存块的大小要适中
+
+- 其他影响Cache总体性能的因素：
+  - 系统是采用单级还是采用多级Cache
+  - 数据Cache和指令Cache是分离还是合在一起
+  - 主存-总线-Cache-CPU之间采用什么架构
 
 3）虚拟存储系统的页面是设置得大一些好还是设置得小一些好？  
 
-页面大小要适中。页面太小时，平均页内剩余空间较小，可节省存储空间，但会使得页表增大，页面太小时也不能充分利用空间局部性来提高命中率：页面太大时，可减少页表空间，但平均页内剩余空间较大，会浪费较多存储空间，页面太大还会使页面调入/调出的时间较长。  
-
-# 常见问题和易混淆知识点  
+- 页面大小要适中
+  - 页面太小的影响
+    - 平均页内剩余空间较小，可节省存储空间
+    - 页表会增大
+    - 不能充分利用空间局部性来提高命中率
+  - 页面太大的影响
+    - 可减少页表空间
+    - 平均页内剩余空间较大，会浪费较多存储空间
+    - 页面调入/调出的时间较长
+#  <span style="color: silver;">常见问题和易混淆知识点  
 
 - 1.Cache行的大小和命中率之间有什么关系？  
 

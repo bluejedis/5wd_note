@@ -1,0 +1,2779 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>总线</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet"
+    href="file:///c:\Users\13550\.vscode\extensions\shd101wyy.markdown-preview-enhanced-0.8.15\crossnote\dependencies\katex\katex.min.css">
+
+
+
+
+
+  <style>
+    pre {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      direction: ltr;
+      text-align: left;
+      white-space: pre;
+      word-spacing: normal;
+      word-break: normal;
+      padding: 1em;
+      margin: .5em 0;
+      overflow: auto;
+      line-height: 1.5;
+      tab-size: 4;
+      hyphens: none;
+      color: #555;
+      background-color: #f0f0f0 !important;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    pre[class*=language-] {
+      padding: 1em
+    }
+
+    code[class*=language-] .token.cdata,
+    code[class*=language-] .token.comment,
+    code[class*=language-] .token.doctype,
+    code[class*=language-] .token.prolog,
+    pre[class*=language-] .token.cdata,
+    pre[class*=language-] .token.comment,
+    pre[class*=language-] .token.doctype,
+    pre[class*=language-] .token.prolog {
+      color: #998;
+      font-style: italic
+    }
+
+    code[class*=language-] .token.punctuation,
+    pre[class*=language-] .token.punctuation {
+      color: #920b2d
+    }
+
+    code[class*=language-] .namespace,
+    pre[class*=language-] .namespace {
+      opacity: .7
+    }
+
+    code[class*=language-] .token.property,
+    pre[class*=language-] .token.property {
+      font-weight: 700;
+      color: #333
+    }
+
+    code[class*=language-] .token.boolean,
+    code[class*=language-] .token.function-name,
+    code[class*=language-] .token.number,
+    pre[class*=language-] .token.boolean,
+    pre[class*=language-] .token.function-name,
+    pre[class*=language-] .token.number {
+      color: #d14
+    }
+
+    code[class*=language-] .token.tag,
+    pre[class*=language-] .token.tag {
+      color: #d14
+    }
+
+    code[class*=language-] .token.symbol,
+    pre[class*=language-] .token.symbol {
+      color: #990073
+    }
+
+    code[class*=language-] .token.selector,
+    pre[class*=language-] .token.selector {
+      color: teal
+    }
+
+    code[class*=language-] .token.attr-name,
+    pre[class*=language-] .token.attr-name {
+      color: #458;
+      font-weight: 700
+    }
+
+    code[class*=language-] .token.string,
+    pre[class*=language-] .token.string {
+      color: #d14
+    }
+
+    code[class*=language-] .token.char,
+    pre[class*=language-] .token.char {
+      color: #606aa1
+    }
+
+    code[class*=language-] .token.url,
+    pre[class*=language-] .token.url {
+      color: #888
+    }
+
+    code[class*=language-] .token.atrule,
+    code[class*=language-] .token.attr-value,
+    code[class*=language-] .token.keyword,
+    pre[class*=language-] .token.atrule,
+    pre[class*=language-] .token.attr-value,
+    pre[class*=language-] .token.keyword {
+      color: #222;
+      font-weight: 700
+    }
+
+    code[class*=language-] .token.function,
+    pre[class*=language-] .token.function {
+      color: #900
+    }
+
+    code[class*=language-] .token.class-name,
+    pre[class*=language-] .token.class-name {
+      text-decoration: underline;
+      color: #606aa1
+    }
+
+    code[class*=language-] .token.variable,
+    pre[class*=language-] .token.variable {
+      color: teal
+    }
+
+    code[class*=language-] .token.bold,
+    code[class*=language-] .token.important,
+    pre[class*=language-] .token.bold,
+    pre[class*=language-] .token.important {
+      font-weight: 700
+    }
+
+    code[class*=language-] .token.italic,
+    pre[class*=language-] .token.italic {
+      font-style: italic
+    }
+
+    code[class*=language-] .token.entity,
+    pre[class*=language-] .token.entity {
+      cursor: help
+    }
+
+    pre[data-line] {
+      position: relative;
+      padding: 1em 0 1em 3em
+    }
+
+    pre[data-line] .line-highlight-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: transparent;
+      display: block;
+      width: 100%
+    }
+
+    pre[data-line] .line-highlight {
+      position: absolute;
+      left: 0;
+      right: 0;
+      padding: inherit 0;
+      margin-top: 1em;
+      background: hsla(24, 20%, 50%, .08);
+      background: linear-gradient(to right, hsla(24, 20%, 50%, .1) 70%, hsla(24, 20%, 50%, 0));
+      pointer-events: none;
+      line-height: inherit;
+      white-space: pre
+    }
+
+    pre[data-line] .line-highlight:before,
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-start);
+      position: absolute;
+      top: .4em;
+      left: .6em;
+      min-width: 1em;
+      padding: 0 .5em;
+      background-color: hsla(24, 20%, 50%, .4);
+      color: #f4f1ef;
+      font: bold 65%/1.5 sans-serif;
+      text-align: center;
+      vertical-align: .3em;
+      border-radius: 999px;
+      text-shadow: none;
+      box-shadow: 0 1px #fff
+    }
+
+    pre[data-line] .line-highlight[data-end]:after {
+      content: attr(data-end);
+      top: auto;
+      bottom: .4em
+    }
+
+    html body {
+      font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #555;
+      background-color: #fff;
+      overflow: initial;
+      box-sizing: border-box;
+      word-wrap: break-word
+    }
+
+    html body>:first-child {
+      margin-top: 0
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5,
+    html body h6 {
+      line-height: 1.2;
+      margin-top: 1em;
+      margin-bottom: 16px;
+      color: #030303
+    }
+
+    html body h1 {
+      font-size: 2.25em;
+      font-weight: 300;
+      padding-bottom: .3em
+    }
+
+    html body h2 {
+      font-size: 1.75em;
+      font-weight: 400;
+      padding-bottom: .3em
+    }
+
+    html body h3 {
+      font-size: 1.5em;
+      font-weight: 500
+    }
+
+    html body h4 {
+      font-size: 1.25em;
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1.1em;
+      font-weight: 600
+    }
+
+    html body h6 {
+      font-size: 1em;
+      font-weight: 600
+    }
+
+    html body h1,
+    html body h2,
+    html body h3,
+    html body h4,
+    html body h5 {
+      font-weight: 600
+    }
+
+    html body h5 {
+      font-size: 1em
+    }
+
+    html body h6 {
+      color: #7e7e7e
+    }
+
+    html body strong {
+      color: #030303
+    }
+
+    html body del {
+      color: #7e7e7e
+    }
+
+    html body a:not([href]) {
+      color: inherit;
+      text-decoration: none
+    }
+
+    html body a {
+      color: #08c;
+      text-decoration: none
+    }
+
+    html body a:hover {
+      color: #00a3f5;
+      text-decoration: none
+    }
+
+    html body img {
+      max-width: 100%
+    }
+
+    html body>p {
+      margin-top: 0;
+      margin-bottom: 16px;
+      word-wrap: break-word
+    }
+
+    html body>ol,
+    html body>ul {
+      margin-bottom: 16px
+    }
+
+    html body ol,
+    html body ul {
+      padding-left: 2em
+    }
+
+    html body ol.no-list,
+    html body ul.no-list {
+      padding: 0;
+      list-style-type: none
+    }
+
+    html body ol ol,
+    html body ol ul,
+    html body ul ol,
+    html body ul ul {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body li {
+      margin-bottom: 0
+    }
+
+    html body li.task-list-item {
+      list-style: none
+    }
+
+    html body li>p {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    html body .task-list-item-checkbox {
+      margin: 0 .2em .25em -1.8em;
+      vertical-align: middle
+    }
+
+    html body .task-list-item-checkbox:hover {
+      cursor: pointer
+    }
+
+    html body blockquote {
+      margin: 16px 0;
+      font-size: inherit;
+      padding: 0 15px;
+      color: #7e7e7e;
+      background-color: #f0f0f0;
+      border-left: 4px solid #d6d6d6
+    }
+
+    html body blockquote>:first-child {
+      margin-top: 0
+    }
+
+    html body blockquote>:last-child {
+      margin-bottom: 0
+    }
+
+    html body hr {
+      height: 4px;
+      margin: 32px 0;
+      background-color: #d6d6d6;
+      border: 0 none
+    }
+
+    html body table {
+      margin: 10px 0 15px 0;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: block;
+      width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all
+    }
+
+    html body table th {
+      font-weight: 700;
+      color: #030303
+    }
+
+    html body table td,
+    html body table th {
+      border: 1px solid #d6d6d6;
+      padding: 6px 13px
+    }
+
+    html body dl {
+      padding: 0
+    }
+
+    html body dl dt {
+      padding: 0;
+      margin-top: 16px;
+      font-size: 1em;
+      font-style: italic;
+      font-weight: 700
+    }
+
+    html body dl dd {
+      padding: 0 16px;
+      margin-bottom: 16px
+    }
+
+    html body code {
+      font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+      font-size: .85em;
+      color: #030303;
+      background-color: #f0f0f0;
+      border-radius: 3px;
+      padding: .2em 0
+    }
+
+    html body code::after,
+    html body code::before {
+      letter-spacing: -.2em;
+      content: '\00a0'
+    }
+
+    html body pre>code {
+      padding: 0;
+      margin: 0;
+      word-break: normal;
+      white-space: pre;
+      background: 0 0;
+      border: 0
+    }
+
+    html body .highlight {
+      margin-bottom: 16px
+    }
+
+    html body .highlight pre,
+    html body pre {
+      padding: 1em;
+      overflow: auto;
+      line-height: 1.45;
+      border: #d6d6d6;
+      border-radius: 3px
+    }
+
+    html body .highlight pre {
+      margin-bottom: 0;
+      word-break: normal
+    }
+
+    html body pre code,
+    html body pre tt {
+      display: inline;
+      max-width: initial;
+      padding: 0;
+      margin: 0;
+      overflow: initial;
+      line-height: inherit;
+      word-wrap: normal;
+      background-color: transparent;
+      border: 0
+    }
+
+    html body pre code:after,
+    html body pre code:before,
+    html body pre tt:after,
+    html body pre tt:before {
+      content: normal
+    }
+
+    html body blockquote,
+    html body dl,
+    html body ol,
+    html body p,
+    html body pre,
+    html body ul {
+      margin-top: 0;
+      margin-bottom: 16px
+    }
+
+    html body kbd {
+      color: #030303;
+      border: 1px solid #d6d6d6;
+      border-bottom: 2px solid #c7c7c7;
+      padding: 2px 4px;
+      background-color: #f0f0f0;
+      border-radius: 3px
+    }
+
+    @media print {
+      html body {
+        background-color: #fff
+      }
+
+      html body h1,
+      html body h2,
+      html body h3,
+      html body h4,
+      html body h5,
+      html body h6 {
+        color: #030303;
+        page-break-after: avoid
+      }
+
+      html body blockquote {
+        color: #7e7e7e
+      }
+
+      html body pre {
+        page-break-inside: avoid
+      }
+
+      html body table {
+        display: table
+      }
+
+      html body img {
+        display: block;
+        max-width: 100%;
+        max-height: 100%
+      }
+
+      html body code,
+      html body pre {
+        word-wrap: break-word;
+        white-space: pre
+      }
+    }
+
+    .markdown-preview {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box
+    }
+
+    .markdown-preview ul {
+      list-style: disc
+    }
+
+    .markdown-preview ul ul {
+      list-style: circle
+    }
+
+    .markdown-preview ul ul ul {
+      list-style: square
+    }
+
+    .markdown-preview ol {
+      list-style: decimal
+    }
+
+    .markdown-preview ol ol,
+    .markdown-preview ul ol {
+      list-style-type: lower-roman
+    }
+
+    .markdown-preview ol ol ol,
+    .markdown-preview ol ul ol,
+    .markdown-preview ul ol ol,
+    .markdown-preview ul ul ol {
+      list-style-type: lower-alpha
+    }
+
+    .markdown-preview .newpage,
+    .markdown-preview .pagebreak {
+      page-break-before: always
+    }
+
+    .markdown-preview pre.line-numbers {
+      position: relative;
+      padding-left: 3.8em;
+      counter-reset: linenumber
+    }
+
+    .markdown-preview pre.line-numbers>code {
+      position: relative
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows {
+      position: absolute;
+      pointer-events: none;
+      top: 1em;
+      font-size: 100%;
+      left: 0;
+      width: 3em;
+      letter-spacing: -1px;
+      border-right: 1px solid #999;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span {
+      pointer-events: none;
+      display: block;
+      counter-increment: linenumber
+    }
+
+    .markdown-preview pre.line-numbers .line-numbers-rows>span:before {
+      content: counter(linenumber);
+      color: #999;
+      display: block;
+      padding-right: .8em;
+      text-align: right
+    }
+
+    .markdown-preview .mathjax-exps .MathJax_Display {
+      text-align: center !important
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .status {
+      display: none
+    }
+
+    .markdown-preview:not([data-for=preview]) .code-chunk .output-div {
+      margin-bottom: 16px
+    }
+
+    .markdown-preview .md-toc {
+      padding: 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,
+    .markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    .markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+
+    .scrollbar-style::-webkit-scrollbar {
+      width: 8px
+    }
+
+    .scrollbar-style::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    .scrollbar-style::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 0;
+      overflow: auto
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+      position: relative;
+      top: 0;
+      min-height: 100vh
+    }
+
+    @media screen and (min-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em calc(50% - 457px + 2em)
+      }
+    }
+
+    @media screen and (max-width:914px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode]) .markdown-preview {
+        font-size: 14px !important;
+        padding: 1em
+      }
+    }
+
+    @media print {
+      html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+        display: none
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn {
+      position: fixed;
+      bottom: 8px;
+      left: 8px;
+      font-size: 28px;
+      cursor: pointer;
+      color: inherit;
+      z-index: 99;
+      width: 32px;
+      text-align: center;
+      opacity: .4
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn {
+      opacity: 1
+    }
+    /*
+sidebar toc
+*/
+html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: auto;
+      width: 300px;
+      height: 100%;
+      padding: 32px 0 48px 0;
+      font-size: 14px;
+      box-shadow: 0 0 4px rgba(150, 150, 150, .33);
+      box-sizing: border-box;
+      overflow: auto;
+      background-color: inherit
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar {
+      width: 8px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track {
+      border-radius: 10px;
+      background-color: transparent
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(150, 150, 150, .66);
+      border: 4px solid rgba(150, 150, 150, .66);
+      background-clip: content-box
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a {
+      text-decoration: none
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc {
+      padding: 0 16px
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link {
+      display: inline;
+      padding: .25rem 0
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p {
+      display: inline
+    }
+
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link {
+      font-weight: 800
+    }
+/*toc对应更改*/
+    html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+      right: 300px;
+      left: 0;
+      width: calc(100% - 300px);
+      padding: 2em 2em 2em 0;
+     /* padding: 2em calc(50% - 457px - 300px / 2);*/
+      margin: 0;
+      box-sizing: border-box
+    }
+
+    @media screen and (max-width:1274px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        padding: 2em
+      }
+    }
+
+    @media screen and (max-width:450px) {
+      html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview {
+        width: 100%
+      }
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview {
+      left: 50%;
+      transform: translateX(-50%)
+    }
+
+    html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc {
+      display: none
+    }
+
+    /* Please visit the URL below for more information: */
+    /*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+    .markdown-preview.markdown-preview {
+      /*below is newsprint_mixed_solar.css */
+      /* don't work*/
+    }
+  </style>
+  <!-- The content below will be included at the end of the <head> element. -->
+  <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+      // your code here
+    });
+  </script>
+</head>
+
+<body for="html-export">
+
+
+  <div class="crossnote markdown-preview  ">
+
+    <span style="color: silver;">
+      <h1 id="span-stylecolor-silverabove"><span style="color: silver;">above </span></h1>
+      <h2 id="span-stylecolor-silver考纲内容"><span style="color: silver;">【考纲内容】 </span></h2>
+      <p>总线的基本概念总线的组成及性能指标总线事务和定时</p>
+      <h2 id="span-stylecolor-silver复习提示"><span style="color: silver;">【复习提示】 </span></h2>
+      <p>本章的知识点较少，通常以选择题的形式出现，特别是总线的特点、猝发传输方式、性能指标、定时方式及常见的总线标准等。总线带宽的计算也可能结合其他章节出综合题。</p>
+      <p>在学习本章时，请读者思考以下问题</p>
+      <p>1）引入总线结构有什么好处？2）引入总线结构会导致什么问题？如何解决？请读者在学习本章的过程中寻找答案，本章末尾会给出参考答案。</p>
+      <h1 id="span-stylecolor-gray概述span"><span style="color: gray;">概述</span> </h1>
+      <ul>
+        <li>早期计算机的连接方式
+          <ul>
+            <li>各部件之间通过单独连线互连</li>
+            <li>这种方式称为分散连接</li>
+          </ul>
+        </li>
+        <li>发展到总线连接
+          <ul>
+            <li>原因：I/O设备种类和数量增多</li>
+            <li>目的：更好地解决I/O设备和主机之间连接的灵活性</li>
+          </ul>
+        </li>
+        <li>进一步发展
+          <ul>
+            <li>提出各类总线标准</li>
+            <li>目的：简化设计</li>
+          </ul>
+        </li>
+      </ul>
+      <ul>
+        <h2 id="span-stylecolor-gray概念span"><span style="color: gray;">概念</span> </h2>
+        <ul>
+          <h3 id="span-stylecolor-graydefine"><span style="color: gray;">define </span></h3>
+          <ul>
+            <li>一组能为多个部件分时和共享的 公共 <span style="color: LightSkyBlue;">信息</span><span style="color: green;">传送</span>
+              <span style="color: Gold;">线路</span></li>
+            <li><span style="color: silver;">symbol:</span></li>
+          </ul>
+          <ul>
+            <h4 id="span-stylecolor-limegreen分时span"><span style="color: LimeGreen;">分时</span>： </h4>
+            <ul>
+              <li><span style="color: silver;">same moment</span> only 1部件--<span style="color: green;">发送</span><span
+                  style="color: LightSkyBlue;">信息</span>--&gt;bus</li>
+            </ul>
+            <h4 id="span-stylecolor-gold共享span"><span style="color: Gold;">共享</span>： </h4>
+            <ul>
+              <li>bus can 挂接多个部件
+                <ul>
+                  <li><span style="color: silver;">部件s之间 互相交换信息</span></li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+          <h3 id="span-stylecolor-graybusspan-stylecolor-lightskyblue设备span"><span style="color: gray;">bus<span
+                style="color: LightSkyBlue;">设备</span> </span></h3>
+          <ul>
+            <li><span style="color: gray;">按对bus控制功能分</span>:</li>
+          </ul>
+          <ul>
+            <h4 id="span-stylecolor-orange主span"><span style="color: orange;">主</span>~： </h4>
+            <ul>
+              <li>发出总线请求且获得总线控制权的设备</li>
+            </ul>
+            <h4 id="span-stylecolor-limegreen从span"><span style="color: LimeGreen;">从</span>~： </h4>
+            <ul>
+              <li><span style="color: gray;">only can</span>响应主~发来的总线命令</li>
+            </ul>
+          </ul>
+          <h3 id="span-stylecolor-gold特性span"><span style="color: Gold;">特性</span> </h3>
+          <ul>
+            <li>机械特性（尺寸、形状）</li>
+            <li>电气~（传输方向和有效的电平范围）</li>
+            <li>功能~（每根传输线的功能）</li>
+            <li>时间~（信号和时序的关系）</li>
+          </ul>
+        </ul>
+        <h2 id="span-stylecolor-green分类"><span style="color: green;">分类 </span></h2>
+        <ul>
+          <h3 id="span-stylecolor-gold功能span-span-stylecolor-silver层次"><span style="color: Gold;">功能</span> <span
+              style="color: silver;">层次 </span></h3>
+          <blockquote>
+            <p>pro： 总线相关的概念与特点（2016、2017）</p>
+          </blockquote>
+          <ul>
+            <h4 id="span-stylecolor-silver片内"><span style="color: silver;">片内~ </span></h4>
+            <ul>
+              <li>cpu芯片内部bus
+                <ul>
+                  <li>各寄存器之间 &amp; 寄存器与ALU 的连接</li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-lightskyblue系统spanspan-stylecolor-grayspan"><span
+                style="color: LightSkyBlue;">系统</span><span style="color: gray;">~</span> </h4>
+            <ul>
+              <li><span style="color: gray;">computer system</span> 内各<u>功能部件</u>之间相互连接</li>
+              <li>按传输信息内容分为:
+                <blockquote>
+                  <p>pro：数据总线上传输的内容（2011）</p>
+                </blockquote>
+              </li>
+            </ul>
+            <ul>
+              <h5 id="span-stylecolor-limegreen数据span-span-stylecolor-silverbus"><span
+                  style="color: LimeGreen;">数据</span> <span style="color: silver;">bus </span></h5>
+              <ul>
+                <li>用途：传输数据、指令和中断类型号等</li>
+                <li>特点：双向传输</li>
+                <li>位数：反映一次能传送的数据位数</li>
+              </ul>
+              <h5 id="span-stylecolor-lightskyblue地址span-span-stylecolor-silver"><span
+                  style="color: LightSkyBlue;">地址</span> <span style="color: silver;">~ </span></h5>
+              <ul>
+                <li>用途：指出数据源或目的地址</li>
+                <li>特点：单向传输</li>
+                <li>位数：反映最大寻址空间</li>
+              </ul>
+              <h5 id="span-stylecolor-orange控制span-span-stylecolor-silver"><span style="color: orange;">控制</span> <span
+                  style="color: silver;">~ </span></h5>
+              <ul>
+                <li>用途：传输各种命令、反馈和定时信号</li>
+                <li>典型信号：时钟、复位、总线请求/充许等</li>
+              </ul>
+              <p>注意区分：</p>
+              <ul>
+                <li>数据通路：各功能部件通过数据总线连接形成的数据传输路径</li>
+                <li>数据总线：数据传输的媒介</li>
+              </ul>
+            </ul>
+            <h4 id="span-stylecolor-silverio-"><span style="color: silver;">I/O ~ </span></h4>
+            <ul>
+              <li>用途：连接中低速I/O设备</li>
+              <li>特点：通过I/O接口与系统总线相连</li>
+              <li>目的：将低速设备与高速总线分离</li>
+              <li>例如：USB、PCI总线</li>
+            </ul>
+            <h4 id="span-stylecolor-gold通信span-span-stylecolor-silver"><span style="color: Gold;">通信</span> <span
+                style="color: silver;">~ </span></h4>
+            <ul>
+              <li>又称外部总线</li>
+              <li>用途：计算机系统之间或与其他系统的信息传送</li>
+            </ul>
+          </ul>
+          <h3 id="span-stylecolor-lightskyblue时序span-span-stylecolor-gold控制span-stylecolor-silver方式"><span
+              style="color: LightSkyBlue;">时序</span> <span style="color: Gold;">控制<span style="color: silver;">方式
+              </span></span></h3>
+          <ul>
+            <h4 id="span-stylecolor-silverspan-stylecolor-lightskyblue同步spanbus"><span style="color: silver;"><span
+                  style="color: LightSkyBlue;">同步</span>bus </span></h4>
+            <ul>
+              <li>使用统一时钟进行同步</li>
+              <li>在规定时钟节拍内进行规定总线操作</li>
+            </ul>
+            <h4 id="span-stylecolor-slateblue异步span-span-stylecolor-silver"><span style="color: SlateBlue;">异步</span>
+              <span style="color: silver;">~ </span></h4>
+            <ul>
+              <li>无统一时钟</li>
+              <li>使用信号握手方式协调</li>
+              <li>总线操作时序不固定</li>
+            </ul>
+          </ul>
+          <h3 id="span-stylecolor-lightskyblue数据spanspan-stylecolor-green传输span-span-stylecolor-silver方式"><span
+              style="color: LightSkyBlue;">数据</span><span style="color: green;">传输</span> <span
+              style="color: silver;">方式 </span></h3>
+          <ul>
+            <h4 id="span-stylecolor-silverspan-stylecolor-gold串span行span-stylecolor-graybusspan"><span
+                style="color: silver;"><span style="color: Gold;">串</span>行<span style="color: gray;">bus</span> </span>
+            </h4>
+            <ul>
+              <li>结构：一条双向或两条单向数据线</li>
+              <li>传输：按比特位串行顺序</li>
+              <li>特点：
+                <ul>
+                  <li>效率低于并行总线</li>
+                  <li>适合长距离通信</li>
+                  <li>要求不高</li>
+                </ul>
+              </li>
+            </ul>
+            <h4 id="span-stylecolor-limegreen并行span-span-stylecolor-silver"><span style="color: LimeGreen;">并行</span>
+              <span style="color: silver;">~ </span></h4>
+            <ul>
+              <li>结构：多条双向数据线</li>
+              <li>传输：多比特位同时传输</li>
+              <li>特点：
+                <ul>
+                  <li>效率较高</li>
+                  <li>存在延迟和干扰问题</li>
+                  <li>适合近距离通信</li>
+                </ul>
+              </li>
+            </ul>
+            <blockquote>
+              <p>attention</p>
+            </blockquote>
+            <ul>
+              <li>并行总线并不一定总比串行总线快，它们适合不同的场景
+                <ul>
+                  <li>并行总线特点：
+                    <ul>
+                      <li>多个数据位同时传输</li>
+                      <li>需要考虑数据的协同性</li>
+                      <li>存在线路之间的相互干扰</li>
+                      <li>工作频率无法持续提高</li>
+                    </ul>
+                  </li>
+                  <li>串行总线特点：
+                    <ul>
+                      <li>可通过不断提高工作频率来提高传输速度</li>
+                      <li>最终速度可能超越并行总线</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </ul>
+        </ul>
+        <h2 id="span-stylecolor-silver系统总线的-span-stylecolor-limegreen结构span"><span style="color: silver;">系统总线的 <span
+              style="color: LimeGreen;">结构</span> </span></h2>
+        <ul>
+          <h3 id="span-stylecolor-silver按结构"><span style="color: silver;">按结构 </span></h3>
+          <h4 id="span-stylecolor-silverspan-stylecolor-lightskyblue单span总线结构"><span style="color: silver;"><span
+                style="color: LightSkyBlue;">单</span>总线结构 </span></h4>
+          <ul>
+            <li>基本特征：
+              <ul>
+                <li>CPU、主存、I/O设备都挂在一组总线上</li>
+                <li>允许设备间直接交换信息</li>
+                <li>无需中间设备干预</li>
+              </ul>
+            </li>
+            <li>注意事项：
+              <ul>
+                <li><s>单总线不是指只有一根信号线</s></li>
+                <li>可分为地址总线、数据总线和控制总线</li>
+              </ul>
+            </li>
+          </ul>
+          <p><img
+              src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a8b75e0bcbcbe7c1e22d71e2fa26222c4fe36d1dfe9f77fe38f2dbbcd9c3075a.jpg"
+              alt=""><br>
+            图6.1单总线结构</p>
+          <ul>
+            <li>优点：
+              <ul>
+                <li>结构简单</li>
+                <li>成本低</li>
+                <li>易于接入新设备</li>
+              </ul>
+            </li>
+            <li>缺点：
+              <ul>
+                <li>带宽低</li>
+                <li>负载重</li>
+                <li>只能争用唯一总线</li>
+                <li>不支持并发传送</li>
+              </ul>
+            </li>
+          </ul>
+          <h4 id="span-stylecolor-silverspan-stylecolor-green双span"><span style="color: silver;"><span
+                style="color: green;">双</span>~ </span></h4>
+          <ul>
+            <li>
+              <p>组成：</p>
+              <ul>
+                <li>主存总线：<u>CPU</u>、<u>主存</u>和<u>通道</u> 间传送数据</li>
+                <li>I/O总线：外部设备与通道间传送数据</li>
+              </ul>
+            </li>
+            <li>
+              <p>优：</p>
+              <ul>
+                <li>实现存储器总线和I/O总线分离</li>
+                <li>低速I/O设备从单总线分离</li>
+              </ul>
+            </li>
+            <li>
+              <p>缺：</p>
+              <ul>
+                <li>需要增加通道等硬件设备</li>
+              </ul>
+            </li>
+          </ul>
+          <h4 id="span-stylecolor-silverspan-stylecolor-orange三span"><span style="color: silver;"><span
+                style="color: orange;">三</span>~ </span></h4>
+          <ul>
+            <li>组成：
+              <ul>
+                <li><span style="color: orange;">主存</span>总线：CPU和内存间传送信息</li>
+                <li><span style="color: green;">I/O</span>~：CPU和外设间通信</li>
+                <li><span style="color: DarkRed;">DMA</span>~：内存和高速外设间直接传送数据</li>
+              </ul>
+            </li>
+          </ul>
+          <p><img
+              src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/d7065d4dc41e8445bd893d3f0057b7a4fbb7dfb06e816e4830f2970c62d12561.jpg"
+              alt=""><br>
+            图6.2双总线结构</p>
+          <ul>
+            <li>优点：
+              <ul>
+                <li>提高I/O设备性能</li>
+                <li>提高系统吞吐量</li>
+              </ul>
+            </li>
+            <li>缺点：
+              <ul>
+                <li>任意时刻only use 1 总线</li>
+                <li>系统工作效率较低</li>
+              </ul>
+            </li>
+          </ul>
+        </ul>
+        <h3 id="span-stylecolor-silver常见bus-span-stylecolor-gold标准span"><span style="color: silver;">常见bus <span
+              style="color: Gold;">标准</span> </span></h3>
+        <blockquote>
+          <p>pro：总线标准的英文缩写（2010）</p>
+        </blockquote>
+        <ul>
+          <h4 id="span-stylecolor-lightskyblue系统spanspan-stylecolor-silver总线"><span
+              style="color: LightSkyBlue;">系统</span><span style="color: silver;">总线 </span></h4>
+          <ul>
+            <h5 id="span-stylecolor-silverspan-stylecolor-green并行spanbus"><span style="color: silver;"><span
+                  style="color: green;">并行</span>bus </span></h5>
+            <ul>
+              <h6 id="span-stylecolor-silverspan-stylecolor-greenispansa-industry-standard-architecture"><span
+                  style="color: silver;"><span style="color: green;">I</span>SA (Industry Standard Architecture) </span>
+              </h6>
+              <ul>
+                <li>工业标准体系结构</li>
+                <li>特点：
+                  <ul>
+                    <li>最早出现的系统总线</li>
+                    <li>传输速率低</li>
+                    <li>CPU占用率高</li>
+                    <li>占用硬件中断资源</li>
+                  </ul>
+                </li>
+              </ul>
+              <h6
+                id="span-stylecolor-silverspan-stylecolor-lightskyblueespanisa-extended-industry-standard-architecture">
+                <span style="color: silver;"><span style="color: LightSkyBlue;">E</span>ISA (Extended Industry Standard
+                  Architecture) </span></h6>
+              <ul>
+                <li>扩展的ISA</li>
+                <li>特点：
+                  <ul>
+                    <li>对ISA完全兼容</li>
+                    <li>支持突发传送</li>
+                  </ul>
+                </li>
+              </ul>
+              <blockquote>
+                <p>pro：区分设备总线和局部总线（2013）</p>
+              </blockquote>
+            </ul>
+          </ul>
+          <h4 id="span-stylecolor-orange局部span"><span style="color: orange;">局部</span> </h4>
+          <ul>
+            <h5 id="span-stylecolor-silverspan-stylecolor-green并行spanbus-1"><span style="color: silver;"><span
+                  style="color: green;">并行</span>bus </span></h5>
+            <ul>
+              <h6
+                id="span-stylecolor-silverspan-stylecolor-lightskybluevspanspan-stylecolor-deepskyblueespansa-video-electronics-standards-association">
+                <span style="color: silver;"><span style="color: LightSkyBlue;">V</span><span
+                    style="color: deepskyblue;">E</span>SA (Video Electronics Standards Association) </span></h6>
+              <ul>
+                <li>视频电子标准协会</li>
+                <li>特点：
+                  <ul>
+                    <li>32位局部总线</li>
+                    <li>针对多媒体PC高速传送需求</li>
+                  </ul>
+                </li>
+              </ul>
+              <h6 id="span-stylecolor-silverpspan-stylecolor-graycspani-peripheral-component-interconnect"><span
+                  style="color: silver;">P<span style="color: gray;">C</span>I (Peripheral Component Interconnect)
+                </span></h6>
+              <ul>
+                <li>外部设备互连</li>
+                <li>应用：显卡、声卡、网卡等</li>
+                <li>特点：
+                  <ul>
+                    <li>高速外围总线</li>
+                    <li>与处理器时钟频率无关</li>
+                    <li>支持即插即用</li>
+                  </ul>
+                </li>
+              </ul>
+              <h6 id="span-stylecolor-silveragp-accelerated-graphics-port"><span style="color: silver;">AGP (Accelerated
+                  Graphics Port) </span></h6>
+              <ul>
+                <li>加速图形接口</li>
+                <li>用途：连接主存和图形卡</li>
+              </ul>
+            </ul>
+            <h5 id="span-stylecolor-silver-span-stylecolor-gold串spanspan-stylecolor-green行spanbus"><span
+                style="color: silver;"> <span style="color: Gold;">串</span><span style="color: green;">行</span>bus
+              </span></h5>
+            <ul>
+              <h6 id="span-stylecolor-silverpci--span-stylecolor-goldespan-pci-express"><span
+                  style="color: silver;">PCI- <span style="color: Gold;">E</span> (PCI-Express) </span></h6>
+              <ul>
+                <li>特点：
+                  <ul>
+                    <li>高速串行双通道传输</li>
+                    <li>支持双向传输模式</li>
+                    <li>支持全双工模式</li>
+                  </ul>
+                </li>
+              </ul>
+              <blockquote>
+                <p>pro：PCI-E总线的特点（2017）</p>
+              </blockquote>
+            </ul>
+          </ul>
+          <br>
+          <h4 id="span-stylecolor-deepskyblue设备span"><span style="color: deepskyblue;">设备</span> </h4>
+          <ul>
+            <h5 id="span-stylecolor-silverspan-stylecolor-gold串spanspan-stylecolor-green行spanbus"><span
+                style="color: silver;"><span style="color: Gold;">串</span><span style="color: green;">行</span>bus
+              </span></h5>
+            <ul>
+              <h6 id="span-stylecolor-silverrs-232c"><span style="color: silver;">RS-232C </span></h6>
+              <ul>
+                <li>用途：数据终端设备和数据通信设备间的标准接口</li>
+              </ul>
+              <h6 id="span-stylecolor-silverusb-universal-serial-bus"><span style="color: silver;">USB (Universal Serial
+                  Bus) </span></h6>
+              <ul>
+                <li>通用串行总线</li>
+                <li>特点：
+                  <ul>
+                    <li>即插即用</li>
+                    <li>热插拔</li>
+                    <li>强连接能力</li>
+                  </ul>
+                </li>
+              </ul>
+              <blockquote>
+                <p>pro：USB总线的特点（2012）</p>
+              </blockquote>
+              <h6 id="span-stylecolor-silversata-serial-advanced-technology-attachment"><span
+                  style="color: silver;">SATA (Serial Advanced Technology Attachment) </span></h6>
+              <ul>
+                <li>串行高级技术附件</li>
+                <li>用途：串行硬件驱动器接口</li>
+              </ul>
+            </ul>
+            <h3 id="span-stylecolor-silverspan-stylecolor-green并行spanbus-2"><span style="color: silver;"><span
+                  style="color: green;">并行</span>bus </span></h3>
+            <ul>
+              <h6 id="span-stylecolor-silverpcmcia"><span style="color: silver;">PCMCIA </span></h6>
+              <ul>
+                <li>用途：笔记本电脑接口标准</li>
+                <li>特点：即插即用</li>
+              </ul>
+              <h6 id="span-stylecolor-silveride-integrated-drive-electronics"><span style="color: silver;">IDE
+                  (Integrated Drive Electronics) </span></h6>
+              <ul>
+                <li>集成设备电路</li>
+                <li>又称ATA</li>
+                <li>用途：连接硬盘和光驱</li>
+              </ul>
+              <h6 id="span-stylecolor-silverscsi-small-computer-system-interface"><span style="color: silver;">SCSI
+                  (Small Computer System Interface) </span></h6>
+              <ul>
+                <li>小型计算机系统接口</li>
+                <li>用途：计算机和周边设备间接口</li>
+              </ul>
+              <br>
+            </ul>
+          </ul>
+        </ul>
+        <h2 id="span-stylecolor-orange性能span-stylecolor-lightskyblue指标span"><span style="color: orange;">性能<span
+              style="color: LightSkyBlue;">指标</span> </span></h2>
+        <ul>
+          <h3 id="span-stylecolor-silverspan-stylecolor-lightskyblue时钟span相关"><span style="color: silver;"><span
+                style="color: LightSkyBlue;">时钟</span>相关 </span></h3>
+          <ul>
+            <h4 id="span-stylecolor-graybus时钟spancolordeepskybluet"><span style="color: gray;">bus时钟</span><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                      <mrow>
+                        <mstyle mathcolor="deepskyblue">
+                          <mi>T</mi>
+                        </mstyle>
+                      </mrow>
+                      <annotation encoding="application/x-tex">\color{deepskyblue}T</annotation>
+                    </semantics>
+                  </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                      style="height:0.6833em;"></span><span class="mord mathnormal"
+                      style="margin-right:0.13889em;color:deepskyblue;">T</span></span></span></span> </h4>
+            <ul>
+              <li>即机器的时钟周期
+                <ul>
+                  <li>计算机有一个统一的时钟，以控制整个计算机的各个部件</li>
+                </ul>
+              </li>
+              <li>总线也要受此时钟的控制</li>
+            </ul>
+            <h4 id="colororangef">..<span class="katex"><span class="katex-mathml"><math
+                    xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                      <mrow>
+                        <mstyle mathcolor="orange">
+                          <mi>f</mi>
+                        </mstyle>
+                      </mrow>
+                      <annotation encoding="application/x-tex">\color{orange}{f}</annotation>
+                    </semantics>
+                  </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                      style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"
+                      style="color:orange;"><span class="mord mathnormal"
+                        style="margin-right:0.10764em;color:orange;">f</span></span></span></span></span> </h4>
+            <ul>
+              <li>即机器的时钟频率</li>
+              <li><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mi>f</mi>
+                          <mo>=</mo>
+                          <mn>1</mn>
+                          <mi mathvariant="normal">/</mi>
+                          <mi>T</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">f=1/T</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal"
+                        style="margin-right:0.10764em;">f</span><span class="mspace"
+                        style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace"
+                        style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut"
+                        style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1/</span><span
+                        class="mord mathnormal" style="margin-right:0.13889em;">T</span></span></span></span></li>
+            </ul>
+          </ul>
+          <h3 id="span-stylecolor-silverspan-stylecolor-green传输span相关"><span style="color: silver;"><span
+                style="color: green;">传输</span>相关 </span></h3>
+          <ul>
+            <h4 id="span-stylecolor-graybusspan-stylecolor-green传输spancolordeepskybluet"><span
+                style="color: gray;">bus<span style="color: green;">传输</span><span class="katex"><span
+                    class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mstyle mathcolor="deepskyblue">
+                            <mi>T</mi>
+                          </mstyle>
+                        </mrow>
+                        <annotation encoding="application/x-tex">\color{deepskyblue}T</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.6833em;"></span><span class="mord mathnormal"
+                        style="margin-right:0.13889em;color:deepskyblue;">T</span></span></span></span> </span></h4>
+            <ul>
+              <li>指一次总线操作所需的时间</li>
+              <li>包括:
+                <ul>
+                  <li>申请阶段</li>
+                  <li>寻址阶段</li>
+                  <li>传输阶段</li>
+                  <li>结束阶段</li>
+                </ul>
+              </li>
+              <li>通常由若干总线时钟周期构成</li>
+            </ul>
+            <h4 id="span-stylecolor-lightskyblue工作spancolororangef">..<span style="color: LightSkyBlue;">工作</span><span
+                class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                      <mrow>
+                        <mstyle mathcolor="orange">
+                          <mi>f</mi>
+                        </mstyle>
+                      </mrow>
+                      <annotation encoding="application/x-tex">\color{orange}{f}</annotation>
+                    </semantics>
+                  </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                      style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord"
+                      style="color:orange;"><span class="mord mathnormal"
+                        style="margin-right:0.10764em;color:orange;">f</span></span></span></span></span> </h4>
+            <ul>
+              <li>总线上各种操作的频率，为总线周期的倒数</li>
+              <li>实际上指1秒内传送几次数据</li>
+              <li>若总线周期 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mo>=</mo>
+                          <mi>N</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">=N</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.3669em;"></span><span class="mrel">=</span><span class="mspace"
+                        style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut"
+                        style="height:0.6833em;"></span><span class="mord mathnormal"
+                        style="margin-right:0.10903em;">N</span></span></span></span> 个时钟周期，则总线的工作频率 <span
+                  class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mo>=</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">=</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.3669em;"></span><span class="mrel">=</span></span></span></span> 时钟频率/N</li>
+              <li>若一个时钟周期可以传送 <span class="katex"><span class="katex-mathml"><math
+                      xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mi>K</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">K</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.6833em;"></span><span class="mord mathnormal"
+                        style="margin-right:0.07153em;">K</span></span></span></span> 次数据，则总线工作频率是总线时钟频率的 <span
+                  class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mi>K</mi>
+                        </mrow>
+                        <annotation encoding="application/x-tex">K</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.6833em;"></span><span class="mord mathnormal"
+                        style="margin-right:0.07153em;">K</span></span></span></span> 倍</li>
+            </ul>
+          </ul>
+          <h3 id="span-stylecolor-silverspan-stylecolor-deepskyblue物理span特性"><span style="color: silver;"><span
+                style="color: deepskyblue;">物理</span>特性 </span></h3>
+          <ul>
+            <h4 id="span-stylecolor-graybusspan-stylecolor-deepskyblue宽度span"><span style="color: gray;">bus<span
+                  style="color: deepskyblue;">宽度</span> </span></h4>
+            <ul>
+              <li>也称总线位宽</li>
+              <li>是总线上能够同时传输的数据位数</li>
+              <li>通常指数据总线的根数，如32根称为32位总线</li>
+            </ul>
+            <blockquote>
+              <p>pro：总线带宽的相关计算（2009、2013、2014、2019、2020）</p>
+            </blockquote>
+            <h4 id="span-stylecolor-green带spanspan-stylecolor-lightskyblue宽span"><span
+                style="color: green;">带</span><span style="color: LightSkyBlue;">宽</span> </h4>
+            <ul>
+              <li>单位时间内总线上最多可传输数据的位数</li>
+              <li>通常用每秒传送信息的字节数来衡量，单位可用字节/秒（B/s）表示</li>
+              <li>计算公式：总线带宽 <span class="katex"><span class="katex-mathml"><math
+                      xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mo>=</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">=</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:0.3669em;"></span><span class="mrel">=</span></span></span></span> 总线工作频率 <span
+                  class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                      <semantics>
+                        <mrow>
+                          <mo>×</mo>
+                          <mo stretchy="false">(</mo>
+                        </mrow>
+                        <annotation encoding="application/x-tex">\times(</annotation>
+                      </semantics>
+                    </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                        style="height:1em;vertical-align:-0.25em;"></span><span class="mord">×</span><span
+                        class="mopen">(</span></span></span></span> (总线宽度/8）</li>
+            </ul>
+            <h4 id="span-stylecolor-green复用span"><span style="color: green;">复用</span> </h4>
+            <ul>
+              <li>一种信号线在不同的时间传输不同的信息</li>
+              <li>例如：地址/数据线复用</li>
+              <li>优点：使用较少的线传输更多的信息，节省空间和成本</li>
+            </ul>
+            <h4 id="span-stylecolor-silver信号-span-stylecolor-gold线spanspan-stylecolor-limegreen数"><span
+                style="color: silver;">信号 <span style="color: Gold;">线</span><span style="color: LimeGreen;">数
+                </span></span></h4>
+            <ul>
+              <li>包含：
+                <ul>
+                  <li>地址总线</li>
+                  <li>数据总线</li>
+                  <li>控制总线</li>
+                </ul>
+              </li>
+              <li>三种总线数的总和</li>
+            </ul>
+          </ul>
+          <blockquote>
+            <p>pro：提高总线带宽的办法（2018）</p>
+          </blockquote>
+          <h3 id="span-stylecolor-graysumspan"><span style="color: gray;">sum</span> </h3>
+          <ul>
+            <li>最主要的三个性能指标：
+              <ul>
+                <li>宽度</li>
+                <li>工作<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mi>f</mi>
+                          </mrow>
+                          <annotation encoding="application/x-tex">f</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                          style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal"
+                          style="margin-right:0.10764em;">f</span></span></span></span></li>
+                <li>带宽</li>
+              </ul>
+            </li>
+            <li>三者关系：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                    <semantics>
+                      <mrow>
+                        <mstyle mathcolor="green">
+                          <mtext>带宽</mtext>
+                          <mstyle mathcolor="black">
+                            <mo>=</mo>
+                            <mstyle mathcolor="blue">
+                              <mtext>宽度</mtext>
+                              <mstyle mathcolor="black">
+                                <mo>×</mo>
+                                <mtext>工作</mtext>
+                                <mstyle mathcolor="orange">
+                                  <mi>f</mi>
+                                </mstyle>
+                              </mstyle>
+                            </mstyle>
+                          </mstyle>
+                        </mstyle>
+                      </mrow>
+                      <annotation encoding="application/x-tex">
+                        \color{green}带宽\color{black}=\color{blue}宽度\color{black}\times工作\color{orange}f</annotation>
+                    </semantics>
+                  </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                      style="height:0.6833em;"></span><span class="mord cjk_fallback"
+                      style="color:green;">带宽</span><span class="mspace" style="margin-right:0.2778em;"></span><span
+                      class="mrel" style="color:black;">=</span><span class="mspace"
+                      style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut"
+                      style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord cjk_fallback"
+                      style="color:blue;">宽度</span><span class="mspace" style="margin-right:0.2222em;"></span><span
+                      class="mbin" style="color:black;">×</span><span class="mspace"
+                      style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut"
+                      style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord cjk_fallback"
+                      style="color:black;">工作</span><span class="mord mathnormal"
+                      style="margin-right:0.10764em;color:orange;">f</span></span></span></span>
+              <ul>
+                <li>eg：总线工作频率为22MHz，总线宽度为16位，则总线带宽 <span class="katex"><span class="katex-mathml"><math
+                        xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                          <mrow>
+                            <mstyle scriptlevel="1" displaystyle="false">
+                              <mo>=</mo>
+                              <mn>22</mn>
+                              <mi mathvariant="bold">M</mi>
+                              <mo>×</mo>
+                              <mo stretchy="false">(</mo>
+                              <mn>16</mn>
+                              <mi mathvariant="normal">/</mi>
+                              <mn>8</mn>
+                              <mo stretchy="false">)</mo>
+                              <mo>=</mo>
+                              <mn>44</mn>
+                              <mi mathvariant="bold">M</mi>
+                              <mrow>
+                                <mi mathvariant="normal">B</mi>
+                                <mi mathvariant="normal">/</mi>
+                                <mi mathvariant="normal">s</mi>
+                              </mrow>
+                            </mstyle>
+                          </mrow>
+                          <annotation encoding="application/x-tex">
+                            \scriptstyle=22\mathbf{M}\times(16/8)=44\mathbf{M}\mathrm{B/s}</annotation>
+                        </semantics>
+                      </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut"
+                          style="height:0.2568em;"></span><span
+                          class="mrel mtight sizing reset-size6 size3">=</span></span><span class="base"><span
+                          class="strut" style="height:0.5386em;vertical-align:-0.0583em;"></span><span
+                          class="mord mtight sizing reset-size6 size3">22</span><span
+                          class="mord mathbf mtight sizing reset-size6 size3">M</span><span
+                          class="mbin mtight sizing reset-size6 size3">×</span></span><span class="base"><span
+                          class="strut" style="height:0.7em;vertical-align:-0.175em;"></span><span
+                          class="mopen mtight sizing reset-size6 size3">(</span><span
+                          class="mord mtight sizing reset-size6 size3">16/8</span><span
+                          class="mclose mtight sizing reset-size6 size3">)</span><span
+                          class="mrel mtight sizing reset-size6 size3">=</span></span><span class="base"><span
+                          class="strut" style="height:0.7em;vertical-align:-0.175em;"></span><span
+                          class="mord mtight sizing reset-size6 size3">44</span><span
+                          class="mord mathbf mtight sizing reset-size6 size3">M</span><span
+                          class="mord mtight sizing reset-size6 size3"><span
+                            class="mord mathrm mtight">B/s</span></span></span></span></span># 总线事务和定时</li>
+              </ul>
+            </li>
+          </ul>
+        </ul>
+      </ul>
+      <h1 id="span-stylecolor-silverbusspan-stylecolor-green事务span"><span style="color: silver;">bus<span
+            style="color: green;">事务</span> </span></h1>
+      <p>Bus transaction</p>
+      <ul>
+        <ul>
+          <li>从请求总线到完成总线使用的<span style="color: green;">操作</span><span style="color: deepskyblue;">序列</span> → 总线事务
+            <ul>
+              <li>一个总线周期中发生的一系列活动</li>
+            </ul>
+          </li>
+          <li>typically:
+            <ul>
+              <li>请求操作</li>
+              <li>仲裁~</li>
+              <li>地址传输</li>
+              <li>数据..</li>
+              <li>bus释放</li>
+            </ul>
+          </li>
+        </ul>
+        <h2 id="span-stylecolor-lightskyblue阶段span"><span style="color: LightSkyBlue;">阶段</span> </h2>
+        <ul>
+          <li>请求阶段
+            <ul>
+              <li>主设备（CPU或DMA）发出总线传输请求</li>
+              <li>获得总线控制权</li>
+            </ul>
+          </li>
+          <li><span style="color: Gold;">仲裁</span>~
+            <ul>
+              <li>决定将下一个传输周期的总线使用权 <span style="color: green;">授予</span> 某个申请者</li>
+            </ul>
+          </li>
+          <li>寻址~
+            <ul>
+              <li>主设备通过总线给出要访问的从设备地址及有关命令</li>
+              <li>启动从模块</li>
+            </ul>
+          </li>
+          <li>传输~
+            <ul>
+              <li>主模块和从模块进行数据交换</li>
+              <li>可单向或双向进行数据传送</li>
+            </ul>
+          </li>
+          <li>释放~
+            <ul>
+              <li>主模块的有关信息均从系统总线上撤除</li>
+              <li>让出总线使用权</li>
+            </ul>
+          </li>
+        </ul>
+        <blockquote>
+          <p>pro：非突发传送的时间分析（2023）</p>
+        </blockquote>
+        <h2 id="数据span-stylecolor-green传送span方式">数据<span style="color: green;">传送</span>方式 </h2>
+        <h3 id="span-stylecolor-purple非spanspan-stylecolor-orange突发span传送"><span style="color: purple;">非</span><span
+            style="color: orange;">突发</span>传送 </h3>
+        <ul>
+          <li>每个传送周期内
+            <ul>
+              <li>first传送地址</li>
+              <li>second传送数据</li>
+            </ul>
+          </li>
+          <li>usually每次只能传输一个字长的数据 (主、从设备之间)</li>
+        </ul>
+        <blockquote>
+          <p>pro：突发传送的概念（2014），突发传送的时间分析（2012、2013）</p>
+        </blockquote>
+        <h3 id="spanspan-stylecolor-orange突发span"><span style="color: orange;">突发</span>~ </h3>
+        <ul>
+          <li>
+            <p>每个传送周期内</p>
+            <ul>
+              <li>first传送一个地址</li>
+              <li>second连续传送多次数据
+                <ul>
+                  <li>(成组数据)or(连续数据单元)</li>
+                  <li>后续数据的地址is</li>
+                  <li>前一个地址的自动增量<br>
+                    <br>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p>每个时钟周期</p>
+            <ul>
+              <li>传送一个字长的信息</li>
+            </ul>
+          </li>
+          <li>
+            <p>不释放总线，直到一组数据全部传送完毕</p>
+          </li>
+        </ul>
+        <h3 id="span-stylecolor-gray一个字长span"><span style="color: gray;">"一个字长"</span> </h3>
+        <ul>
+          <li>非突发传送的“一个字长数据”: 每次传输操作的单元大小</li>
+          <li>突发传送的“一个字长信息”: 传输过程中每个时钟周期可以处理的数据量，并且处理可以连续进行。<br>
+            <br>
+          </li>
+        </ul>
+      </ul>
+
+      <h1 id="span-stylecolor-silverbusspan-stylecolor-orange定时span"><span style="color: silver;">bus<span
+            style="color: orange;">定时</span> </span></h1>
+      <ul>
+        <li>一种协议或规则
+          <ul>
+            <li>用于控制总线双方交换数据时的 <span style="color: green;">时间</span>配合关系</li>
+          </ul>
+        </li>
+        <li>目的
+          <ul>
+            <li>确保总线双方在数据交换过程中的正确时序配合</li>
+          </ul>
+        </li>
+      </ul>
+      <blockquote>
+        <p>pro：各种总线定时方式的特点（2015、2021）</p>
+      </blockquote>
+      <ul>
+        <h2 id="span-stylecolor-silverspan-stylecolor-lightskyblue同span步"><span style="color: silver;"><span
+              style="color: LightSkyBlue;">同</span>步~ </span></h2>
+        <ul>
+          <li>
+            <p>基本特征</p>
+            <ul>
+              <li>采用统一的时钟信号协调发送和接收双方</li>
+              <li>时钟产生相等的时间间隔</li>
+              <li>每个间隔构成一个总线周期</li>
+              <li>一个总线周期可进行一次数据传送</li>
+            </ul>
+          </li>
+          <li>
+            <p>优点</p>
+            <ul>
+              <li>传送速度快，具有较高的传输速率</li>
+              <li>总线控制逻辑简单</li>
+            </ul>
+          </li>
+          <li>
+            <p>缺点</p>
+            <ul>
+              <li>主从设备属于强制性同步</li>
+              <li>不能及时进行数据通信的有效性检验</li>
+              <li>可靠性较差</li>
+            </ul>
+          </li>
+        </ul>
+        <ul>
+          <h3
+            id="span-stylecolor-silverspan-stylecolor-lightskyblue同span步span-stylecolor-gold串spanspan-stylecolor-green行span通信">
+            <span style="color: silver;"><span style="color: LightSkyBlue;">同</span>步<span
+                style="color: Gold;">串</span><span style="color: green;">行</span>通信 </span></h3>
+          <ul>
+            <li>特点
+              <ul>
+                <li>发送方时钟直接控制接收方时钟</li>
+                <li>双方完全同步的逐位传输</li>
+                <li>仅在数据块头尾添加开始和结束标记</li>
+                <li>传输效率高但硬件复杂</li>
+              </ul>
+            </li>
+          </ul>
+        </ul>
+        <h2 id="span-stylecolor-silverspan-stylecolor-purple异span步"><span style="color: silver;"><span
+              style="color: purple;">异</span>步~ </span></h2>
+        <ul>
+          <ul>
+            <li>
+              <p>基本特征</p>
+              <ul>
+                <li>无统一时钟和固定时间间隔</li>
+                <li>依靠传送双方"握手"信号实现定时控制</li>
+                <li>主设备提出"请求"信号</li>
+                <li>从设备发出"回答"信号</li>
+              </ul>
+            </li>
+            <li>
+              <p>优点</p>
+              <ul>
+                <li>总线周期长度可变</li>
+                <li>能保证不同速度设备间可靠信息交换</li>
+                <li>自动适应时间配合</li>
+              </ul>
+            </li>
+            <li>
+              <p>缺点</p>
+              <ul>
+                <li>控制较复杂</li>
+                <li>速度较慢</li>
+              </ul>
+            </li>
+          </ul>
+          <h3 id="span-stylecolor-green类型span"><span style="color: green;">类型</span> </h3>
+          <ul>
+            <h4 id="span-stylecolor-purple不spanspan-stylecolor-gold互锁span"><span style="color: purple;">不</span><span
+                style="color: Gold;">互锁</span> </h4>
+            <ul>
+              <li>主设备不等待回答信号即可撤销请求</li>
+              <li>从设备自动撤销回答信号</li>
+              <li>双方无互锁关系</li>
+            </ul>
+            <h4 id="span-stylecolor-limegreen半span"><span style="color: LimeGreen;">半</span>~ </h4>
+            <ul>
+              <li>主设备需等待回答信号后撤销请求</li>
+              <li>从设备自动撤销回答信号</li>
+              <li>单向互锁关系</li>
+            </ul>
+            <h4 id="span-stylecolor-orange全span"><span style="color: orange;">全</span>~ </h4>
+            <ul>
+              <li>主设备需等待回答后撤销请求</li>
+              <li>从设备需等待请求撤销后撤销回答</li>
+              <li>双向互锁关系</li>
+            </ul>
+            <p><img
+                src="https://cdn-mineru.openxlab.org.cn/model-mineru/prod/e30f9589c45b2a57c15931e592518bb215f20b47d5abf20d0fd0e062b8376d2f.jpg"
+                alt=""><br>
+              图6.4请求和回答信号的互锁</p>
+          </ul>
+          <blockquote>
+            <p>pro：异步串行通信方式的特点（2016）</p>
+          </blockquote>
+          <h3
+            id="span-stylecolor-silverspan-stylecolor-purple异span步span-stylecolor-gold串spanspan-stylecolor-green行span通信">
+            <span style="color: silver;"><span style="color: purple;">异</span>步<span style="color: Gold;">串</span><span
+                style="color: green;">行</span>通信 </span></h3>
+          <ul>
+            <li>特点
+              <ul>
+                <li>收发双方时钟不严格一致</li>
+                <li>每个字符都有开始位和停止位</li>
+                <li>通信线空闲时为逻辑"1"</li>
+                <li>数据位从最低位开始传输</li>
+                <li>可选奇偶校验位</li>
+                <li>最后发送停止位</li>
+              </ul>
+            </li>
+          </ul>
+        </ul>
+        <h2 id="span-stylecolor-gold半spanspan-stylecolor-lightskyblue同span步span-stylecolor-orange定时"><span
+            style="color: Gold;">半</span><span style="color: LightSkyBlue;">同</span>步<span style="color: orange;">定时
+          </span></h2>
+        <ul>
+          <li>
+            <p>基本特征</p>
+            <ul>
+              <li>结合同步和异步定时特点</li>
+              <li>信号发出时间参照系统时钟前沿</li>
+              <li>接收方采用系统时钟后沿判断</li>
+              <li>增设Wait响应信号线</li>
+            </ul>
+          </li>
+          <li>
+            <p>优点</p>
+            <ul>
+              <li>控制方式比异步定时简单</li>
+              <li>各模块同步工作，可靠性高</li>
+            </ul>
+          </li>
+          <li>
+            <p>缺点</p>
+            <ul>
+              <li>系统时钟频率不能太高</li>
+              <li>整体工作速度不高</li>
+            </ul>
+          </li>
+        </ul>
+        <h2 id="span-stylecolor-silverspan-stylecolor-green分离span式定时方式"><span style="color: silver;"><span
+              style="color: green;">分离</span>式定时方式 </span></h2>
+        <ul>
+          <ul>
+            <li>基本特征
+              <ul>
+                <li>将总线事务分解为<span style="color: green;">请求</span>和<span style="color: LightSkyBlue;">应答</span>两个子过程
+                  <ul>
+                    <li>均为 单方向信息流</li>
+                    <li>每个设备all可变为主设备</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <h3 id="span-stylecolor-limegreen请求span"><span style="color: LimeGreen;">请求</span> </h3>
+          <ul>
+            <li>主设备获得总线使用权</li>
+            <li>发送命令和地址信息</li>
+            <li>从设备接收信息</li>
+            <li>主设备立即释放总线</li>
+          </ul>
+          <h3 id="span-stylecolor-lightskyblue应答span"><span style="color: LightSkyBlue;">应答</span> </h3>
+          <ul>
+            <li>从设备准备数据</li>
+            <li>申请总线使用权</li>
+            <li>发送准备好的数据</li>
+            <li>主设备接收数据</li>
+          </ul>
+          <h3 id="span-stylecolor-gray特点span"><span style="color: gray;">特点</span> </h3>
+          <ul>
+            <li>优点
+              <ul>
+                <li>不传送数据时释放总线</li>
+                <li>可接受其他设备请求</li>
+                <li>无空闲等待时间</li>
+              </ul>
+            </li>
+            <li>缺点
+              <ul>
+                <li>控制复杂</li>
+                <li>开销大</li>
+              </ul>
+            </li>
+          </ul>
+        </ul>
+      </ul>
+      <h1 id="span-stylecolor-silver本章小结span"><span style="color: silver;">本章小结</span> </h1>
+      <h2 id="span-stylecolor-silver总线结构的优点"><span style="color: silver;">总线结构的优点? </span></h2>
+      <ul>
+        <li>引入总线结构主要有以下优点：
+          <ul>
+            <li>简化了系统结构，便于系统设计制造</li>
+            <li>便于接口设计，所有与总线连接的设备均采用类似的接口</li>
+            <li>便于系统的扩充、更新与灵活配置，易于实现系统的模块化</li>
+            <li>便于设备的软件设计，所有接口的软件对不同的接口地址进行操作</li>
+            <li>便于故障诊断和维修，同时也能降低成本</li>
+          </ul>
+        </li>
+      </ul>
+      <h2 id="span-stylecolor-silver总线引入的问题及解决方案"><span style="color: silver;">总线引入的问题及解决方案? </span></h2>
+      <ul>
+        <li>主要问题
+          <ul>
+            <li>总线上的各个设备分时共享同一总线</li>
+            <li>多个设备同时请求使用总线时会导致冲突</li>
+          </ul>
+        </li>
+        <li>解决方案
+          <ul>
+            <li>采用总线仲裁部件</li>
+            <li>以某种方式选择一个主设备获得总线控制权</li>
+            <li>只有获得总线控制权的设备才能开始数据传送</li>
+          </ul>
+        </li>
+      </ul>
+      <h1 id="span-stylecolor-silver常见问题和易混淆知识点"><span style="color: silver;">常见问题和易混淆知识点 </span></h1>
+      <p>1.一个总线在某一时刻可以有多对主从设备进行通信吗？</p>
+      <p>不可以。<br>
+        总线通信的特点:</p>
+      <ul>
+        <li>主从设备通信规则
+          <ul>
+            <li>单一主设备控制
+              <ul>
+                <li>每个总线周期内 only 1主设备控制总线</li>
+              </ul>
+            </li>
+            <li>通信模式
+              <ul>
+                <li>一对一通信：主设备选择单个从设备进行通信</li>
+                <li>一对多通信：主设备对所有设备进行广播</li>
+              </ul>
+            </li>
+            <li>限制原因
+              <ul>
+                <li>不允许多对主从设备同时通信</li>
+                <li>避免数据冲突</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </span>
+  </div>
+  <div class="md-sidebar-toc">
+    <div class="md-toc">
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silverabove" class="md-toc-link">
+            <p><span style="color: silver;">above</span></p>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-silver考纲内容" class="md-toc-link">
+              <p><span style="color: silver;">【考纲内容】</span></p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-silver复习提示" class="md-toc-link">
+              <p><span style="color: silver;">【复习提示】</span></p>
+
+            </a>
+          </div>
+        </div>
+      </details>
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-gray概述span" class="md-toc-link">
+            <p><span style="color: gray;">概述</span></p>
+          </a>
+        </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-gray概念span" class="md-toc-link">
+                <p><span style="color: gray;">概念</span></p>
+              </a>
+            </summary>
+            <div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-graydefine" class="md-toc-link">
+                    <p><span style="color: gray;">define</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-limegreen分时span" class="md-toc-link">
+                      <p><span style="color: LimeGreen;">分时</span>：</p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-gold共享span" class="md-toc-link">
+                      <p><span style="color: Gold;">共享</span>：</p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-graybusspan-stylecolor-lightskyblue设备span" class="md-toc-link">
+                    <p><span style="color: gray;">bus<span style="color: LightSkyBlue;">设备</span></span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-orange主span" class="md-toc-link">
+                      <p><span style="color: orange;">主</span>~：</p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-limegreen从span" class="md-toc-link">
+                      <p><span style="color: LimeGreen;">从</span>~：</p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-gold特性span" class="md-toc-link">
+                  <p><span style="color: Gold;">特性</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-green分类" class="md-toc-link">
+                <p><span style="color: green;">分类</span></p>
+              </a>
+            </summary>
+            <div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-gold功能span-span-stylecolor-silver层次" class="md-toc-link">
+                    <p><span style="color: Gold;">功能</span> <span style="color: silver;">层次</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver片内" class="md-toc-link">
+                      <p><span style="color: silver;">片内~</span></p>
+
+                    </a>
+                  </div>
+                  <details style="padding:0;;padding-left:24px;" open="">
+                    <summary class="md-toc-link-wrapper">
+                      <a href="#span-stylecolor-lightskyblue系统spanspan-stylecolor-grayspan" class="md-toc-link">
+                        <p><span style="color: LightSkyBlue;">系统</span><span style="color: gray;">~</span></p>
+                      </a>
+                    </summary>
+                    <div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-limegreen数据span-span-stylecolor-silverbus" class="md-toc-link">
+                          <p><span style="color: LimeGreen;">数据</span> <span style="color: silver;">bus</span></p>
+
+                        </a>
+                      </div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-lightskyblue地址span-span-stylecolor-silver" class="md-toc-link">
+                          <p><span style="color: LightSkyBlue;">地址</span> <span style="color: silver;">~</span></p>
+
+                        </a>
+                      </div>
+                      <div class="md-toc-link-wrapper"
+                        style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                        <a href="#span-stylecolor-orange控制span-span-stylecolor-silver" class="md-toc-link">
+                          <p><span style="color: orange;">控制</span> <span style="color: silver;">~</span></p>
+
+                        </a>
+                      </div>
+                    </div>
+                  </details>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverio-" class="md-toc-link">
+                      <p><span style="color: silver;">I/O ~</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-gold通信span-span-stylecolor-silver" class="md-toc-link">
+                      <p><span style="color: Gold;">通信</span> <span style="color: silver;">~</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-lightskyblue时序span-span-stylecolor-gold控制span-stylecolor-silver方式"
+                    class="md-toc-link">
+                    <p><span style="color: LightSkyBlue;">时序</span> <span style="color: Gold;">控制<span
+                          style="color: silver;">方式</span></span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue同步spanbus" class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: LightSkyBlue;">同步</span>bus</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-slateblue异步span-span-stylecolor-silver" class="md-toc-link">
+                      <p><span style="color: SlateBlue;">异步</span> <span style="color: silver;">~</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-lightskyblue数据spanspan-stylecolor-green传输span-span-stylecolor-silver方式"
+                    class="md-toc-link">
+                    <p><span style="color: LightSkyBlue;">数据</span><span style="color: green;">传输</span> <span
+                        style="color: silver;">方式</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-gold串span行span-stylecolor-graybusspan"
+                      class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: Gold;">串</span>行<span
+                            style="color: gray;">bus</span></span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-limegreen并行span-span-stylecolor-silver" class="md-toc-link">
+                      <p><span style="color: LimeGreen;">并行</span> <span style="color: silver;">~</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silver系统总线的-span-stylecolor-limegreen结构span" class="md-toc-link">
+                <p><span style="color: silver;">系统总线的 <span style="color: LimeGreen;">结构</span></span></p>
+              </a>
+            </summary>
+            <div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silver按结构" class="md-toc-link">
+                    <p><span style="color: silver;">按结构</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue单span总线结构" class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: LightSkyBlue;">单</span>总线结构</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-green双span" class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: green;">双</span>~</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silverspan-stylecolor-orange三span" class="md-toc-link">
+                      <p><span style="color: silver;"><span style="color: orange;">三</span>~</span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silver常见bus-span-stylecolor-gold标准span" class="md-toc-link">
+                    <p><span style="color: silver;">常见bus <span style="color: Gold;">标准</span></span></p>
+                  </a>
+                </summary>
+                <div>
+                  <details style="padding:0;;padding-left:24px;" open="">
+                    <summary class="md-toc-link-wrapper">
+                      <a href="#span-stylecolor-lightskyblue系统spanspan-stylecolor-silver总线" class="md-toc-link">
+                        <p><span style="color: LightSkyBlue;">系统</span><span style="color: silver;">总线</span></p>
+                      </a>
+                    </summary>
+                    <div>
+                      <details style="padding:0;;padding-left:24px;" open="">
+                        <summary class="md-toc-link-wrapper">
+                          <a href="#span-stylecolor-silverspan-stylecolor-green并行spanbus" class="md-toc-link">
+                            <p><span style="color: silver;"><span style="color: green;">并行</span>bus</span></p>
+                          </a>
+                        </summary>
+                        <div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silverspan-stylecolor-greenispansa-industry-standard-architecture"
+                              class="md-toc-link">
+                              <p><span style="color: silver;"><span style="color: green;">I</span>SA (Industry Standard
+                                  Architecture)</span></p>
+
+                            </a>
+                          </div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silverspan-stylecolor-lightskyblueespanisa-extended-industry-standard-architecture"
+                              class="md-toc-link">
+                              <p><span style="color: silver;"><span style="color: LightSkyBlue;">E</span>ISA (Extended
+                                  Industry Standard Architecture)</span></p>
+
+                            </a>
+                          </div>
+                        </div>
+                      </details>
+
+                    </div>
+                  </details>
+                  <details style="padding:0;;padding-left:24px;" open="">
+                    <summary class="md-toc-link-wrapper">
+                      <a href="#span-stylecolor-orange局部span" class="md-toc-link">
+                        <p><span style="color: orange;">局部</span></p>
+                      </a>
+                    </summary>
+                    <div>
+                      <details style="padding:0;;padding-left:24px;" open="">
+                        <summary class="md-toc-link-wrapper">
+                          <a href="#span-stylecolor-silverspan-stylecolor-green并行spanbus-1" class="md-toc-link">
+                            <p><span style="color: silver;"><span style="color: green;">并行</span>bus</span></p>
+                          </a>
+                        </summary>
+                        <div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silverspan-stylecolor-lightskybluevspanspan-stylecolor-deepskyblueespansa-video-electronics-standards-association"
+                              class="md-toc-link">
+                              <p><span style="color: silver;"><span style="color: LightSkyBlue;">V</span><span
+                                    style="color: deepskyblue;">E</span>SA (Video Electronics Standards
+                                  Association)</span></p>
+
+                            </a>
+                          </div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silverpspan-stylecolor-graycspani-peripheral-component-interconnect"
+                              class="md-toc-link">
+                              <p><span style="color: silver;">P<span style="color: gray;">C</span>I (Peripheral
+                                  Component Interconnect)</span></p>
+
+                            </a>
+                          </div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silveragp-accelerated-graphics-port" class="md-toc-link">
+                              <p><span style="color: silver;">AGP (Accelerated Graphics Port)</span></p>
+
+                            </a>
+                          </div>
+                        </div>
+                      </details>
+                      <details style="padding:0;;padding-left:24px;" open="">
+                        <summary class="md-toc-link-wrapper">
+                          <a href="#span-stylecolor-silver-span-stylecolor-gold串spanspan-stylecolor-green行spanbus"
+                            class="md-toc-link">
+                            <p><span style="color: silver;"> <span style="color: Gold;">串</span><span
+                                  style="color: green;">行</span>bus</span></p>
+                          </a>
+                        </summary>
+                        <div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silverpci--span-stylecolor-goldespan-pci-express"
+                              class="md-toc-link">
+                              <p><span style="color: silver;">PCI- <span style="color: Gold;">E</span>
+                                  (PCI-Express)</span></p>
+
+                            </a>
+                          </div>
+                        </div>
+                      </details>
+
+                    </div>
+                  </details>
+                  <details style="padding:0;;padding-left:24px;" open="">
+                    <summary class="md-toc-link-wrapper">
+                      <a href="#span-stylecolor-deepskyblue设备span" class="md-toc-link">
+                        <p><span style="color: deepskyblue;">设备</span></p>
+                      </a>
+                    </summary>
+                    <div>
+                      <details style="padding:0;;padding-left:24px;" open="">
+                        <summary class="md-toc-link-wrapper">
+                          <a href="#span-stylecolor-silverspan-stylecolor-gold串spanspan-stylecolor-green行spanbus"
+                            class="md-toc-link">
+                            <p><span style="color: silver;"><span style="color: Gold;">串</span><span
+                                  style="color: green;">行</span>bus</span></p>
+                          </a>
+                        </summary>
+                        <div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silverrs-232c" class="md-toc-link">
+                              <p><span style="color: silver;">RS-232C</span></p>
+
+                            </a>
+                          </div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silverusb-universal-serial-bus" class="md-toc-link">
+                              <p><span style="color: silver;">USB (Universal Serial Bus)</span></p>
+
+                            </a>
+                          </div>
+                          <div class="md-toc-link-wrapper"
+                            style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                            <a href="#span-stylecolor-silversata-serial-advanced-technology-attachment"
+                              class="md-toc-link">
+                              <p><span style="color: silver;">SATA (Serial Advanced Technology Attachment)</span></p>
+
+                            </a>
+                          </div>
+                        </div>
+                      </details>
+
+                    </div>
+                  </details>
+
+                </div>
+              </details>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silverspan-stylecolor-green并行spanbus-2" class="md-toc-link">
+                  <p><span style="color: silver;"><span style="color: green;">并行</span>bus</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-orange性能span-stylecolor-lightskyblue指标span" class="md-toc-link">
+                <p><span style="color: orange;">性能<span style="color: LightSkyBlue;">指标</span></span></p>
+              </a>
+            </summary>
+            <div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue时钟span相关" class="md-toc-link">
+                    <p><span style="color: silver;"><span style="color: LightSkyBlue;">时钟</span>相关</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-graybus时钟spancolordeepskybluet" class="md-toc-link">
+                      <p><span style="color: gray;">bus时钟</span><span class="katex"><span class="katex-mathml"><math
+                              xmlns="http://www.w3.org/1998/Math/MathML">
+                              <semantics>
+                                <mrow>
+                                  <mstyle mathcolor="deepskyblue">
+                                    <mi>T</mi>
+                                  </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\color{deepskyblue}T</annotation>
+                              </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                class="strut" style="height:0.6833em;"></span><span class="mord mathnormal"
+                                style="margin-right:0.13889em;color:deepskyblue;">T</span></span></span></span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#colororangef" class="md-toc-link">
+                      <p>..<span class="katex"><span class="katex-mathml"><math
+                              xmlns="http://www.w3.org/1998/Math/MathML">
+                              <semantics>
+                                <mrow>
+                                  <mstyle mathcolor="orange">
+                                    <mi>f</mi>
+                                  </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\color{orange}{f}</annotation>
+                              </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span
+                                class="mord" style="color:orange;"><span class="mord mathnormal"
+                                  style="margin-right:0.10764em;color:orange;">f</span></span></span></span></span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverspan-stylecolor-green传输span相关" class="md-toc-link">
+                    <p><span style="color: silver;"><span style="color: green;">传输</span>相关</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-graybusspan-stylecolor-green传输spancolordeepskybluet" class="md-toc-link">
+                      <p><span style="color: gray;">bus<span style="color: green;">传输</span><span class="katex"><span
+                              class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                                <semantics>
+                                  <mrow>
+                                    <mstyle mathcolor="deepskyblue">
+                                      <mi>T</mi>
+                                    </mstyle>
+                                  </mrow>
+                                  <annotation encoding="application/x-tex">\color{deepskyblue}T</annotation>
+                                </semantics>
+                              </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                  class="strut" style="height:0.6833em;"></span><span class="mord mathnormal"
+                                  style="margin-right:0.13889em;color:deepskyblue;">T</span></span></span></span></span>
+                      </p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-lightskyblue工作spancolororangef" class="md-toc-link">
+                      <p>..<span style="color: LightSkyBlue;">工作</span><span class="katex"><span
+                            class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML">
+                              <semantics>
+                                <mrow>
+                                  <mstyle mathcolor="orange">
+                                    <mi>f</mi>
+                                  </mstyle>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\color{orange}{f}</annotation>
+                              </semantics>
+                            </math></span><span class="katex-html" aria-hidden="true"><span class="base"><span
+                                class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span
+                                class="mord" style="color:orange;"><span class="mord mathnormal"
+                                  style="margin-right:0.10764em;color:orange;">f</span></span></span></span></span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-silverspan-stylecolor-deepskyblue物理span特性" class="md-toc-link">
+                    <p><span style="color: silver;"><span style="color: deepskyblue;">物理</span>特性</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-graybusspan-stylecolor-deepskyblue宽度span" class="md-toc-link">
+                      <p><span style="color: gray;">bus<span style="color: deepskyblue;">宽度</span></span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-green带spanspan-stylecolor-lightskyblue宽span" class="md-toc-link">
+                      <p><span style="color: green;">带</span><span style="color: LightSkyBlue;">宽</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-green复用span" class="md-toc-link">
+                      <p><span style="color: green;">复用</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-silver信号-span-stylecolor-gold线spanspan-stylecolor-limegreen数"
+                      class="md-toc-link">
+                      <p><span style="color: silver;">信号 <span style="color: Gold;">线</span><span
+                            style="color: LimeGreen;">数</span></span></p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-graysumspan" class="md-toc-link">
+                  <p><span style="color: gray;">sum</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </details>
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silverbusspan-stylecolor-green事务span" class="md-toc-link">
+            <p><span style="color: silver;">bus<span style="color: green;">事务</span></span></p>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-lightskyblue阶段span" class="md-toc-link">
+              <p><span style="color: LightSkyBlue;">阶段</span></p>
+
+            </a>
+          </div>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#数据span-stylecolor-green传送span方式" class="md-toc-link">
+                <p>数据<span style="color: green;">传送</span>方式</p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-purple非spanspan-stylecolor-orange突发span传送" class="md-toc-link">
+                  <p><span style="color: purple;">非</span><span style="color: orange;">突发</span>传送</p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#spanspan-stylecolor-orange突发span" class="md-toc-link">
+                  <p><span style="color: orange;">突发</span>~</p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-gray一个字长span" class="md-toc-link">
+                  <p><span style="color: gray;">"一个字长"</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </details>
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silverbusspan-stylecolor-orange定时span" class="md-toc-link">
+            <p><span style="color: silver;">bus<span style="color: orange;">定时</span></span></p>
+          </a>
+        </summary>
+        <div>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue同span步" class="md-toc-link">
+                <p><span style="color: silver;"><span style="color: LightSkyBlue;">同</span>步~</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silverspan-stylecolor-lightskyblue同span步span-stylecolor-gold串spanspan-stylecolor-green行span通信"
+                  class="md-toc-link">
+                  <p><span style="color: silver;"><span style="color: LightSkyBlue;">同</span>步<span
+                        style="color: Gold;">串</span><span style="color: green;">行</span>通信</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silverspan-stylecolor-purple异span步" class="md-toc-link">
+                <p><span style="color: silver;"><span style="color: purple;">异</span>步~</span></p>
+              </a>
+            </summary>
+            <div>
+              <details style="padding:0;;padding-left:24px;" open="">
+                <summary class="md-toc-link-wrapper">
+                  <a href="#span-stylecolor-green类型span" class="md-toc-link">
+                    <p><span style="color: green;">类型</span></p>
+                  </a>
+                </summary>
+                <div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-purple不spanspan-stylecolor-gold互锁span" class="md-toc-link">
+                      <p><span style="color: purple;">不</span><span style="color: Gold;">互锁</span></p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-limegreen半span" class="md-toc-link">
+                      <p><span style="color: LimeGreen;">半</span>~</p>
+
+                    </a>
+                  </div>
+                  <div class="md-toc-link-wrapper"
+                    style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                    <a href="#span-stylecolor-orange全span" class="md-toc-link">
+                      <p><span style="color: orange;">全</span>~</p>
+
+                    </a>
+                  </div>
+                </div>
+              </details>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-silverspan-stylecolor-purple异span步span-stylecolor-gold串spanspan-stylecolor-green行span通信"
+                  class="md-toc-link">
+                  <p><span style="color: silver;"><span style="color: purple;">异</span>步<span
+                        style="color: Gold;">串</span><span style="color: green;">行</span>通信</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-gold半spanspan-stylecolor-lightskyblue同span步span-stylecolor-orange定时"
+              class="md-toc-link">
+              <p><span style="color: Gold;">半</span><span style="color: LightSkyBlue;">同</span>步<span
+                  style="color: orange;">定时</span></p>
+
+            </a>
+          </div>
+          <details style="padding:0;;padding-left:24px;" open="">
+            <summary class="md-toc-link-wrapper">
+              <a href="#span-stylecolor-silverspan-stylecolor-green分离span式定时方式" class="md-toc-link">
+                <p><span style="color: silver;"><span style="color: green;">分离</span>式定时方式</span></p>
+              </a>
+            </summary>
+            <div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-limegreen请求span" class="md-toc-link">
+                  <p><span style="color: LimeGreen;">请求</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-lightskyblue应答span" class="md-toc-link">
+                  <p><span style="color: LightSkyBlue;">应答</span></p>
+
+                </a>
+              </div>
+              <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+                <a href="#span-stylecolor-gray特点span" class="md-toc-link">
+                  <p><span style="color: gray;">特点</span></p>
+
+                </a>
+              </div>
+            </div>
+          </details>
+
+        </div>
+      </details>
+      <details style="padding:0;;padding-left:0px;" open="">
+        <summary class="md-toc-link-wrapper">
+          <a href="#span-stylecolor-silver本章小结span" class="md-toc-link">
+            <p><span style="color: silver;">本章小结</span></p>
+          </a>
+        </summary>
+        <div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-silver总线结构的优点" class="md-toc-link">
+              <p><span style="color: silver;">总线结构的优点?</span></p>
+
+            </a>
+          </div>
+          <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:42px">
+            <a href="#span-stylecolor-silver总线引入的问题及解决方案" class="md-toc-link">
+              <p><span style="color: silver;">总线引入的问题及解决方案?</span></p>
+
+            </a>
+          </div>
+        </div>
+      </details>
+      <div class="md-toc-link-wrapper" style="padding:0;;display:list-item;list-style:square;margin-left:18px">
+        <a href="#span-stylecolor-silver常见问题和易混淆知识点" class="md-toc-link">
+          <p><span style="color: silver;">常见问题和易混淆知识点</span></p>
+
+        </a>
+      </div>
+    </div>
+  </div>
+  <a id="sidebar-toc-btn">≡</a>
+
+
+
+
+
+
+  <script>
+
+    var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+    sidebarTOCBtn.addEventListener('click', function (event) {
+      event.stopPropagation()
+      if (document.body.hasAttribute('html-show-sidebar-toc')) {
+        document.body.removeAttribute('html-show-sidebar-toc')
+      } else {
+        document.body.setAttribute('html-show-sidebar-toc', true)
+      }
+    })
+  </script>
+
+
+</body>
+
+</html>
