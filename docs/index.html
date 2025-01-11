@@ -48,6 +48,45 @@
 </head>
 <body>
     <h1>计算机组成原理笔记</h1>
+    <!-- 倒计时显示区域 -->
+    <h4 style="font-family: 'Times New Roman'; color: #000080; text-align: center;">
+        <!-- 显示剩余天数 -->
+        <span id="countdown-days"></span> days<br>
+        <!-- 显示剩余时分秒 -->
+        <span id="countdown-time"></span>
+    </h4>
+
+    <script>
+        // 更新倒计时的函数
+        function updateCountdown() {
+            // 设置目标日期为2025年12月20日8:30
+            const targetDate = new Date('2025-12-20T08:30:00');
+            // 获取当前时间
+            const now = new Date();
+            // 计算时间差(毫秒)
+            const diff = targetDate - now;
+
+            // 计算剩余天数
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            // 计算剩余小时
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            // 计算剩余分钟
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            // 计算剩余秒数
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            // 更新天数显示
+            document.getElementById('countdown-days').textContent = days;
+            // 更新时分秒显示,保证两位数格式
+            document.getElementById('countdown-time').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        // 初次执行更新
+        updateCountdown();
+        // 设置每秒更新一次
+        setInterval(updateCountdown, 1000);
+    </script>
     <div class="content">
         <div class="section">
             <h2>中央处理器(CPU)</h2>
