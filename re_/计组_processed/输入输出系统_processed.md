@@ -1,0 +1,1207 @@
+
+
+# <span style="color: silver;">above
+
+<ul>
+
+## <span style="color: silver;">【考纲内容】
+
+<ul>
+
+（一）I/O接口（I/O控制器）I/O接口的功能和基本结构；1/O端口及其编址
+
+（二）10方式
+
+程序查询方式程序中断方式：中断的基本概念；中断响应过程；中断处理过程：多重中断和中断屏蔽的概念 DMA方式：DMA控制器的组成：DMA传送过程
+
+</ul>
+
+## <span style="color: silver;">【复习提示】
+
+<ul>
+
+- I/O方式的重要性：
+  - 是本章的重点和难点。
+  - 每年以选择题形式考查基本概念和原理。
+  - 可能以综合题形式考查，特别是效率相关计算。
+
+- 中断方式的相关内容：
+  - 原理、特点、处理过程。
+  - 中断屏蔽。
+
+- DMA方式的相关内容：
+  - 特点、传输过程。
+  - 与中断方式的区别。
+
+在学习本章时，请读者思考以下问题：1）I/O设备有哪些编址方式？各有何特点？2）CPU响应中断应具备哪些条件？请读者在学习本章的过程中寻找答案，本章末尾将给出参考答案。
+
+</ul>
+
+</ul>
+
+# <span style="color: silver;">\*concept
+
+<ul>
+
+## <span style="color: silver;">\* I/O系统
+
+<ul>
+
+- 输入/输出是以主机为中心而言的
+  - 将信息从外部设备传送到主机称为输入，反之称为输出
+  - 输入/输出系统解决的主要问题是对各种形式的信息进行输入和输出的控制
+
+### <span style="color: silver;">concept
+
+<ul>
+
+- 外部设备
+  - 包括输入/输出设备及通过输入/输出接口才能访问的外存储设备
+- <span style="color: GreenYellow;">接口</span>
+     - 在各个外设与主机之间传输数据时进行各种协调工作的逻辑部件
+     - 协调包括传输过程中速度的匹配、电平和格式转换等
+- <span style="color: LightSkyBlue;">I</span>
+  - 用于向计算机系统输入命令和文本、数据等信息的部件
+  - 键盘和鼠标是最基本的输入设备
+- <span style="color: Gold;">O</span>
+     - 用于将计算机系统中的信息输出到计算机外部进行显示、交换等的部件
+     - 显示器和打印机是最基本的输出设备
+- <span style="color: silver;">外M
+     - 指除计算机内存及CPU缓存等外的存储器，如硬磁盘、光盘等
+
+</ul>
+
+### <span style="color: silver;"> <span style="color: LimeGreen;">构成</span>
+
+<ul>
+
+- I/O<span style="color: LightSkyBlue;">指令</span>：实现CPU与I/O设备的信息交换
+- I/O<span style="color: green;">硬件</span>
+  - 包括外部设备、设备控制器和接口、I/O总线等
+  - 通过设备控制器来控制I/O设备的具体动作
+  - 通过I/O接口与主机（总线）相连
+
+</ul>
+
+### <span style="color: silver;"> <span style="color: Gold;">控制</span>方式
+
+<ul>
+
+- 程序 <span style="color: LimeGreen;">查询</span>方式
+  - 由CPU通过程序不断查询I/O设备是否已做好准备
+- 程序<span style="color: SlateBlue;">中断</span>方式
+  - 只在I/O设备准备就绪并向CPU发出中断请求时才予以响应
+- <span style="color: DarkRed;">DMA</span>方式
+  - 主存和I/O设备之间有一条直接数据通路
+  - 无须调用中断服务程序
+- <span style="color: LightSkyBlue;">通道</span>方式
+  - 在系统中设有通道控制部件
+  - 每个通道都挂接若干外设
+  - 主机只需启动有关通道，通道将执行通道程序完成I/O操作
+
+</ul>
+
+### <span style="color: silver;">外部设备
+
+<ul>
+
+#### <span style="color: silver;"><span style="color: LightSkyBlue;">I
+
+<ul>
+
+##### <span style="color: silver;">键盘
+
+<ul>
+
+- 最常用的输入设备，通过它可发出命令或输入数据
+
+</ul>
+
+##### <span style="color: silver;">鼠标
+
+<ul>
+
+- 常用的定位输入设备
+- 把用户的操作与计算机屏幕上的位置信息相联系
+
+</ul>
+
+</ul>
+
+#### <span style="color: silver;"> <span style="color: Gold;"> O
+
+<ul>
+
+##### <span style="color: silver;">显示器
+
+<ul>
+
+- 主要参数：
+  - 屏幕大小
+    - 以对角线长度表示，单位为英寸
+    - 常用的有12~32英寸等
+  - 分辨率
+    - 能表示的像素个数
+    - 如800×600、1024×768和1280×1024等
+  - 灰度级
+    - 表示像素点的亮暗差别或颜色的不同
+    - 典型的有8位（256级）、16位等
+  - 刷新
+    - 在光点消失之前重新扫描显示
+  - 刷新频率
+    - 单位时间内扫描整个屏幕内容的次数
+    - 通常为60~120Hz
+  - 显示存储器（VRAM）
+    - 也称刷新存储器
+    - 存储容量计算：
+      - VRAM容量=分辨率×灰度级位数
+      - VRAM带宽=分辨率×灰度级位数×帧频
+
+</ul>
+
+##### <span style="color: silver;">printer
+
+<ul>
+
+- 用于将计算机的处理结果打印在相关介质上
+
+<ul>
+
+###### <span style="color: silver;">针式~
+
+<ul>
+
+- 擅长"多层复写打印"
+- 工作原理简单，造价低廉
+- 耗材便宜
+- 打印分辨率和速度不够高
+
+</ul>
+
+###### <span style="color: silver;">喷墨式~
+
+<ul>
+
+- 基于三基色原理
+- 可实现高质量彩色打印
+
+</ul>
+
+###### <span style="color: silver;">激光~
+
+<ul>
+
+- 结合激光技术和电子显像技术
+- 打印质量高、速度快、处理能力强
+
+</ul>
+
+</ul>
+
+</ul>
+
+#### <span style="color: silver;">外部M（辅存）
+
+<ul>
+
+##### <span style="color: silver;"><span style="color: SlateBlue;">磁</span>表面M
+
+<ul>
+
+- 把磁性材料涂在金属铝或塑料表面上作为载磁体
+- 包括磁盘存储器、磁带存储器和磁鼓存储器
+
+</ul>
+
+##### <span style="color: silver;">固态硬盘（SSD）
+
+<ul>
+
+- 采用高性能Flash存储器作为硬盘
+- 需要其他硬件和软件的支持
+
+</ul>
+
+##### <span style="color: silver;">光盘M
+
+<ul>
+
+- 利用光学原理读/写信息的存储装置
+- 采用聚焦激光束对盘式介质以非接触方式记录信息
+- 系统组成：
+  - 光盘片
+  - 光盘驱动器
+  - 光盘控制器
+
+</ul>
+
+</ul>
+
+</ul>
+
+</ul>
+
+</ul>
+
+</ul>
+
+# <span style="color: silver;"> 0 I/O <span style="color: GreenYellow;">接口</span>
+
+<ul>
+
+- I/O接口的作用：
+  - 作为主机和外设之间的交接界面。
+  - 实现主机与外设之间的信息交换。
+
+- 外设的多样性：
+  - 外设种类繁多，具有不同的工作特性。
+  - 在工作方式、数据格式和工作速度等方面存在差异。
+
+- I/O接口的必要性：
+  - 为了解决外设之间的差异而设置。
+
+## <span style="color: orange;">功能</span>
+
+<ul>
+
+>pro：I/O接口的定义与特性（2021）
+
+- 主要功能
+  - <span style="color: DarkRed;">地址</span>译码和设备选择
+    - 对CPU送来的地址码进行译码
+  - <span style="color: Gold;">通信</span>联络控制
+       - 解决时序配合
+       - 协调速度差异
+       - 保证系统协调工作
+  - <span style="color: LightSkyBlue;">数据</span> <span style="color: Gold;">缓冲</span>
+    - 设置缓冲寄存器
+    - 解决速度不匹配
+    - 防止数据丢失
+  - <span style="color: Gold;">信号</span> <span style="color: GreenYellow;">格式</span>转换
+       - 电平转换
+       - 并/串转换
+       - 模/数转换
+  - 控制命令和状态传送
+    - CPU发送启动命令
+    - 外设返回状态信息
+    - CPU响应中断请求
+
+</ul>
+
+## <span style="color: silver;">基本<span style="color: LimeGreen;">结构</span>
+
+<ul>
+
+>pro：I/O端口与CPU交换的内容（2015）
+
+- 通用结构组成
+  - through I/O总线与内存、CPU相连
+  - 含 <span style="color: LightSkyBlue;">数据</span> <span style="color: Gold;">缓冲</span> <span style="color: LimeGreen;">R</span>
+    - <span style="color: Gold;">状态</span> <span style="color: LimeGreen;">R</span> & <span style="color: Gold;">控制</span> <span style="color: LimeGreen;">R</span>可合二为一
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/75e5c6546b9bbbf454e784b0b1efb00c038b494907e65ad7039f2432158a0fc4.jpg)
+图7.1I/0接口的通用结构
+
+>pro：I/O接口的数据线上传输的内容（2012）
+
+- 接口 <span style="color: Gold;">信号线</span>功能
+  - <span style="color: LightSkyBlue;">数据</span>线：
+    - 传送读/写数据、状态信息、控制信息和中断类型号
+  - <span style="color: DarkRed;">地址</span>线：
+    - 传送访问I/O接口寄存器的地址
+  - <span style="color: Gold;">控制</span>线：
+       - 传送读/写控制信号、中断请求和响应信号、仲裁信号和握手信号
+
+- I/O控制 <span style="color: Gold;">逻辑</span>功能
+  - 对 <span style="color: Gold;">控制</span> <span style="color: LimeGreen;">R</span>命令字 进行译码
+  - through外设界面控制逻辑 与 外设 <span style="color: GreenYellow;">交互</span>
+    - 管理<span style="color: LightSkyBlue;">数据</span>传输
+      - 控制数据缓冲寄存器
+    - 管理 <span style="color: Gold;">状态</span>信息
+      - 收集外设状态
+      - 存入状态寄存器
+
+</ul>
+
+## <span style="color: green;">类型</span>
+
+<ul>
+
+- 按数据传送方式分类
+  - <span style="color: LimeGreen;">并行</span>接口：同时传送一字节或一个字的所有位
+  - <span style="color: Gold;">串</span>行接口：一位一位地有序传送
+- 按主机访问I/O设备的 <span style="color: Gold;">控制</span>方式分类
+  - 程序 <span style="color: LimeGreen;">查询</span>接口
+  - <span style="color: SlateBlue;">中断</span>接口
+  - <span style="color: DarkRed;">DMA</span>接口
+- 按功能选择的灵活性分类
+  - <span style="color: gray;">可</span> <span style="color: GreenYellow;">编程</span>接口：通过编程改变接口功能
+  - <span style="color: purple;">不</span><span style="color: gray;">可</span> <span style="color: GreenYellow;">编程</span>接口
+
+</ul>
+
+## <span style="color: silver;">I/O<span style="color: LightSkyBlue;">端口</span>& <span style="color: deepskyblue;">编址</span>
+
+<ul>
+
+>pro：I/O端口的定义及相关特性（2014）
+
+- I/O端口:
+  - 指I/O <span style="color: GreenYellow;">接口</span>电路中可被CPU直接访问的 <span style="color: LimeGreen;">R</span>
+  - 主要包括
+    - <span style="color: LightSkyBlue;">数据</span>端口
+    - <span style="color: Gold;">状态</span>端口
+    - <span style="color: Goldenrod;">控制</span>端口
+  - CPU对不同端口的操作权限不同
+
+### <span style="color: silver;">I/O端口<span style="color: deepskyblue;">编址</span>方式
+
+<ul>
+
+#### <span style="color: silver;"> <span style="color: Gold;">独立</span>~
+
+<ul>
+
+>pro：I/O指令的作用（2017）
+
+- 特点
+  - (<span style="color: LightSkyBlue;">I</span>/ <span style="color: Gold;">O</span> <span style="color: Gold;">映射</span>方式
+  - I/O端口 <span style="color: GreenYellow;">单</span><span style="color: Gold;">独</span>编址
+  - I/O端口地址空间 与 主存地址空间 <span style="color: Gold;">独立
+- 优点
+  - only need 少量地址线，译码简单
+  - 寻址<span style="color: RoyalBlue;">速度</span> <span style="color: GreenYellow;">快</span>
+  - 程序清晰易理解
+- 缺点
+  - I/O指令少，程序设计灵活性差
+  - need 两组控制信号，增加控制复杂性
+
+</ul>
+
+#### <span style="color: silver;"><span style="color: gray;">统一</span>~
+
+<ul>
+
+- 特点
+  - ( <span style="color: gray;">M</span>~方式
+  - <span style="color: Gold;">主存</span><span style="color: DarkRed;">地址</span>空间分出部分 → I/O<span style="color: LightSkyBlue;">端口</span>
+  - 使用统一的访存指令
+- 优点
+  - 无需专门I/O指令，操作灵活方便
+  - 端口编址空间大
+  - 可利用虚拟存储管理系统实现保护
+- 缺点
+  - 占用部分主存地址空间
+  - 译码电路复杂，速度较慢
+
+</ul>
+
+</ul>
+
+</ul>
+
+</ul>
+
+# <span style="color: silver;"> 1 I/O <span style="color: deepskyblue;">方式</span>
+
+<ul>
+
+- 作用：
+  - 实现主机与I/O设备之间的数据传送
+
+- 控制方式的多样性：
+  - 采用不同的控制方式，如程序查询、程序中断和DMA等。
+  - 这些方式在代价、性能、解决问题的着重点等方面各不相同。
+
+- 基于CPU程序指令的I/O方式：
+  - 程序 <span style="color: LimeGreen;">查询</span>和程序<span style="color: SlateBlue;">中断</span>
+    - 更依赖于CPU中 程序指令的执行
+
+## <span style="color: silver;">程序 <span style="color: LimeGreen;">查询</span>方式
+
+<ul>
+
+### <span style="color: silver;">原理
+
+<ul>
+
+- 直接由 <span style="color: GreenYellow;">CPU</span> 执行程序实现
+- 程序查询方式接口设置：
+  - <span style="color: LightSkyBlue;">数据</span>缓冲 <span style="color: LimeGreen;">R</span>（数据端口）
+  - <span style="color: gray;">设备</span>状态 <span style="color: LimeGreen;">R</span>（状态端口）
+- 主机I/O操作流程：
+  - 读取设备 <span style="color: Gold;">状态</span>
+  - 根据状态决定下一步操作
+
+>pro：程序查询方式的特点（2023）
+
+</ul>
+
+### <span style="color: silver;">process
+
+<ul>
+
+- ① CPU执行初始化程序，并预置传送参数
+- ② 向I/O接口发出命令字，启动I/O设备
+- ③ 从外设接口读取其状态信息
+- ④ CPU周期或持续的查询设备状态，直到外设准备就绪
+- ⑤ 传送一次数据
+- ⑥ 修改地址和计数器参数
+- ⑦ 判断传送是否结束，若未结束转第③步，直到计数器为0
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/fca58357301e2be2277f2fb06008bb5333a1276e5841ec4934610c16e8d988f0.jpg)
+图7.2程序查询方式流程图
+
+</ul>
+
+### <span style="color: silver;"> <span style="color: LimeGreen;">查询</span>方式<span style="color: green;">分类</span>
+
+<ul>
+
+#### <span style="color: silver;"> <span style="color: GreenYellow;">独占</span>~
+
+<ul>
+
+- CPU<u>一直</u>持续查询接口状态
+- CPU花费<span style="color: gray;">100%</span>时间用于I/O操作
+- 外设和CPU完全 <span style="color: Gold;">串行</span>工作
+
+</ul>
+
+#### <span style="color: silver;"> <span style="color: Gold;">定时</span>~
+
+<ul>
+
+- CPU<u>周期</u>性查询接口状态
+  - 条件满足才进行数据传送
+  - 传送完成后返回用户程序
+- 时间间隔 与 设备数据 <span style="color: LimeGreen;">传输</span><span style="color: LightSkyBlue;">速率</span>相关
+
+>pro：定时查询的特点、效率分析及计算（2011、2018）
+
+</ul>
+
+### <span style="color: silver;">eg
+
+<ul>
+
+【例7.1】假设计算机的主频为500MHz，CPI为4，某外设的数据率为2MB/s，I/O接口中有一个32位数据缓冲寄存器，采用定时查询方式，每次1/0都执行10条指令。外设最多间隔多长时间查询一次才能不丢失数据？CPU用于外设I/O的时间占CPU总时间的百分比至少是多少？
+
+解：
+- 计算过程：
+  - 外设准备32位数据时间：4B÷2MB/s=2μs
+  - 最大查询间隔：2μs
+  - 每秒最少查询次数：1s÷2μs=5×10^5
+  - CPU用于I/O的时钟周期：5×10^5×10×4=2×10^7
+  - CPU时间占比：2×10^7/500M=4%
+
+</ul>
+
+### <span style="color: silver;">优缺点
+
+<ul>
+
+- 优点：
+  - 设计简单
+  - 硬件量少
+- 缺点：
+  - CPU浪费大量时间查询等待
+  - 同一时间只能与一台外设交换信息
+  - CPU与设备串行工作，效率低
+
+</ul>
+
+</ul>
+
+</ul>
+
+## <span style="color: silver;">程序<span style="color: SlateBlue;">中断</span>方式
+
+<ul>
+
+### <span style="color: silver;">concept
+
+<ul>
+
+- 定义：
+  - CPU暂时中止现行程序
+  - 转去处理异常情况或特殊请求
+  - 处理完毕返回原程序断点继续执行
+
+>pro：程序中断方式的特点（2022、2023）
+
+</ul>
+
+### <span style="color: Gold;">function
+
+<ul>
+
+- ① 实现CPU与I/O设备并行工作
+- ② 处理硬件故障和软件错误
+- ③ 实现人机交互
+- ④ 实现多道程序、分时操作
+- ⑤ 实时处理快速响应
+- ⑥ 实现应用程序和操作系统切换
+- ⑦ 多处理器系统信息交流和任务切换
+
+</ul>
+
+### <span style="color: silver;">工作<span style="color: Gold;">原理
+
+<ul>
+
+- CPU在程序中安排启动外设
+- CPU继续执行当前程序
+- 外设完成准备后发出中断请求
+- CPU响应中断并执行中断服务程序
+- 完成数据传送后返回原程序
+- 外设和CPU并行工作
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/d801b68aeb041a5302c1291f1270babd69f5c5840e4f2e2e4063c194152b2d83.jpg)
+图7.3程序中断方式示意图
+
+>pro：程序中断的效率分析及相关计算（2009、2014、2016、2018、2019）
+
+</ul>
+
+### <span style="color: silver;">eg
+
+<ul>
+
+【例7.2】假定计算机的主频为500MHz，CPI为4，某外设的数据率为40MB/s，I/0接口中有一个32位数据缓冲寄存器。在中断I/O方式下，若每次中断响应和中断处理的总时钟周期数至少为400，则该外设能否采用中断1/0方式？为什么？
+
+解：
+- 计算过程：
+  - 中断响应和处理时间：400×1/500M=0.8μs
+  - 外设准备32位数据时间：4B÷40MB/s=0.1μs
+  - 结论：不适合采用中断I/O方式
+  - 原因：准备数据时间小于中断处理时间，会造成数据丢失
+
+</ul>
+
+### <span style="color: silver;">process
+
+<ul>
+
+>pro： 中断工作流程中的相关细节（2017、2018、2021）
+
+#### <span style="color: silver;">1. 中断 <span style="color: GreenYellow;">请求</span>
+
+<ul>
+
+- 中断 <span style="color: Gold;">源</span>
+  - 定义：请求CPU中断的设备或事件
+  - 特点：
+    - 数量：一台计算机允许有多个中断源
+    - 时间：每个中断源向CPU发出中断请求的时间是随机的
+  - 中断系统 <span style="color: GreenYellow;">管理</span>：
+    - 需求：对每个中断源设置中断请求标记触发器
+    - 触发器状态：
+      - "1"表示该中断源有请求
+    - 触发器组织：
+      - 形式：组成中断请求标记寄存器
+      - 位置：
+        - 可集中在CPU中
+        - 可分散在各个中断源中
+
+>pro：可屏蔽中断和不可屏蔽中断的特点（2020）
+
+##### <span style="color: silver;">中断<span style="color: green;">类型
+
+<ul>
+
+- <span style="color: gray;">可</span>屏蔽中断(INTR线)
+  - 优先级最 <span style="color: LimeGreen;">低</span>
+  - 关中断模式下不被响应
+- <span style="color: purple;">不</span><span style="color: gray;">可</span>屏蔽中断(NMI线)
+  - 用于处理紧急和重要事件
+    - 如时钟中断
+    - 电源掉电等
+  - 优先级最高
+  - 即使在关中断模式下也被响应
+
+</ul>
+
+</ul>
+
+#### <span style="color: silver;">2. 中断响应 <span style="color: Gold;">判</span><span style="color: GreenYellow;">优</span>
+
+<ul>
+
+- 优先级
+  - 定义：CPU响应中断请求的先后顺序
+- 多个中断源<span style="color: gray;">同时</span>请求
+  - 需求：通过中断判优逻辑确定响应顺序
+- <span style="color: Gold;">判</span> <span style="color: GreenYellow;">优</span>实现方式
+     - <span style="color: green;">硬件</span>方式：排队器
+     - <span style="color: LightSkyBlue;">软件</span>方式：中断查询程序
+
+##### <span style="color: silver;"> <span style="color: GreenYellow;">优</span><span style="color: LightSkyBlue;">先</span>级顺序
+
+<ul>
+
+- 不可屏蔽中断 > 内部异常 > 可屏蔽中断
+- 内部异常中：硬件故障 > 软件中断
+- DMA中断请求 > I/O设备的中断请求
+- I/O传送类中断请求中
+  - 高速设备 > 低速设备
+  - 输入设备 > 输出设备
+  - 实时设备 > 普通设备
+
+>attention:
+
+- I/O设备的中断请求机制：
+  - I/O设备的就绪时间是随机的。
+  - CPU在每条指令执行结束时采样中断请求信号。
+  - 仅在开中断的情况下获取I/O的中断请求。
+  - CPU响应中断的时间是每条指令执行阶段的结束时刻。
+
+- <span style="color: SlateBlue;">中断</span>与 <span style="color: Gold;">异常</span>的区别：
+  - 这里的中断only指 I/O<span style="color: SlateBlue;">中断</span>
+  - <span style="color: Gold;">异常</span>不属于I/O中断的范畴
+
+</ul>
+
+</ul>
+
+#### <span style="color: silver;">3. CPU <span style="color: Gold;">响应</span>中断的<span style="color: Goldenrod;">条件</span>
+
+<ul>
+
+- 三个条件：
+  1. 中断源有中断 <span style="color: GreenYellow;">请求</span>
+  2. CPU <span style="color: Gold;">允许</span>中断及开中断（异常和不可屏蔽中断不受此限制）
+  3. 一条指令执行<span style="color: gray;">完毕</span>（异常不受此限制），且没有更紧道的任务
+
+>attention:
+
+- I/O设备的中断请求机制：
+  - I/O设备的就绪时间特点：
+    - 具有随机性
+  - CPU对中断请求的处理：
+    - 采样时机：
+      - 在每条指令执行结束时
+    - 获取条件：
+      - 必须在开中断状态下
+    - 响应时间：
+      - 在指令执行阶段的结束时刻
+- <span style="color: SlateBlue;">中断</span>与 <span style="color: Gold;">异常</span>的区别：
+  - 这里说的中断only指I/O<span style="color: SlateBlue;">中断</span>
+  - <span style="color: Gold;">异常</span>不属于I/O中断的范畴
+
+</ul>
+
+#### <span style="color: silver;">4. 中断 <span style="color: Gold;">响应</span>process
+
+<ul>
+
+##### <span style="color: silver;">中断<span style="color: LightSkyBlue;">隐</span>指令
+
+<ul>
+
+- 本质：<span style="color: green;">硬件</span>的<u>一系列</u>自动操作
+- 完成的操作：
+  1. <span style="color: Gold;">关</span>中断
+     - 保护程序断点和现场信息 期间 不能响应更高级中断
+  2. <span style="color: Goldenrod;">保存</span>断点
+         - 将原程序断点保存在栈或特定寄存器中
+         - 异常和中断的差异：
+           - 异常：断点是当前指令地址
+           - 中断：断点是下一条指令地址
+  3. 引出中断 <span style="color: GreenYellow;">服务</span>程序
+     - 识别中断源
+     - 将服务程序入口地址送入PC
+     - 识别方法：
+       - 硬件向量法
+       - 软件查询法
+
+</ul>
+
+</ul>
+
+#### <span style="color: silver;">5. 中断<span style="color: LightSkyBlue;">向量
+
+<ul>
+
+##### <span style="color: silver;">中断<span style="color: gray;">识别</span>方式
+
+<ul>
+
+- 向量中断
+- 非向量中断（软件查询法）
+
+</ul>
+
+##### <span style="color: silver;">中断<span style="color: LightSkyBlue;">向量</span><span style="color: gray;">表
+
+<ul>
+
+- 每个中断源有唯一类型号
+- 每个类型号对应一个服务程序
+- 每个服务程序有一个入口地址（中断向量）
+- 所有中断向量集中存放在存储器特定区域
+
+>pro：中断向量表的数据结构（2023）
+
+</ul>
+
+##### <span style="color: silver;">中断<span style="color: LightSkyBlue;">向量</span>法 <span style="color: GreenYellow;">工作</span>流程
+
+<ul>
+
+1. CPU响应中断
+2. 识别中断源获得类型号
+3. 计算对应中断向量地址
+4. 从向量表取出入口地址
+5. 送入PC执行服务程序
+
+>attention:
+
+- 中断请求和响应信号
+  - 在IO总线的控制线上传送
+
+- CPU响应中断后的处理流程
+  - 从数据线上获取中断源的中断类型号
+  - 根据类型号计算中断向量在向量表中的位置
+
+</ul>
+
+</ul>
+
+#### <span style="color: silver;">6. 中断 <span style="color: GreenYellow;">处理</span>过程
+
+<ul>
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/ab84db701920d4fe3e864b31bb3c16635e25ae9907717b89a42118448e2e3e09.jpg)
+图7.4可嵌套中断的处理流程
+
+##### <span style="color: silver;"> 处理流程步骤
+
+<ul>
+
+- <span style="color: Gold;">关</span>中断
+   - 保存断点
+   - 中断服务程序寻址
+   - 保存现场和屏蔽字
+- <span style="color: LightSkyBlue;">开</span>中断 <span style="font-size: 12px;">5</span>
+   - 执行中断服务程序 <span style="font-size: 12px;">6</span>
+- <span style="color: Gold;">关</span>中断 <span style="font-size: 12px;">7</span>
+   - 恢复现场和屏蔽字
+- 开中断、中断返回
+
+>attention:
+
+- 中断服务程序中的信息保护：
+  - 现场信息和断点信息都不能被中断服务程序破坏。
+
+- 现场信息的保护：
+  - 通过指令直接访问。
+  - 通常在中断服务程序中保存到栈中。
+  - 由软件实现。
+
+- 断点信息的保护：
+  - CPU在中断响应时自动保存到栈或指定寄存器中。
+  - 由硬件实现。
+
+</ul>
+
+##### <span style="color: silver;"> <span style="color: LimeGreen;">执行</span>方式
+
+<ul>
+
+- 步骤1~3由中断<span style="color: LightSkyBlue;">隐</span>指令（硬件自动）完成
+- 步骤4~9由中断 <span style="color: GreenYellow;">服务</span>程序完成
+
+>pro：单级中断的处理流程（2010）
+
+>attention:
+
+若是单重中断（或称单级中断），则在上述流程中去掉 ⑤ 和 ⑦ 即可。
+
+</ul>
+
+</ul>
+
+</ul>
+
+### <span style="color: silver;"><span style="color: RoyalBlue;">多</span><span style="color: Gold;">重</span>中断 & 中断<span style="color: green;">屏蔽</span>技术
+
+<ul>
+
+>pro：多重中断的中断屏蔽字相关的性质（2017、2020、2021）
+
+#### <span style="color: silver;">中断<span style="color: green;">类型</span><span style="color: Gold;">对比
+
+<ul>
+
+##### <span style="color: silver;">单重中断
+
+<ul>
+
+- CPU执行服务程序时不响应新的更高优先级中断请求
+
+</ul>
+
+##### <span style="color: silver;"><span style="color: RoyalBlue;">多</span>~（中断嵌套）
+
+<ul>
+
+- CPU可暂停现行服务程序处理新的更高优先级中断请求
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/1d3d8beb712bf54344e3605d581c5a8d10e4944f258311c805ffa316f694c414.jpg)
+图7.5单重中断和多重中断示意图
+
+</ul>
+
+</ul>
+
+#### <span style="color: silver;">process
+
+<ul>
+
+- 主程序执行时发生<span style="color: SlateBlue;">中断</span>请求1
+  - <span style="color: Gold;">响应</span>中断1并保存断点
+- 执行<span style="color: LightSkyBlue;">服务</span>程序1时 发生更<span style="color: LightSkyBlue;">高</span> <span style="color: GreenYellow;">优先</span><span style="color: Gold;">级</span>中断2
+  - 中止处理1 <span style="color: Gold;">响应</span>中断<span style="color: gray;">2
+- 以此类推直到所有中断处理完毕
+- 最终返回主程序继续执行
+
+</ul>
+
+#### <span style="color: Gold;">条件
+
+<ul>
+
+- <span style="color: LightSkyBlue;">服务</span>程序中需提前设置 <span style="color: LimeGreen;">开</span><span style="color: SlateBlue;">中断</span><span style="color: LightSkyBlue;">指令</span>
+- <span style="color: LightSkyBlue;">高</span>优先级中断源 可中断 <span style="color: LimeGreen;">低</span>优先级中断源
+
+</ul>
+
+#### <span style="color: silver;">中断 <span style="color: LimeGreen;">屏蔽</span>技术
+
+<ul>
+
+- 每个中断源有一个 <span style="color: LimeGreen;">屏蔽</span> <span style="color: GreenYellow;">触发</span>器(MASK)
+  - <span style="color: gray;">1</span>表示 <span style="color: LimeGreen;">屏蔽</span>该中断源请求
+  - 0表示可以正常请求
+- 所有屏蔽触发器 → 屏蔽字 <span style="color: LimeGreen;">R</span>
+<br>
+
+【例7.3】
+- 问题分析：
+  - 中断源：A、B、C、D。
+  - 硬件排队优先次序：A > B > C > D。
+  - 需改变的中断处理次序：D > A > C > B。
+  - 目标：写出每个中断源对应的屏蔽字。
+
+- 解答思路：
+  - 根据新的中断处理次序确定屏蔽字。
+  - 最高优先级的中断源可以屏蔽所有其他中断，不能中断自身。
+  - 次高优先级的中断源只能被更高优先级的中断源中断。
+
+- 屏蔽字计算：
+  - D的屏蔽字：1111（最高优先级，屏蔽所有其他中断）。
+  - A的屏蔽字：1110（次高优先级，只能被D中断）。
+  - C的屏蔽字：1101（只能被D和A中断）。
+  - B的屏蔽字：1100（只能被D、A和C中断）。
+
+- 结果：
+  - 屏蔽字汇总表：表7.1。
+
+表7.1中断源对应的中断屏蔽字
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/c51e363202806c9ac2a1ac35db7cc75e6bd5d697fae775c075ea07369b546fcc.jpg)
+
+</ul>
+
+#### <span style="color: silver;">程序中断方式的<span style="color: gray;">局限
+
+<ul>
+
+- 宏观优点： <span style="color: GreenYellow;">克服</span>CPU <span style="color: Gold;">等待</span>，提高利用率
+- 微观缺点：
+  - 处理中断时需暂停原程序
+  - 高速设备频繁交换信息时需不断打断CPU
+
+</ul>
+
+</ul>
+
+</ul>
+
+## <span style="color: silver;"><span style="color: DarkRed;">DMA</span>方式
+
+<ul>
+
+direct memory access
+
+- 特点：
+  - 硬件控制特点：
+    - 完全由硬件控制成组信息传送
+
+  - 效率优势：
+    - 具有程序中断方式优点
+    - CPU与外设并行工作
+
+  - 数据传输特点：
+    - 外设与内存间有直接数据通路
+    - 信息传送不经过CPU
+
+  - 处理开销：
+    - 无需保护恢复CPU现场- 适用场景：
+  - 磁盘、显卡、声卡、网卡等高速设备
+  - 大批量数据传送
+- 硬件开销较大
+- 中断仅用于故障和正常传送结束处理
+
+### <span style="color: silver;">concept
+
+<ul>
+
+#### <span style="color: Gold;">特点
+
+<ul>
+
+- <span style="color: Gold;">主存</span>和<span style="color: DarkRed;">DMA</span> <span style="color: GreenYellow;">接口</span>之间有直接<span style="color: LightSkyBlue;">数据</span>通路:
+        - 数据传送特点：
+     - 数据传送路径：
+       - 传送数据不需经过CPU
+     - 程序执行：
+       - 不必中断现行程序
+     - <span style="color: LimeGreen;">并行</span>工作能力：
+          - I/O与主机并行工作
+          - 程序和传送并行工作
+- 特点：
+  - 主存与CPU关系：
+    - 固定联系脱钩
+    - 可同时被CPU和外设访问
+
+  - 数据传送特点：
+    - 由硬件电路直接实现块传送
+    - 需在主存开辟专用缓冲区
+    - 传送速度快
+    - CPU和外设可并行工作
+
+  - 程序处理要求：
+    - 需要程序预处理
+    - 需要中断后处理
+
+</ul>
+
+#### <span style="color: silver;">DMA控制器的 <span style="color: Gold;">组成
+
+<ul>
+
+- 基本功能：
+  - 接受外设DMA请求并向CPU发出总线请求
+  - 接管总线控制权进入DMA操作周期
+  - 确定和修改传送数据的主存地址及长度
+  - 规定传送方向并执行数据传送
+  - 向CPU报告操作结束
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/8522cd40675adcad448679876eac85a3951fa26a1116a5b156080131b7de7bcf.jpg)
+图7.6简单的DMA控制器
+
+- 主要组成部件：
+  - 主存地址计数器：存放交换数据的主存地址
+  - 传送长度计数器：记录传送数据总长度
+  - 数据缓冲寄存器：暂存每次传送数据
+  - DMA请求触发器：响应I/O设备准备信号
+  - "控制/状态"逻辑：指定传送方向和参数修改
+  - 中断机构：数据传送完毕后请求中断
+
+</ul>
+
+</ul>
+
+#### <span style="color: silver;"><span style="color: GreenYellow;">传送</span>方式
+
+<ul>
+
+##### <span style="color: silver;"> <span style="color: LimeGreen;">停止</span>CPU访存
+
+<ul>
+
+- 工作过程：
+  - I/O设备发出DMA请求
+  - CPU放弃总线控制权
+  - DMA传送完成后归还控制权
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/6ec983e624318edc13175044b2d5cebc2b11509fa61e7d5aa190149951d0aa44.jpg)
+图7.7停止CPU访存
+
+- 优缺点：
+  - 优点：控制简单，适合高速I/O设备
+  - 缺点：CPU基本处于不工作状态
+
+</ul>
+
+##### <span style="color: silver;"><span style="color: LightSkyBlue;">周期</span><span style="color: gray;">挪用</span>
+
+<ul>
+
+>pro：周期挪用的特点及挪用次数分析（2012、2020、2022）
+
+- 工作特点：
+  - I/O访存优先级高于CPU
+  - 单字传送方式
+  - 传送完立即释放总线
+- 三种情况：
+  - CPU不在访存时无冲突
+  - CPU正在访存需等待周期结束
+  - 同时请求时CPU暂时放弃控制权
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/f1cb1aeae481f0ba9014acc77c9a136f81250ae56fe2f1afdbaaae40727dad9f.jpg)
+图7.8周期挪用
+
+- 优缺点：
+  - 优点：兼顾I/O传送和系统效率
+  - 缺点：频繁申请归还总线控制权
+
+</ul>
+
+##### <span style="color: silver;"><span style="color: DarkRed;">DMA</span> <span style="color: GreenYellow;">CPU</span><span style="color: Goldenrod;">交替</span>访存
+
+<ul>
+
+- 工作方式：
+  - CPU工作周期 → 两个时间片
+  - CPU和DMA轮流访存
+  - 适用于 <span style="color: GreenYellow;">CPU</span>周期 > <span style="color: Gold;">主存</span>周期
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/ffcf3f4a552e1dfafa466c4a36585fb69c056f358e0b653e960ca62e1a3344ba.jpg)
+图7.9DMA与CPU交替访存
+
+- 优缺点：
+  - 优点：无需申请归还总线，传送速率高
+  - 缺点：硬件逻辑复杂
+
+>pro：DMA方式的效率分析及相关计算（2011、2018）
+
+- 【例7.4】问题分析：
+  - 计算机主频：500 MHz。
+  - CPI（每条指令周期数）：4。
+  - 外设数据率：40 MB/s。
+  - I/O接口数据端口大小：32位。
+  - DMA方式，每次DMA传送块大小：1000B。
+  - DMA预处理和后处理总时钟周期数：500。
+  - 问题：CPU用于该外设I/O的时间占CPU总时间的百分比是多少？
+
+- 解答思路：
+  - 计算外设每秒的DMA次数。
+  - 确定DMA方式下CPU处理的总时钟周期数。
+  - 计算CPU用于外设I/O的总时间。
+  - 计算CPU用于外设I/O的时间占CPU总时间的百分比。
+
+- 计算过程：
+  - 外设每秒DMA次数：40MB/s ÷ 1000B = 40000次。
+  - CPU用于外设I/O的总时钟周期数：40000次 × 500周期/次 = 2 × 10^7个时钟周期。
+  - CPU用于外设I/O的时间占CPU总时间的百分比：2 × 10^7 ÷ 500M = 4%。
+
+</ul>
+
+</ul>
+
+### <span style="color: silver;"><span style="color: DarkRed;">DMA</span>的 <span style="color: GreenYellow;">传送</span>过程
+
+<ul>
+
+>pro：DMA方式的传送过程（2019）
+
+#### <span style="color: silver;">concept
+
+<ul>
+
+图7.10所示为DMA的数据传送流程，分为
+- <span style="color: gray;">预</span>处理
+- <span style="color: LightSkyBlue;">数据</span>传送
+- <span style="color: Gold;">后</span>处理
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a3b3e6b4a23a187f89eda625719dd33923705cfd841a0f99f9153f246e978d6b.jpg)
+图7.10DMA的传送流程
+
+</ul>
+
+#### <span style="color: silver;">steps
+
+<ul>
+
+##### <span style="color: silver;"><span style="color: gray;">预</span>处理
+
+<ul>
+
+- CPU完成必要准备工作
+  - 初始化DMA控制器中的有关寄存器
+  - 设置传送方向
+  - 测试并启动设备
+- 后续流程
+  - CPU继续执行原程序
+  - I/O设备准备好数据时
+    - 向DMA控制器发送DMA请求
+    - DMA控制器向CPU发出总线请求
+
+</ul>
+
+##### <span style="color: silver;"><span style="color: LightSkyBlue;">数据</span> <span style="color: GreenYellow;">传送</span>
+
+<ul>
+
+- 传送特点
+  - 以数据块为基本传送单位
+  - 通过循环实现数据输入/输出操作
+  - 完全由DMA(硬件)控制
+
+</ul>
+
+##### <span style="color: silver;"> <span style="color: Gold;">后</span>处理
+
+<ul>
+
+- step:
+  - DMA控制器向CPU发送中断请求
+  - CPU执行中断服务程序
+    - 校验数据(出错则转诊断程序)
+    - 其他后处理工作
+- 效率:
+  - 整个数据块传送过程不需CPU参与
+  - CPU仅在初始化和结束处理时介入
+  - CPU用于I/O的开销非常小
+
+</ul>
+
+</ul>
+
+### <span style="color: silver;"><span style="color: DarkRed;">DMA</span>方式 & 中断方式的区别
+
+<ul>
+
+>pro：中断方式与DMA方式的区别（2013、2023）
+
+- 程序切换与现场保护
+  - 中断方式需要程序切换，需保护和恢复现场
+  - DMA方式不中断现行程序，无需保护现场
+- 响应时机
+  - 中断请求：仅在指令执行结束时响应
+  - DMA请求：可在任意机器周期结束时响应
+- CPU干预程度
+  - 中断传送需要CPU干预
+  - DMA传送不需CPU干预，传输速率高
+- 优先级关系
+  - DMA请求优先级高于中断请求
+- 处理能力
+  - 中断方式可处理异常事件
+  - DMA方式仅用于大批数据传送
+- 传送方式
+  - 中断方式：程序传送
+  - DMA方式：硬件传送
+
+>pro：DMA与CPU请求总线的优先级对比（2012、2022）
+
+</ul>
+
+</ul>
+
+</ul>
+
+</ul>
+
+

@@ -1,0 +1,1445 @@
+以下是按照要求处理后的 Markdown 内容，增加了 `<ul></ul>` 标签以实现标题段落间的缩进，严格保留原有 Markdown 格式，包括图片链接等：
+
+```markdown
+<span style="color: silver;">
+
+# <span style="color: silver;">above  
+
+<ul>
+
+## <span style="color: silver;">【考纲内容】  
+
+<ul>
+
+（一）<span style="color: Gold;">search</span>的concept（二）顺序<span style="color: Gold;">search</span>法（三）分块<span style="color: Gold;">search</span>法（四）折半<span style="color: Gold;">search</span>法（五）树形<span style="color: Gold;">search</span>二叉搜索树：<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>：<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>（六）B树及其基本操作、$^{\mathrm{B+}}$树的concept（七）<span style="color: RoyalBlue;">散列</span>（Hash）表（八）<span style="color: Gold;">search</span>算法的分析及应用  
+
+</ul>
+
+## <span style="color: silver;">【知识框架】  
+
+<ul>
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/04bba28557f8de0f60708124edff3cf56401157743f882b68284dea1f7097c04.jpg)  
+
+</ul>
+
+## <span style="color: silver;">【复习提示】  
+
+<ul>
+
+- 重点掌握的知识点：
+
+  - 折半搜索：
+    - 掌握折半搜索的过程。
+    - <span style="color: Lime;">构造</span>判定树。
+    - 分析<span style="color: LightSkyBlue;">平均</span>搜索长度。
+
+  - 二叉排序树、二叉平衡树和<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>：
+    - 了解它们的概念、性质和相关操作。
+    - B树和B+树是本章的难点。
+
+  - B树：
+    - 掌握<span style="color: GreenYellow;">插入</span>、删除和搜索的操作过程。
+
+  - B+树：
+    - 了解其concept和性质。
+
+  - <span style="color: RoyalBlue;">散列</span>搜索：
+    - 掌握<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>的<span style="color: Lime;">构造</span>。
+    - 掌握<span style="color: Gold;">冲突</span>处理方法及其处理过程。
+    - 掌握搜索成功和搜索失败的<span style="color: LightSkyBlue;">平均</span>搜索长度。
+    - 掌握散搜索的特征和性能分析。
+
+</ul>
+
+</ul>
+
+# <span style="color: silver;">concept
+
+<ul>
+
+## <span style="color: silver;">基本定义
+
+<ul>
+
+- <span style="color: Gold;">search</span>
+  - 在数据集合中寻找满足某种条件的数据元素的过程
+  - 结果分为两种：
+    - 查找成功：找到满足条件的数据元素
+    - <span style="color: Gold;">search</span>失败
+
+- <span style="color: Gold;">search</span>表
+  - 定义：用于<span style="color: Gold;">search</span>的数据集合，由同一类型的数据元素组成
+  - 常见操作：
+    - 查询符合条件的数据元素
+    - <span style="color: GreenYellow;">插入</span>、删除数据元素
+
+- 静态<span style="color: Gold;">search</span>表
+  - 定义：只涉及<span style="color: Gold;">search</span>操作的表
+  - 对应的动态<span style="color: Gold;">search</span>表：需要动态<span style="color: GreenYellow;">插入</span>或删除的表
+  - 适用方法：
+    - 静态表：顺序<span style="color: Gold;">search</span>、折半<span style="color: Gold;">search</span>、<span style="color: RoyalBlue;">散列</span><span style="color: Gold;">search</span>
+    - 动态表：二叉排序树<span style="color: Gold;">search</span>、<span style="color: RoyalBlue;">散列</span><span style="color: Gold;">search</span>
+
+- 关键字
+  - 定义：数据元素中唯一标识该元素的数据项值
+  - 特点：基于关键字的<span style="color: Gold;">search</span>结果应该是唯一的
+
+- <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度
+  - 定义：所有<span style="color: Gold;">search</span>过程中关键字比较次数的<span style="color: LightSkyBlue;">平均</span>值
+  - 数学表达式：$\mathrm{ASL}=\sum_{i=1}^{n}P_{i}C_{i}$
+  - 参数说明：
+    - n：<span style="color: Gold;">search</span>表长度
+    - Pi：<span style="color: Gold;">search</span>第i个元素的概率(通常Pi=1/n)
+    - Ci：找到第i个元素所需比较次数
+
+</ul>
+
+</ul>
+
+# <span style="color: silver;"><span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span> & <span style="color: Gold;">折</span><span style="color: gray;">半</span>~ & <span style="color: GreenYellow;">分块</span>~
+
+<ul>
+
+## <span style="color: silver;"><span style="color: LightSkyBlue;">顺序</span>~
+
+<ul>
+
+### <span style="color: silver;">concept
+
+<ul>
+
+- 又称<span style="color: orange;">线性</span><span style="color: Gold;">search</span>
+- 适用范围：
+  - <span style="color: LightSkyBlue;">顺序</span>表：通过数组下标递增扫描
+  - <span style="color: RoyalBlue;">链</span>表：通过指针next扫描
+
+</ul>
+
+### <span style="color: silver;"><span style="color: gray;">一般</span><span style="color: orange;">线性</span>表的顺序<span style="color: Gold;">search</span>
+
+<ul>
+
+#### <span style="color: silver;">基本思想
+
+<ul>
+
+- from<span style="color: orange;">线性</span>表一<span style="color: LightSkyBlue;">端</span>开始逐个检查关键字
+  - find<span style="color: GreenYellow;">满足</span>条件元素 → return位置
+- till表另一端not find → return失败
+
+</ul>
+
+#### <span style="color: LightSkyBlue;">算法
+
+<ul>
+
+typedef struct{
+    ElemType *elem;
+    int TableLen;
+}SSTable;
+
+int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
+    ST.elem[0]`=key;
+    for(int i=ST.TableLen;ST.elem[i]`!=key;--i);
+    return i;
+}
+
+</ul>
+
+#### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
+
+<ul>
+
+- <span style="color: Gold;">search</span>成功时<span style="color: LightSkyBlue;">平均</span>长度：
+   - $\operatorname{ASL}_{\mathfrak{h}(n;i)}=\sum_{i=1}^{n}P_{i}(n-i+1)$
+   - 当Pi=1/n时：$\operatorname{PSL}_{n|k\rangle n|}{=}{\frac{n+1}{2}}$
+- ~失败时：ASL=n+1
+
+</ul>
+
+#### <span style="color: silver;"><span style="color: LightSkyBlue;">优</span><span style="color: GreenYellow;">缺</span>点
+
+<ul>
+
+- 缺点：n较大时效率低
+- 优点：
+  - 存储方式灵活
+  - 无序序要求
+  - 适用于链表
+
+</ul>
+
+</ul>
+
+### <span style="color: silver;"><span style="color: GreenYellow;"><span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span></span><span style="color: orange;">线性</span>表的顺序<span style="color: Gold;">search</span>
+
+<ul>
+
+#### <span style="color: gray;">Feature
+
+<ul>
+
+- 提前know表is<u>关键字<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span></u>
+- False:
+  - <span style="color: Gold;">search</span>失败时can<span style="color: GreenYellow;">提前</span>返回
+  - 可降低<span style="color: Gold;">search</span>失败的<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">平均</span></span><span style="color: gray;">长度
+
+> pro：<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>线性表的顺序<span style="color: Gold;">search</span>的应用（2013）
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/b9a556e5c788039f2fe0a08be26af8476e380c1fcd30a762adcbe9951bfa13c7.jpg)
+↑<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>顺序表上的顺序查找判定树
+
+</ul>
+
+#### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
+
+<ul>
+
+- <span style="color: Gold;">search</span><span style="color: Gold;">成功</span>：same as<span style="color: gray;">一般</span>线性表
+- <span style="color: Gold;">search</span><span style="color: GreenYellow;">失败</span>：
+  - <span style="color: LightSkyBlue;">平均</span>长度：$\operatorname{ASL}_{\mathcal{K}:n\times l}=\!\!\sum_{j=1}^{n}q_{j}(l_{j}-1)\!=\!\frac{1\!+2\!+\!\cdots\!+n\!+\!n}{n\!+\!1}\!=\!\frac{n}{2}\!+\!\frac{n}{n\!+\!1}$
+  - 当n=6时：ASL=3.86
+
+</ul>
+
+#### <span style="color: silver;">attention
+
+<ul>
+
+- 思想与<span style="color: Gold;">折</span><span style="color: gray;">半</span><span style="color: Gold;">search</span>不同
+  - <span style="color: RoyalBlue;">链</span>式存储结构
+  - 折半~only<span style="color: LightSkyBlue;">顺序</span>存储结构
+
+</ul>
+
+</ul>
+
+</ul>
+
+## <span style="color: Gold;">折</span><span style="color: gray;">半</span>~
+
+<ul>
+
+折半<span style="color: Gold;">search</span>又称二分<span style="color: Gold;">search</span>，它仅适用于<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>的顺序表。  
+
+> pro：分析对比给定<span style="color: Gold;">search</span>算法与折半<span style="color: Gold;">search</span>的效率（2016）  
+
+### <span style="color: silver;">基本思想
+
+<ul>
+
+- compare<span style="color: gray;">给</span><span style="color: GreenYellow;">定</span>值key with table中间位置的元素
+  - if =
+    - <span style="color: Gold;">search</span>成功
+    - return该元素的存储位置
+  - elif ≠
+    - →所需<span style="color: Gold;">search</span>的元素in
+      - 中间元素以外的
+      - <span style="color: LightSkyBlue;">前</span>半or<span style="color: GreenYellow;">后</span>半
+<br>
+  - eg
+    - <span style="color: Gold;">search</span>表升序排列时
+      - 若key＞中间元素
+        - then所<span style="color: Gold;">search</span>的元素only might在<span style="color: GreenYellow;">后</span><span style="color: gray;">半</span>部分
+        - 在缩小的<span style="color: gray;">范围</span>内go on同样的<span style="color: Gold;">search</span>
+      - repeat the steps
+        - till<span style="color: GreenYellow;">Find</span>
+        - or ensure表中no所需要<span style="color: Gold;">search</span>的元素
+          - 则<span style="color: Gold;">search</span>不成功
+          - return False
+
+</ul>
+
+### <span style="color: LightSkyBlue;">算法</span>
+
+<ul>
+
+int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
+    int low=0,high=L.TableLen-1,mid;
+    while(low<=high){
+        mid=(low+high)/2; //取中间位置
+        if(L.elem[mid]`==key) return mid; //<span style="color: Gold;">search</span>成功则返回所在位置
+        else if(L.elem[mid]`>key) high=mid-1; //从前半部分继续<span style="color: Gold;">search</span>
+        else low=mid+1; //从后半部分继续<span style="color: Gold;">search</span>
+    }
+    return -1; //<span style="color: Gold;">search</span>失败，返回-1
+}
+
+<ul>
+
+#### <span style="color: silver;">instruction
+
+<ul>
+
+- 折半<span style="color: Gold;">search</span>算法select中间node时
+  - 向↑取整
+  - ~↓~
+- both can
+    - but每次<span style="color: Gold;">search</span>的取整方式必须相同
+
+> pro：折半<span style="color: Gold;">search</span>的<span style="color: Gold;">search</span>路径的判断（2015）  
+
+</ul>
+
+#### <span style="color: silver;">eg
+
+<ul>
+
+- 已知11个元素的<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>表{7,10,13,16,19,29,32,33,37,41,43}
+- <span style="color: Gold;">search</span>值为11的过程：
+  - 第一次<span style="color: Gold;">search</span>
+    - 比较中间元素29与key
+    - 11<29，在[low,mid-1]`范围内继续<span style="color: Gold;">search</span>
+  - 第二次<span style="color: Gold;">search</span>
+    - 比较中间元素13与key
+    - 11<13，在[low,mid-1]`范围内继续<span style="color: Gold;">search</span>
+  - 第三次<span style="color: Gold;">search</span>
+    - 比较中间元素7与key
+    - 11>7，在[mid+1,high]`范围内继续<span style="color: Gold;">search</span>
+  - 第四次<span style="color: Gold;">search</span>
+    - 子表只含一个元素10
+    - 10≠11，<span style="color: Gold;">search</span>失败
+
+> pro：分析给定二叉树树形能否构成折半<span style="color: Gold;">search</span>判定树（2017）  
+
+</ul>
+
+</ul>
+
+### <span style="color: silver;"><span style="color: GreenYellow;">判定</span><span style="color: green;">树
+
+<ul>
+
+- Feature：
+  - node:
+    - 每个圆形~express一个记录
+    - 最下面的叶~为方形，表示<span style="color: Gold;">search</span>失败的区间
+    - 每个~值均＞其左子~值
+      - 且＜其右子~值
+    - n个元素对应n个圆形非叶~和n+1个方形叶~
+  - is<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a3c13d8b6e09e2161cf91b26befcb36e69ca849ba58fb230483c6eaa214215f5.jpg)  
+↑描述折半查找过程的判定树
+
+> pro：折半<span style="color: Gold;">search</span>的最多比较次数的分析（2010、2023）  
+
+</ul>
+
+### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
+
+<ul>
+
+- 比较次数最多≤树的<span style="color: LightSkyBlue;">高度</span>
+- <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度：
+  - $\mathrm{ASL}={\frac{1}{n}}\sum_{i=1}^{n}l_{i}={\frac{1}{n}}(1\times1+2\times2+\cdots+h\times2^{h-1})={\frac{n+1}{n}}\log_{2}(n+1)-1\approx\log_{2}(n+1)-1$
+  - 时间复杂度为O(log₂n)
+- 示例分析(图7.2)：
+  - <span style="color: Gold;">search</span>成功ASL=(1×1+2×2+3×4+4×4)/11=3
+  - <span style="color: Gold;">search</span>失败ASL=(3×4+4×8)/12=11/3
+
+</ul>
+
+### <span style="color: silver;"><span style="color: gray;">conditions
+
+<ul>
+
+- only<span style="color: LightSkyBlue;">顺序</span>存储结构
+- request元素按关键字<span style="color: GreenYellow;">有</span><span style="color: LightSkyBlue;">序</span>排列
+
+</ul>
+
+</ul>
+
+## <span style="color: silver;"><span style="color: GreenYellow;">分块</span>~
+
+<ul>
+
+- also called as<span style="color: Gold;">索引</span><span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
+- 顺序<span style="color: Gold;">search</span>和折半<span style="color: Gold;">search</span>各自的优点
+  - 既<span style="color: GreenYellow;">动态</span>结构
+  - 又<span style="color: RoyalBlue;">快速</span><span style="color: Gold;">search</span>
+
+### <span style="color: silver;">基本思想
+
+<ul>
+
+- 将<span style="color: Gold;">search</span>表分为若干<span style="color: gray;">子块</span>
+  - 块内
+    - can无序
+  - 块间
+    - 元素<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>
+      - 第一个块中
+        - max关键字＜第二个块中all recorded关键字
+      - 第二个块中
+        - max关键字＜第二个块中all recorded关键字
+      - ...
+      - 以此类推
+- 建立索引表
+  - 包含各块最大关键字和各块第一个元素地址
+  - 索引表按关键字<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>排列
+
+</ul>
+
+### <span style="color: silver;"><span style="color: Gold;">过程
+
+<ul>
+
+- step1：在**索引表**中确定待查记录所在的<span style="color: gray;">块</span>
+  - 可以<span style="color: LightSkyBlue;">顺序</span>~or<span style="color: Gold;">折</span><span style="color: gray;">半</span>~索引表
+- step2：在<span style="color: gray;">块</span>内<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
+
+</ul>
+
+### <span style="color: silver;">eg
+
+<ul>
+
+- 关键码集合：{88,24,72,61,21,6,32,11,8,31,22,83,78,54}
+- 按关键码值24,54,78,88分为4个块和索引表
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/76ded7a7f7a5d8bfa95e7e4f016ef281090b1deb3b0fa15e348952f286083f80.jpg)  
+
+</ul>
+
+### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
+
+<ul>
+
+- <span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">平均</span></span><span style="color: Gold;">search</span>长度
+  - ASL = L₁ + Ls
+    - L₁：索引<span style="color: Gold;">search</span><span style="color: LightSkyBlue;">平均</span>长度
+    - Ls：块内<span style="color: Gold;">search</span><span style="color: LightSkyBlue;">平均</span>长度
+- 均匀分块情况下
+  - n长度表分为b块，每块s个记录
+  - ASL = (b+1)/2 + (s+1)/2 = (s²+2s+n)/2s
+  - 当s=√n时，ASL最小，为√n+1
+
+</ul>
+
+### <span style="color: silver;"><span style="color: LightSkyBlue;">优</span><span style="color: GreenYellow;">缺</span>点
+
+<ul>
+
+- <span style="color: LightSkyBlue;">优</span>点：
+  - 具有<span style="color: GreenYellow;">动态</span>结构
+  - <span style="color: RoyalBlue;">快速</span><span style="color: Gold;">search</span>
+  - 块内<span style="color: Gold;">search</span>范围小，效率高于<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
+- <span style="color: GreenYellow;">缺</span>点：
+   - 索引表占用<span style="color: gray;">额外</span>存储空间
+   - 索引<span style="color: Gold;">search</span>增加系统<span style="color: gray;">开销</span>
+
+</ul>
+
+</ul>
+
+</ul>
+
+# <span style="color: silver;"><span style="color: green;">树</span>形<span style="color: Gold;">search</span>  
+
+<ul>
+
+## <span style="color: silver;"><span style="color: Gold;">二叉</span><span style="color: GreenYellow;">排序</span><span style="color: green;">树</span>（BST）  
+
+<ul>
+
+Binary sort tree
+- 目的：
+  - 不是用于排序
+  - 是为了提高以下操作的效率：
+    - 关键字<span style="color: Gold;">搜索</span>
+    - ~<span style="color: GreenYellow;"><span style="color: GreenYellow;">插入</span></span>
+    - ~<span style="color: gray;">删除</span>
+- 优势：
+  - 非线性结构
+  - 这种结构特别有利于：
+    - <span style="color: GreenYellow;"><span style="color: GreenYellow;">插入</span></span>
+    - <span style="color: gray;">删除</span>
+
+### <span style="color: silver;">定义  
+
+<ul>
+
+> pro：二叉排序树的应用（2013）  
+
+二叉排序树（也称二叉<span style="color: Gold;">search</span>树）或者是一棵空树，或者是具有下列特性的二叉树：  
+- 若左子树非空，则左子树上所有node的值均＜根node的值
+- 若右子树非空，则右子树上所有node的值均＞根node的值
+- 左、右子树也分别是一棵二叉排序树
+
+> pro：二叉排序树中node值之间的关系（2015、2018）  
+
+- 根据二叉排序树的定义:
+  - 左子树node值$<$根node值$<$右子树node值
+  - 对二叉排序树进行中序遍历，可以得到一个递增的<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>序列
+  - 例如，图7.4所示二叉排序树的中序遍历序列为123468
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/ce5699f8e763d0cb3b6dbd0974980ca0913f135c1e27622016155408d0e469aa.jpg)  
+图7.4一棵二叉排序树  
+
+</ul>
+
+### <span style="color: silver;">基本操作
+
+<ul>
+
+#### <span style="color: Gold;">search</span>  
+
+<ul>
+
+- 过程：
+  - 从根node开始，沿某个分支遂层向下比较
+  - 若二义排序树非空：
+    - 先将给定值与根node的关键字比较
+    - 若相等，则<span style="color: Gold;">search</span>成功
+    - 若不等：
+      - ＜根node的关键字，则在根node的左子树上<span style="color: Gold;">search</span>
+      - 否则在根node的右子树上<span style="color: Gold;">search</span>
+
+- 非递归<span style="color: Gold;">search</span>算法：
+
+  ```c
+  BSTNode *BST<span style="color: Gold;">search</span>(BiTree T,ElemType key)( 
+    while(T!=NULL&&key$!=$T->data){ 
+      if（key<T->data）T=T->1child；
+      elseT=T->rchild; 
+    }
+    returnT;  
+  ```
+
+- eg：
+  - 在图7.4中<span style="color: Gold;">search</span>值为4的node
+    - 首先4与根node6比较
+      - 4＜6
+        - 在根node6的左子树中继续<span style="color: Gold;">search</span>
+      - 4＞2
+        - 在node2的右子树中<span style="color: Gold;">search</span>
+        - <span style="color: Gold;">search</span>成功
+
+</ul>
+
+#### <span style="color: GreenYellow;"><span style="color: GreenYellow;">插入</span>  
+
+<ul>
+
+- 特点：
+  - 树的结构通常不是一次生成的
+  - 在<span style="color: Gold;">search</span>过程中，当树中不存在关键字值等于给定值的node时再进行<span style="color: GreenYellow;">插入</span>
+
+- <span style="color: GreenYellow;">插入</span>过程：
+  - 若原二义排序树为空，则直接<span style="color: GreenYellow;">插入</span>
+  - 否则：
+    - 关键字k＜根node值则<span style="color: GreenYellow;">插入</span>到左子树
+    - 关键字k＞根node值则<span style="color: GreenYellow;">插入</span>到右子树
+  - <span style="color: GreenYellow;">插入</span>的node一定是一个新添加的叶node
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/e89e6ea7f4ada4a4c481bc8b1e0ce1cafabd2e67868cbf3cc6ccf9d77c30fc9c.jpg)  
+图7.5向二叉排序树中<span style="color: GreenYellow;">插入</span>node  
+
+- <span style="color: GreenYellow;">插入</span>算法：
+
+```c
+int BSTInsert（BiTree&T，KeyTypek）(
+  if（T==NULL)(
+    T=(BiTree)malloc（sizeof（BSTNode));
+    T->data=k
+    T->lchild=T->rchild=NULL;
+    return1;
+  else if(k=T->data)
+    return0;
+  else if(k<T->data)
+    return BSTInsert(T->lchild,k);
+  else
+    return BSTInsert（T->rchild,k);
+```
+
+</ul>
+
+#### <span style="color: Lime;"><span style="color: Lime;">构造</span>  
+
+<ul>
+
+> pro:<span style="color: Lime;">构造</span>二叉排序树的过程（2020）  
+
+- 过程：
+  - from空树<span style="color: GreenYellow;">出发
+  - <u>依次</u><span style="color: gray;">输入</span>元素
+  - insert元素to合适位置
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/359f08371aa754ac430fc9f29a85302372b2b4d9718c8e692c96b4d3a2472bf0.jpg)  
+图7.6二叉排序树的<span style="color: Lime;">构造</span>过程  
+
+- <span style="color: Lime;">构造</span>算法：
+
+  ```c
+  void CreatBST（BiTree&T，KeyType str[]`,int n){
+    T=NULL;
+    int i=0
+    while(i<n)
+      BSTInsert(T,str[i]`);
+  ```
+
+</ul>
+
+#### <span style="color: gray;">删除  
+
+<ul>
+
+- 过程：
+  - 不能
+    - 把以该node为<u>根</u>的子树上的node都册除
+  - 必须重新
+    - 链接断开的<span style="color: Gold;">二叉</span><span style="color: RoyalBlue;">链</span>表
+  - 确保
+    - 二叉排序树的<span style="color: Gold;">性质</span>不会丢失
+
+- 情况：
+  1. 被删除node是叶node：
+     - 直接删除
+  2. nodez只有一棵子树：
+     - 让z的子树成为z父node的子树
+  3. nodez有左、右两棵子树：
+     - 令z的直接后继（或直接前驱）替代z
+     - 从二叉排序树中删去这个直接后继（或直接前驱）
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/337a0835918349dc03e9c616897783190facdb482e06740c2ec450fd4cfe8a1b.jpg)  
+3种情况下的删除过程  
+
+> pro：二叉排序树中删除并<span style="color: GreenYellow;">插入</span>某node的分析（2013）  
+
+</ul>
+
+</ul>
+
+### <span style="color: silver;"><span style="color: Gold;">search</span><span style="color: RoyalBlue;">效率</span>分析  
+
+<ul>
+
+- 影响因素：
+  - main:树的<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">高度</span></span>
+    - <span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>：
+      - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度为O(log₂n)
+    - 单支树：
+      - ~O(n)
+
+- 最坏情况：
+  - 输入序列
+    - <span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>
+  - 形成倾斜的<span style="color: GreenYellow;">单</span>支树
+  - 树的<span style="color: LightSkyBlue;">高度</span>increase to元素个数n
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/54dd73fa59f89a754e5fd4e7dce8cf7124f8fa9db15eeeafeb8140073840c7bf.jpg)  
+图7.8相同关键字组成的不同二叉排序树  
+
+- <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度比较：
+  - 图7.8(a)：ASL=(1+2×2+3×4+4×3)/10=2.9
+  - 图7.8(b)：ASL=(1+2+3+4+5+6+7+8+9+10)/10=5.5
+
+- 与二分<span style="color: Gold;">search</span>比较：
+  - <span style="color: LightSkyBlue;">平均</span>时间性能相似
+  - 二分<span style="color: Gold;">search</span>判定树唯一
+  - 二叉排序树<span style="color: Gold;">search</span>不唯一
+
+- 维护表的<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>性：
+  - 二叉排序树：
+    - 无须移动node
+    - 只需修改指针
+    - <span style="color: LightSkyBlue;">平均</span>执行时间O(log₂n)
+  - 二分<span style="color: Gold;">search</span>：
+    - 对象是<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>顺序表
+    - <span style="color: GreenYellow;">插入</span>删除操作代价O(n)
+  - 选择建议：
+    - 静态<span style="color: Gold;">search</span>表：用顺序表+二分<span style="color: Gold;">search</span>
+    - 动态<span style="color: Gold;">search</span>表：用二叉排序树
+
+</ul>
+
+</ul>
+
+## <span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>  
+
+<ul>
+
+### <span style="color: silver;">定义  
+
+<ul>
+
+#### <span style="color: silver;">concept
+
+<ul>
+
+- 为了避免
+  - 树的<span style="color: LightSkyBlue;">高度</span>增长过快
+    - 降低二叉排序树的性能
+- 规定：
+  - 任意node的左、右子树<span style="color: LightSkyBlue;">高度</span><span style="color: Gold;">差</span>的绝对值≤1
+  - 这样的二叉树称为<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>（Balanced BinaryTree）或AVL树
+- 平衡因子：
+  - 定义为node左子树与右子树的<span style="color: LightSkyBlue;">高度</span><span style="color: Gold;">差</span>
+  - 值只可能是-1、0或1
+
+> pro：<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的定义（2009）  
+
+</ul>
+
+#### <span style="color: gray;">完整<span style="color: silver;">定义
+
+<ul>
+
+- special:一棵空树
+- 具有以下性质的二叉树：
+    - 左子树和右子树都是<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>
+    - 左子树和右子树的<span style="color: LightSkyBlue;">高度</span><span style="color: Gold;">差</span>的绝对值≤1
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/42460a711e8a2a7bcbc0a975d83fd52c42972810cdf1ff0354c8c9d9ea7aa463.jpg)  
+<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>和<span style="color: gray;">不</span>~  
+
+</ul>
+
+</ul>
+
+### <span style="color: GreenYellow;">插入</span>  
+
+<ul>
+
+#### <span style="color: silver;">基本思想
+
+<ul>
+
+- <span style="color: GreenYellow;">插入</span>（或删除）node时：
+  - 检查<span style="color: GreenYellow;">插入</span>路径上的node是否不平衡
+  - 若不平衡：
+    - 找到最近的平衡因子绝对值＞1的nodeA
+    - 调整以A为根的子树
+    - 保持二叉排序树特性
+    - 使之重新平衡
+
+> pro：<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>中<span style="color: GreenYellow;">插入</span>操作的特点（2015）  
+
+>notice: 
+
+每次调整的对象都是最小不平衡子树，即以<span style="color: GreenYellow;">插入</span>路径上离<span style="color: GreenYellow;">插入</span>node最近的平衡因子的绝对值＞1的node作为根的子树。图7.10中的虚线框内为最小不平衡子树。  
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/2209bb6cb24b8548ca118f9d5f40aa8899f7ed2e20e83c7fe0c0621ee7b842db.jpg)  
+图7.10最小不平衡子树示意  
+
+> pro：<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的<span style="color: GreenYellow;">插入</span>及调整操作的实例（2010、2019、2021）  
+
+</ul>
+
+#### 调整规律
+
+<ul>
+
+##### LL平衡旋转（右单旋转）
+
+<ul>
+
+- 原因：在nodeA的左孩子(L)的左子树(L)上<span style="color: GreenYellow;">插入</span>新node
+- 过程：
+  - A的平衡因子由1增至2
+  - B向右上旋转代替A成为根node
+  - A向右下旋转成为B的右孩子
+  - B的原右子树作为A的左子树
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/0b95eff2c046b43bb6a18bc9a41beacc9de133dbf00206769ee68eb40f6d13e7.jpg)  
+图7.11LL平衡旋转  
+
+</ul>
+
+##### RR平衡旋转（左单旋转）
+
+<ul>
+
+- 原因：在nodeA的右孩子(R)的右子树(R)上<span style="color: GreenYellow;">插入</span>新node
+- 过程：
+  - A的平衡因子由-1减至-2
+  - B向左上旋转代替A成为根node
+  - A向左下旋转成为B的左孩子
+  - B的原左子树作为A的右子树
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/5619c6d8436c1be38b63d259dcc65e0d4dfdd684c7e61b46edda1f39de83300f.jpg)  
+图7.12RR平衡旋转  
+
+</ul>
+
+##### LR平衡旋转（先左后右双旋转）
+
+<ul>
+
+- 原因：在A的左孩子(L)的右子树(R)上<span style="color: GreenYellow;">插入</span>新node
+- 过程：
+  - A的平衡因子由1增至2
+  - 先将C向左上旋转提升到B的位置
+  - 再将C向右上旋转提升到A的位置
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/e7462a89cd7274f34abe2309c0d8eedb6ed3d046096c03916695558689e50a9f.jpg)  
+图7.13LR平衡旋转  
+
+</ul>
+
+##### RL平衡旋转（先右后左双旋转）
+
+<ul>
+
+- 原因：在A的右孩子(R)的左子树(L)上<span style="color: GreenYellow;">插入</span>新node
+- 过程：
+  - A的平衡因子由-1减至-2
+  - 先将C向右上旋转提升到B的位置
+  - 再将C向左上旋转提升到A的位置
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/044e9dac3e9118af06383caa4ab6770b19e9168a05e12eabac22b4702037505f.jpg)  
+图7.14RL平衡旋转  
+
+>notice: 
+
+LR和RL旋转时，新node究竟是<span style="color: GreenYellow;">插入</span>C的左子树还是<span style="color: GreenYellow;">插入</span>C的右子树不影响旋转过程，而图7.13和图7.14中以<span style="color: GreenYellow;">插入</span>C的左子树中为例。  
+
+> pro：<span style="color: Lime;">构造</span><span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的过程（2013）  
+
+</ul>
+
+</ul>
+
+#### <span style="color: Lime;">构造</span>示例
+
+<ul>
+
+- 关键字序列：15，3，7，10，9，8
+- 过程：
+  - <span style="color: GreenYellow;">插入</span>7后：
+    - 最小不平衡子树根为15
+    - 执行LR旋转
+  - <span style="color: GreenYellow;">插入</span>9后：
+    - 最小不平衡子树根为15
+    - 执行LL旋转
+  - <span style="color: GreenYellow;">插入</span>8后：
+    - 最小不平衡子树根为7
+    - 执行RL旋转
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/093f0bfc9d39ea0cacad9cfef59f6edf59790e2ed7a6692f2ea8792f99c3b8bf.jpg)  
+图7.15<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的生成过程  
+
+</ul>
+
+</ul>
+
+### <span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的删除  
+
+<ul>
+
+#### 删除步骤
+
+<ul>
+
+- 步骤1：用二叉排序树方法删除nodew
+- 步骤2：若不平衡：
+  - 从w向上回溯找第一个不平衡nodez
+  - y为z的最高孩子node
+  - x为y的最高孩子node
+- 步骤3：对以z为根的子树进行平衡调整：
+  - LL情况：y是z左孩子，x是y左孩子
+  - LR情况：y是z左孩子，x是y右孩子
+  - RR情况：y是z右孩子，x是y右孩子
+  - RL情况：y是z右孩子，x是y左孩子
+
+</ul>
+
+#### 与<span style="color: GreenYellow;">插入</span>操作的区别
+
+<ul>
+
+- <span style="color: GreenYellow;">插入</span>操作：
+  - 仅需对z为根的子树调整
+- 删除操作：
+  - 调整z为根的子树后
+  - 若<span style="color: LightSkyBlue;">高度</span>减1，可能需要继续向上调整
+  - 可能一直调整到根node
+
+</ul>
+
+#### 删除示例
+
+<ul>
+
+- 以删除node32为例：
+  - 32为叶node直接删除
+  - 找到第一个不平衡node44(z)
+  - 78为y，50为x
+  - 满足RL情况，执行先右后左双旋转
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/7583531b4059bdd4839026ef84e33d80a0e80d188229f9a181a9205146f44d1b.jpg)  
+图7.16<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的删除  
+
+</ul>
+
+</ul>
+
+### <span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的<span style="color: Gold;">search</span>  
+
+<ul>
+
+命题追踪指定条件下<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的node数的分析（2012）  
+
+#### <span style="color: Gold;">search</span>过程
+
+<ul>
+
+- 与二叉排序树相同
+- 比较次数≤树的深度
+
+</ul>
+
+#### node数分析
+
+<ul>
+
+- 深度为h的最少node数nh：
+  - n0=0,n1=1,n2=2
+  - nh=nh-2+nh-1+1
+  - 推导：n3=4,n4=7,n5=12,...
+- 含n个node的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>：
+  - 最大深度为O(log2n)
+  - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>效率为O(log2n)
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/05527187cb555c4a8c169a1c9bb747cea9d526708b08d8e44da08c7188104059.jpg)  
+图7.17node个数n最少的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>  
+
+>notice: 
+
+该sum可用于求解给定node数的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的<span style="color: Gold;">search</span>所需的最多比较次数（或树的最大<span style="color: LightSkyBlue;">高度</span>）。如在含有12个node的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>中<span style="color: Gold;">search</span>某个node的最多比较次数？  
+
+</ul>
+
+#### <span style="color: silver;">最多node数
+
+<ul>
+
+- 深度为h的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>中含有的最多node数是满二叉树的情况
+
+</ul>
+
+</ul>
+
+</ul>
+
+## <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>  
+
+<ul>
+
+### 定义  
+
+<ul>
+
+- 为了保持AVL树的平衡性，在<span style="color: GreenYellow;">插入</span>和删除操作后，会非常频繁地调整全树整体拓扑结构代价较大
+- 为此在AVL树的平衡标准上进一步放宽条件，引入了<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的结构
+
+#### <span style="color: DarkRed;">红</span><span style="color: black;">黑</span>性质
+
+<ul>
+
+- 每个node或是<span style="color: DarkRed;">红</span>色，或是<span style="color: black;">黑</span>色的
+- 根node是<span style="color: black;">黑</span>色的
+- 叶node（虚构的外部node、NULLnode）都是<span style="color: black;">黑</span>色的
+- 不存在两个相邻的<span style="color: DarkRed;">红</span>node（即<span style="color: DarkRed;">红</span>node的父node和孩子node均是<span style="color: black;">黑</span>色的）
+- 对每个node，从该node到任意一个叶node的简单路径上，所含<span style="color: black;">黑</span>node的数量相同
+- 与折半<span style="color: Gold;">search</span>树和B树类似，为了便于对<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的实现和理解：
+  - 引入了n+1个外部叶node
+  - 以保证<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>中每个node（内部node）的左、右孩子均非空
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/6302ead6b67560702595dc181ea237d148fcc79e5f41102d878fe7c0d83723be.jpg)  
+图7.18一棵<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>  
+
+</ul>
+
+#### <span style="color: silver;"><span style="color: black;">黑</span><span style="color: LightSkyBlue;">高</span>concept
+
+<ul>
+
+- 从某node出发（不含该node）到达一个叶node的任意一个简单路径上
+  - 的<span style="color: black;">黑</span>node<span style="color: gray;">总数</span>（记为bh）
+- <span style="color: black;">黑</span>高的概念是由性质⑤确定的
+- 根node的<span style="color: black;">黑</span>高称为<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的<span style="color: black;">黑</span>高
+
+</ul>
+
+#### sum1：从根到叶node的最长路径不＞最短路径的2倍
+
+<ul>
+
+- 最短路径：全由<span style="color: black;">黑</span>node构成
+- 最长路径：由<span style="color: black;">黑</span>node和<span style="color: DarkRed;">红</span>node相间构成，<span style="color: DarkRed;">红</span><span style="color: black;">黑</span>node数量相同
+- 例如图7.18中的6-2和6-15-18-20就是这样的两条路径
+
+</ul>
+
+#### sum2：有n个内部node的<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的<span style="color: LightSkyBlue;">高度</span>h≤2log2(n+1)
+
+<ul>
+
+- 证明过程：
+  - 从根到叶node的任何路径至少一半是<span style="color: black;">黑</span>node
+  - 根的<span style="color: black;">黑</span>高至少为h/2
+  - 因此n≥2^(h/2)-1
+  - 可得sum2结论
+
+</ul>
+
+#### <span style="color: silver;"><span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>vs AVL树
+
+<ul>
+
+- 平衡程度比较：
+  - <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>："适度平衡"
+  - AVL树："<span style="color: LightSkyBlue;">高度</span>平衡"
+  - <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>降低到"任意node左右子树<span style="color: LightSkyBlue;">高度</span>相差≤2倍"
+- 应用场景：
+  - <span style="color: GreenYellow;">插入</span>删除少，<span style="color: Gold;">search</span>多：适合AVL树
+  - 其他情况：适合<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>
+- 实际应用：
+  - <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>应用更广泛
+  - C++的map和set用<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>实现
+  - Java的TreeMap和TreeSet用<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>实现
+
+</ul>
+
+</ul>
+
+### <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的<span style="color: GreenYellow;">插入</span>
+
+<ul>
+
+#### 基本过程
+
+<ul>
+
+- 与二叉<span style="color: Gold;">search</span>树<span style="color: GreenYellow;">插入</span>类似
+- 区别：<span style="color: GreenYellow;">插入</span>后需要调整以满足<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>性质
+  - 通过重新着色
+  - 或旋转操作
+
+</ul>
+
+#### sum3：新<span style="color: GreenYellow;">插入</span>node初始着为<span style="color: DarkRed;">红</span>色
+
+<ul>
+
+- 原因分析：
+  - 若着为<span style="color: black;">黑</span>色：
+    - 会导致路径多出一个<span style="color: black;">黑</span>node
+    - 破坏性质⑤
+    - 调整麻烦
+  - 着为<span style="color: DarkRed;">红</span>色：
+    - 所有路径<span style="color: black;">黑</span>node数量不变
+    - 仅在出现连续<span style="color: DarkRed;">红</span>node时需调整
+    - 调整较简单
+
+</ul>
+
+#### <span style="color: GreenYellow;">插入</span>过程详述
+
+<ul>
+
+1. 基本<span style="color: GreenYellow;">插入</span>：
+   - 用二叉<span style="color: Gold;">search</span>树<span style="color: GreenYellow;">插入</span>法
+   - 将nodez着为<span style="color: DarkRed;">红</span>色
+   - 若父node<span style="color: black;">黑</span>色无需调整
+
+2. 特殊情况处理：
+   - 若z是根node：
+     - 将z着为<span style="color: black;">黑</span>色
+     - 树的<span style="color: black;">黑</span>高增1
+   
+3. 需要调整的情况：
+   - 前提条件：
+     - z不是根node
+     - z的父nodez.p是<span style="color: DarkRed;">红</span>色
+   - 分为三种情况：
+     
+     ##### 情况1：叔node<span style="color: black;">黑</span>色且z是右孩子(LR)
+     - 先左旋转换为情况2
+     - z和父node交换位置
+     - 不影响<span style="color: black;">黑</span>高和性质④
+     
+     ##### 情况2：叔node<span style="color: black;">黑</span>色且z是左孩子(LL)
+     - 做一次右旋
+     - 交换z原父node和原爷node颜色
+     - 保持性质⑤
+     - 消除连续<span style="color: DarkRed;">红</span>node
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/6141fe894e84b2ccf481ee1228f8dde35deaefe9f7c1b34e6857aad4fded5586.jpg)  
+图7.19情况1和情况2的调整方式  
+
+     ##### 情况3：叔node是<span style="color: DarkRed;">红</span>色
+     - 调整方式：
+       - 父node和叔node着为<span style="color: black;">黑</span>色
+       - 爷node着为<span style="color: DarkRed;">红</span>色
+       - 保持性质④和⑤
+     - 循环处理：
+       - 将爷node作为新z继续
+       - 指针z上移两层
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/f5ccc56ed08320a072e5b4dc2d9a90053800244c9efa93005dfc054cd43073d8.jpg)  
+图7.20情况3的调整方式  
+
+</ul>
+
+#### <span style="color: GreenYellow;">插入</span>示例
+
+<ul>
+
+- 以图7.21为例，展示<span style="color: GreenYellow;">插入</span>5、4、12的过程：
+  - <span style="color: GreenYellow;">插入</span>5：情况3处理
+  - <span style="color: GreenYellow;">插入</span>4：RL到RR处理
+  - <span style="color: GreenYellow;">插入</span>12：父node<span style="color: black;">黑</span>色，无需调整
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/866a8fdbeb20f4f9f1017d2842fcadd4a0308566f5ba94047bdd131149297787.jpg)  
+图7.21<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的<span style="color: GreenYellow;">插入</span>过程  
+
+</ul>
+
+</ul>
+
+### <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的删除
+
+<ul>
+
+#### 删除操作的影响
+
+<ul>
+
+- <span style="color: GreenYellow;">插入</span>操作易导致连续<span style="color: DarkRed;">红</span>node，破坏性质④
+- 删除操作易造成<span style="color: black;">黑</span>高变化，破坏性质⑤
+
+</ul>
+
+#### 基本删除过程
+
+<ul>
+
+- 先执行二叉<span style="color: Gold;">search</span>树的删除方法
+- 两个孩子的情况：
+  - 找中序后继（或前驱）填补
+  - 转换为删除后继node
+  - 后继node至多一个孩子
+
+</ul>
+
+#### 删除情况分类
+
+<ul>
+
+##### 情况A：待删node只有一个子树
+
+<ul>
+
+- 两种可能：
+  - 如图7.22所示
+  - 子树必为<span style="color: DarkRed;">红</span>色node
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/cab26f5079edd0a6447893d1eae634ce7de3b9df2de6eabbb5a6359254c2e364.jpg)  
+图7.22只有右子树或左子树的删除情况  
+
+</ul>
+
+##### 情况B：待删node无孩子
+
+<ul>
+
+- <span style="color: DarkRed;">红</span>色node：直接删除
+- <span style="color: black;">黑</span>色node：
+  - 设待删node为y
+  - x是替换node
+  - 删除后路径<span style="color: black;">黑</span>node减1
+  - 将x视为双<span style="color: black;">黑</span>node处理
+
+</ul>
+
+</ul>
+
+#### 双<span style="color: black;">黑</span>node的处理
+
+<ul>
+
+##### 情况1：兄弟nodew为<span style="color: DarkRed;">红</span>色
+
+<ul>
+
+- 特点：
+  - w有<span style="color: black;">黑</span>色左右孩子和父node
+- 处理：
+  - 交换w和父node颜色
+  - 对父node左旋
+  - 转为情况2、3或4
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/60760335c4d8bc8941e363634d6e9120ff151d6b6f52818aa54fe7a239bac7ed.jpg)  
+图7.23情况1的调整方式  
+
+</ul>
+
+##### 情况2：w<span style="color: black;">黑</span>色且右孩子<span style="color: DarkRed;">红</span>色(RR)
+
+<ul>
+
+- 处理：
+  - 交换w和父node颜色
+  - w右孩子着<span style="color: black;">黑</span>
+  - 父node左旋
+  - x变单重<span style="color: black;">黑</span>色
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/0acf8e79a22ee8cdebb7c67323a375bbd51c9a6a9a72ff5305d1ec8bf75d6c37.jpg)  
+图7.24情况2的调整方式  
+
+</ul>
+
+##### 情况3：w<span style="color: black;">黑</span>色，左<span style="color: DarkRed;">红</span>右<span style="color: black;">黑</span>(RL)
+
+<ul>
+
+- 处理：
+  - 交换w和左孩子颜色
+  - 对w右旋
+  - 转为情况2
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/21ad3f76de9b3e1effcce1f8a03e3fcbb06283ab2c8c5ded905ca2ecfa56abc7.jpg)  
+图7.25情况3的调整方式  
+
+</ul>
+
+##### 情况4：w及其孩子都是<span style="color: black;">黑</span>色
+
+<ul>
+
+- 处理：
+  - 去掉x和w各一重<span style="color: black;">黑</span>色
+  - x变普通<span style="color: black;">黑</span>色，w变<span style="color: DarkRed;">红</span>色
+  - 父node增加一重<span style="color: black;">黑</span>色
+  - x上升一层继续循环
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/9f77f4733c0cffc561dc2e545e593ce2eb429d88b4703d725d26d24d9778e963.jpg)  
+图7.26情况4的调整方式  
+
+</ul>
+
+</ul>
+
+#### 删除示例
+
+<ul>
+
+- 以图7.27为例，展示删除5和15的过程：
+  - 删除5：情况1到情况4
+  - 删除15：LR到LL处理
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/16b040213c28dc879ebf6aede317568cd287ae396fdf09e05e9949dcf6c67b0e.jpg)  
+图7.27<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的删除过程  
+
+</ul>
+
+</ul>
+
+</ul>
+
+## B树和$\mathbf{B}+$树  
+
+<ul>
+
+考研大纲对B树和$^{\mathrm{B+}}$树的要求各不相同，重点在于考查B树，不仅要求理解B树的基本特点，还要求掌握B树的建立、<span style="color: GreenYellow;">插入</span>和删除操作，而对$^{\mathrm{B+}}$树则只考查concept。  
+
+### B树及其基本操作  
+
+<ul>
+
+所谓$m$阶B树是所有node的平衡因子均等于0的$m$路平衡<span style="color: Gold;">search</span>树。  
+
+> pro：B树的定义和特点（2009）  
+
+#### B树的定义特性
+
+<ul>
+
+- 一棵$m$阶B树或为空树，或为满足如下特性的$m$叉树：
+  - 树中每个node至多有$m$棵子树，即至多有$m-1$个关键字
+  - 若根node不是叶node，则至少有2棵子树，即至少有1个关键字
+  - 除根node外的所有非叶node至少有$\lceil m/2\rceil$棵子树，即至少有$\lceil m/2\rceil_{-1}$个关键字
+  - 所有非叶node的结构如下：
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/641123898fc54d168c81307aaa0f46a0aeb4dc3c39dc6bc0add67a795683e706.jpg)  
+
+  - 其中：
+    - $K_{i}$$(i=1,2,\cdots,n)$为node的关键字，且满足$K_{1}<K_{2}<\cdots<K_{n}$
+    - $P_{i}\,,(i=0,,1,\cdots,n)$为指向子树根node的指针
+    - 指针$P_{i+1}$所指子树中所有node的关键字均＜$K_{i}$
+    - $P_{i}$所指子树中所有node的关键字均＞$K_{i}$
+    - $n~(\lceil m/2\rceil\!-\!1\!\leqslant\!n\!\leqslant\!m-1)$为node中关键字的个数
+  - 所有的叶node都出现在同一层次上，并且不带信息
+
+> pro：B树中关键字数和node数的分析（2013、2014、2018、2021）  
+
+</ul>
+
+#### B树的性质分析
+
+<ul>
+
+- 以图7.28所示5阶B树为例：
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/3296559c5d2d7110e03f8b45bfcbf4ee8b8931f234697bbe0eba579683969db7.jpg)  
+
+- 主要性质：
+  - node的孩子个数等于该node中关键字个数加1
+  - 根node特性：
+    - 无关键字时无子树(空树)
+    - 有关键字时子树个数≥2
+  - 非根非叶node特性：
+    - 至少有$\scriptstyle{m/2}\,=\,\left\lceil5/2\right\rceil=3$棵子树
+    - 至少有2个关键字
+    - 至多有5棵子树和4个关键字
+  - 关键字排序特性：
+    - 从左到右递增<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>
+    - 左侧子树关键字＜当前关键字
+    - 右侧子树关键字＞当前关键字
+  - 叶node特性：
+    - 均在第4层
+    - 代表查找失败位置
+
+</ul>
+
+#### B树的查找
+
+<ul>
+
+- 基本特点：
+  - 与二叉排序树相似
+  - 每个node包含多个关键字
+  - 进行多路分支决定
+
+##### 查找操作的两个基本步骤
+
+<ul>
+
+- 在B树中找node(磁盘操作)
+- 在node内找关键字(内存操作)
+  - 可用顺序查找或折半查找
+  - 查找效率取决于目标node层次数
+
+</ul>
+
+##### 查找过程
+
+<ul>
+
+- 从根node开始
+- 在当前node<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>表中查找
+- 根据比较结果选择子树继续查找
+- 直到找到目标或达到叶node
+
+</ul>
+
+</ul>
+
+#### B树的<span style="color: LightSkyBlue;">高度</span>分析
+
+<ul>
+
+##### <span style="color: LightSkyBlue;">高度</span>定义
+
+<ul>
+
+- 不包括最后不带信息的叶node层
+
+</ul>
+
+##### <span style="color: LightSkyBlue;">高度</span>范围分析
+
+<ul>
+
+- 最小<span style="color: LightSkyBlue;">高度</span>情况：
+  - 每个node关键字数最多
+  - 满足：$n\!\leqslant\!(m-1)(1+m+m^{2}+\cdots+m^{h-1})=m^{h}-1$
+  - 得到：$h\geqslant\log_{m}\left(n+1\right)$
+
+- 最大<span style="color: LightSkyBlue;">高度</span>情况：
+  - 每个node关键字数最少
+  - 层次node数分析：
+    - 第一层：至少1个node
+    - 第二层：至少2个node
+    - 第三层：至少$2\left\lceil m/2\right\rceil$个node
+    - 第$h+1$层：至少$2(\lceil m/2\rceil)^{h-1}$个node
+  - 满足：$n+1\!\geqslant\!2(\lceil m/2\rceil)^{h-1}$
+  - 得到：$h{\leqslant}\log_{\lceil m/2\rceil}((n+1)/2)+1$
+
+</ul>
+
+</ul>
+
+#### B树的<span style="color: GreenYellow;">插入</span>操作
+
+<ul>
+
+> pro：通过<span style="color: GreenYellow;">插入</span>操作<span style="color: Lime;">构造</span>一棵初始为空的B树（2020）  
+
+##### <span style="color: GreenYellow;">插入</span>过程
+
+<ul>
+
+- 定位阶段：
+  - 使用B树查找算法
+  - 找到<span style="color: GreenYellow;">插入</span>的终端node位置
+
+- <span style="color: GreenYellow;">插入</span>阶段：
+  - 关键字数限制：$[\lceil m/2\rceil\!-\!1,\,m\!-\!1]`$
+  - 两种情况：
+    - <span style="color: GreenYellow;">插入</span>后关键字数<m：直接<span style="color: GreenYellow;">插入</span>
+    - <span style="color: GreenYellow;">插入</span>后关键字数>m-1：需要分裂
+
+</ul>
+
+##### node分裂方法
+
+<ul>
+
+- 基本步骤：
+  - 创建新node
+  - 从中间位置分割关键字
+  - 左部分保留在原node
+  - 右部分移至新node
+  - 中间关键字上移至父node
+- 特殊情况：
+  - 父node可能需要继续分裂
+  - 分裂可能传播至根node
+  - 可能导致树<span style="color: LightSkyBlue;">高度</span>增1
+
+- 示例(m=3的B树)：
+
+![]`(https://cdn-mineru.openxlab.org.cn/model-mineru/prod/80d65ed644ea63d8e94f85979f930603e6eb9b46bb9c910cd6cf03ad6c8bf748.jpg)  
+
+</ul>
+
+</ul>
+
+</ul>
+
+### B树的删除  
+
+<ul>
+
+#### 删除操作概述
+
+<ul>
+
+- B树的删除操作与<span style="color: GreenYellow;">插入</span>操作类似，但更复杂
+- 需确保删除后node关键字个数≥m/2-1
+- 可能涉及node的"合并"问题
+
+> pro：B树的删除操作的实例（2012、2022）  
+
+</ul>
+
+#### 非终端node的删除处理
+
+<ul>
+
+- 当被删关键字k不在终端node时：
+  - 可用k
