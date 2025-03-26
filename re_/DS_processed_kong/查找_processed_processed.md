@@ -1,10 +1,12 @@
 <span style="color: silver;">
 
-# <span style="color: silver;">above  
+# <span style="color: silver;">above  ✓
 
 <ul>
 
 ## <span style="color: silver;">【考纲内容】  
+
+~*search=查找*~
 
 （一）<span style="color: Gold;">search</span>的concept（二）顺序<span style="color: Gold;">search</span>法（三）分块<span style="color: Gold;">search</span>法（四）折半<span style="color: Gold;">search</span>法（五）树形<span style="color: Gold;">search</span>（六）B树及其基本操作、$^{\mathrm{B+}}$树的concept（七）<span style="color: RoyalBlue;">散列</span>（Hash）表（八）<span style="color: Gold;">search</span>算法的分析及应用  
 
@@ -34,14 +36,14 @@
     - B树和B+树是本章的____。
 
   - B树：
-    - 掌握<span style="color: GreenYellow;">插入</span>、____和搜索的____过程。
+    - 掌握<span style="color: GreenYellow;">插入</span>、____和____操作过程。
 
   - B+树：
     - 了解其____和性质。
 
   - <span style="color: RoyalBlue;">散列</span>搜索：
     - 掌握<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>的<span style="color: Lime;">构造</span>。
-    - 掌握<span style="color: Gold;">冲突</span>____方法及其____过程。
+    - 掌握<span style="color: Gold;">冲突</span>____方法及其过程。
     - 掌握搜索成功和搜索失败的<span style="color: LightSkyBlue;">平均</span>____长度。
     - 掌握散搜索的____和性能分析。
 
@@ -51,18 +53,11 @@
 <details>
   <summary> </summary>
   <ul>
-    <li>过程</li>
-    <li>判定</li>
-    <li>搜索</li>
+    <li>过程 判定 搜索</li>
+    <li>concept 难点</li>
+    <li><span style="color: Goldenrod;">删除</span> 搜索</li>
     <li>concept</li>
-    <li>难点</li>
-    <li>删除</li>
-    <li>操作</li>
-    <li>concept</li>
-    <li>处理</li>
-    <li>处理</li>
-    <li>搜索</li>
-    <li>特征</li>
+    <li>处理 搜索 特征</li>
   </ul>
 </details>
 </div>
@@ -71,7 +66,7 @@
 
 </ul>
 
-# <span style="color: silver;">concept
+# <span style="color: silver;">concept✓
 
 <ul>
 
@@ -96,17 +91,17 @@
     - 静态表：顺序<span style="color: Gold;">search</span>、折半<span style="color: Gold;">search</span>、<span style="color: RoyalBlue;">散列</span><span style="color: Gold;">search</span>
     - 动态表：二叉排序树<span style="color: Gold;">search</span>、<span style="color: RoyalBlue;">散列</span><span style="color: Gold;">search</span>
 
-- 关键字
+- <span style="color: green;">关键</span>字
   - 定义：数据元素中____标识该元素的数据项值
-  - 特点：基于关键字的<span style="color: Gold;">search</span>结果应该是____的
+  - 特点：基于<span style="color: green;">关键</span>字的<span style="color: Gold;">search</span>结果应该是____的
 
 - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度
-  - 定义：所有<span style="color: Gold;">search</span>过程中关键字比较次数的<span style="color: LightSkyBlue;">平均</span>值
+  - 定义：所有<span style="color: Gold;">search</span>过程中<span style="color: green;">关键</span>字比较<span style="color: LimeGreen;">次数</span>的<span style="color: LightSkyBlue;">平均</span>值
   - 数学表达式：$\mathrm{ASL}=\boxed{\phantom{m-1}\hspace{0.5cm}}$
   - 参数说明：
     - n：<span style="color: Gold;">search</span>表____
-    - Pi：<span style="color: Gold;">search</span>第i个元素的____(通常Pi=1/n)
-    - Ci：找到第i个元素所需____次数
+    - <span style="color: LightSkyBlue;">P</span>i：<span style="color: Gold;">search</span>第i个元素的____(通常Pi=1/n)
+    -  <span style="color: LimeGreen;">C</span>i：找到第i个元素所需比较____
 
 <ul>
 
@@ -114,20 +109,18 @@
 <details>
   <summary> </summary>
   <ul>
-    <li>满足</li>
-    <li>满足</li>
-    <li>失败</li>
-    <li>数据</li>
-    <li>符合</li>
-    <li>删除</li>
-    <li>表</li>
-    <li>删除</li>
-    <li>唯一</li>
-    <li>唯一</li>
-    <li>$\sum_{i=1}^{n}P_{i}C_{i}$</li>
-    <li>长度</li>
-    <li>概率</li>
-    <li>比较</li>
+    <li>满足 满足 失败</li>
+    <li><span style="color: LightSkyBlue;">数据</span> 符合 <span style="color: Goldenrod;">删除</span></li>
+    <li><span style="color: LightSkyBlue;">表</span> <span style="color: Goldenrod;">删除</span></li>
+    <li>唯一 唯一</li>
+    <br>
+    <li>
+
+$\sum_{i=1}^{n}P_{i}C_{i}$</li>
+
+  <li><span style="color: gray;">长度</span></li>
+  <li><span style="color: LightSkyBlue;">概率</span></li>
+  <li><span style="color: LimeGreen;">次数</span></li>
   </ul>
 </details>
 </div>
@@ -185,7 +178,7 @@
 <details>
   <summary> </summary>
   <ul>
-    <li>关键字</li>
+    <li><span style="color: green;">关键</span>字</li>
     <li>位置</li>
     <li>失败</li>
   </ul>
@@ -292,7 +285,7 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 
 #### <span style="color: silver;">Feature
 
-- 提前know表is<u>关键字____</u>
+- 提前know表is<u><span style="color: green;">关键</span>字____</u>
 - False:
   - <span style="color: Gold;">search</span>失败时can<span style="color: GreenYellow;">提前</span>____
   - 可降低<span style="color: Gold;">search</span>失败的<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">平均</span></span><span style="color: gray;">长度
@@ -551,7 +544,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a3c13d8b6e09e2161cf91b26befcb36e69ca849ba58fb230483c6eaa214215f5.jpg)`  
 ↑描述折半查找过程的判定树
 
-> pro：折半<span style="color: Gold;">search</span>的最多比较次数的分析（2010、2023）
+> pro：折半<span style="color: Gold;">search</span>的最多比较<span style="color: LimeGreen;">次数</span>的分析（2010、2023）
 
 <ul>
 
@@ -573,7 +566,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 
 ### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
 
-- 比较次数最多≤树的<span style="color: LightSkyBlue;">高度</span>
+- 比较<span style="color: LimeGreen;">次数</span>最多≤树的<span style="color: LightSkyBlue;">高度</span>
 - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度：
   - $\mathrm{ASL}=\boxed{\phantom{m-1}\hspace{0.5cm}}\approx\boxed{\phantom{m-1}\hspace{0.5cm}}$
   - 时间复杂度为____
@@ -605,7 +598,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 ### <span style="color: silver;"><span style="color: gray;">conditions
 
 - only<span style="color: LightSkyBlue;">顺序</span>____结构
-- request元素按关键字<span style="color: GreenYellow;">有</span><span style="color: LightSkyBlue;">序</span>____
+- request元素按<span style="color: green;">关键</span>字<span style="color: GreenYellow;">有</span><span style="color: LightSkyBlue;">序</span>____
 
 <ul>
 
@@ -662,14 +655,14 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
   - 块间
     - 元素<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>
       - 第一个块中
-        - max关键字＜第二个块中all recorded____
+        - max<span style="color: green;">关键</span>字＜第二个块中all recorded____
       - 第二个块中
-        - max关键字＜第二个块中all recorded____
+        - max<span style="color: green;">关键</span>字＜第二个块中all recorded____
       - ...
       - 以此类推
 - 建立____表
-  - 包含各块最大关键字和各块第一个元素____
-  - 索引表按关键字<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>____
+  - 包含各块最大<span style="color: green;">关键</span>字和各块第一个元素____
+  - 索引表按<span style="color: green;">关键</span>字<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>____
 
 <ul>
 
@@ -678,8 +671,8 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
   <summary> </summary>
   <ul>
     <li>无序</li>
-    <li>关键字</li>
-    <li>关键字</li>
+    <li><span style="color: green;">关键</span>字</li>
+    <li><span style="color: green;">关键</span>字</li>
     <li>索引</li>
     <li>地址</li>
     <li>排列</li>
@@ -718,8 +711,8 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 
 ### <span style="color: silver;">eg
 
-- 关键码集合：{88,24,72,61,21,6,32,11,8,31,22,83,78,54}
-- 按关键码值24,54,78,88分为4个块和索引表
+- <span style="color: green;">关键</span>码集合：{88,24,72,61,21,6,32,11,8,31,22,83,78,54}
+- 按<span style="color: green;">关键</span>码值24,54,78,88分为4个块和索引表
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/76ded7a7f7a5d8bfa95e7e4f016ef281090b1deb3b0fa15e348952f286083f80.jpg)`  
 
@@ -801,14 +794,14 @@ Binary sort tree
 - 目的：
   - 不是用于____
   - 是为了提高以下操作的____：
-    - 关键字<span style="color: Gold;">search</span>
+    - <span style="color: green;">关键</span>字<span style="color: Gold;">search</span>
     - ~<span style="color: GreenYellow;"><span style="color: GreenYellow;">插入</span></span>
-    - ~<span style="color: gray;">删除</span>
+    - ~<span style="color: gray;"><span style="color: Goldenrod;">删除</span></span>
 - 优势：
   - ____结构
   - 这种结构特别有利于：
     - <span style="color: GreenYellow;"><span style="color: GreenYellow;">插入</span></span>
-    - <span style="color: gray;">删除</span>
+    - <span style="color: gray;"><span style="color: Goldenrod;">删除</span></span>
 
 <ul>
 
@@ -881,10 +874,10 @@ Binary sort tree
 - 过程：
   - 从____node开始，沿某个分支遂层向下比较
   - 若二义排序树非空：
-    - 先将给定值与____node的关键字比较
+    - 先将给定值与____node的<span style="color: green;">关键</span>字比较
     - 若相等，则<span style="color: Gold;">search</span>____
     - 若不等：
-      - ＜____node的关键字，则在____node的左子树上<span style="color: Gold;">search</span>
+      - ＜____node的<span style="color: green;">关键</span>字，则在____node的左子树上<span style="color: Gold;">search</span>
       - 否则在____node的右子树上<span style="color: Gold;">search</span>
 
 - 非递归<span style="color: Gold;">search</span>算法：
@@ -939,13 +932,13 @@ BSTNode *BST<span style="color: Gold;">search</span>(BiTree T,ElemType key)(
 
 - 特点：
   - 树的结构通常不是一次____的
-  - 在<span style="color: Gold;">search</span>过程中，当树中不存在关键字值等于给定值的node时再进行<span style="color: GreenYellow;">插入</span>
+  - 在<span style="color: Gold;">search</span>过程中，当树中不存在<span style="color: green;">关键</span>字值等于给定值的node时再进行<span style="color: GreenYellow;">插入</span>
 
 - <span style="color: GreenYellow;">插入</span>过程：
   - 若原二义排序树为____，则直接<span style="color: GreenYellow;">插入</span>
   - 否则：
-    - 关键字k＜____node值则<span style="color: GreenYellow;">插入</span>到左子树
-    - 关键字k＞____node值则<span style="color: GreenYellow;">插入</span>到右子树
+    - <span style="color: green;">关键</span>字k＜____node值则<span style="color: GreenYellow;">插入</span>到左子树
+    - <span style="color: green;">关键</span>字k＞____node值则<span style="color: GreenYellow;">插入</span>到右子树
   - <span style="color: GreenYellow;">插入</span>的node一定是一个新添加的____node
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/e89e6ea7f4ada4a4c481bc8b1e0ce1cafabd2e67868cbf3cc6ccf9d77c30fc9c.jpg)`  
@@ -1035,7 +1028,7 @@ void Creat BST（BiTree &T，KeyType str[],int n){
 
 <ul>
 
-#### <span style="color: gray;">删除
+#### <span style="color: gray;"><span style="color: Goldenrod;">删除</span>
 
 - 过程：
   - 不能
@@ -1046,8 +1039,8 @@ void Creat BST（BiTree &T，KeyType str[],int n){
     - 二叉排序树的<span style="color: Gold;">性质</span>不会____
 
 - 情况：
-  1. 被删除node是____node：
-     - 直接删除
+  1. 被<span style="color: Goldenrod;">删除</span>node是____node：
+     - 直接<span style="color: Goldenrod;">删除</span>
   2. nodez只有一棵子树：
      - 让z的子树成为z____node的子树
   3. nodez有左、右两棵子树：
@@ -1055,9 +1048,9 @@ void Creat BST（BiTree &T，KeyType str[],int n){
      - 从二叉排序树中删去这个直接____（或直接前驱）
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/337a0835918349dc03e9c616897783190facdb482e06740c2ec450fd4cfe8a1b.jpg)`  
-3种情况下的删除过程
+3种情况下的<span style="color: Goldenrod;">删除</span>过程
 
-> pro：二叉排序树中删除并<span style="color: GreenYellow;">插入</span>某node的分析（2013）
+> pro：二叉排序树中<span style="color: Goldenrod;">删除</span>并<span style="color: GreenYellow;">插入</span>某node的分析（2013）
 
 <ul>
 
@@ -1099,7 +1092,7 @@ void Creat BST（BiTree &T，KeyType str[],int n){
   - 树的<span style="color: LightSkyBlue;">高度</span>increase to____个数n
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/54dd73fa59f89a754e5fd4e7dce8cf7124f8fa9db15eeeafeb8140073840c7bf.jpg)`  
-图7.8相同关键字组成的不同二叉排序树
+图7.8相同<span style="color: green;">关键</span>字组成的不同二叉排序树
 
 - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度比较：
   - 图7.8(a)：ASL=____
@@ -1148,7 +1141,7 @@ void Creat BST（BiTree &T，KeyType str[],int n){
 
 - 二分<span style="color: Gold;">search</span>：
     - 对象是<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>____表
-    - <span style="color: GreenYellow;">插入</span>删除操作代价____
+    - <span style="color: GreenYellow;">插入</span><span style="color: Goldenrod;">删除</span>操作代价____
   - 选择建议：
     - 静态<span style="color: Gold;">search</span>表：用____表+二分<span style="color: Gold;">search</span>
     - 动态<span style="color: Gold;">search</span>表：用____
@@ -1267,7 +1260,7 @@ O(n)</li>
 
 #### <span style="color: silver;">基本思想
 
-- ____（或删除）node时：
+- ____（或<span style="color: Goldenrod;">删除</span>）node时：
   - 检查____路径上的node是否不平衡
   - 若不平衡：
     - 找到最近的平衡因子绝对值＞1的node____
@@ -1487,7 +1480,7 @@ C</li>
 
 #### <span style="color: Lime;">构造</span>示例
 
-- 关键字序列：15，3，7，10，9，8
+- <span style="color: green;">关键</span>字序列：15，3，7，10，9，8
 - 过程：
   - ____7后：
     - 最小不平衡子树根为____
@@ -1543,13 +1536,13 @@ RL</li>
 
 <ul>
 
-### <span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的删除
+### <span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的<span style="color: Goldenrod;">删除</span>
 
 <ul>
 
-#### 删除步骤
+#### <span style="color: Goldenrod;">删除</span>步骤
 
-- 步骤1：用二叉排序树方法删除node____
+- 步骤1：用二叉排序树方法<span style="color: Goldenrod;">删除</span>node____
 - 步骤2：若不平衡：
   - 从____向上回溯找第一个不平衡node____
   - ____为z的最高孩子node
@@ -1615,7 +1608,7 @@ x</li>
 
 - <span style="color: GreenYellow;">插入</span>操作：
   - 仅需对____为根的子树调整
-- 删除操作：
+- <span style="color: Goldenrod;">删除</span>操作：
   - 调整____为根的子树后
   - 若____减1，可能需要继续向上调整
   - 可能一直调整到____node
@@ -1644,16 +1637,16 @@ z</li>
 
 <ul>
 
-#### 删除示例
+#### <span style="color: Goldenrod;">删除</span>示例
 
-- 以删除node32为例：
-  - 32为叶node直接删除
+- 以<span style="color: Goldenrod;">删除</span>node32为例：
+  - 32为叶node直接<span style="color: Goldenrod;">删除</span>
   - 找到第一个不平衡node____(z)
   - ____为y，____为x
   - 满足____情况，执行先右后左双旋转
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/7583531b4059bdd4839026ef84e33d80a0e80d188229f9a181a9205146f44d1b.jpg)`  
-图7.16<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的删除
+图7.16<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的<span style="color: Goldenrod;">删除</span>
 
 <div>
 <details>
@@ -1690,7 +1683,7 @@ RL</li>
 #### <span style="color: Gold;">search</span>过程
 
 - 与二叉排序树____
-- 比较次数≤树的____
+- 比较<span style="color: LimeGreen;">次数</span>≤树的____
 
 <div>
 <details>
@@ -1725,7 +1718,7 @@ RL</li>
 
 > notice: 
 
-该sum可用于求解给定node数的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的<span style="color: Gold;">search</span>所需的最多比较次数（或树的最大____）。如在含有12个node的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>中<span style="color: Gold;">search</span>某个node的最多比较次数？
+该sum可用于求解给定node数的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的<span style="color: Gold;">search</span>所需的最多比较<span style="color: LimeGreen;">次数</span>（或树的最大____）。如在含有12个node的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>中<span style="color: Gold;">search</span>某个node的最多比较<span style="color: LimeGreen;">次数</span>？
 
 <div>
 <details>
@@ -1959,7 +1952,7 @@ h/2</li>
   - AVL树："____平衡"
   - <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>降低到"任意node左右子树____相差≤2倍"
 - 应用场景：
-  - ____删除少，____多：适合AVL树
+  - ____<span style="color: Goldenrod;">删除</span>少，____多：适合AVL树
   - 其他情况：适合<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>
 - 实际应用：
   - <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>应用更广泛
@@ -2239,14 +2232,14 @@ RR</li>
 
 <ul>
 
-### <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的删除
+### <span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的<span style="color: Goldenrod;">删除</span>
 
 <ul>
 
-#### 删除操作的影响
+#### <span style="color: Goldenrod;">删除</span>操作的影响
 
 - ____操作易导致连续____node，破坏性质④
-- 删除操作易造成____高变化，破坏性质⑤
+- <span style="color: Goldenrod;">删除</span>操作易造成____高变化，破坏性质⑤
 
 <div>
 <details>
@@ -2269,12 +2262,12 @@ RR</li>
 
 <ul>
 
-#### 基本删除过程
+#### 基本<span style="color: Goldenrod;">删除</span>过程
 
 - 先执行二叉<span style="color: Gold;">search</span>树的____方法
 - 两个孩子的情况：
   - 找中序____（或前驱）填补
-  - 转换为删除____node
+  - 转换为<span style="color: Goldenrod;">删除</span>____node
   - ____node至多一个孩子
 
 <div>
@@ -2283,7 +2276,7 @@ RR</li>
   <ul>
     <li>
 
-删除</li>
+<span style="color: Goldenrod;">删除</span></li>
     <li>
 
 后继</li>
@@ -2301,7 +2294,7 @@ RR</li>
 
 <ul>
 
-#### 删除情况分类
+#### <span style="color: Goldenrod;">删除</span>情况分类
 
 ##### 情况A：待删node只有一个子树
 
@@ -2310,7 +2303,7 @@ RR</li>
   - 子树必为____node
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/cab26f5079edd0a6447893d1eae634ce7de3b9df2de6eabbb5a6359254c2e364.jpg)`  
-图7.22只有右子树或左子树的删除情况
+图7.22只有右子树或左子树的<span style="color: Goldenrod;">删除</span>情况
 
 <div>
 <details>
@@ -2325,11 +2318,11 @@ RR</li>
 
 ##### 情况B：待删node无孩子
 
-- ____node：直接删除
+- ____node：直接<span style="color: Goldenrod;">删除</span>
 - ____node：
   - 设待删node为____
   - ____是替换node
-  - 删除后路径____node减1
+  - <span style="color: Goldenrod;">删除</span>后路径____node减1
   - 将____视为双____node处理
 
 <div>
@@ -2507,14 +2500,14 @@ x</li>
 
 <ul>
 
-#### 删除示例
+#### <span style="color: Goldenrod;">删除</span>示例
 
-- 以图7.27为例，展示删除5和15的过程：
-  - 删除5：____到____
-  - 删除15：____到____处理
+- 以图7.27为例，展示<span style="color: Goldenrod;">删除</span>5和15的过程：
+  - <span style="color: Goldenrod;">删除</span>5：____到____
+  - <span style="color: Goldenrod;">删除</span>15：____到____处理
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/16b040213c28dc879ebf6aede317568cd287ae396fdf09e05e9949dcf6c67b0e.jpg)`  
-图7.27<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的删除过程
+图7.27<span style="color: DarkRed;">红</span><span style="color: black;">黑</span><span style="color: green;">树</span>的<span style="color: Goldenrod;">删除</span>过程
 
 <div>
 <details>
@@ -2546,7 +2539,7 @@ LL</li>
 
 ## B树和$\mathbf{B}+$树
 
-考研大纲对B树和$^{\mathrm{B+}}$树的要求各不相同，重点在于考查B树，不仅要求理解B树的基本特点，还要求掌握B树的建立、____和删除操作，而对$^{\mathrm{B+}}$树则只考查____。
+考研大纲对B树和$^{\mathrm{B+}}$树的要求各不相同，重点在于考查B树，不仅要求理解B树的基本特点，还要求掌握B树的建立、____和<span style="color: Goldenrod;">删除</span>操作，而对$^{\mathrm{B+}}$树则只考查____。
 
 <ul>
 
@@ -2561,9 +2554,9 @@ LL</li>
 #### B树的定义特性
 
 - 一棵$m$阶B树或为____，或为满足如下特性的$m$叉树：
-  - 树中每个node至多有____棵子树，即至多有____个关键字
-  - 若根node不是叶node，则至少有____棵子树，即至少有____个关键字
-  - 除根node外的所有非叶node至少有____棵子树，即至少有____个关键字
+  - 树中每个node至多有____棵子树，即至多有____个<span style="color: green;">关键</span>字
+  - 若根node不是叶node，则至少有____棵子树，即至少有____个<span style="color: green;">关键</span>字
+  - 除根node外的所有非叶node至少有____棵子树，即至少有____个<span style="color: green;">关键</span>字
   - 所有非叶node的结构如下：
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/641123898fc54d168c81307aaa0f46a0aeb4dc3c39dc6bc0add67a795683e706.jpg)`
@@ -2571,12 +2564,12 @@ LL</li>
   - 其中：
     - $K_{i}$ $(i=1,2,\cdots,n)$为node的____，且满足____
     - $P_{i}\,\,(i=0,\,1,\cdots,n)$为指向子树根node的____
-    - 指针$P_{i+1}$所指子树中所有node的关键字均\boxed{\phantom{m-1}\hspace{0.5cm}}$K_{i}$
-    - $P_{i}$所指子树中所有node的关键字均\boxed{\phantom{m-1}\hspace{0.5cm}}$K_{i}$
-    - $n~(\lceil m/2\rceil\!-\!1\!\leqslant\!n\!\leqslant\!\boxed{\phantom{m-1}\hspace{0.5cm}})$为node中关键字的个数
+    - 指针$P_{i+1}$所指子树中所有node的<span style="color: green;">关键</span>字均\boxed{\phantom{m-1}\hspace{0.5cm}}$K_{i}$
+    - $P_{i}$所指子树中所有node的<span style="color: green;">关键</span>字均\boxed{\phantom{m-1}\hspace{0.5cm}}$K_{i}$
+    - $n~(\lceil m/2\rceil\!-\!1\!\leqslant\!n\!\leqslant\!\boxed{\phantom{m-1}\hspace{0.5cm}})$为node中<span style="color: green;">关键</span>字的个数
   - 所有的叶node都出现在同一层次上，并且不带____
 
-> pro：B树中关键字数和node数的分析（2013、2014、2018、2021）
+> pro：B树中<span style="color: green;">关键</span>字数和node数的分析（2013、2014、2018、2021）
 
 <div>
 <details>
@@ -2611,7 +2604,7 @@ m-1</li>
 \lceil m/2\rceil-1</li>
     <li>
 
-关键字</li>
+<span style="color: green;">关键</span>字</li>
     <li>
 
 $K_{1}<K_{2}<\cdots<K_{n}$</li>
@@ -2645,18 +2638,18 @@ m-1</li>
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/3296559c5d2d7110e03f8b45bfcbf4ee8b8931f234697bbe0eba579683969db7.jpg)`
 
 - 主要性质：
-  - node的孩子个数等于该node中关键字个数加____
+  - node的孩子个数等于该node中<span style="color: green;">关键</span>字个数加____
   - 根node特性：
-    - 无关键字时无子树(____)
-    - 有关键字时子树个数≥____
+    - 无<span style="color: green;">关键</span>字时无子树(____)
+    - 有<span style="color: green;">关键</span>字时子树个数≥____
   - 非根非叶node特性：
     - 至少有____棵子树
-    - 至少有____个关键字
-    - 至多有____棵子树和____个关键字
-  - 关键字排序特性：
+    - 至少有____个<span style="color: green;">关键</span>字
+    - 至多有____棵子树和____个<span style="color: green;">关键</span>字
+  - <span style="color: green;">关键</span>字排序特性：
     - 从左到右____
-    - 左侧子树关键字＜____关键字
-    - 右侧子树关键字＞____关键字
+    - 左侧子树<span style="color: green;">关键</span>字＜____<span style="color: green;">关键</span>字
+    - 右侧子树<span style="color: green;">关键</span>字＞____<span style="color: green;">关键</span>字
   - 叶node特性：
     - 均在第____层
     - 代表查找失败位置
@@ -2716,7 +2709,7 @@ m-1</li>
 ##### 查找操作的两个基本步骤
 
 - 在B树中找node(____操作)
-- 在node内找关键字(____操作)
+- 在node内找<span style="color: green;">关键</span>字(____操作)
   - 可用顺序查找或折半查找
   - 查找效率取决于目标node____数
 
@@ -2736,7 +2729,7 @@ m-1</li>
 相似</li>
     <li>
 
-关键字</li>
+<span style="color: green;">关键</span>字</li>
     <li>
 
 磁盘</li>
@@ -2772,12 +2765,12 @@ m-1</li>
 ##### <span style="color: LightSkyBlue;">高度</span>范围分析
 
 - 最小____情况：
-  - 每个node关键字数____
+  - 每个node<span style="color: green;">关键</span>字数____
   - 满足：$n\!\leqslant\!(m-1)(1+m+m^{2}+\cdots+m^{h-1})=\boxed{\phantom{m-1}\hspace{0.5cm}}$
   - 得到：$h\geqslant\boxed{\phantom{m-1}\hspace{0.5cm}}$
 
 - 最大____情况：
-  - 每个node关键字数____
+  - 每个node<span style="color: green;">关键</span>字数____
   - 层次node数分析：
     - 第一层：至少____个node
     - 第二层：至少____个node
@@ -2868,10 +2861,10 @@ m^{h}-1</li>
 </div>
 
 - <span style="color: GreenYellow;">插入</span>阶段：
-  - 关键字数限制：$[\lceil m/2\rceil\!-\!1,\,\boxed{\phantom{m-1}\hspace{0.5cm}}]$
+  - <span style="color: green;">关键</span>字数限制：$[\lceil m/2\rceil\!-\!1,\,\boxed{\phantom{m-1}\hspace{0.5cm}}]$
   - 两种情况：
-    - <span style="color: GreenYellow;">插入</span>后关键字数<____：直接<span style="color: GreenYellow;">插入</span>
-    - <span style="color: GreenYellow;">插入</span>后关键字数>____：需要分裂
+    - <span style="color: GreenYellow;">插入</span>后<span style="color: green;">关键</span>字数<____：直接<span style="color: GreenYellow;">插入</span>
+    - <span style="color: GreenYellow;">插入</span>后<span style="color: green;">关键</span>字数>____：需要分裂
 
 <div>
 <details>
@@ -2894,10 +2887,10 @@ $m-1$</li>
 
 - 基本步骤：
   - 创建新node
-  - 从____位置分割关键字
+  - 从____位置分割<span style="color: green;">关键</span>字
   - 左部分保留在____node
   - 右部分移至____node
-  - ____关键字上移至父node
+  - ____<span style="color: green;">关键</span>字上移至父node
 - 特殊情况：
   - 父node可能需要继续____
   - 分裂可能传播至____node
@@ -2942,17 +2935,17 @@ $m-1$</li>
 
 <ul>
 
-### B树的删除
+### B树的<span style="color: Goldenrod;">删除</span>
 
 <ul>
 
-#### 删除操作概述
+#### <span style="color: Goldenrod;">删除</span>操作概述
 
-- B树的删除操作与<span style="color: GreenYellow;">插入</span>操作类似，但更____
-- 需确保删除后node关键字个数≥____
+- B树的<span style="color: Goldenrod;">删除</span>操作与<span style="color: GreenYellow;">插入</span>操作类似，但更____
+- 需确保<span style="color: Goldenrod;">删除</span>后node<span style="color: green;">关键</span>字个数≥____
 - 可能涉及node的"____"问题
 
-> pro：B树的删除操作的实例（2012、2022）
+> pro：B树的<span style="color: Goldenrod;">删除</span>操作的实例（2012、2022）
 
 <div>
 <details>
@@ -2975,13 +2968,13 @@ $m/2-1$</li>
 
 <ul>
 
-#### 非终端node的删除处理
+#### 非终端node的<span style="color: Goldenrod;">删除</span>处理
 
-- 当被删关键字k不在终端node时：
+- 当被删<span style="color: green;">关键</span>字k不在终端node时：
   - 可用k的____(k')或____替代
     - 前驱：k左侧子树中"____"元素
     - 后继：k右侧子树中"____"元素
-  - 然后删除____
+  - 然后<span style="color: Goldenrod;">删除</span>____
   - k'必定在____node中
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/7238b2b80bcf193f427d7371143169091e88dc7e89de6a71f0c30816046d808c.jpg)`
@@ -3016,12 +3009,12 @@ $k'$</li>
 
 <ul>
 
-#### 终端node的删除情况
+#### 终端node的<span style="color: Goldenrod;">删除</span>情况
 
-##### 情况一：直接删除
+##### 情况一：直接<span style="color: Goldenrod;">删除</span>
 
-- 条件：删除前关键字个数≥____
-- 操作：____删去该关键字
+- 条件：<span style="color: Goldenrod;">删除</span>前<span style="color: green;">关键</span>字个数≥____
+- 操作：____删去该<span style="color: green;">关键</span>字
 
 <div>
 <details>
@@ -3040,8 +3033,8 @@ $\lceil m/2 \rceil$</li>
 ##### 情况二：借助兄弟node
 
 - 条件：
-  - 删除前关键字个数=____
-  - 相邻兄弟node关键字个数≥____
+  - <span style="color: Goldenrod;">删除</span>前<span style="color: green;">关键</span>字个数=____
+  - 相邻兄弟node<span style="color: green;">关键</span>字个数≥____
 - 操作：调整该node、____node及____node
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/215b6baf0ac411ac31105377425b16f9f12f9828b89f9a64b2c180cfee010990.jpg)`
@@ -3069,11 +3062,11 @@ $\lceil m/2 \rceil$</li>
 ##### 情况三：node合并
 
 - 条件：
-  - 删除前关键字个数=____
-  - 相邻兄弟node关键字个数≤____
-- 操作：与____node及____node关键字合并
+  - <span style="color: Goldenrod;">删除</span>前<span style="color: green;">关键</span>字个数=____
+  - 相邻兄弟node<span style="color: green;">关键</span>字个数≤____
+- 操作：与____node及____node<span style="color: green;">关键</span>字合并
 
-> pro：非空B树的<span style="color: Gold;">search</span>、<span style="color: GreenYellow;">插入</span>、删除操作的特点（2023）
+> pro：非空B树的<span style="color: Gold;">search</span>、<span style="color: GreenYellow;">插入</span>、<span style="color: Goldenrod;">删除</span>操作的特点（2023）
 
 <div>
 <details>
@@ -3102,10 +3095,10 @@ $\lceil m/2 \rceil - 1$</li>
 #### 合并后的处理
 
 - 双亲node为根node时：
-  - 若关键字减至____，删除根node
+  - 若<span style="color: green;">关键</span>字减至____，<span style="color: Goldenrod;">删除</span>根node
   - 合并后____node成为根
 - 双亲node非根node时：
-  - 若关键字数减至____
+  - 若<span style="color: green;">关键</span>字数减至____
   - 需与____node调整或合并
   - 重复直至符合____树要求
 
@@ -3153,12 +3146,12 @@ B</li>
      - 其他分支node至少____棵
   3. 子树个数等于____个数
   4. 叶node特性：
-     - 包含____关键字
+     - 包含____<span style="color: green;">关键</span>字
      - 包含____指针
      - 按____顺序排列
      - 相邻叶node相互____
   5. 分支node特性：
-     - 仅包含子node____关键字
+     - 仅包含子node____<span style="color: green;">关键</span>字
      - 包含指向____的指针
 
 > pro：B树和B+树的差异的分析（2016）
@@ -3178,7 +3171,7 @@ $m$</li>
 $\lceil m/2 \rceil$</li>
     <li>
 
-关键字</li>
+<span style="color: green;">关键</span>字</li>
     <li>
 
 全部</li>
@@ -3209,9 +3202,9 @@ $\lceil m/2 \rceil$</li>
 
 ##### 结构差异
 
-- 关键字与子树关系：
-  - B+树：n个关键字对应____棵子树
-  - B树：n个关键字对应____棵子树
+- <span style="color: green;">关键</span>字与子树关系：
+  - B+树：n个<span style="color: green;">关键</span>字对应____棵子树
+  - B树：n个<span style="color: green;">关键</span>字对应____棵子树
 
 <div>
 <details>
@@ -3229,12 +3222,12 @@ $n+1$</li>
 
 ##### node特性差异
 
-- 关键字数量范围：
+- <span style="color: green;">关键</span>字数量范围：
   - B+树：____≤n≤____
   - B树：____≤n≤____
-- 关键字分布：
-  - B+树：叶node包含____关键字
-  - B树：关键字____出现
+- <span style="color: green;">关键</span>字分布：
+  - B+树：叶node包含____<span style="color: green;">关键</span>字
+  - B树：<span style="color: green;">关键</span>字____出现
 
 <div>
 <details>
@@ -3353,20 +3346,20 @@ B</li>
 ### <span style="color: silver;">n.
 
 - <span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>(哈希<span style="color: green;">函数</span>)
-  - 定义：把<span style="color: Gold;">search</span>表中的关键字映射成____地址的<span style="color: green;">函数</span>
+  - 定义：把<span style="color: Gold;">search</span>表中的<span style="color: green;">关键</span>字映射成____地址的<span style="color: green;">函数</span>
   - 表示：$\operatorname{Hash}(\ker)=\boxed{\phantom{m-1}\hspace{0.5cm}}$
   - 地址类型：____下标、____或内存地址等
 
 - <span style="color: Gold;">冲突</span>
-  - 定义：不同关键字映射到____地址
-  - 同义词：发生<span style="color: Gold;">冲突</span>的____关键字
+  - 定义：不同<span style="color: green;">关键</span>字映射到____地址
+  - 同义词：发生<span style="color: Gold;">冲突</span>的____<span style="color: green;">关键</span>字
   - 处理：
     - 需设计良好的<span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>减少____
     - 设计<span style="color: Gold;">冲突</span>____方法
 
 - <span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>(哈希表)
-  - 定义：根据关键字直接进行____的数据结构
-  - 特点：建立关键字和____地址的直接映射
+  - 定义：根据<span style="color: green;">关键</span>字直接进行____的数据结构
+  - 特点：建立<span style="color: green;">关键</span>字和____地址的直接映射
   - 性能：理想情况下<span style="color: Gold;">search</span>时间复杂度为____
 
 <div>
@@ -3420,7 +3413,7 @@ O(1)</li>
 
 #### <span style="color: silver;"><span style="color: Lime;">构造</span>原则
 
-- 定义域必须包含____关键字
+- 定义域必须包含____<span style="color: green;">关键</span>字
 - 地址分布应尽可能____
 - 计算过程应尽量____
 
@@ -3447,10 +3440,10 @@ O(1)</li>
 
 #### 直接定址法
 
-- 方法：取关键字的____<span style="color: green;">函数</span>值为<span style="color: RoyalBlue;">散列</span>地址
+- 方法：取<span style="color: green;">关键</span>字的____<span style="color: green;">函数</span>值为<span style="color: RoyalBlue;">散列</span>地址
 - 优点：计算____，无<span style="color: Gold;">冲突</span>
-- 适用：关键字分布基本____的情况
-- 缺点：关键字不连续时____空间
+- 适用：<span style="color: green;">关键</span>字分布基本____的情况
+- 缺点：<span style="color: green;">关键</span>字不连续时____空间
 
 <div>
 <details>
@@ -3482,7 +3475,7 @@ O(1)</li>
 - 要点：选择合适的____值
   - p不＞____m
   - p最接近或等于m的____
-- 目标：使关键字____映射到任意地址
+- 目标：使<span style="color: green;">关键</span>字____映射到任意地址
 
 <div>
 <details>
@@ -3502,7 +3495,7 @@ $p$</li>
 质数</li>
     <li>
 
-等概率</li>
+等<span style="color: LightSkyBlue;">概率</span></li>
   </ul>
 </details>
 </div>
@@ -3517,7 +3510,7 @@ $p$</li>
 - 原理：
   - 分析r进制数各位上数码____频率
   - 选取分布____的位作为<span style="color: RoyalBlue;">散列</span>地址
-- 局限：更换关键字需____<span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>
+- 局限：更换<span style="color: green;">关键</span>字需____<span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>
 
 <div>
 <details>
@@ -3525,7 +3518,7 @@ $p$</li>
   <ul>
     <li>
 
-关键字</li>
+<span style="color: green;">关键</span>字</li>
     <li>
 
 出现</li>
@@ -3545,11 +3538,11 @@ $p$</li>
 
 #### 平方取中法
 
-- 方法：取关键字____值的中间几位
+- 方法：取<span style="color: green;">关键</span>字____值的中间几位
 - 特点：
-  - <span style="color: RoyalBlue;">散列</span>地址与关键字____都相关
+  - <span style="color: RoyalBlue;">散列</span>地址与<span style="color: green;">关键</span>字____都相关
   - 地址分布较____
-- 适用：关键字各位取值____或位数较小
+- 适用：<span style="color: green;">关键</span>字各位取值____或位数较小
 
 <div>
 <details>
@@ -3589,7 +3582,7 @@ $p$</li>
 通用</li>
     <li>
 
-关键字</li>
+<span style="color: green;">关键</span>字</li>
   </ul>
 </details>
 </div>
@@ -3611,13 +3604,13 @@ $p$</li>
   - 必须考虑<span style="color: Gold;">冲突</span>____方法
 
 - <span style="color: Gold;">冲突</span>处理过程：
-  - 为发生<span style="color: Gold;">冲突</span>的关键字寻找下一个"____"的Hash地址
+  - 为发生<span style="color: Gold;">冲突</span>的<span style="color: green;">关键</span>字寻找下一个"____"的Hash地址
   - 使用____表示第i次探测得到的<span style="color: RoyalBlue;">散列</span>地址
   - 处理流程：
     - 若H1发生<span style="color: Gold;">冲突</span>，继续寻找____
     - 若H2仍<span style="color: Gold;">冲突</span>，继续寻找____
     - 以此类推，直到找到不发生<span style="color: Gold;">冲突</span>的____
-    - ____即为该关键字在表中的最终地址
+    - ____即为该<span style="color: green;">关键</span>字在表中的最终地址
 
 <div>
 <details>
@@ -3816,7 +3809,7 @@ $(H(\mathrm{kcy})+i{\times}\mathrm{Hash}_{2}(\mathrm{kcy}))\:\%\:m$</li>
 $H(\mathrm{kcy})\:\%\:m$</li>
     <li>
 
-次数</li>
+<span style="color: LimeGreen;">次数</span></li>
   </ul>
 </details>
 </div>
@@ -3825,18 +3818,18 @@ $H(\mathrm{kcy})\:\%\:m$</li>
 
 - $d_{i}\!=$____
 
-> pro：<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>中删除部分元素后的<span style="color: Gold;">search</span>效率分析（2023）
+> pro：<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>中<span style="color: Goldenrod;">删除</span>部分元素后的<span style="color: Gold;">search</span>效率分析（2023）
 
 > notice: 
 
-- 开放定址法删除元素的注意事项：
-  - 不能随便____删除表中已有元素
+- 开放定址法<span style="color: Goldenrod;">删除</span>元素的注意事项：
+  - 不能随便____<span style="color: Goldenrod;">删除</span>表中已有元素
     - 原因：会截断其他____元素的查找路径
-  - 删除方案：
-    - 采用____删除方式
-    - 具体做法：在要删除的元素位置做一个____标记
+  - <span style="color: Goldenrod;">删除</span>方案：
+    - 采用____<span style="color: Goldenrod;">删除</span>方式
+    - 具体做法：在要<span style="color: Goldenrod;">删除</span>的元素位置做一个____标记
   - 副作用：
-    - 多次删除后会造成____现象
+    - 多次<span style="color: Goldenrod;">删除</span>后会造成____现象
       - 表面上：<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>很满
       - 实际上：许多位置未被利用
 
@@ -3858,7 +3851,7 @@ $H(\mathrm{kcy})\:\%\:m$</li>
 逻辑</li>
     <li>
 
-删除</li>
+<span style="color: Goldenrod;">删除</span></li>
     <li>
 
 假满</li>
@@ -3884,7 +3877,7 @@ $H(\mathrm{kcy})\:\%\:m$</li>
 
 - eg
   - 已知条件：
-    - 关键字序列：{19,14,23,01,68,20,84,27,55,11,10,79}
+    - <span style="color: green;">关键</span>字序列：{19,14,23,01,68,20,84,27,55,11,10,79}
     - <span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>：H(key)=____
     - 处理<span style="color: Gold;">冲突</span>方法：____
   - 建立的表结构：
@@ -3910,7 +3903,7 @@ $H(\mathrm{kcy})\:\%\:m$</li>
 头</li>
     <li>
 
-删除</li>
+<span style="color: Goldenrod;">删除</span></li>
     <li>
 
 $key\%13$</li>
@@ -3986,7 +3979,7 @@ $Addr$</li>
 
 ##### 示例数据
 
-- 关键字序列：{19,14,23,01,68,20,84,27,55,11,10,79}
+- <span style="color: green;">关键</span>字序列：{19,14,23,01,68,20,84,27,55,11,10,79}
 - <span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>：H(key)=____
 - 处理方法：____探测
 
@@ -4151,19 +4144,19 @@ $\alpha$</li>
 - 已有数据元素：____个
 - 查找成功情况
   - 每个元素查找____：$p_{i}$
-  - 数据____次数：$c_{i}\ (i=1,2,\cdots,n)$
+  - 数据____<span style="color: LimeGreen;">次数</span>：$c_{i}\ (i=1,2,\cdots,n)$
 - 查找失败情况
   - 子集合元素查找____：$q_{j}$
-  - 数据____次数：$c_{j}\ (j=0,\,1,\cdots,\,n)$
+  - 数据____<span style="color: LimeGreen;">次数</span>：$c_{j}\ (j=0,\,1,\cdots,\,n)$
 
 ###### ASL考虑方式
 
 - 综合考虑
   - 条件：____
-  - 元素查找概率相等时：$p_{i}=q_{j}=\boxed{\phantom{m-1}\hspace{0.5cm}}$
+  - 元素查找<span style="color: LightSkyBlue;">概率</span>相等时：$p_{i}=q_{j}=\boxed{\phantom{m-1}\hspace{0.5cm}}$
 - 分开考虑
   - 条件：____
-  - 元素查找概率相等时：$p_{i}=\boxed{\phantom{m-1}\hspace{0.5cm}}\,,\;\;q_{j}=\boxed{\phantom{m-1}\hspace{0.5cm}}$
+  - 元素查找<span style="color: LightSkyBlue;">概率</span>相等时：$p_{i}=\boxed{\phantom{m-1}\hspace{0.5cm}}\,,\;\;q_{j}=\boxed{\phantom{m-1}\hspace{0.5cm}}$
 - 实际应用
   - 多采用____考虑
   - 原因：查找失败情况常被____
@@ -4190,13 +4183,13 @@ $\sum_{j=0}^{n}q_{j}c_{j}$</li>
 $n$</li>
     <li>
 
-概率</li>
+<span style="color: LightSkyBlue;">概率</span></li>
     <li>
 
 比较</li>
     <li>
 
-概率</li>
+<span style="color: LightSkyBlue;">概率</span></li>
     <li>
 
 比较</li>
