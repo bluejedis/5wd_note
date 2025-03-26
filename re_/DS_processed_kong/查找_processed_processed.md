@@ -139,7 +139,7 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 
 ### <span style="color: silver;">concept✓
 
-- 又称<span style="color: orange;">线性</span><span style="color: Gold;">search</span>
+- 又称<span style="color: orange;"> <span style="color: Gold;">线性</span></span><span style="color: Gold;">search</span>
 - 适用范围：
   - <span style="color: LightSkyBlue;">顺序</span>表：通过数组____递增扫描
   - <span style="color: RoyalBlue;">链</span>表：通过指针____扫描
@@ -162,13 +162,13 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 
 <ul>
 
-### <span style="color: silver;"><span style="color: gray;">一般</span><span style="color: orange;">线性</span>表的顺序<span style="color: Gold;">search</span> ✓？
+### <span style="color: silver;"><span style="color: gray;">一般</span><span style="color: orange;"> <span style="color: Gold;">线性</span></span>表的顺序<span style="color: Gold;">search</span> ✓？
 
 <ul>
 
 #### <span style="color: silver;">基本思想 ✓
 
-- from<span style="color: orange;">线性</span>表一<span style="color: LightSkyBlue;">端</span>开始逐个检查____
+- from<span style="color: orange;"> <span style="color: Gold;">线性</span></span>表一<span style="color: LightSkyBlue;">端</span>开始逐个检查____
   - find<span style="color: GreenYellow;">满足</span>条件元素 → return____
 - till表另一端not find → return____
 
@@ -282,18 +282,18 @@ $\sum_{i=1}^{n}{\color{skyblue}{P}}_{i}(n-i+1)$</li>
 
 <ul>
 
-### <span style="color: silver;"><span style="color: GreenYellow;"><span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span></span><span style="color: orange;">线性</span>表的顺序<span style="color: Gold;">search</span>
+### <span style="color: silver;"><span style="color: GreenYellow;"><span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span></span><span style="color: orange;"> <span style="color: Gold;">线性</span></span>表的顺序<span style="color: Gold;">search</span>
 
 <ul>
 
-#### <span style="color: silver;">Feature
+#### <span style="color: silver;">Feature ✓
 
-- 提前know表is<u><span style="color: green;">关键</span>字____</u>
+- 提前know表 is <u><span style="color: green;">关键</span>字____</u>
 - False:
   - <span style="color: Gold;">search</span>失败时can<span style="color: GreenYellow;">提前</span>____
   - 可降低<span style="color: Gold;">search</span>失败的<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">平均</span></span><span style="color: gray;">长度
 
-> pro：<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>线性表的顺序<span style="color: Gold;">search</span>的应用（2013）
+> pro：<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span> <span style="color: Gold;">线性</span>表的顺序<span style="color: Gold;">search</span>的应用（2013）
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/b9a556e5c788039f2fe0a08be26af8476e380c1fcd30a762adcbe9951bfa13c7.jpg)`
 ↑<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>顺序表上的顺序查找判定树
@@ -316,7 +316,7 @@ $\sum_{i=1}^{n}{\color{skyblue}{P}}_{i}(n-i+1)$</li>
 
 <ul>
 
-#### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
+#### ⭐<span style="color: silver;"><span style="color: Gold;">性能</span>分析 ✓？
 
 - <span style="color: Gold;">search</span><span style="color: Gold;">成功</span>：same as<span style="color: gray;">一般</span>____表
 - <span style="color: Gold;">search</span><span style="color: GreenYellow;">失败</span>：
@@ -329,8 +329,10 @@ $\sum_{i=1}^{n}{\color{skyblue}{P}}_{i}(n-i+1)$</li>
 <details>
   <summary> </summary>
   <ul>
-    <li>线性</li>
-    <li>$\frac{n}{2} + \frac{n}{n+1}$</li>
+    <li> <span style="color: Gold;">线性</span></li>
+    <li>
+
+$\frac{n}{2} + \frac{n}{n+1}$</li>
     <li>3.86</li>
   </ul>
 </details>
@@ -342,11 +344,11 @@ $\sum_{i=1}^{n}{\color{skyblue}{P}}_{i}(n-i+1)$</li>
 
 <ul>
 
-#### <span style="color: silver;">attention
+#### <span style="color: silver;">attention ✓
 
 - 思想与<span style="color: Gold;">折</span><span style="color: gray;">半</span><span style="color: Gold;">search</span>____
-  - <span style="color: RoyalBlue;">链</span>式____结构
-  - 折半~only<span style="color: LightSkyBlue;">顺序</span>____结构
+  - ____存储结构
+  -  <span style="color: Gold;">折</span>半~only____存储结构
 
 <ul>
 
@@ -354,9 +356,9 @@ $\sum_{i=1}^{n}{\color{skyblue}{P}}_{i}(n-i+1)$</li>
 <details>
   <summary> </summary>
   <ul>
-    <li>不同</li>
-    <li>存储</li>
-    <li>存储</li>
+    <li><span style="color: gray;">不同</span></li>
+    <li><span style="color: RoyalBlue;">链</span>式</li>
+    <li><span style="color: LightSkyBlue;">顺序</span></li>
   </ul>
 </details>
 </div>
@@ -814,7 +816,7 @@ Binary sort tree
   <ul>
     <li>排序</li>
     <li><span style="color: LightSkyBlue;">效率</span></li>
-    <li>非线性</li>
+    <li>非 <span style="color: Gold;">线性</span></li>
   </ul>
 </details>
 </div>
@@ -1095,7 +1097,7 @@ void Creat BST（BiTree &T，KeyType str[],int n){
   - 树的<span style="color: LightSkyBlue;">高度</span>increase to____个数n
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/54dd73fa59f89a754e5fd4e7dce8cf7124f8fa9db15eeeafeb8140073840c7bf.jpg)`  
-图7.8相同<span style="color: green;">关键</span>字组成的不同二叉排序树
+图7.8相同<span style="color: green;">关键</span>字组成的<span style="color: gray;">不同</span>二叉排序树
 
 - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度比较：
   - 图7.8(a)：ASL=____
@@ -3354,7 +3356,7 @@ B</li>
   - 地址类型：____<span style="color: LimeGreen;">下标</span>、____或内存地址等
 
 - <span style="color: Gold;">冲突</span>
-  - 定义：不同<span style="color: green;">关键</span>字映射到____地址
+  - 定义：<span style="color: gray;">不同</span><span style="color: green;">关键</span>字映射到____地址
   - 同义词：发生<span style="color: Gold;">冲突</span>的____<span style="color: green;">关键</span>字
   - 处理：
     - 需设计良好的<span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>减少____
@@ -3386,7 +3388,7 @@ Addr</li>
 同一</li>
     <li>
 
-不同</li>
+<span style="color: gray;">不同</span></li>
     <li>
 
 冲突</li>
@@ -3454,7 +3456,7 @@ O(1)</li>
   <ul>
     <li>
 
-线性</li>
+ <span style="color: Gold;">线性</span></li>
     <li>
 
 简单</li>
@@ -3717,9 +3719,9 @@ $m-1$</li>
 
 #### 增量序列的四种取法
 
-##### 1. 线性探测法
+##### 1.  <span style="color: Gold;">线性</span>探测法
 
-- 又称线性探测再<span style="color: RoyalBlue;">散列</span>法
+- 又称 <span style="color: Gold;">线性</span>探测再<span style="color: RoyalBlue;">散列</span>法
 - $d_{i}=\boxed{\phantom{m-1}\hspace{0.5cm}}$
 - 特点：
   - <span style="color: Gold;">冲突</span>发生时____查看下一个单元
@@ -3872,7 +3874,7 @@ $H(\mathrm{kcy})\:\%\:m$</li>
 
 - 又称链接法、chaining
 - 原理：
-  - ____存储在线性链表中
+  - ____存储在 <span style="color: Gold;">线性</span>链表中
   - 链表由<span style="color: RoyalBlue;">散列</span>地址____标识
   - ____指针存放在<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>对应单元
 - 适用：
@@ -3997,7 +3999,7 @@ $Addr$</li>
 $key\%13$</li>
     <li>
 
-线性</li>
+ <span style="color: Gold;">线性</span></li>
   </ul>
 </details>
 </div>
@@ -4163,7 +4165,7 @@ $\alpha$</li>
 - 实际应用
   - 多采用____考虑
   - 原因：查找失败情况常被____
-  - 注意：两种考虑方式计算结果不同，考试需仔细阅题
+  - 注意：两种考虑方式计算结果<span style="color: gray;">不同</span>，考试需仔细阅题
 
 <div>
 <details>
