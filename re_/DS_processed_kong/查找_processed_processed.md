@@ -137,7 +137,7 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 
 <ul>
 
-### <span style="color: silver;">concept
+### <span style="color: silver;">concept✓
 
 - 又称<span style="color: orange;">线性</span><span style="color: Gold;">search</span>
 - 适用范围：
@@ -150,8 +150,8 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 <details>
   <summary> </summary>
   <ul>
-    <li>下标</li>
-    <li>next</li>
+    <li><span style="color: LimeGreen;">下标</span></li>
+    <li><span style="color: Gold;">next</span></li>
   </ul>
 </details>
 </div>
@@ -162,11 +162,11 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 
 <ul>
 
-### <span style="color: silver;"><span style="color: gray;">一般</span><span style="color: orange;">线性</span>表的顺序<span style="color: Gold;">search</span>
+### <span style="color: silver;"><span style="color: gray;">一般</span><span style="color: orange;">线性</span>表的顺序<span style="color: Gold;">search</span> ✓？
 
 <ul>
 
-#### <span style="color: silver;">基本思想
+#### <span style="color: silver;">基本思想 ✓
 
 - from<span style="color: orange;">线性</span>表一<span style="color: LightSkyBlue;">端</span>开始逐个检查____
   - find<span style="color: GreenYellow;">满足</span>条件元素 → return____
@@ -179,7 +179,7 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
   <summary> </summary>
   <ul>
     <li><span style="color: green;">关键</span>字</li>
-    <li>位置</li>
+    <li><span style="color: gray;">位置</span></li>
     <li>失败</li>
   </ul>
 </details>
@@ -191,7 +191,7 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 
 <ul>
 
-#### <span style="color: LightSkyBlue;">算法
+#### <span style="color: LightSkyBlue;">算法</span>  <span style="color: silver;">✓
 
 ```c
 typedef struct{
@@ -212,8 +212,8 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 <details>
   <summary> </summary>
   <ul>
-    <li>key</li>
-    <li>key</li>
+    <li><span style="color: LimeGreen;">key</span></li>
+    <li><span style="color: LimeGreen;">key</span></li>
   </ul>
 </details>
 </div>
@@ -224,11 +224,12 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 
 <ul>
 
-#### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
+#### ⭐<span style="color: silver;"><span style="color: Gold;">性能</span>分析 ✓？
 
+？why
 - <span style="color: Gold;">search</span>成功时<span style="color: LightSkyBlue;">平均</span>长度：
   - $\operatorname{ASL}_{\mathfrak{h}(n;i)}=\boxed{\phantom{m-1}\hspace{0.5cm}}$
-  - 当Pi=1/n时：$\operatorname{PSL}_{n|k\rangle n|}{=}{____}$
+  - 当Pi=1/n时：$\operatorname{{\color{skyblue}{P}}SL}_{n|k\rangle n|}{=}{\boxed{\phantom{m-1}\hspace{0.5cm}}}$
 - ~失败时：ASL=____
 
 <ul>
@@ -237,7 +238,9 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 <details>
   <summary> </summary>
   <ul>
-    <li>$\sum_{i=1}^{n}P_{i}(n-i+1)$</li>
+    <li>
+
+$\sum_{i=1}^{n}{\color{skyblue}{P}}_{i}(n-i+1)$</li>
     <li>$\frac{n+1}{2}$</li>
     <li>n+1</li>
   </ul>
@@ -250,12 +253,12 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 
 <ul>
 
-#### <span style="color: silver;"><span style="color: LightSkyBlue;">优</span><span style="color: GreenYellow;">缺</span>点
+#### <span style="color: silver;"><span style="color: LightSkyBlue;">优</span><span style="color: GreenYellow;">缺</span>点✓？
 
 - 缺点：n较大时____低
 - 优点：
   - 存储方式____
-  - 无____要求
+  - ？无____要求
   - 适用于链表
 
 <ul>
@@ -264,9 +267,9 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 <details>
   <summary> </summary>
   <ul>
-    <li>效率</li>
-    <li>灵活</li>
-    <li>序</li>
+    <li><span style="color: LightSkyBlue;">效率</span></li>
+    <li><span style="color: Lime;">灵活</span></li>
+    <li>序 ← ？</li>
   </ul>
 </details>
 </div>
@@ -374,7 +377,7 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 
 折半<span style="color: Gold;">search</span>又称二分<span style="color: Gold;">search</span>，它仅适用于<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>的____表。
 
-> pro：分析对比给定<span style="color: Gold;">search</span>算法与折半<span style="color: Gold;">search</span>的效率（2016）
+> pro：分析对比给定<span style="color: Gold;">search</span>算法与折半<span style="color: Gold;">search</span>的<span style="color: LightSkyBlue;">效率</span>（2016）
 
 <ul>
 
@@ -395,10 +398,10 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 
 ### <span style="color: silver;">基本思想
 
-- compare<span style="color: gray;">给</span><span style="color: GreenYellow;">定</span>值key with table____位置的元素
+- compare<span style="color: gray;">给</span><span style="color: GreenYellow;">定</span>值key with table____<span style="color: gray;">位置</span>的元素
   - if =
     - <span style="color: Gold;">search</span>____
-    - return该元素的____位置
+    - return该元素的____<span style="color: gray;">位置</span>
   - elif ≠
     - →所需<span style="color: Gold;">search</span>的元素in
       - 中间元素以外的
@@ -443,7 +446,7 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
     int low=0,high=L.TableLen-1,mid;
     while(low<=high){
-        mid=(low+high)/2; //取____位置
+        mid=(low+high)/2; //取____<span style="color: gray;">位置</span>
         if(L.elem[mid]==key) return mid; // <span style="color: Gold;">search</span>成功则返回所在____
         else if(L.elem[mid]>key) high=mid-1; //从____部分继续<span style="color: Gold;">search</span>
         else low=mid+1; //从____部分继续<span style="color: Gold;">search</span>
@@ -471,7 +474,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
   <summary> </summary>
   <ul>
     <li>中间</li>
-    <li>位置</li>
+    <li><span style="color: gray;">位置</span></li>
     <li>前半</li>
     <li>后半</li>
     <li>-1</li>
@@ -758,7 +761,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 - <span style="color: LightSkyBlue;">优</span>点：
   - 具有<span style="color: GreenYellow;">动态</span>____
   - <span style="color: RoyalBlue;">快速</span><span style="color: Gold;">search</span>
-  - 块内<span style="color: Gold;">search</span>范围小，效率高于<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
+  - 块内<span style="color: Gold;">search</span>范围小，<span style="color: LightSkyBlue;">效率</span>高于<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
 - <span style="color: GreenYellow;">缺</span>点：
   - 索引表占用<span style="color: gray;">额外</span>____空间
   - 索引<span style="color: Gold;">search</span>增加系统<span style="color: gray;">开销</span>
@@ -810,7 +813,7 @@ Binary sort tree
   <summary> </summary>
   <ul>
     <li>排序</li>
-    <li>效率</li>
+    <li><span style="color: LightSkyBlue;">效率</span></li>
     <li>非线性</li>
   </ul>
 </details>
@@ -993,7 +996,7 @@ int BST Insert（BiTree &T，KeyType k）(
 - 过程：
   - from____树<span style="color: GreenYellow;">出发
   - <u>依次</u><span style="color: gray;">输入</span>____
-  - insert元素to____位置
+  - insert元素to____<span style="color: gray;">位置</span>
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/359f08371aa754ac430fc9f29a85302372b2b4d9718c8e692c96b4d3a2472bf0.jpg)`  
 图7.6二叉排序树的<span style="color: Lime;">构造</span>过程
@@ -1076,7 +1079,7 @@ void Creat BST（BiTree &T，KeyType str[],int n){
 
 <ul>
 
-### <span style="color: silver;"><span style="color: Gold;">search</span><span style="color: RoyalBlue;">效率</span>分析
+### <span style="color: silver;"><span style="color: Gold;">search</span><span style="color: RoyalBlue;"><span style="color: LightSkyBlue;">效率</span></span>分析
 
 - 影响因素：
   - main:树的<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">高度</span></span>
@@ -1396,8 +1399,8 @@ B</li>
 - 原因：在A的左孩子(L)的右子树(R)上____新node
 - 过程：
   - A的平衡因子由1增至____
-  - 先将____向左上旋转提升到B的位置
-  - 再将____向右上旋转提升到A的位置
+  - 先将____向左上旋转提升到B的<span style="color: gray;">位置</span>
+  - 再将____向右上旋转提升到A的<span style="color: gray;">位置</span>
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/e7462a89cd7274f34abe2309c0d8eedb6ed3d046096c03916695558689e50a9f.jpg)`  
 图7.13LR平衡旋转
@@ -1431,8 +1434,8 @@ C</li>
 - 原因：在A的右孩子(R)的左子树(L)上____新node
 - 过程：
   - A的平衡因子由-1减至____
-  - 先将____向右上旋转提升到B的位置
-  - 再将____向左上旋转提升到A的位置
+  - 先将____向右上旋转提升到B的<span style="color: gray;">位置</span>
+  - 再将____向左上旋转提升到A的<span style="color: gray;">位置</span>
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/044e9dac3e9118af06383caa4ab6770b19e9168a05e12eabac22b4702037505f.jpg)`  
 图7.14RL平衡旋转
@@ -1711,7 +1714,7 @@ RL</li>
   - 推导：n3=4, n4=7, n5=12,...
 - 含n个node的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>：
   - 最大深度为____
-  - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>效率为____
+  - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span><span style="color: LightSkyBlue;">效率</span>为____
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/05527187cb555c4a8c169a1c9bb747cea9d526708b08d8e44da08c7188104059.jpg)`  
 图7.17node个数n最少的<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>
@@ -2095,7 +2098,7 @@ search</li>
      ##### 情况1：叔node____色且z是右孩子(LR)
 
      - 先____转换为情况2
-     - z和父node交换位置
+     - z和父node交换<span style="color: gray;">位置</span>
      - 不影响____高和性质④
 
      ##### 情况2：叔node____色且z是左孩子(LL)
@@ -2652,7 +2655,7 @@ m-1</li>
     - 右侧子树<span style="color: green;">关键</span>字＞____<span style="color: green;">关键</span>字
   - 叶node特性：
     - 均在第____层
-    - 代表查找失败位置
+    - 代表查找失败<span style="color: gray;">位置</span>
 
 <div>
 <details>
@@ -2711,7 +2714,7 @@ m-1</li>
 - 在B树中找node(____操作)
 - 在node内找<span style="color: green;">关键</span>字(____操作)
   - 可用顺序查找或折半查找
-  - 查找效率取决于目标node____数
+  - 查找<span style="color: LightSkyBlue;">效率</span>取决于目标node____数
 
 ##### 查找过程
 
@@ -2838,7 +2841,7 @@ m^{h}-1</li>
 
 - 定位阶段：
   - 使用B树____算法
-  - 找到____的终端node位置
+  - 找到____的终端node<span style="color: gray;">位置</span>
 
 <div>
 <details>
@@ -2887,7 +2890,7 @@ $m-1$</li>
 
 - 基本步骤：
   - 创建新node
-  - 从____位置分割<span style="color: green;">关键</span>字
+  - 从____<span style="color: gray;">位置</span>分割<span style="color: green;">关键</span>字
   - 左部分保留在____node
   - 右部分移至____node
   - ____<span style="color: green;">关键</span>字上移至父node
@@ -3348,7 +3351,7 @@ B</li>
 - <span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>(哈希<span style="color: green;">函数</span>)
   - 定义：把<span style="color: Gold;">search</span>表中的<span style="color: green;">关键</span>字映射成____地址的<span style="color: green;">函数</span>
   - 表示：$\operatorname{Hash}(\ker)=\boxed{\phantom{m-1}\hspace{0.5cm}}$
-  - 地址类型：____下标、____或内存地址等
+  - 地址类型：____<span style="color: LimeGreen;">下标</span>、____或内存地址等
 
 - <span style="color: Gold;">冲突</span>
   - 定义：不同<span style="color: green;">关键</span>字映射到____地址
@@ -3747,7 +3750,7 @@ $1,2,\cdots,m-1$</li>
 堆积</li>
     <li>
 
-效率</li>
+<span style="color: LightSkyBlue;">效率</span></li>
   </ul>
 </details>
 </div>
@@ -3791,7 +3794,7 @@ $4k+3$</li>
 - $d_{i}=\boxed{\phantom{m-1}\hspace{0.5cm}}$
 - <span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>：
   - $H_{i}\,{=}\,\boxed{\phantom{m-1}\hspace{0.5cm}}$
-  - 初始探测位置：$H_{0}\,{=}\,\boxed{\phantom{m-1}\hspace{0.5cm}}$
+  - 初始探测<span style="color: gray;">位置</span>：$H_{0}\,{=}\,\boxed{\phantom{m-1}\hspace{0.5cm}}$
   - i为<span style="color: Gold;">冲突</span>____，初始为0
 
 <div>
@@ -3818,7 +3821,7 @@ $H(\mathrm{kcy})\:\%\:m$</li>
 
 - $d_{i}\!=$____
 
-> pro：<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>中<span style="color: Goldenrod;">删除</span>部分元素后的<span style="color: Gold;">search</span>效率分析（2023）
+> pro：<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>中<span style="color: Goldenrod;">删除</span>部分元素后的<span style="color: Gold;">search</span><span style="color: LightSkyBlue;">效率</span>分析（2023）
 
 > notice: 
 
@@ -3827,11 +3830,11 @@ $H(\mathrm{kcy})\:\%\:m$</li>
     - 原因：会截断其他____元素的查找路径
   - <span style="color: Goldenrod;">删除</span>方案：
     - 采用____<span style="color: Goldenrod;">删除</span>方式
-    - 具体做法：在要<span style="color: Goldenrod;">删除</span>的元素位置做一个____标记
+    - 具体做法：在要<span style="color: Goldenrod;">删除</span>的元素<span style="color: gray;">位置</span>做一个____标记
   - 副作用：
     - 多次<span style="color: Goldenrod;">删除</span>后会造成____现象
       - 表面上：<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>很满
-      - 实际上：许多位置未被利用
+      - 实际上：许多<span style="color: gray;">位置</span>未被利用
 
 <div>
 <details>
@@ -3923,7 +3926,7 @@ $key\%13$</li>
 
 ### <span style="color: RoyalBlue;">散列</span><span style="color: Gold;">search</span>及性能分析
 
-> pro：<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>的<span style="color: Lime;">构造</span>及<span style="color: Gold;">search</span>效率的分析（2010、2018、2019）
+> pro：<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>的<span style="color: Lime;">构造</span>及<span style="color: Gold;">search</span><span style="color: LightSkyBlue;">效率</span>的分析（2010、2018、2019）
 
 <ul>
 
@@ -3931,7 +3934,7 @@ $key\%13$</li>
 
 - 初始化：Addr $\smile$____
 - 步骤：
-  1. 检测地址____位置
+  1. 检测地址____<span style="color: gray;">位置</span>
      - 无记录：返回____
      - 有记录：比较____值
        - 相等：返回____
@@ -4010,7 +4013,7 @@ $key\%13$</li>
 1. 初始地址：H(84)=____
 2. 第一次<span style="color: Gold;">冲突</span>：H₁=____
 3. 第二次<span style="color: Gold;">冲突</span>：H₂=____
-4. 结果：成功，位置____
+4. 结果：成功，<span style="color: gray;">位置</span>____
 
 ###### 值38的<span style="color: Gold;">search</span>
 
@@ -4080,7 +4083,7 @@ $(1\times6+2+3\times3+4+9)/12=2.5$</li>
 
 ##### 影响因素
 
-> 影响<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span><span style="color: Gold;">search</span>效率的因素（2011、2022）
+> 影响<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span><span style="color: Gold;">search</span><span style="color: LightSkyBlue;">效率</span>的因素（2011、2022）
 
 1. <span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>
 2. 处理<span style="color: Gold;">冲突</span>的____
