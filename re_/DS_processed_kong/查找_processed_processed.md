@@ -8,7 +8,7 @@
 
 ~*search=查找*~
 
-（一）<span style="color: Gold;">search</span>的concept（二）顺序<span style="color: Gold;">search</span>法（三）分块<span style="color: Gold;">search</span>法（四）折半<span style="color: Gold;">search</span>法（五）树形<span style="color: Gold;">search</span>（六）B树及其基本操作、$^{\mathrm{B+}}$树的concept（七）<span style="color: RoyalBlue;">散列</span>（Hash）表（八）<span style="color: Gold;">search</span>算法的分析及应用  
+（一）<span style="color: Gold;">search</span>的concept（二）<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>法（三）分块<span style="color: Gold;">search</span>法（四）折半<span style="color: Gold;">search</span>法（五）树形<span style="color: Gold;">search</span>（六）B树及其基本操作、$^{\mathrm{B+}}$树的concept（七）<span style="color: RoyalBlue;">散列</span>（Hash）表（八）<span style="color: Gold;">search</span>算法的分析及应用  
 
 </ul>
 
@@ -88,7 +88,7 @@
   - 定义：只涉及<span style="color: Gold;">search</span>操作的____
   - 对应的动态<span style="color: Gold;">search</span>表：需要动态<span style="color: GreenYellow;">插入</span>或____的表
   - 适用方法：
-    - 静态表：顺序<span style="color: Gold;">search</span>、折半<span style="color: Gold;">search</span>、<span style="color: RoyalBlue;">散列</span><span style="color: Gold;">search</span>
+    - 静态表：<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>、折半<span style="color: Gold;">search</span>、<span style="color: RoyalBlue;">散列</span><span style="color: Gold;">search</span>
     - 动态表：二叉排序树<span style="color: Gold;">search</span>、<span style="color: RoyalBlue;">散列</span><span style="color: Gold;">search</span>
 
 - <span style="color: green;">关键</span>字
@@ -129,11 +129,11 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 
 </ul>
 
-# <span style="color: silver;"><span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span> & <span style="color: Gold;">折</span><span style="color: gray;">半</span>~ & <span style="color: GreenYellow;">分块</span>~
+# <span style="color: silver;"><span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span><span style="color: Gold;">search</span> & <span style="color: Gold;">折</span><span style="color: gray;">半</span>~ & <span style="color: GreenYellow;">分块</span>~
 
 <ul>
 
-## <span style="color: silver;"><span style="color: LightSkyBlue;">顺序</span>~
+## <span style="color: silver;"><span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span>~
 
 <ul>
 
@@ -141,7 +141,7 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 
 - 又称<span style="color: orange;"> <span style="color: Gold;">线性</span></span><span style="color: Gold;">search</span>
 - 适用范围：
-  - <span style="color: LightSkyBlue;">顺序</span>表：通过数组____递增扫描
+  - <span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span>表：通过数组____递增扫描
   - <span style="color: RoyalBlue;">链</span>表：通过指针____扫描
 
 <ul>
@@ -162,7 +162,7 @@ $\sum_{i=1}^{n}P_{i}C_{i}$</li>
 
 <ul>
 
-### <span style="color: silver;"><span style="color: gray;">一般</span><span style="color: orange;"> <span style="color: Gold;">线性</span></span>表的顺序<span style="color: Gold;">search</span> ✓？
+### <span style="color: silver;"><span style="color: gray;">一般</span><span style="color: orange;"> <span style="color: Gold;">线性</span></span>表的<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span> ✓？
 
 <ul>
 
@@ -282,7 +282,7 @@ $\sum_{i=1}^{n}{\color{skyblue}{P}}_{i}(n-i+1)$</li>
 
 <ul>
 
-### <span style="color: silver;"><span style="color: GreenYellow;"><span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span></span><span style="color: orange;"> <span style="color: Gold;">线性</span></span>表的顺序<span style="color: Gold;">search</span>
+### <span style="color: silver;"><span style="color: GreenYellow;"><span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span></span><span style="color: orange;"> <span style="color: Gold;">线性</span></span>表的<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
 
 <ul>
 
@@ -293,10 +293,10 @@ $\sum_{i=1}^{n}{\color{skyblue}{P}}_{i}(n-i+1)$</li>
   - <span style="color: Gold;">search</span>失败时can<span style="color: GreenYellow;">提前</span>____
   - 可降低<span style="color: Gold;">search</span>失败的<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">平均</span></span><span style="color: gray;">长度
 
-> pro：<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span> <span style="color: Gold;">线性</span>表的顺序<span style="color: Gold;">search</span>的应用（2013）
+> pro：<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span> <span style="color: Gold;">线性</span>表的<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>的应用（2013）
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/b9a556e5c788039f2fe0a08be26af8476e380c1fcd30a762adcbe9951bfa13c7.jpg)`
-↑<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>顺序表上的顺序查找判定树
+↑<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span><span style="color: LightSkyBlue;">顺序</span>表上的<span style="color: LightSkyBlue;">顺序</span>查找判定树
 
 <ul>
 
@@ -358,7 +358,7 @@ $\frac{n}{2} + \frac{n}{n+1}$</li>
   <ul>
     <li><span style="color: gray;">不同</span></li>
     <li><span style="color: RoyalBlue;">链</span>式</li>
-    <li><span style="color: LightSkyBlue;">顺序</span></li>
+    <li><span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span></li>
   </ul>
 </details>
 </div>
@@ -377,7 +377,7 @@ $\frac{n}{2} + \frac{n}{n+1}$</li>
 
 <ul>
 
-折半<span style="color: Gold;">search</span>又称二分<span style="color: Gold;">search</span>，它仅适用于<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>的____表。
+折半<span style="color: Gold;">search</span>又称 <span style="color: gray;">二分</span><span style="color: Gold;">search</span>，它仅适用于<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>的____表。
 
 > pro：分析对比给定<span style="color: Gold;">search</span>算法与折半<span style="color: Gold;">search</span>的<span style="color: LightSkyBlue;">效率</span>（2016）
 
@@ -387,7 +387,7 @@ $\frac{n}{2} + \frac{n}{n+1}$</li>
 <details>
   <summary> </summary>
   <ul>
-    <li>顺序</li>
+    <li><span style="color: LightSkyBlue;">顺序</span></li>
   </ul>
 </details>
 </div>
@@ -398,9 +398,9 @@ $\frac{n}{2} + \frac{n}{n+1}$</li>
 
 <ul>
 
-### <span style="color: silver;">基本思想
+### <span style="color: silver;">基本思想 ✓
 
-- compare<span style="color: gray;">给</span><span style="color: GreenYellow;">定</span>值key with table____<span style="color: gray;">位置</span>的元素
+- compare<u><span style="color: gray;">给</span><span style="color: GreenYellow;">定</span>值<span style="color: LimeGreen;">key</span></u> & table____<span style="color: gray;">位置</span>的元素
   - if =
     - <span style="color: Gold;">search</span>____
     - return该元素的____<span style="color: gray;">位置</span>
@@ -412,7 +412,7 @@ $\frac{n}{2} + \frac{n}{n+1}$</li>
   - eg
     - <span style="color: Gold;">search</span>表升序排列时
       - 若key＞中间元素
-        - then所<span style="color: Gold;">search</span>的元素only might在<span style="color: GreenYellow;">后</span><span style="color: gray;">半</span>____
+        - then所<span style="color: Gold;">search</span>的元素only might在____部分
         - 在缩小的<span style="color: gray;">范围</span>内go on同样的<span style="color: Gold;">search</span>
       - repeat the steps
         - till<span style="color: GreenYellow;">Find</span>
@@ -426,12 +426,10 @@ $\frac{n}{2} + \frac{n}{n+1}$</li>
 <details>
   <summary> </summary>
   <ul>
-    <li>中间</li>
-    <li>成功</li>
-    <li>存储</li>
-    <li>部分</li>
-    <li>不成功</li>
-    <li>False</li>
+    <li><span style="color: gray;">中间</span></li>
+    <li>成功 <span style="color: Goldenrod;">存储</span></li>
+    <li><span style="color: GreenYellow;">后</span><span style="color: gray;">半</span></li>
+    <li>不成功 False</li>
   </ul>
 </details>
 </div>
@@ -442,28 +440,28 @@ $\frac{n}{2} + \frac{n}{n+1}$</li>
 
 <ul>
 
-### <span style="color: LightSkyBlue;">算法
+### ⭐<span style="color: LightSkyBlue;">算法</span> <span style="color: silver;">✓
 
 ```c
-int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
+int Binarysearch(SSTable L,ElemType key){
     int low=0,high=L.TableLen-1,mid;
     while(low<=high){
-        mid=(low+high)/2; //取____<span style="color: gray;">位置</span>
-        if(L.elem[mid]==key) return mid; // <span style="color: Gold;">search</span>成功则返回所在____
-        else if(L.elem[mid]>key) high=mid-1; //从____部分继续<span style="color: Gold;">search</span>
-        else low=mid+1; //从____部分继续<span style="color: Gold;">search</span>
+        mid=(low+high)/2; //取____位置
+        if(L.elem[mid]==key) return mid; // search成功则返回所在____
+        else if(L.elem[mid]>key) high=mid-1; //从____部分继续search
+        else low=mid+1; //从____部分继续search
     }
-    return -1; // <span style="color: Gold;">search</span>失败，返回____
+    return -1; // search失败，返回____
 }
 ```
 
 <ul>
 
-#### <span style="color: silver;">instruction
+#### <span style="color: silver;">instruction ✓
 
 - 折半<span style="color: Gold;">search</span>算法select中间node时
   - 向____取整
-  - ~____~
+  - ~ ____ ~
 - both can
   - but每次<span style="color: Gold;">search</span>的取整方式必须____
 
@@ -476,13 +474,9 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
   <summary> </summary>
   <ul>
     <li>中间</li>
-    <li><span style="color: gray;">位置</span></li>
-    <li>前半</li>
-    <li>后半</li>
+    <li><span style="color: gray;">位置</span> 前半 后半</li>
     <li>-1</li>
-    <li>↑</li>
-    <li>↓</li>
-    <li>相同</li>
+    <li>↑ ↓ 相同</li>
   </ul>
 </details>
 </div>
@@ -493,9 +487,9 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 
 <ul>
 
-#### <span style="color: silver;">eg
+#### <span style="color: silver;">eg ✓ ？
 
-- 已知11个元素的<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>表{7,10,13,16,19,29,32,33,37,41,43}
+- 已知11个元素的<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>表{7,10,<u>13</u>,16,19,<span style="color: gray;">29</span>,32,33,37,41,43}
 - <span style="color: Gold;">search</span>值为11的过程：
   - 第一次<span style="color: Gold;">search</span>
     - 比较中间元素____与key
@@ -503,7 +497,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
   - 第二次<span style="color: Gold;">search</span>
     - 比较中间元素____与key
     - 11<13，在[low,mid-1]范围内继续<span style="color: Gold;">search</span>
-  - 第三次<span style="color: Gold;">search</span>
+  - 第三次<span style="color: Gold;">search</span> ←？这个怎么是最低位，而不是中间位
     - 比较中间元素____与key
     - 11>7，在[mid+1,high]范围内继续<span style="color: Gold;">search</span>
   - 第四次<span style="color: Gold;">search</span>
@@ -535,15 +529,15 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 
 <ul>
 
-### <span style="color: silver;"><span style="color: GreenYellow;">判定</span><span style="color: green;">树
+### <span style="color: silver;"><span style="color: GreenYellow;">判定</span><span style="color: green;">树</span> <span style="color: silver;">✓ ？
 
-- Feature：
-  - node:
-    - 每个圆形~express一个____
-    - 最下面的叶~为方形，表示<span style="color: Gold;">search</span>____的区间
+- Feature： ？
+  - node: ← 为什么？n+·个方形叶（失败区间）
+    - 每个 <u>圆形</u> ~express一个____
+    - 最下面的叶~为<span style="color: gray;">方形</span>，表示<span style="color: Gold;">search</span>____的区间
     - 每个~值均＞其左子~值
       - 且＜其右子~值
-    - n个元素对应n个圆形非叶~和n+1个方形叶~
+    - n个元素对应n个 <u>圆形</u> 非叶~ 和n+1个<span style="color: gray;">方形</span>叶 ~
   - is<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a3c13d8b6e09e2161cf91b26befcb36e69ca849ba58fb230483c6eaa214215f5.jpg)`  
@@ -557,7 +551,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 <details>
   <summary> </summary>
   <ul>
-    <li>记录</li>
+    <li><span style="color: green;">记录</span></li>
     <li>失败</li>
   </ul>
 </details>
@@ -569,7 +563,8 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 
 <ul>
 
-### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
+### ⭐<span style="color: silver;"><span style="color: Gold;">性能</span>分析 ✓ ？
+？公式怎么来的？
 
 - 比较<span style="color: LimeGreen;">次数</span>最多≤树的<span style="color: LightSkyBlue;">高度</span>
 - <span style="color: LightSkyBlue;">平均</span><span style="color: Gold;">search</span>长度：
@@ -585,7 +580,9 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 <details>
   <summary> </summary>
   <ul>
-    <li>$\frac{n+1}{n}\log_{2}(n+1)-1$</li>
+    <li>
+
+$\frac{n+1}{n}\log_{2}(n+1)-1$</li>
     <li>$\log_{2}(n+1)-1$</li>
     <li>O(log₂n)</li>
     <li>(1×1+2×2+3×4+4×4)/11=3</li>
@@ -600,10 +597,10 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 
 <ul>
 
-### <span style="color: silver;"><span style="color: gray;">conditions
+### <span style="color: silver;"><span style="color: gray;">conditions  <span style="color: silver;">✓
 
-- only<span style="color: LightSkyBlue;">顺序</span>____结构
-- request元素按<span style="color: green;">关键</span>字<span style="color: GreenYellow;">有</span><span style="color: LightSkyBlue;">序</span>____
+- only____存储结构
+- request元素按<span style="color: green;">关键</span>字____排列
 
 <ul>
 
@@ -611,8 +608,8 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 <details>
   <summary> </summary>
   <ul>
-    <li>存储</li>
-    <li>排列</li>
+    <li><span style="color: LightSkyBlue;">顺序</span></li>
+    <li><span style="color: GreenYellow;">有</span><span style="color: LightSkyBlue;">序</span></li>
   </ul>
 </details>
 </div>
@@ -629,8 +626,8 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 
 <ul>
 
-- also called as<span style="color: Gold;">索引</span><span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
-- 顺序<span style="color: Gold;">search</span>和折半<span style="color: Gold;">search</span>各自的____
+- also called as<span style="color: Gold;">索引</span><span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span><span style="color: Gold;">search</span>
+- <span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>和折半<span style="color: Gold;">search</span>各自的____
   - 既<span style="color: GreenYellow;">动态</span>____
   - 又<span style="color: RoyalBlue;">快速</span><span style="color: Gold;">search</span>
 
@@ -693,9 +690,9 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 
 ### <span style="color: silver;"><span style="color: Gold;">过程
 
-- step1：在**索引表**中确定待查记录所在的<span style="color: gray;">块</span>
-  - 可以<span style="color: LightSkyBlue;">顺序</span>~or<span style="color: Gold;">折</span><span style="color: gray;">半</span>~____表
-- step2：在<span style="color: gray;">块</span>内<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
+- step1：在**索引表**中确定待查<span style="color: green;">记录</span>所在的<span style="color: gray;">块</span>
+  - 可以<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span>~or<span style="color: Gold;">折</span><span style="color: gray;">半</span>~____表
+- step2：在<span style="color: gray;">块</span>内<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span><span style="color: Gold;">search</span>
 
 <ul>
 
@@ -732,7 +729,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
     - L₁：索引<span style="color: Gold;">search</span><span style="color: LightSkyBlue;">平均</span>____
     - Ls：块内<span style="color: Gold;">search</span><span style="color: LightSkyBlue;">平均</span>____
 - 均匀分块情况下
-  - n长度表分为b块，每块s个记录
+  - n长度表分为b块，每块s个<span style="color: green;">记录</span>
   - ASL = ____
   - 当s=____时，ASL最小，为____
 
@@ -763,7 +760,7 @@ int Binary<span style="color: Gold;">search</span>(SSTable L,ElemType key){
 - <span style="color: LightSkyBlue;">优</span>点：
   - 具有<span style="color: GreenYellow;">动态</span>____
   - <span style="color: RoyalBlue;">快速</span><span style="color: Gold;">search</span>
-  - 块内<span style="color: Gold;">search</span>范围小，<span style="color: LightSkyBlue;">效率</span>高于<span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>
+  - 块内<span style="color: Gold;">search</span>范围小，<span style="color: LightSkyBlue;">效率</span>高于<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span><span style="color: Gold;">search</span>
 - <span style="color: GreenYellow;">缺</span>点：
   - 索引表占用<span style="color: gray;">额外</span>____空间
   - 索引<span style="color: Gold;">search</span>增加系统<span style="color: gray;">开销</span>
@@ -1103,9 +1100,9 @@ void Creat BST（BiTree &T，KeyType str[],int n){
   - 图7.8(a)：ASL=____
   - 图7.8(b)：ASL=____
 
-- 与二分<span style="color: Gold;">search</span>比较：
+- 与<span style="color: gray;">二分</span><span style="color: Gold;">search</span>比较：
   - <span style="color: LightSkyBlue;">平均</span>时间性能____
-  - 二分<span style="color: Gold;">search</span>判定树____
+  - <span style="color: gray;">二分</span><span style="color: Gold;">search</span>判定树____
   - 二叉排序树<span style="color: Gold;">search</span>____
 
 - 维护表的<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>性：
@@ -1144,11 +1141,11 @@ void Creat BST（BiTree &T，KeyType str[],int n){
 </ul>
 
 
-- 二分<span style="color: Gold;">search</span>：
+- <span style="color: gray;">二分</span><span style="color: Gold;">search</span>：
     - 对象是<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>____表
     - <span style="color: GreenYellow;">插入</span><span style="color: Goldenrod;">删除</span>操作代价____
   - 选择建议：
-    - 静态<span style="color: Gold;">search</span>表：用____表+二分<span style="color: Gold;">search</span>
+    - 静态<span style="color: Gold;">search</span>表：用____表+<span style="color: gray;">二分</span><span style="color: Gold;">search</span>
     - 动态<span style="color: Gold;">search</span>表：用____
 
 <div>
@@ -1157,13 +1154,13 @@ void Creat BST（BiTree &T，KeyType str[],int n){
   <ul>
     <li>
 
-顺序</li>
+<span style="color: LightSkyBlue;">顺序</span></li>
     <li>
 
 O(n)</li>
     <li>
 
-顺序</li>
+<span style="color: LightSkyBlue;">顺序</span></li>
     <li>
 
 二叉排序树</li>
@@ -2715,7 +2712,7 @@ m-1</li>
 
 - 在B树中找node(____操作)
 - 在node内找<span style="color: green;">关键</span>字(____操作)
-  - 可用顺序查找或折半查找
+  - 可用<span style="color: LightSkyBlue;">顺序</span>查找或折半查找
   - 查找<span style="color: LightSkyBlue;">效率</span>取决于目标node____数
 
 ##### 查找过程
@@ -3153,7 +3150,7 @@ B</li>
   4. 叶node特性：
      - 包含____<span style="color: green;">关键</span>字
      - 包含____指针
-     - 按____顺序排列
+     - 按____<span style="color: LightSkyBlue;">顺序</span>排列
      - 相邻叶node相互____
   5. 分支node特性：
      - 仅包含子node____<span style="color: green;">关键</span>字
@@ -3182,7 +3179,7 @@ $\lceil m/2 \rceil$</li>
 全部</li>
     <li>
 
-记录</li>
+<span style="color: green;">记录</span></li>
     <li>
 
 大小</li>
@@ -3326,7 +3323,7 @@ B</li>
 叶</li>
     <li>
 
-顺序</li>
+<span style="color: LightSkyBlue;">顺序</span></li>
     <li>
 
 多路</li>
@@ -3740,7 +3737,7 @@ $m-1$</li>
 $1,2,\cdots,m-1$</li>
     <li>
 
-顺序</li>
+<span style="color: LightSkyBlue;">顺序</span></li>
     <li>
 
 表首</li>
@@ -3937,8 +3934,8 @@ $key\%13$</li>
 - 初始化：Addr $\smile$____
 - 步骤：
   1. 检测地址____<span style="color: gray;">位置</span>
-     - 无记录：返回____
-     - 有记录：比较____值
+     - 无<span style="color: green;">记录</span>：返回____
+     - 有<span style="color: green;">记录</span>：比较____值
        - 相等：返回____
        - 不等：执行步骤2
   2. 计算下一<span style="color: RoyalBlue;">散列</span>____
@@ -4108,7 +4105,7 @@ $(1\times6+2+3\times3+4+9)/12=2.5$</li>
 装填</li>
     <li>
 
-$\frac{表中记录数n}{散列表长度m}$</li>
+$\frac{表中<span style="color: green;">记录</span>数n}{散列表长度m}$</li>
     <li>
 
 $\alpha$</li>
@@ -4137,7 +4134,7 @@ $\alpha$</li>
 - 核心考查点：求<span style="color: LightSkyBlue;">平均</span>查找长度（ASL）
   - 用于度量各种查找算法的____
   - 基于查找____
-    - 由相同数据类型的记录或node构成
+    - 由相同数据类型的<span style="color: green;">记录</span>或node构成
 
 ###### 计算公式
 
