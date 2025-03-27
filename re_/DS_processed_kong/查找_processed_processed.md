@@ -626,10 +626,10 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
 
 <ul>
 
-- also called as<span style="color: Gold;">索引</span><span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span><span style="color: Gold;">search</span>
+- also called as<span style="color: Gold;"> <span style="color: Gold;">索引</span></span><span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span><span style="color: Gold;">search</span>
 - <span style="color: LightSkyBlue;">顺序</span><span style="color: Gold;">search</span>和折半<span style="color: Gold;">search</span>各自的____
-  - 既<span style="color: GreenYellow;">动态</span>____
-  - 又<span style="color: RoyalBlue;">快速</span><span style="color: Gold;">search</span>
+  - 既____结构
+  - 又____search</span>
 
 <ul>
 
@@ -638,7 +638,8 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
   <summary> </summary>
   <ul>
     <li>优点</li>
-    <li>结构</li>
+    <li><span style="color: GreenYellow;">动态</span></li>
+    <li><span style="color: RoyalBlue;">快速</span><span style="color: Gold;"></li>
   </ul>
 </details>
 </div>
@@ -649,7 +650,7 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
 
 <ul>
 
-### <span style="color: silver;">基本思想
+### <span style="color: silver;">基本思想 ✓
 
 - 将<span style="color: Gold;">search</span>表分为若干<span style="color: gray;">子块</span>
   - 块内
@@ -663,8 +664,8 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
       - ...
       - 以此类推
 - 建立____表
-  - 包含各块最大<span style="color: green;">关键</span>字和各块第一个元素____
-  - 索引表按<span style="color: green;">关键</span>字<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>____
+  - 包含各块 最大<span style="color: green;">关键</span>字和各块第一个元素____
+  -  <span style="color: Gold;">索引</span>表按<span style="color: green;">关键</span>字____排列
 
 <ul>
 
@@ -675,9 +676,8 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
     <li>无序</li>
     <li><span style="color: green;">关键</span>字</li>
     <li><span style="color: green;">关键</span>字</li>
-    <li>索引</li>
-    <li>地址</li>
-    <li>排列</li>
+    <li> <span style="color: Gold;">索引</span></li>
+    <li><span style="color: gray;">地址</span> <span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span></li>
   </ul>
 </details>
 </div>
@@ -688,9 +688,9 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
 
 <ul>
 
-### <span style="color: silver;"><span style="color: Gold;">过程
+### <span style="color: silver;"><span style="color: Gold;">过程</span> <span style="color: silver;">✓
 
-- step1：在**索引表**中确定待查<span style="color: green;">记录</span>所在的<span style="color: gray;">块</span>
+- step1：在 <span style="color: Gold;">索引</span>表 中确定待查<span style="color: green;">记录</span>所在的<span style="color: gray;">块</span>
   - 可以<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span>~or<span style="color: Gold;">折</span><span style="color: gray;">半</span>~____表
 - step2：在<span style="color: gray;">块</span>内<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span><span style="color: Gold;">search</span>
 
@@ -700,7 +700,7 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
 <details>
   <summary> </summary>
   <ul>
-    <li>索引</li>
+    <li> <span style="color: Gold;">索引</span></li>
   </ul>
 </details>
 </div>
@@ -711,10 +711,10 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
 
 <ul>
 
-### <span style="color: silver;">eg
+### <span style="color: silver;">eg ✓
 
 - <span style="color: green;">关键</span>码集合：{88,24,72,61,21,6,32,11,8,31,22,83,78,54}
-- 按<span style="color: green;">关键</span>码值24,54,78,88分为4个块和索引表
+- 按<span style="color: green;">关键</span>码值24,54,78,88分为4个块和 <span style="color: Gold;">索引</span>表
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/76ded7a7f7a5d8bfa95e7e4f016ef281090b1deb3b0fa15e348952f286083f80.jpg)`  
 
@@ -722,16 +722,16 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
 
 <ul>
 
-### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
+### ⭐<span style="color: silver;"><span style="color: Gold;">性能</span>分析 ✓ ？
 
 - <span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">平均</span></span><span style="color: Gold;">search</span>长度
   - ASL = ____
-    - L₁：索引<span style="color: Gold;">search</span><span style="color: LightSkyBlue;">平均</span>____
-    - Ls：块内<span style="color: Gold;">search</span><span style="color: LightSkyBlue;">平均</span>____
-- 均匀分块情况下
+    - L₁： ____<span style="color: LightSkyBlue;">平均</span>长度
+    - Ls：____ ..
+- ？ 均匀分块情况下
   - n长度表分为b块，每块s个<span style="color: green;">记录</span>
   - ASL = ____
-  - 当s=____时，ASL最小，为____
+  - 当s=____ 时，ASL min，为____
 
 <ul>
 
@@ -740,8 +740,7 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
   <summary> </summary>
   <ul>
     <li>L₁ + Ls</li>
-    <li>长度</li>
-    <li>长度</li>
+    <li><span style="color: Gold;">索引</span><span style="color: Gold;">search</span> 块内srarch</li>
     <li>(s²+2s+n)/2s</li>
     <li>√n</li>
     <li>√n+1</li>
@@ -755,15 +754,15 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
 
 <ul>
 
-### <span style="color: silver;"><span style="color: LightSkyBlue;">优</span><span style="color: GreenYellow;">缺</span>点
+### <span style="color: silver;"><span style="color: LightSkyBlue;">优</span><span style="color: GreenYellow;">缺</span>点 ✓
 
 - <span style="color: LightSkyBlue;">优</span>点：
-  - 具有<span style="color: GreenYellow;">动态</span>____
+  - ____结构
   - <span style="color: RoyalBlue;">快速</span><span style="color: Gold;">search</span>
   - 块内<span style="color: Gold;">search</span>范围小，<span style="color: LightSkyBlue;">效率</span>高于<span style="color: LightSkyBlue;"><span style="color: LightSkyBlue;">顺序</span></span><span style="color: Gold;">search</span>
 - <span style="color: GreenYellow;">缺</span>点：
-  - 索引表占用<span style="color: gray;">额外</span>____空间
-  - 索引<span style="color: Gold;">search</span>增加系统<span style="color: gray;">开销</span>
+  -  <span style="color: Gold;">索引</span>表占用<span style="color: gray;">额外</span>____空间
+  -  <span style="color: Gold;">索引</span><span style="color: Gold;">search</span>增加系统<span style="color: gray;">开销</span>
 
 <ul>
 
@@ -771,7 +770,7 @@ $\frac{n+1}{n}\log_{2}(n+1)-1$</li>
 <details>
   <summary> </summary>
   <ul>
-    <li>结构</li>
+    <li><span style="color: GreenYellow;">动态</span></li>
     <li>存储</li>
   </ul>
 </details>
@@ -3274,13 +3273,13 @@ $m-1$</li>
   <ul>
     <li>
 
-索引</li>
+ <span style="color: Gold;">索引</span></li>
     <li>
 
 存储</li>
     <li>
 
-索引</li>
+ <span style="color: Gold;">索引</span></li>
     <li>
 
 链表</li>
@@ -3348,12 +3347,12 @@ B</li>
 ### <span style="color: silver;">n.
 
 - <span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>(哈希<span style="color: green;">函数</span>)
-  - 定义：把<span style="color: Gold;">search</span>表中的<span style="color: green;">关键</span>字映射成____地址的<span style="color: green;">函数</span>
+  - 定义：把<span style="color: Gold;">search</span>表中的<span style="color: green;">关键</span>字映射成____<span style="color: gray;">地址</span>的<span style="color: green;">函数</span>
   - 表示：$\operatorname{Hash}(\ker)=\boxed{\phantom{m-1}\hspace{0.5cm}}$
-  - 地址类型：____<span style="color: LimeGreen;">下标</span>、____或内存地址等
+  - <span style="color: gray;">地址</span>类型：____<span style="color: LimeGreen;">下标</span>、____或内存<span style="color: gray;">地址</span>等
 
 - <span style="color: Gold;">冲突</span>
-  - 定义：<span style="color: gray;">不同</span><span style="color: green;">关键</span>字映射到____地址
+  - 定义：<span style="color: gray;">不同</span><span style="color: green;">关键</span>字映射到____<span style="color: gray;">地址</span>
   - 同义词：发生<span style="color: Gold;">冲突</span>的____<span style="color: green;">关键</span>字
   - 处理：
     - 需设计良好的<span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>减少____
@@ -3361,7 +3360,7 @@ B</li>
 
 - <span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>(哈希表)
   - 定义：根据<span style="color: green;">关键</span>字直接进行____的数据结构
-  - 特点：建立<span style="color: green;">关键</span>字和____地址的直接映射
+  - 特点：建立<span style="color: green;">关键</span>字和____<span style="color: gray;">地址</span>的直接映射
   - 性能：理想情况下<span style="color: Gold;">search</span>时间复杂度为____
 
 <div>
@@ -3379,7 +3378,7 @@ Addr</li>
 数组</li>
     <li>
 
-索引</li>
+ <span style="color: Gold;">索引</span></li>
     <li>
 
 同一</li>
@@ -3416,7 +3415,7 @@ O(1)</li>
 #### <span style="color: silver;"><span style="color: Lime;">构造</span>原则
 
 - 定义域必须包含____<span style="color: green;">关键</span>字
-- 地址分布应尽可能____
+- <span style="color: gray;">地址</span>分布应尽可能____
 - 计算过程应尽量____
 
 <div>
@@ -3442,7 +3441,7 @@ O(1)</li>
 
 #### 直接定址法
 
-- 方法：取<span style="color: green;">关键</span>字的____<span style="color: green;">函数</span>值为<span style="color: RoyalBlue;">散列</span>地址
+- 方法：取<span style="color: green;">关键</span>字的____<span style="color: green;">函数</span>值为<span style="color: RoyalBlue;">散列</span><span style="color: gray;">地址</span>
 - 优点：计算____，无<span style="color: Gold;">冲突</span>
 - 适用：<span style="color: green;">关键</span>字分布基本____的情况
 - 缺点：<span style="color: green;">关键</span>字不连续时____空间
@@ -3477,7 +3476,7 @@ O(1)</li>
 - 要点：选择合适的____值
   - p不＞____m
   - p最接近或等于m的____
-- 目标：使<span style="color: green;">关键</span>字____映射到任意地址
+- 目标：使<span style="color: green;">关键</span>字____映射到任意<span style="color: gray;">地址</span>
 
 <div>
 <details>
@@ -3511,7 +3510,7 @@ $p$</li>
 - 适用：已知____集合
 - 原理：
   - 分析r进制数各位上数码____频率
-  - 选取分布____的位作为<span style="color: RoyalBlue;">散列</span>地址
+  - 选取分布____的位作为<span style="color: RoyalBlue;">散列</span><span style="color: gray;">地址</span>
 - 局限：更换<span style="color: green;">关键</span>字需____<span style="color: RoyalBlue;">散列</span><span style="color: green;">函数</span>
 
 <div>
@@ -3542,8 +3541,8 @@ $p$</li>
 
 - 方法：取<span style="color: green;">关键</span>字____值的中间几位
 - 特点：
-  - <span style="color: RoyalBlue;">散列</span>地址与<span style="color: green;">关键</span>字____都相关
-  - 地址分布较____
+  - <span style="color: RoyalBlue;">散列</span><span style="color: gray;">地址</span>与<span style="color: green;">关键</span>字____都相关
+  - <span style="color: gray;">地址</span>分布较____
 - 适用：<span style="color: green;">关键</span>字各位取值____或位数较小
 
 <div>
@@ -3606,13 +3605,13 @@ $p$</li>
   - 必须考虑<span style="color: Gold;">冲突</span>____方法
 
 - <span style="color: Gold;">冲突</span>处理过程：
-  - 为发生<span style="color: Gold;">冲突</span>的<span style="color: green;">关键</span>字寻找下一个"____"的Hash地址
-  - 使用____表示第i次探测得到的<span style="color: RoyalBlue;">散列</span>地址
+  - 为发生<span style="color: Gold;">冲突</span>的<span style="color: green;">关键</span>字寻找下一个"____"的Hash<span style="color: gray;">地址</span>
+  - 使用____表示第i次探测得到的<span style="color: RoyalBlue;">散列</span><span style="color: gray;">地址</span>
   - 处理流程：
     - 若H1发生<span style="color: Gold;">冲突</span>，继续寻找____
     - 若H2仍<span style="color: Gold;">冲突</span>，继续寻找____
     - 以此类推，直到找到不发生<span style="color: Gold;">冲突</span>的____
-    - ____即为该<span style="color: green;">关键</span>字在表中的最终地址
+    - ____即为该<span style="color: green;">关键</span>字在表中的最终<span style="color: gray;">地址</span>
 
 <div>
 <details>
@@ -3655,7 +3654,7 @@ $Hk$</li>
 <ul>
 
 - 开放定址法的含义：
-  - 表中的空闲地址对以下两类表项开放：
+  - 表中的空闲<span style="color: gray;">地址</span>对以下两类表项开放：
     - ____表项
     - ____表项
 
@@ -3872,7 +3871,7 @@ $H(\mathrm{kcy})\:\%\:m$</li>
 - 又称链接法、chaining
 - 原理：
   - ____存储在 <span style="color: Gold;">线性</span>链表中
-  - 链表由<span style="color: RoyalBlue;">散列</span>地址____标识
+  - 链表由<span style="color: RoyalBlue;">散列</span><span style="color: gray;">地址</span>____标识
   - ____指针存放在<span style="color: RoyalBlue;">散列</span><span style="color: gray;">表</span>对应单元
 - 适用：
   - usually进行<span style="color: GreenYellow;">插入</span>和____的情况
@@ -3933,7 +3932,7 @@ $key\%13$</li>
 
 - 初始化：Addr $\smile$____
 - 步骤：
-  1. 检测地址____<span style="color: gray;">位置</span>
+  1. 检测<span style="color: gray;">地址</span>____<span style="color: gray;">位置</span>
      - 无<span style="color: green;">记录</span>：返回____
      - 有<span style="color: green;">记录</span>：比较____值
        - 相等：返回____
@@ -3963,7 +3962,7 @@ $key$</li>
 成功</li>
     <li>
 
-地址</li>
+<span style="color: gray;">地址</span></li>
     <li>
 
 $Addr$</li>
@@ -4009,14 +4008,14 @@ $key\%13$</li>
 
 ###### 值84的<span style="color: Gold;">search</span>
 
-1. 初始地址：H(84)=____
+1. 初始<span style="color: gray;">地址</span>：H(84)=____
 2. 第一次<span style="color: Gold;">冲突</span>：H₁=____
 3. 第二次<span style="color: Gold;">冲突</span>：H₂=____
 4. 结果：成功，<span style="color: gray;">位置</span>____
 
 ###### 值38的<span style="color: Gold;">search</span>
 
-1. 初始地址：H(38)=____
+1. 初始<span style="color: gray;">地址</span>：H(38)=____
 2. 第一次<span style="color: Gold;">冲突</span>：H₁=____
 3. 结果：失败，L[13]为____
 
