@@ -96,7 +96,7 @@
     - 每位价格较高
 
 - 辅助存储器
-  - 简称辅存，也称外存储器或外存
+  - 简称<span style="color: RoyalBlue;">辅</span>存，也称 <span style="color: gray;">外</span>存储器或外存
   - 用途：存放当前暂时不用的程序和数据，以及需要永久性保存的信息
   - 特点：
     - 需要调入主存后才能被CPU访问
@@ -132,23 +132,23 @@
 
 </ul>
 
-### <span style="color: silver;">按<span style="color: Gold;">存</span><span style="color: LimeGreen;">取</span>方式分类  
+### 🌟<span style="color: silver;">按<span style="color: Gold;">存</span><span style="color: LimeGreen;">取</span>方式分类  
 
 <ul>
 
 > pro：采用随机存取的存储器（2011）  
 
-- 随机存储器（RAM)
-  - 特点：
-    - 任何存储单元都可以随机存取
-    - 存取时间与存储单元物理位置无关
-  - 优点：读/写方便、使用灵活
-  - 用途：主要用作主存或高速缓冲存储器
-  - 分类：
-    - 静态RAM
-    - 动态RAM
+-  <span style="color: LimeGreen;">随机</span>存储器（R<span style="color: DarkRed;">A</span>M)
+     - 特点：
+       - 任何存储单元都可以随机存取
+       - 存取时间与存储单元物理位置 <u>无关</u>
+     - 优点：读/写方便、使用灵活
+     - 用途：主要用作主存或高速缓冲存储器
+     - 分类：
+       -  <span style="color: Gold;">S</span>RAM
+       -  <span style="color: LimeGreen;">D</span>RAM
 
-- 只读存储器（ROM）
+- 只读存储器（R<span style="color: Gold;">O</span>M）
   - 特点：
     - 内容只能随机读出不能写入
     - 断电内容不会丢失
@@ -159,9 +159,9 @@
 - <span style="color: Gold;">串</span>行访问存储器
   - 特点：需按<span style="color: gray;">物理</span>位置先后顺序寻址
   - 类型：
-    - 顺序存取存储器（如磁带）
+    - <span style="color: gray;">顺序</span>存取存储器（如磁带）
       - 特点：存取速度慢，按顺序存取
-    - 直接存取存储器（如磁盘、光盘）
+    - <span style="color: gray;">直接</span>存取存储器（如<span style="color: gray;">磁盘</span>、光盘）
       - 特点：介于RAM和顺序存取之间
       - 存取方式：先寻找小区域，再在区域内顺序查找
 
@@ -224,7 +224,7 @@
 
 </ul>
 
-### <span style="color: Gold;">存储 <span style="color: RoyalBlue;">速度</span>
+### 🌟<span style="color: Gold;">存储 <span style="color: RoyalBlue;">速度</span>
 
 <ul>
 
@@ -233,10 +233,10 @@
   - 存取时间（T<span style="color: DarkRed;">a</span>）
     - 定义：从<span style="color: gray;">启动</span>一次存储器操作 → 完成该操作所经历的t
     - 分类：读出t 和 写入t
-  - 存取周期（T<span style="color: LimeGreen;">m</span>）
+  - 🌟存取周期（T<span style="color: LimeGreen;">m</span>）
     - 定义：一次完整的 读/写 操作所需的全部时间
     - 特点：
-      - 连续两次 独立访问存储器操作之间 所需的 min时间间隔
+      - 连续两次 独立访问存储器操作之间 所需的 min时间<span style="color: gray;">间隔</span>
   - 主存带宽（<span style="color: LightSkyBlue;">B</span>m）
     Main memory bandwidth
     - 别称：数据传输速率
@@ -249,7 +249,7 @@
 
 - 基本关系：T<span style="color: LimeGreen;">m</span> > <span style="color: silver;">T<span style="color: DarkRed;">a</span>
 - 原因：
-  - 读/写操作后需要恢复内部状态
+  - 读/写操作后需要恢复内部状态 $T_r$
   - 对于破坏性读出的存储器，可达T<span style="color: LimeGreen;">m</span> > = 2 <span style="color: silver;">T<span style="color: DarkRed;">a</span>
 - 示意图：
 
@@ -269,7 +269,7 @@
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/ecbfb7431920fae95ef8cac047bea026b1dcf473fe23120161d91a5948c10f1a.jpg)  
 图3.2多级存储器结构  
 
-### <span style="color: Gold;">特点
+### 🌟<span style="color: Gold;">特点
 
 <ul>
 
@@ -284,7 +284,7 @@
   - 主存-辅存层
 
 ![image](https://bluejedis.github.io/picx-images-hosting/test/image.1hs9v6mslx.webp) 
-图3.3三级存储系统的层次结构及其构成  
+🌟图3.3三级存储系统的层次结构及其构成  
 
 </ul>
 
@@ -373,11 +373,11 @@
 - 半导体存储器
   - 随机存储器（RAM）
     - 静态随机存储器（SRAM）
-      - 用于实现靠近处理器的Cache
+      - 用于实现靠近处理器的<span style="color: purple;">Cache</span>
       - 易失性存储器
     - 动态随机存储器（DRAM）
-      - 用于实现主存储器
-      - 易失性存储器
+      - 用于实现 <span style="color: Gold;">主</span>存储器
+      - 易~
   - 只读存储器（ROM）
     - 非易失性存储器
 
