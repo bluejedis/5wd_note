@@ -124,7 +124,7 @@
   - 磁盘
   - 磁带
 - 磁芯存储器
-- 半导体存储器
+- 🌟半导体存储器 (R<span style="color: DarkRed;">A</span>M R <span style="color: Gold;">O</span>M)
   - MOS型存储器
   - 双极型存储器
 - 光存储器
@@ -203,7 +203,7 @@
 
 <ul>
 
-### <span style="color: Gold;">存储</span> <span style="color: LimeGreen;">容量</span>
+### 🌟<span style="color: Gold;">存储</span> <span style="color: LimeGreen;">容量</span>
 
 <ul>
 
@@ -425,7 +425,7 @@
 
 > pro：需要刷新的存储芯片：SDRAM（2015）  
 
-#### <span style="color: Gold;">特点
+#### 🌟<span style="color: Gold;">特点
 
 <ul>
 
@@ -433,14 +433,14 @@
   - 持续$1\sim2\mathrm{ms}$
 - 读操作特性：
   - 破坏性读出
-  - 需要读后再生
-- 刷新周期：
+  - need 读后再生
+- 🌟刷新周期：
   - 定义：相邻两次刷新的时间间隔
   - 典型值：$2\mathrm{ms}$
 
 </ul>
 
-#### <span style="color: silver;"> <span style="color: GreenYellow;">刷新</span>方式
+#### 🌟<span style="color: silver;"> <span style="color: GreenYellow;">刷新</span>方式
 
 <ul>
 
@@ -449,9 +449,8 @@
 <ul>
 
 - 特点：
-  - 在固定时间内逐一对所有行再生
-  - 刷新期间停止读/写操作（死时间/访存死区）
-- 优点：读/写操作不受刷新影响
+  - 在固定时间内<u>逐一</u>对所有行再生
+  - 刷新期间 停止读/写操作（死时间/访存<span style="color: gray;">死</span> 区）
 - 缺点：刷新期间不能访问存储器
 
 </ul>
@@ -460,9 +459,9 @@
 
 <ul>
 
-- 工作方式：后半部分用于刷新
+- 工作方式：<u>后半</u>部分用于刷新
 - 影响：增加系统存取周期（如$0.5\mu\mathrm{s}$到$1\mu\mathrm{s}$）
-- 优点：没有死区
+- 优点：<u>没有</u> 死区
 - 缺点：加长系统存取周期
 
 </ul>
@@ -473,20 +472,31 @@
 
 - 原理：结合集中和分散刷新方法
 - 实现方式：
-  - 将刷新周期除以行数
+  - 刷新周期 ÷ 行数
   - 按间隔时间产生刷新请求
-- 优势：死时间分布更分散，减少CPU等待时间
+- 优势：
+  - <span style="color: gray;">死</span>时间分布更分散，减少CPU等待时间
 
 </ul>
 
-#### <span style="color: silver;">attention
+<br>
 
+- (add)
+
+|    |  <span style="color: LimeGreen;">集中</span>        |  <span style="color: Gold;">分散</span>      | <span style="color: purple;">异步</span>         |
+|---------------------|------------------|------------------|------------------|
+| time        | 集中period  | 分散到 T   | bus 空闲时间 |
+| <span style="color: gray;">死</span>区       | 集中出现长~   | <b> \ </b> <br> (T 小延迟) |  分布更分散      |
+| <span style="font-size: 10px;"> application scenario     | 可容忍间歇停顿   | need均匀延迟     | 高带宽利用率     |
+
+#### <span style="color: silver;">attention
+(对所有刷新ways而言)
 <ul>
 
 - 特性：
   - 对CPU透明，不依赖外部访问
 - 执行：
-  - 以行为单位进行
+  - 以  <span style="color: Gold;">行</span> 为单位进行
   - 由芯片内部自动生成行地址
 - 操作：
   - 类似读操作但存在区别
@@ -497,12 +507,12 @@
 
 - 刷新&再生'  <span style="color: Gold;">区别</span>：
   - both恢复数据，but过程不完全相同
-  - 刷新：
-    - 以行为单位进行
-    - 需要<u>逐行</u>恢复数据
-  - 再生特点：
+  -  <span style="color: GreenYellow;">刷新</span>：
+     - 以 <span style="color: Gold;">行</span>为单位进行
+     - 需要<u>逐 <span style="color: Gold;">行</span></u>恢复数据
+  - 再生：
     - 只针对被读出的单元
-    - 仅恢复<u>被读出</u>单元的数据
+    - 仅恢复 <u>被读出</u> 单元的数据
 
 > pro：DRAM芯片行缓冲器容量的计算（2022）  
 
@@ -584,7 +594,7 @@
 
 </ul>
 
-### <span style="color: silver;">compare
+### 🌟<span style="color: silver;">compare
 
 <ul>
 
@@ -865,7 +875,7 @@
 
 <ul>
 
-##### <span style="color: silver;"><span style="color: DarkRed;">地址</span>引脚复用技术
+##### 🌟<span style="color: silver;"><span style="color: DarkRed;">地址</span>引脚复用技术
 
 <ul>
 
@@ -876,7 +886,7 @@
 - 实现方式：
   - 行地址和列地址通过相同的引脚分先后两次输入
 - 效果：
-  - 地址引脚数可减少一半
+  - 地址引脚数 可<span style="color: gray;">减少</span>一半
 
 > pro：DRAM芯片行、列数的优化原则（2018）  
 
@@ -1054,6 +1064,9 @@
 </ul>
 
 </ul>
+
+
+---
 
 # <span style="color: silver;"><span style="color: Gold;">主M</span>与 <span style="color: LimeGreen;">CPU</span>' <span style="color: GreenYellow;">连接  
 
