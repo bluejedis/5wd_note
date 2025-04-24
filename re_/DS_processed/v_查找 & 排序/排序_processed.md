@@ -1,11 +1,5 @@
-以下是按照您的要求对提供的 Markdown 内容增加 `<ul></ul>` 标签后的结果。每个标题段落内容被包裹在 `<ul></ul>` 中，且上下均保留空行，严格遵循您给出的格式示例，未更改任何 Markdown 图片链接。
 
-```markdown
 # above
-
-<ul>
-
-# 
 
 <ul>
 
@@ -1282,6 +1276,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 </ul>
 
 </ul>
+</ul>
+</ul>
+</ul>
+</ul>
+</ul>
 
 # 各种内部sort算法的比较及应用  
 
@@ -1429,15 +1428,15 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-### sort算法小结  
+## sort算法小结  
 
 <ul>
 
-#### 基于数据规模n的选择
+### 基于数据规模n的选择
 
 <ul>
 
-##### n较小时的选择
+#### n较小时的选择
 
 <ul>
 
@@ -1450,7 +1449,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-##### n较大时的选择
+#### n较大时的选择
 
 <ul>
 
@@ -1470,7 +1469,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 基于初始状态的选择
+### 基于初始状态的选择
 
 <ul>
 
@@ -1480,7 +1479,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 基于比较的sort算法特性
+### 基于比较的sort算法特性
 
 <ul>
 
@@ -1493,11 +1492,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 特殊情况的选择
+### 特殊情况的选择
 
 <ul>
 
-##### n很大且关键字特殊时
+#### n很大且关键字特殊时
 
 <ul>
 
@@ -1507,7 +1506,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-##### 记录信息量较大时
+#### 记录信息量较大时
 
 <ul>
 
@@ -1521,12 +1520,19 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 </ul>
 
 </ul>
+</ul>
+</ul>
+</ul>
+</ul>
+</ul>
+</ul>
+</ul>
 
-## 外部sort  
+# 外部sort  
 
 <ul>
 
-### 概述
+## 概述
 
 <ul>
 
@@ -1543,7 +1549,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-### 基本概念
+## 基本概念
 
 <ul>
 
@@ -1556,11 +1562,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-### 方法
+## 方法
 
 <ul>
 
-#### 基本原理
+### 基本原理
 
 <ul>
 
@@ -1574,7 +1580,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 > pro：对大文件sort时使用的sort算法（2016）  
 
-#### sort过程
+### sort过程
 
 <ul>
 
@@ -1589,7 +1595,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 归并实现
+### 归并实现
 
 <ul>
 
@@ -1606,7 +1612,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/594c62b9eed6c74fbcd2ef228dc89133d1f7dacc1faac7b8cf3699861e02d96b.jpg)  
 图8.15二路平衡归并的sort过程  
 
-#### 时间开销
+### 时间开销
 
 <ul>
 
@@ -1623,7 +1629,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/29ffd4a87f89e3a71844bdb43087db397877ef3872bcda905c7c5cc68854e819.jpg)  
 图8.164路平衡归并的sort过程  
 
-#### 优化策略
+### 优化策略
 
 <ul>
 
@@ -1638,11 +1644,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-### 多路平衡归并与败者树
+## 多路平衡归并与败者树
 
 <ul>
 
-#### 归并路数k的影响
+### 归并路数k的影响
 
 <ul>
 
@@ -1656,7 +1662,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 败者树优化
+### 败者树优化
 
 <ul>
 
@@ -1680,7 +1686,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
   - 总比较次数：S(n-1)⌈log_2k⌉=⌈log_kr⌉(n-1)⌈log_2k⌉=(n-1)⌈log_2r⌉
   - 比较次数与k无关
 
-#### 归并路数k的选择
+### 归并路数k的选择
 
 <ul>
 
@@ -1696,11 +1702,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-### 置换-选择排序
+## 置换-选择排序
 
 <ul>
 
-#### 目的
+### 目的
 
 <ul>
 
@@ -1711,7 +1717,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 > pro：置换-选择sort生成初始归并段的实例（2023）  
 
-#### 基本条件
+### 基本条件
 
 <ul>
 
@@ -1722,7 +1728,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 算法步骤
+### 算法步骤
 
 <ul>
 
@@ -1739,7 +1745,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 表8.2置换-选择sort过程示例
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/06a91576d394233195d293599a1105b769edc8b13f4d56330f10343b1c301dd4.jpg)  
 
-#### 实现说明
+### 实现说明
 
 <ul>
 
@@ -1749,11 +1755,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-### 最佳归并树
+## 最佳归并树
 
 <ul>
 
-#### 基本概念
+### 基本概念
 
 <ul>
 
@@ -1762,11 +1768,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 归并树分析
+### 归并树分析
 
 <ul>
 
-##### 平衡归并树
+#### 平衡归并树
 
 <ul>
 
@@ -1783,7 +1789,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 > pro：构造三叉哈夫曼树及相关的分析和计算（2013）  
 
-##### 最佳归并树
+#### 最佳归并树
 
 <ul>
 
@@ -1799,11 +1805,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 虚段处理
+### 虚段处理
 
 <ul>
 
-##### 虚段添加策略
+#### 虚段添加策略
 
 <ul>
 
@@ -1817,11 +1823,11 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/400c7ffb6e3e01b16694a55f891313b9094c8e8fae3723f8318229f52ec41d71.jpg)  
 图8.208个归并段的最佳归并树  
 
-##### 虚段数目判定
+#### 虚段数目判定
 
 <ul>
 
-###### 理论基础
+##### 理论基础
 
 <ul>
 
@@ -1833,7 +1839,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-###### 判定方法
+##### 判定方法
 
 <ul>
 
@@ -1850,7 +1856,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 > pro：实现最佳归并时需补充的虚段数量的分析（2019）  
 
-###### 示例分析
+##### 示例分析
 
 <ul>
 
@@ -1865,15 +1871,15 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-#### 归纳总结  
+## 归纳总结  
 
 <ul>
 
-##### sort算法的比较与复习
+### sort算法的比较与复习
 
 <ul>
 
-###### 基本sort算法（n<10000）
+#### 基本sort算法（n<10000）
 
 <ul>
 
@@ -1903,7 +1909,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-###### 中等规模sort算法（n≤1000）
+#### 中等规模sort算法（n≤1000）
 
 <ul>
 
@@ -1919,7 +1925,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-###### 大规模sort算法
+#### 大规模sort算法
 
 <ul>
 
@@ -1954,7 +1960,7 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 
 </ul>
 
-###### 混合使用策略
+#### 混合使用策略
 
 <ul>
 
@@ -1971,12 +1977,3 @@ void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low
 </ul>
 
 </ul>
-```
-
-### 说明
-1. 每个标题下的内容都被包裹在 `<ul></ul>` 标签中，且上下均保留空行。
-2. Markdown 图片链接（如 `![](url)``）保持原样未修改。
-3. 所有层级的标题（`#`, `##`, `###` 等）后均添加了对应的 `<ul></ul>` 包裹其内容。
-4. 严格遵循您提供的期望格式示例，确保缩进和层级关系清晰。
-
-如果您有进一步调整需求，请随时告知！

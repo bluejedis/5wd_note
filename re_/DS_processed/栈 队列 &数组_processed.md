@@ -1,7 +1,3 @@
-以下是按照您的要求处理后的 Markdown 内容，增加了 `<ul></ul>` 标签以实现标题段落间的缩进，并保持原有 Markdown 格式（如图片链接）不变：
-
----
-
 # 栈、队列和数组above  
 
 <ul>
@@ -34,24 +30,21 @@
 
 # 栈  
 
-<ul>
-
-## 基本概念  
 
 <ul>
 
-### 栈的定义
+## 栈的定义
 
 <ul>
 
-#### 栈的基本概念
+### 栈的基本概念
 - 栈（Stack）是只允许在一端进行插入或删除操作的线性表
   - 首先栈是一种线性表
   - 限定这种线性表只能在某一端进行插入和删除操作
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/7106c13b6e1245e55ff693a1f8672ede610b5435b7a237926c8ead113245747c.jpg)  
 图3.1栈的示意图  
 
-#### 栈的组成部分
+### 栈的组成部分
 - 栈顶（Top）
   - 线性表允许进行插入删除的那一端
 - 栈底（Bottom）
@@ -63,7 +56,7 @@
 
 >pro：特定条件下的出栈序列分析（2010、2011、2013、2018、2020）  
 
-#### 栈的操作特性
+### 栈的操作特性
 - 假设某个栈 $S=(a_{1},\,a_{2},\,a_{3},\,a_{4},\,a_{5})$
   - $a_{1}$ 为栈底元素
   - $a_{5}$ 为栈顶元素
@@ -77,11 +70,11 @@
 
 </ul>
 
-### 栈的基本操作
+## 栈的基本操作
 
 <ul>
 
-#### 基本操作列表
+### 基本操作列表
 - InitStack（&S）：初始化一个空栈S
 - StackEmpty（S）：判断栈是否为空
 - Push（&S，x）：进栈操作
@@ -89,7 +82,7 @@
 - GetTop（S，&x）：读栈顶元素
 - DestroyStack（&S）：销毁栈
 
-#### 栈的数学性质
+### 栈的数学性质
 - 当n个不同元素进栈时，出栈元素不同排列的个数为$\frac{1}{n+1}C_{2n}^{n}$
   - 这个公式称为卡特兰数（Catalan）公式
   - 可采用数学归纳法证明
@@ -98,26 +91,31 @@
 
 </ul>
 
-### 顺序存储结构
+## 顺序存储结构
 
 <ul>
 
-#### 顺序栈的基本概念
+### 顺序栈的基本概念
 - 采用顺序存储的栈称为顺序栈
   - 利用连续存储单元存放数据元素
   - 附设指针（top）指示栈顶位置
 
-#### 顺序栈的实现
-##### 数据结构定义
+### 顺序栈的实现
+<ul>
+
+#### 数据结构定义
+<ul>
 
 #define MaxSize 50//定义栈中元素的最大个数
 typedef struct{ 
     Elemtype data[MaxSize];//存放栈中元素
     int top; //栈顶指针 
 }SqStack;
+</ul>
 
+#### 栈的基本属性
+<ul>
 
-##### 栈的基本属性
 - 栈顶指针：s.top
   - 初始时设置s.top=-1
 - 栈顶元素：S.data[S.top]
@@ -128,8 +126,11 @@ typedef struct{
   - 栈空条件：S.top==-1
   - 栈满条件：S.top==MaxSize-1
   - 栈长：S.top+1
+</ul>
 
-##### 另一种实现方式
+#### 另一种实现方式
+<ul>
+
 - 初始设置：S.top=0
 - 操作方式
   - 进栈：先送值，指针再加1
@@ -141,12 +142,13 @@ typedef struct{
 >attention: 栈和队列的判空、判满条件，会因实际给的条件不同而变化，下面的代码实现是在栈顶指针初始化为-1的条件下的相应方法，而其他情况则需具体问题具体分析。
 
 </ul>
+</ul>
 
-### 顺序栈的基本操作
+## 顺序栈的基本操作
 
 <ul>
 
-#### >pro：出/入栈操作的模拟（2009）
+>pro：出/入栈操作的模拟（2009）
 
 - 栈操作的示意图如图3.2所示
   - 图3.2(a)是空栈
@@ -160,32 +162,43 @@ typedef struct{
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/33624a050419102d021d22fcad1a1b9b9ce7d2f891ec502117a6376ac3ae2992.jpg)  
 图3.2栈顶指针和栈中元素之间的关系
 
-#### 顺序栈基本操作实现
-##### 初始化
+### 顺序栈基本操作实现
+<ul>
+
+#### 初始化
+<ul>
 
 void InitStack（SqStack &S){
     s.top  $\scriptstyle{\varepsilon=-1}$  /初始化栈顶指针
 
+</ul>
 
-##### 判栈空
+#### 判栈空
+
+<ul>
 
 bool StackEmpty(SqStack S){
     if(s.top  $==-1$  一 //栈 
         returntrue;
     else
         return false;
+</ul>
 
 
-##### 进栈
+#### 进栈
+
+<ul>
 
 bool Push(SqStack &S,ElemType x){
     if(s.top  $==$  MaxSize-1) /栈满，报错 
         return false;
     S.data[  $++\mathbb{S}$  .top]  $=\!\mathrm{x}$  /指针先加1，再入栈 
     returntrue;
+</ul>
 
+#### 出栈
 
-##### 出栈
+<ul>
 
 bool Pop（SqStack &S,ElemType &x){
     if(s.top  $==1$  /栈空，报错 
@@ -193,8 +206,11 @@ bool Pop（SqStack &S,ElemType &x){
     $\scriptstyle{\mathrm{x}}={\mathrm{s}}$  .data[s.top--]; /先出栈，指针再减1 
     returntrue;
 
+</ul>
 
-##### 读栈顶元素
+#### 读栈顶元素
+
+<ul>
 
 bool GetTop（SqStack S,ElemType &x){
     if(s.top  $==-1$  一 /栈空，报错 
@@ -213,10 +229,11 @@ bool GetTop（SqStack S,ElemType &x){
   - 入栈操作变为S.data $\scriptstyle[S,\,\mathsf{t o p}^{++}\,]\,=\,\mathrm{x}$
   - 出栈操作变为 $\scriptstyle{\mathrm{x}=\mathrm{S}}$ .data[--S.top]
   - 相应的栈空栈满条件也会发生变化
-
+</ul>
 </ul>
 
-### 共享栈
+
+## 共享栈
 
 <ul>
 
@@ -245,7 +262,7 @@ bool GetTop（SqStack S,ElemType &x){
 
 </ul>
 
-### 链式存储结构
+## 链式存储结构
 
 <ul>
 
@@ -466,7 +483,7 @@ bool DeQueue(SqQueue &Q, ElemType &x){
 
 </ul>
 
-## 的链式存储结构  
+## 链式存储结构  
 
 <ul>
 
@@ -816,7 +833,7 @@ bool DeQueue(LinkQueue &Q,ElemType &x){
 
 </ul>
 
-### 队列在层次遍历中的应用  
+## 队列在层次遍历中的应用  
 
 <ul>
 
@@ -847,11 +864,11 @@ bool DeQueue(LinkQueue &Q,ElemType &x){
 
 </ul>
 
-### 队列在计算机系统中的应用  
+## 队列在计算机系统中的应用  
 
 <ul>
 
-#### 解决速度不匹配问题
+### 解决速度不匹配问题
 > pro：缓冲区的逻辑结构（2009）  
 
 * 主机与打印机速度不匹配示例：
@@ -866,7 +883,7 @@ bool DeQueue(LinkQueue &Q,ElemType &x){
     * 保证打印数据正确性
     * 提高主机效率
 
-#### 解决资源竞争问题
+### 解决资源竞争问题
 > pro：多队列出队/入队操作的应用（2016）  
 
 * CPU资源竞争示例：
@@ -966,18 +983,7 @@ bool DeQueue(LinkQueue &Q,ElemType &x){
 </ul>
 
 ### 三角矩阵
-#### 下三角矩阵
-
 <ul>
-
-* 特点：
-  * 上三角区元素均为同一常量
-* 存储方式：
-  * 存储在B[n(n+1)/2+1]中
-  * 包含下三角区、主对角线元素和常量
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/25122d74975c8650cafab2687461cdad7ae6a123b006675775407fbf29de80b4.jpg)  
-
-</ul>
 
 #### 上三角矩阵
 > pro：上三角矩阵采用行优先存储的应用（2011）  
@@ -993,6 +999,21 @@ bool DeQueue(LinkQueue &Q,ElemType &x){
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/4670216ebcead756acc2d02dac75f00a5dd009e8b6bd46d16a48af92ccd17946.jpg)  
 
 </ul>
+
+#### 下三角矩阵
+
+<ul>
+
+* 特点：
+  * 上三角区元素均为同一常量
+* 存储方式：
+  * 存储在B[n(n+1)/2+1]中
+  * 包含下三角区、主对角线元素和常量
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/25122d74975c8650cafab2687461cdad7ae6a123b006675775407fbf29de80b4.jpg)  
+
+</ul>
+</ul>
+
 
 ### 三对角矩阵
 > pro：三对角矩阵压缩存储的下标对应关系（2016）  
@@ -1017,7 +1038,7 @@ bool DeQueue(LinkQueue &Q,ElemType &x){
 
 </ul>
 
-## 稀疏矩阵
+### 稀疏矩阵
 > pro：存储稀疏矩阵需要保存的信息（2023）  
 
 <ul>

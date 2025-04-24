@@ -1,6 +1,4 @@
-以下是按照您的要求处理后的 Markdown 内容，增加了 `<ul></ul>` 标签以实现标题段落间的缩进，严格保留原始文本内容和 Markdown 格式（如图片链接）不变：
 
----
 
 # 线性表above  
 
@@ -245,15 +243,11 @@ typedef struct{
 
 > attention: 在各种操作的实现中（包括严蔚敏老师撰写的教材），往往可以忽略边界条件判断、变量定义、内存分配不足等细节，即不要求代码具有可执行性，而重点在于算法的思想。  
 
-### 基本操作实现
+### 顺序表的初始化
 
 <ul>
 
-#### 顺序表的初始化
-
-<ul>
-
-##### 静态分配初始化
+#### 静态分配初始化
 
 <ul>
 
@@ -266,7 +260,7 @@ void InitList(SqList &L){
 
 </ul>
 
-##### 动态分配初始化
+#### 动态分配初始化
 
 <ul>
 
@@ -283,11 +277,11 @@ void InitList（SeqList &L){
 
 </ul>
 
-#### 插入操作
+### 插入操作
 
 <ul>
 
-##### 基本实现
+#### 基本实现
 
 <ul>
 
@@ -314,11 +308,11 @@ bool ListInsert（SgList &L,int i,ElemType e）{
 
 </ul>
 
-##### 时间复杂度分析
+#### 时间复杂度分析
 
 <ul>
 
-###### 最好情况
+##### 最好情况
 
 <ul>
 
@@ -328,7 +322,7 @@ bool ListInsert（SgList &L,int i,ElemType e）{
 
 </ul>
 
-###### 最坏情况
+##### 最坏情况
 
 <ul>
 
@@ -338,7 +332,7 @@ bool ListInsert（SgList &L,int i,ElemType e）{
 
 </ul>
 
-###### 平均情况
+##### 平均情况
 
 <ul>
 
@@ -351,11 +345,11 @@ bool ListInsert（SgList &L,int i,ElemType e）{
 
 </ul>
 
-#### 删除操作
+### 删除操作
 
 <ul>
 
-##### 基本实现
+#### 基本实现
 
 <ul>
 
@@ -377,11 +371,11 @@ bool ListDelete（SgList &L,inti,ElemType&e){
 
 </ul>
 
-##### 时间复杂度分析
+#### 时间复杂度分析
 
 <ul>
 
-###### 最好情况
+##### 最好情况
 
 <ul>
 
@@ -391,7 +385,7 @@ bool ListDelete（SgList &L,inti,ElemType&e){
 
 </ul>
 
-###### 最坏情况
+##### 最坏情况
 
 <ul>
 
@@ -401,7 +395,7 @@ bool ListDelete（SgList &L,inti,ElemType&e){
 
 </ul>
 
-###### 平均情况
+##### 平均情况
 
 <ul>
 
@@ -416,11 +410,11 @@ bool ListDelete（SgList &L,inti,ElemType&e){
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/fcdde81ce9ac45ac3a7dc87f6c157d7c94ff8c769f9bc96a5a2bee3573ec43ca.jpg)  
 
-#### 按值查找（顺序查找）
+### 按值查找（顺序查找）
 
 <ul>
 
-##### 基本实现
+#### 基本实现
 
 <ul>
 
@@ -436,11 +430,11 @@ int LocateElem(SqList L,ElemType e){
 
 </ul>
 
-##### 时间复杂度分析
+#### 时间复杂度分析
 
 <ul>
 
-###### 最好情况
+##### 最好情况
 
 <ul>
 
@@ -450,7 +444,7 @@ int LocateElem(SqList L,ElemType e){
 
 </ul>
 
-###### 最坏情况
+##### 最坏情况
 
 <ul>
 
@@ -460,7 +454,7 @@ int LocateElem(SqList L,ElemType e){
 
 </ul>
 
-###### 平均情况
+##### 平均情况
 
 <ul>
 
@@ -473,7 +467,7 @@ int LocateElem(SqList L,ElemType e){
 
 </ul>
 
-##### 按序号查找
+#### 按序号查找
 
 <ul>
 

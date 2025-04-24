@@ -1,6 +1,4 @@
-以下是按照您的要求，通过在标题段落间添加 `<ul></ul>` 标签并确保上下空行的 Markdown 内容：
 
-```markdown
 <span style="color: silver;">
 
 #  <span style="color: silver;">above 
@@ -1853,7 +1851,7 @@ $
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/67830ff4aa95539687716a65b4721775d480669d1061978c1db29d559d02a9d6.jpg)
 
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/d1d6304976238
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/d1d6304976238)
 
 # 
 

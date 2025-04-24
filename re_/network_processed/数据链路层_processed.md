@@ -1,6 +1,3 @@
-以下是按照您提供的期望格式，将输入的 Markdown 内容添加 `<ul></ul>` 标签并调整缩进后的结果。每个标题段落之间添加了空行，并在标题下的内容使用 `<ul></ul>` 包裹，确保上下均有非 `<ul></ul>` 的空行。保留原文中的格式（如图片、公式、加粗、颜色等），并严格遵循您的示例格式。
-
----
 
 # 第3章数据链路层  
 
@@ -803,7 +800,7 @@ $\begin{array}{c}{S_{1}\!=\!P_{1}\oplus D_{1}\oplus D_{2}\oplus D_{4}}\\ {S_{2}\
 
 <ul>
 
-### <span style="color: green;">流量</span>  <span style="color: Gold;">控制</span>
+### <span style="color: green;">流量</span>  <span style="color: Gold;">控制</span>overview
 
 <ul>
 
@@ -1216,13 +1213,12 @@ Selective Repeat
 
 </ul>
 
-</ul>
 
-### 分类
+#### 分类
 
 <ul>
 
-####  <span style="color: Gold;">频</span>分复用<span style="color: gray; font-size: 14px;">Division Multiplexing</span>（FDM）
+#####  <span style="color: Gold;">频</span>分复用<span style="color: gray; font-size: 14px;">Division Multiplexing</span>（FDM）
 
 <ul>
 
@@ -1241,11 +1237,11 @@ Selective Repeat
 
 </ul>
 
-#### <span style="color: green;">时</span>分复用（TDM）
+##### <span style="color: green;">时</span>分复用（TDM）
 
 <ul>
 
-##### 基本原理
+###### 基本原理
 
 <ul>
 
@@ -1260,7 +1256,7 @@ Selective Repeat
 
 </ul>
 
-##### 特点
+###### 特点
 
 <ul>
 
@@ -1270,7 +1266,7 @@ Selective Repeat
 
 </ul>
 
-##### 统计时分复用（STDM）
+###### 统计时分复用（STDM）
 
 <ul>
 
@@ -1290,7 +1286,7 @@ Selective Repeat
 
 </ul>
 
-#### <span style="color: LightSkyBlue;">波</span>分复用（WDM）
+##### <span style="color: LightSkyBlue;">波</span>分复用（WDM）
 
 <ul>
 
@@ -1302,11 +1298,11 @@ Selective Repeat
 
 </ul>
 
-#### <span style="color: deepskyblue;">码</span>分复用（CDM）
+##### <span style="color: deepskyblue;">码</span>分复用（CDM）
 
 <ul>
 
-##### 基本概念
+###### 基本概念
 
 <ul>
 
@@ -1316,7 +1312,7 @@ Selective Repeat
 
 </ul>
 
-##### CDMA原理
+###### CDMA原理
 
 <ul>
 
@@ -1331,7 +1327,7 @@ Selective Repeat
 
 </ul>
 
-##### 简单理解
+###### 简单理解
 
 <ul>
 
@@ -1342,11 +1338,11 @@ Selective Repeat
 
 </ul>
 
-##### 具体示例
+#### 具体示例
 
 <ul>
 
-###### 基本设置
+##### 基本设置
 
 <ul>
 
@@ -1361,7 +1357,7 @@ Selective Repeat
 
 </ul>
 
-###### 数学原理
+##### 数学原理
 
 <ul>
 
@@ -1376,7 +1372,7 @@ Selective Repeat
 
 </ul>
 
-###### 实际计算
+##### 实际计算
 
 <ul>
 
@@ -1390,7 +1386,7 @@ Selective Repeat
 
 </ul>
 
-###### 数据分离
+##### 数据分离
 
 <ul>
 
@@ -1410,7 +1406,7 @@ Selective Repeat
 
 </ul>
 
-##### 直观理解
+###### 直观理解
 
 <ul>
 
@@ -1437,7 +1433,7 @@ Selective Repeat
 
 </ul>
 
-##### 优点
+###### 优点
 
 <ul>
 
@@ -2045,17 +2041,150 @@ Selective Repeat
   - **点对点**信道
 - 研究重点是"点到点"
 
-以下是按照您的要求，将输入的 Markdown 内容通过 `<ul></ul>` 标签增加标题段落间的缩进，并确保 `<ul>` 和 `</ul>` 上下均有空行，输出的结果：
+</ul>
+</ul>
+</ul>
 
-```markdown
-# 
-
+# <span style="color: green;">局</span>域网  LAN<span style="color: gray; font-size: 14px;">(Local Area Network)</span>
 <ul>
 
-![neru/prod/3dea384933fe4b050f28d3dbd4a48eedd11df3f4fd270e10c83edbb8a2448575.jpg](neru/prod/3dea384933fe4b050f28d3dbd4a48eedd11df3f4fd270e10c83edbb8a2448575.jpg)  
+## 基本概念和体系结构  
+<ul>
 
->attention:  
+### 定义与特点
+<ul>
 
+- 局域网（LocalAreaNetwork，LAN）是指在一个较小的地理范围（如一所学校）内，将各种计算机、外部设备和数据库系统等通过双绞线、同轴电缆等连接介质互相连接起来，组成资源和信息共享的计算机互连网络
+- 主要特点：
+  - 为一个单位所拥有，且地理范围和站点数目均有限
+  - 所有站点共享较高的总带宽（即较高的数据传输速率）
+  - 较低的时延和较低的误码率
+  - 各站为平等关系而非主从关系
+  - 能进行广播和多播
+</ul>
+
+### 三要素
+<ul>
+
+- 局域网的特性主要由三个要素决定：
+  - 拓扑结构
+  - 传输介质
+  - 介质访问控制方式
+- 其中最重要的是介质访问控制方式，它决定着局域网的技术特性
+
+
+#### 拓扑结构
+<ul>
+
+- 常见的局域网拓扑结构主要有以下4大类：
+  - $\textcircled{\scriptsize{1}}$ 星形结构
+  - $\circledcirc$ 环形结构
+  - $\textcircled{3}$ 总线形结构
+  - $\textcircled{4}$ 星形和总线形结合的复合型结构
+</ul>
+
+#### 传输介质
+<ul>
+
+- 局域网可以使用铜缆、双绞线和光纤等多种传输介质
+- 其中双绞线为主流传输介质
+</ul>
+
+#### 介质访问控制方法
+<ul>
+
+- 主要有三种协议：
+  - CSMA/CD协议（用于总线形局域网）
+  - 令牌总线协议（用于总线形局域网）
+  - 令牌环协议（用于环形局域网）
+</ul>
+</ul>
+
+### 特殊局域网拓扑实现
+<ul>
+
+- 以太网（目前使用范围最广）
+  - 逻辑拓扑是总线形结构
+  - 物理拓扑是星形结构
+- 令牌环（TokenRing，IEEE802.5）
+  - 逻辑拓扑是环形结构
+  - 物理拓扑是星形结构
+- FDDI（光纤分布数字接口，IEEE802.8）
+  - 逻辑拓扑是环形结构
+  - 物理拓扑是双环结构
+</ul>
+
+### IEEE802标准与OSI参考模型
+<ul>
+
+- IEEE802标准定义的局域网参考模型特点：
+  - 只对应于OSI参考模型的数据链路层和物理层
+  - 将数据链路层拆分为两个子层：
+    - 逻辑链路控制（LLC）子层
+    - 介质访问控制（MAC）子层
+
+#### MAC子层
+- 与接入传输介质有关的内容都放在MAC子层
+- 向上层屏蔽对物理层访问的各种差异
+- 主要功能：
+  - 组帧和拆卸帧
+  - 比特传输差错检测
+  - 透明传输
+
+#### LLC子层
+- 与传输介质无关
+- 向网络层提供四种不同的连接服务类型：
+  - 无确认无连接
+  - 面向连接
+  - 带确认无连接
+  - 高速传送
+</ul>
+
+### 现状
+<ul>
+
+- 以太网在局域网市场中占据垄断地位，几乎成为局域网的代名词
+- 802委员会制定的LLC子层作用已经不大
+- 许多网卡仅装MAC协议而不装LLC协议
+
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/16c71a620ddded21f3ab9edcb32be26696a427239d32f2fc4cc82b8d8ddad874.jpg)  
+图3.24IEEE802协议层与OSI参考模型的比较
+</ul>
+</ul>
+
+## <span style="color: purple;">以太</span>网<span style="color: gray; font-size: 14px;">Ethernet</span>& IEEE802.3
+<ul>
+
+### 概述
+<ul>
+
+一种广泛使用的局域网（LAN）技术
+- 定义了计算机和其他网络设备如何在物理层和数据链路层进行通信
+#### 发展历程
+<ul>
+
+- 以太网规约的发展:
+  - 第一个版本是DIXV1
+    - 由DEC、Intel和Xerox联合提出
+  - 第二版规约DIXEthermnetV2
+    - 是世界上第一个局域网产品的规约
+  - IEEE802.3标准
+    - 由IEEE802委员会的IEEE802.3工作组制定
+    - 是第一个IEEE的以太网标准
+</ul>
+
+
+#### 基本特点
+<ul>
+
+- 网络地位
+  - 是目前最流行的有线局域网技术
+- 网络结构
+  - 逻辑上采用总线形拓扑结构
+  - 所有计算机共享同一条总线
+- 通信方式
+  - 信息以广播方式发送
+  - 使用CSMA/CD方式对总线进行访问控制
 </ul>
 
 ##### 标准说明
@@ -2728,6 +2857,10 @@ Selective Repeat
 </ul>
 
 </ul>
+</ul>
+</ul>
+</ul>
+
 
 #  <span style="color: Gold;">广</span>域网  
 
@@ -3208,14 +3341,5 @@ PPP在帧格式中有顿检验序列FCS字段。对于每个收到的帧，PPP�
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/fc3ddde383674d06764c118a9de7de3dffbcff35e7317effddf57d889c61eb8c.jpg)  
 
 </ul>
-```
 
-### 说明：
-1. 每个标题（包括 `#`、`##`、`###`、`####` 等）后均添加了 `<ul></ul>` 标签包裹其内容。
-2. `<ul>` 和 `</ul>` 上下均保留空行，确保符合期望格式。
-3. 原有的缩进（如列表 `-`）和引用（`>`）保持不变，仅在标题段落间添加 `<ul></ul>`。
-4. 对于没有内容的标题（如 `#`），仍添加了空的 `<ul></ul>`，以保持一致性。
-5. 对于非标题部分（如最后的“本章小结及疑难点”），未添加额外的 `<ul></ul>`，仅在整体外层包裹一层 `<ul></ul>`。
-
-如果您有进一步的需求或调整，请告诉我！
 

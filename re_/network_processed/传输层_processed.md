@@ -226,7 +226,7 @@
   - 主机A ← 主机B，会使用主机A报文中的源端口号作为目的端口号。
   - 完整的返回地址
     - 主机A的 IP地址和源端口号
-  - ```mermaid
+ ```mermaid
     sequenceDiagram
     participant Host_A
     participant Host_B
@@ -238,10 +238,9 @@
     
     Host_B->>Host_A: Reply(Using Host_A's Source Port as Destination)
     Note over Host_A,Host_B: Return Address = (Host_A IP : Source Port)
-    ```
+  ```
 
 </ul>
-
 </ul>
 
 ## 无连接服务与面向连接服务  
@@ -952,7 +951,7 @@ UDP（User Datagram Protocol，用户数据报协议）
 图5.8用"四次挥手"释放TCP连接  
 - 
 
-  ```PlantUML
+```PlantUML
   @startuml
   ' 设置注释背景颜色
   skinparam note {
